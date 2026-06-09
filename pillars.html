@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pillar Report | Seetharamapuram Tanda Gram Panchayat</title>
+  <meta name="description" content="View detailed reports, status metrics, and audit logs for Seetharamapuram Tanda Gram Panchayat's sustainability pillars.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .pillar-detail-body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-bg-base);
+    }
+    
+    .pillar-detail-hero {
+      padding: 130px 0 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      color: #ffffff;
+      background: linear-gradient(135deg, rgba(12, 28, 18, 0.95), rgba(46, 125, 50, 0.9));
+    }
+
+    body.banjara-active .pillar-detail-hero {
+      background: linear-gradient(135deg, rgba(45, 6, 18, 0.95), rgba(216, 67, 21, 0.9));
+    }
+
+    .hero-icon {
+      font-size: 3.5rem;
+      margin-bottom: 12px;
+      display: inline-block;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Main Container Split Grid */
+    .report-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 992px) {
+      .report-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    /* Left Column Details Card */
+    .report-container {
+      background: var(--color-bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 40px;
+    }
+
+    .report-header {
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .report-header h2 {
+      font-size: 1.4rem;
+      color: var(--color-primary);
+    }
+
+    .report-status-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      background-color: var(--color-success);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+
+    /* Dynamic Image Layout */
+    .report-card-image-wrapper {
+      width: 100%;
+      height: 320px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      margin: 20px 0 8px 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .report-card-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .report-card-image-wrapper:hover img {
+      transform: scale(1.03);
+    }
+
+    .report-image-caption {
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+      text-align: center;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    /* Milestones checklist */
+    .milestones-card {
+      background: var(--color-primary-pale);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-top: 10px;
+    }
+
+    .milestones-card h3 {
+      font-size: 1.15rem;
+      color: var(--color-primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .milestones-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .milestones-list li {
+      font-size: 0.95rem;
+      color: var(--color-text-dark);
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 12px;
+      line-height: 1.5;
+      cursor: default;
+      user-select: none;
+      border-radius: var(--radius-sm);
+      padding-top: 6px;
+      padding-bottom: 6px;
+      display: flex;
+      align-items: center;
+    }
+
+    .milestones-list li::before {
+      display: none;
+    }
+
+    /* Right Column Metrics Grid */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 0;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 576px) {
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .metric-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 20px 16px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg), var(--shadow-glow);
+    }
+
+    .metric-value {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--color-secondary);
+      margin-bottom: 6px;
+    }
+
+    .metric-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .metric-desc {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+    }
+
+    /* Table styles */
+    .audit-table-wrapper {
+      overflow-x: auto;
+    }
+
+    .audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+
+    .audit-table th {
+      background-color: var(--color-primary-pale);
+      color: var(--color-primary);
+      padding: 12px 14px;
+      font-weight: 700;
+      border-bottom: 2px solid var(--color-border);
+    }
+
+    .audit-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-text-dark);
+    }
+
+    .audit-table tr:hover {
+      background-color: var(--color-secondary-pale);
+    }
+
+    /* Header buttons */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 2px solid rgba(255,255,255,0.4);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      transition: all 0.3s;
+    }
+
+    .back-btn:hover {
+      background-color: #ffffff;
+      color: var(--color-primary);
+      border-color: #ffffff;
+      transform: translateX(-4px);
+    }
+
+    /* Toast notification */
+    .alert-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 16px 28px;
+      border-radius: var(--radius-md);
+      background-color: var(--color-bg-card);
+      color: var(--color-text-dark);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(150%);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+      z-index: 1005;
+      border-left: 5px solid var(--color-success);
+    }
+    .alert-popup.active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="pillar-detail-body ready">
+
+  <!-- ==========================================
+       HEADER / NAVIGATION
+       ========================================== -->
+  <header class="header-bar" id="main-header" style="position: absolute; left: 0; right: 0; width: 100%; background: transparent; box-shadow: none; border: none;">
+    <div class="container header-container">
+      <a href="/" class="brand" id="brand-logo-link" aria-label="Seetharamapuram Tanda Gram Panchayat Home">
+        <svg class="emblem-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="4"/>
+          <circle cx="50" cy="50" r="41" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
+          <path d="M20,65 Q50,55 80,65 L80,85 Q50,75 20,85 Z" fill="var(--color-secondary-light)" opacity="0.3"/>
+          <path d="M15,75 Q50,65 85,75 L85,88 L15,88 Z" fill="currentColor"/>
+          <circle cx="50" cy="50" r="14" fill="var(--color-accent)"/>
+          <line x1="50" y1="24" x2="50" y2="16" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="50" y1="76" x2="50" y2="84" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M50,70 C40,55 45,40 50,45 C55,40 60,55 50,70 Z" fill="currentColor"/>
+        </svg>
+        <div class="brand-text">
+          <h1 id="gp-brand-title" style="color:#ffffff;">Seetharamapuram Tanda</h1>
+          <p id="gp-brand-subtitle" style="color:rgba(255,255,255,0.75);">Gram Panchayat Portal</p>
+        </div>
+      </a>
+      
+      <nav aria-label="Main navigation menu">
+        <ul class="nav-links" id="navigation-links">
+          <li>
+            <div class="lang-selector-wrapper">
+              <select id="lang-select" class="custom-lang-select" aria-label="Select Language" style="background-color: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.4);">
+                <option value="en" style="color:#000;">English</option>
+                <option value="hi" style="color:#000;">हिन्दी (Hindi)</option>
+                <option value="te" style="color:#000;">తెలుగు (Telugu)</option>
+              </select>
+            </div>
+          </li>
+          <li>
+            <a href="/" class="back-btn" id="btn-back-home">
+              ← Return Home
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       HERO BANNER
+       ========================================== -->
+  <section class="pillar-detail-hero">
+    <div class="container">
+      <span class="hero-icon" id="pillar-icon">🌱</span>
+      <h1 class="hero-title" id="pillar-main-title">Pillar Detail</h1>
+      <p class="hero-desc" id="pillar-main-desc">Pillar Description goes here.</p>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SPLIT REPORT GRID
+       ========================================== -->
+  <main class="flex-grow container" style="margin-bottom: 60px;">
+    
+    <div class="report-grid">
+      <!-- Left Column: Detailed Matter & Associated Image -->
+      <div class="report-main-col">
+        <div class="report-container">
+          <h2 id="detail-heading-text">Detailed Overview</h2>
+          <p id="pillar-detail-matter" style="font-size: 0.95rem; line-height: 1.6; color: var(--color-text-dark); margin: 16px 0 20px 0;">Detailed narrative text goes here...</p>
+          
+          <div class="report-card-image-wrapper">
+            <img id="pillar-image" src="" alt="Pillar illustration">
+          </div>
+          <p class="report-image-caption" id="pillar-image-caption">Visual documentation of the initiative.</p>
+        </div>
+
+        <div class="report-container" style="margin-top: 32px;">
+          <div class="report-header">
+            <h2 id="report-heading-text">Operational Audit & Tracking Log</h2>
+            <span class="report-status-badge" id="report-status-text">Active</span>
+          </div>
+
+          <div class="audit-table-wrapper">
+            <table class="audit-table">
+              <thead>
+                <tr>
+                  <th id="th-date">Date</th>
+                  <th id="th-param">Parameter Checked</th>
+                  <th id="th-inspector">Inspector</th>
+                  <th id="th-status">Result Status</th>
+                </tr>
+              </thead>
+              <tbody id="audit-table-body">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Quick Stats & Audits Table -->
+      <div class="report-side-col">
+        <!-- Quick Stats Grid -->
+        <div class="metric-grid" id="pillar-metrics">
+          <!-- Loaded dynamically -->
+        </div>
+
+        <div class="milestones-card" id="milestones-card-el">
+            <h3 id="milestones-heading-label">Recent Milestones & Objectives</h3>
+            
+
+
+            <div id="pillar-milestones-list" style="margin-top: 15px; overflow-x: auto;">
+              <!-- Loaded dynamically -->
+            </div>
+          </div>
+
+        <!-- Household Facility Upgrades Chart Card -->
+        <div class="milestones-card" id="facility-chart-card" style="margin-top: 24px; padding: 24px;">
+          <h3 style="font-size: 1.15rem; color: var(--color-primary); margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+            <span style="display: flex; align-items: center; gap: 8px;"><span>📊</span> <span id="facility-chart-title">Household Facility Upgrades</span></span>
+            <span id="household-chart-badge" style="font-size:0.75rem; font-weight:600; padding:2px 8px; border-radius:var(--radius-sm); border: 1px solid rgba(0,0,0,0.1);">Self-Reported</span>
+          </h3>
+          <p id="facility-chart-desc" style="font-size: 0.8rem; color: var(--color-text-dark); margin-bottom: 16px;">
+            Percentage of village households reporting basic amenities:
+          </p>
+          <div id="facility-chart-bars" style="display: flex; flex-direction: column; gap: 12px;">
+            <div class="budget-bar-row">
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:600; margin-bottom:4px;">
+                <span id="label-toilet">🚽 Private Toilet Usage</span>
+                <span id="val-toilet">80%</span>
+              </div>
+              <div style="width:100%; height:8px; background-color:var(--color-primary-pale); border-radius:var(--radius-full); overflow:hidden;">
+                <div id="bar-toilet" style="width:80%; height:100%; background-color:var(--color-secondary); border-radius:var(--radius-full);"></div>
+              </div>
+            </div>
+            <div class="budget-bar-row">
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:600; margin-bottom:4px;">
+                <span id="label-vehicle">🚗 Personal Vehicle Ownership</span>
+                <span id="val-vehicle">60%</span>
+              </div>
+              <div style="width:100%; height:8px; background-color:var(--color-primary-pale); border-radius:var(--radius-full); overflow:hidden;">
+                <div id="bar-vehicle" style="width:60%; height:100%; background-color:var(--color-accent); border-radius:var(--radius-full);"></div>
+              </div>
+            </div>
+            <div class="budget-bar-row">
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:600; margin-bottom:4px;">
+                <span id="label-water">🚰 Safe Tap Water Connection</span>
+                <span id="val-water">94%</span>
+              </div>
+              <div style="width:100%; height:8px; background-color:var(--color-primary-pale); border-radius:var(--radius-full); overflow:hidden;">
+                <div id="bar-water" style="width:94%; height:100%; background-color:#2e7d32; border-radius:var(--radius-full);"></div>
+              </div>
+            </div>
+            <div class="budget-bar-row">
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:600; margin-bottom:4px;">
+                <span id="label-energy">⚡ Rooftop Solar / Biogas</span>
+                <span id="val-energy">50%</span>
+              </div>
+              <div style="width:100%; height:8px; background-color:var(--color-primary-pale); border-radius:var(--radius-full); overflow:hidden;">
+                <div id="bar-energy" style="width:50%; height:100%; background-color:var(--color-info); border-radius:var(--radius-full);"></div>
+              </div>
+            </div>
+            <div class="budget-bar-row">
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:600; margin-bottom:4px;">
+                <span id="label-house">🏠 Own House Ownership</span>
+                <span id="val-house">82%</span>
+              </div>
+              <div style="width:100%; height:8px; background-color:var(--color-primary-pale); border-radius:var(--radius-full); overflow:hidden;">
+                <div id="bar-house" style="width:82%; height:100%; background-color:#8e24aa; border-radius:var(--radius-full);"></div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 16px; text-align: center;">
+            <button class="btn btn-secondary btn-sm" id="btn-trigger-facility-update" style="width: 100%; padding: 8px 12px; font-size: 0.85rem; font-weight: 700; border-radius: var(--radius-md);">
+              ✏️ <span id="btn-text-facility-update">Update Household Status</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Audit Log Report -->
+        
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer-bottom" style="padding: 24px 0; background: var(--color-primary); color: #fff; text-align: center; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.1);">
+    <div class="container">
+      <p id="footer-text-1">© 2026 Seetharamapuram Tanda Panchayat | Department of Rural Development</p>
+      <p id="footer-text-2" style="opacity:0.75; font-size:0.75rem; margin-top:4px;">Official Digital Civic Node | Andhra Pradesh State Government</p>
+    </div>
+  </footer>
+
+  <!-- HOUSEHOLD FACILITY UPDATE MODAL -->
+  <div class="modal-overlay" id="modal-household-update" role="dialog" aria-modal="true" aria-labelledby="household-modal-title">
+    <div class="modal-content" style="max-width: 480px; background-color: #ffffff; color: var(--color-text-dark);">
+      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--color-border); padding-bottom: 12px; margin-bottom: 16px;">
+        <h3 id="household-modal-title" style="margin: 0; font-size: 1.25rem; color: var(--color-primary);">Update Household Amenities Status</h3>
+        <button class="modal-close-btn" id="btn-close-facility-modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text-muted);">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="household-update-form" style="display: flex; flex-direction: column; gap: 16px;">
+          <p id="household-modal-desc" style="font-size: 0.82rem; color: var(--color-text-muted); margin: 0 0 8px 0; line-height: 1.4;">
+            Self-report your household's upgraded amenities to help update the Gram Panchayat dataset.
+          </p>
+          
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <label for="update-household-id" id="lbl-household-id" style="font-weight: 700; font-size: 0.85rem; color: var(--color-primary); text-align: left;">Ration Card or Household ID</label>
+            <input type="text" id="update-household-id" placeholder="e.g. HH-151 or 12-digit Ration ID" required style="width: 100%; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: #fff; font-size: 0.9rem;" />
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px; text-align: left;">
+            <label style="font-weight: 700; font-size: 0.85rem; color: var(--color-primary);" id="lbl-select-amenities">Select Amenities Present in Your Household:</label>
+            
+            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.88rem; font-weight: 600;">
+              <input type="checkbox" id="chk-toilet" style="width: 18px; height: 18px; cursor: pointer;" />
+              <span id="chk-label-toilet">We use a Private Toilet</span>
+            </label>
+            
+            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.88rem; font-weight: 600;">
+              <input type="checkbox" id="chk-vehicle" style="width: 18px; height: 18px; cursor: pointer;" />
+              <span id="chk-label-vehicle">We own a Personal Vehicle (Two/Four Wheeler)</span>
+            </label>
+            
+            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.88rem; font-weight: 600;">
+              <input type="checkbox" id="chk-water" style="width: 18px; height: 18px; cursor: pointer;" />
+              <span id="chk-label-water">We have a Safe Tap Water Connection</span>
+            </label>
+            
+            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.88rem; font-weight: 600;">
+              <input type="checkbox" id="chk-energy" style="width: 18px; height: 18px; cursor: pointer;" />
+              <span id="chk-label-energy">We use Clean Energy (Solar/Biogas)</span>
+            </label>
+            
+            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.88rem; font-weight: 600;">
+              <input type="checkbox" id="chk-house" style="width: 18px; height: 18px; cursor: pointer;" />
+              <span id="chk-label-house">We live in our Own House</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="btn-submit-household-update" style="width: 100%; padding: 12px; margin-top: 10px; font-weight: 700; background-color: var(--color-primary); color: #fff; border: none; border-radius: var(--radius-md); cursor: pointer;">
+            Submit Update
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="alert-popup" id="alert-toast" role="alert" aria-live="polite">
+    <span id="toast-message">Language loaded!</span>
+  </div>
+
+  <script>
+    let currentLanguage = 'en';
+    const params = new URLSearchParams(window.location.search);
+    let pillarType = params.get('type') || 'health';
+
+    // Core Data Source for all 7 Pillars (English, Hindi, and Telugu)
+    const pillarData = {
+      health: {
+        icon: "🏥",
+        image: "assets/housing_layout.png",
+        en: {
+          title: "Health & Hygiene Hub",
+          desc: "Operational monitoring of local medical sub-centers, vaccination schedules, drinking water audits, and community hygiene indices.",
+          detailMatter: "The Seetharamapuram Tanda Health Sub-Center is fully staffed with registered nurses and auxiliary nurse midwives (ANMs). We conduct weekly sanitization audits and spray bleaching powder across all residential streets to prevent seasonal vector-borne diseases. Our drinking water supply is tested monthly at the mandal headquarters laboratory to guarantee chemical and biological safety for all households.",
+          imageCaption: "A clean community courtyard environment supporting hygiene initiatives.",
+          milestones: [
+            "HH Credit 1: Solid Waste collection and Disposal",
+            "HH Credit 2: Clean Village",
+            "HH Credit 3: Drinking Water Availability",
+            "HH Credit 4: Sanitation Facility",
+            "HH Credit 5: Healthcare Facility",
+            "HH Credit 6: Indoor Air Quality in household",
+            "HH Credit 7: Organic Waste Management",
+            "HH Credit 8: Sewage Handling Practices",
+            "HH Credit 9: Use of Organic Fertilizers",
+            "HH Credit 10: Recreational Area"
+          ],
+          metrics: [
+            { val: "98%", label: "Sub-Center Readiness", desc: "Equipped with essential medicines and first-aid gear." },
+            { val: "100%", label: "Sanitization Rate", desc: "Weekly bleaching and cleaning of all village streets." },
+            { val: "94/100", label: "Water Quality Index", desc: "Chemical & biological tests confirm safe water supply." }
+          ],
+          audits: [
+            { date: "05/06/2026", param: "Drinking Water Quality Test (Main Tank)", inspector: "Dr. K. Srinivas", status: "SAFE / COMMENDED" },
+            { date: "28/05/2026", param: "Sanitisation & Bleaching (All Wards)", inspector: "Panchayat Secretary", status: "COMPLETED" },
+            { date: "15/05/2026", param: "Child Immunisation Drive (Polio/BCG)", inspector: "ANM Worker Devika", status: "100% COVERAGE" }
+          ]
+        },
+        hi: {
+          title: "स्वास्थ्य और स्वच्छता हब",
+          desc: "स्थानीय चिकित्सा उप-केंद्रों, टीकाकरण कार्यक्रम, पेयजल लेखापरीक्षा और सामुदायिक स्वच्छता सूचकांकों की परिचालन निगरानी।",
+          detailMatter: "सीतारामपुरम टांडा स्वास्थ्य उप-केंद्र पंजीकृत नर्सों और एएनएम के साथ पूरी तरह से सुसज्जित है। हम मौसमी बीमारियों को रोकने के लिए सभी आवासीय सड़कों पर साप्ताहिक स्वच्छता ऑडिट और ब्लीचिंग पाउडर का छिड़काव करते हैं। हमारे पीने के पानी की आपूर्ति की रासायनिक और जैविक सुरक्षा की गारंटी के लिए हर महीने मंडल मुख्यालय प्रयोगशाला में परीक्षण किया जाता है।",
+          imageCaption: "स्वच्छता और आरोग्य पहल का समर्थन करने वाला एक स्वच्छ सामुदायिक आंगन।",
+          milestones: [
+            "HH क्रेडिट 1: ठोस कचरा संग्रह और निपटान",
+            "HH क्रेडिट 2: स्वच्छ ग्राम",
+            "HH क्रेडिट 3: पेयजल की उपलब्धता",
+            "HH क्रेडिट 4: स्वच्छता सुविधा",
+            "HH क्रेडिट 5: स्वास्थ्य सेवा सुविधा",
+            "HH क्रेडिट 6: घरों के भीतर वायु गुणवत्ता",
+            "HH क्रेडिट 7: जैविक कचरा प्रबंधन",
+            "HH क्रेडिट 8: सीवेज हैंडलिंग प्रथाएं",
+            "HH क्रेडिट 9: जैविक उर्वरकों का उपयोग",
+            "HH क्रेडिट 10: मनोरंजक क्षेत्र"
+          ],
+          metrics: [
+            { val: "98%", label: "उप-केंद्र तत्परता", desc: "आवश्यक दवाओं और प्राथमिक चिकित्सा उपकरणों से लैस।" },
+            { val: "100%", label: "स्वच्छता दर", desc: "सभी ग्रामीण गलियों में साप्ताहिक सफाई और ब्लीचिंग छिड़काव।" },
+            { val: "94/100", label: "जल गुणवत्ता सूचकांक", desc: "रासायनिक और जैविक परीक्षणों द्वारा सुरक्षित पानी की पुष्टि।" }
+          ],
+          audits: [
+            { date: "05/06/2026", param: "पेयजल गुणवत्ता परीक्षण (मुख्य टैंक)", inspector: "डॉ. के. श्रीनिवास", status: "सुरक्षित / प्रशंसित" },
+            { date: "28/05/2026", param: "स्वच्छता और ब्लीचिंग (सभी वार्ड)", inspector: "पंचायत सचिव", status: "पूर्ण" },
+            { date: "15/05/2026", param: "बाल टीकाकरण अभियान (पोलियो/बीसीजी)", inspector: "एएनएम कार्यकर्ता देविका", status: "100% कवरेज" }
+          ]
+        },
+        te: {
+          title: "ఆరోగ్యం & పరిశుభ్రత కేంద్రం",
+          desc: "స్థానిక వైద్య ఉప-కేంద్రాల పనితీరు, టీకాల క్యాలెండర్లు, త్రాగునీటి ఆడిట్లు మరియు కమ్యూనిటీ పారిశుద్ధ్య సూచికల పర్యవేక్షణ.",
+          detailMatter: "ఆరోగ్య ఉప-కేంద్రం రిజిస్టర్డ్ నర్సులు మరియు ANM లతో పూర్తి సన్నద్ధతతో ఉంది. కాలానుగుణ వ్యాధుల నివారణకు మేము ప్రతి వారం అన్ని వీధుల్లో బ్లీచింగ్ పౌడర్ చల్లడం మరియు పారిశుద్ధ్య తనిఖీలను నిర్వహిస్తాము. తాగునీటి రసాయన మరియు జీవ నాణ్యతను పరీక్షించడానికి ప్రతి నెలా మండలం ల్యాబ్‌కు శాంపిల్స్ పంపబడతాయి.",
+          imageCaption: "ఆరోగ్యకరమైన పరిసరాలను చూపే గ్రామ నివాస ప్రాంగణం.",
+          milestones: [
+            "HH క్రెడిట్ 1: ఘన వ్యర్థాల సేకరణ మరియు విసర్జన",
+            "HH క్రెడిట్ 2: పరిశుభ్రమైన గ్రామం",
+            "HH క్రెడిట్ 3: త్రాగునీటి లభ్యత",
+            "HH క్రెడిట్ 4: పారిశుద్ధ్య సౌకర్యం",
+            "HH క్రెడిట్ 5: ఆరోగ్య సంరక్షణ సౌకర్యం",
+            "HH క్రెడిట్ 6: గృహాలలో అంతర్గత గాలి నాణ్యత",
+            "HH క్రెడిట్ 7: సేంద్రీయ వ్యర్థాల నిర్వహణ",
+            "HH క్రెడిట్ 8: మురుగునీటి నిర్వహణ పద్ధతులు",
+            "HH క్రెడిట్ 9: సేంద్రీయ ఎరువుల వినియోగం",
+            "HH క్రెడిట్ 10: వినోద ప్రదేశం"
+          ],
+          metrics: [
+            { val: "98%", label: "వైద్య సన్నద్ధత", desc: "అవసరమైన మందులు మరియు ప్రథమ చికిత్స పరికరాలతో సిద్ధంగా ఉంది." },
+            { val: "100%", label: "పారిశుద్ధ్య శాతం", desc: "అన్ని వీధుల్లో ప్రతివారం బ్లీచింగ్ చల్లడం మరియు శుభ్రపరచడం." },
+            { val: "94/100", label: "నీటి నాణ్యత సూచిక", desc: "రసాయన & జీవ పరీక్షల్లో సురక్షితమైన నీటి సరఫరాగా నిర్ధారణ." }
+          ],
+          audits: [
+            { date: "05/06/2026", param: "త్రాగునీటి నాణ్యత పరీక్ష (ప్రధాన ట్యాంక్)", inspector: "డాక్టర్ కె. శ్రీనివాస్", status: "సురక్షితం" },
+            { date: "28/05/2026", param: "పారిశుద్ధ్యం & బ్లీచింగ్ (అన్ని వార్డులు)", inspector: "పంచాయతీ కార్యదర్శి", status: "పూర్తి చేయబడింది" },
+            { date: "15/05/2026", param: "పిల్లల పోలియో/బీసీజీ టీకాల శిబిరం", inspector: "ANM కార్యకర్త దేవిక", status: "100% పూర్తయింది" }
+          ]
+        }
+      },
+      infra: {
+        icon: "🏗️",
+        image: "assets/village_solar.png",
+        en: {
+          title: "Infrastructure Progress",
+          desc: "Construction log for paved roads, street illumination grids, drainage channels, and local Gram Panchayat assets.",
+          detailMatter: "Our Panchayat has focused heavily on all-weather connectivity. Concrete cement (CC) road paving connects the outer Tanda hamlets directly to the main highway. Public solar LED street lighting grids have been deployed, securing nocturnal pathways. The Gram Panchayat building functions as a unified digital hub, loaded with high-speed satellite broadband and battery backups.",
+          imageCaption: "Paved stone road pathways illuminated by smart solar energy street lights.",
+          milestones: [
+            "VI Credit 1: Basic Amenities",
+            "VI Credit 2: Education Infrastructure",
+            "VI Credit 3: Inter & Intra village Commuting",
+            "VI Credit 4: Livestock Management",
+            "VI Credit 5: Preservation and Maintenance of water bodies",
+            "VI Credit 6: Water Supply Network",
+            "VI Credit 7: Storm water network",
+            "VI Credit 8: Sewerage Network",
+            "VI Credit 9: Green Cover in Village"
+          ],
+          metrics: [
+            { val: "85 Units", label: "Solar Street Lights", desc: "Operating on grid-free smart automation." },
+            { val: "92%", label: "Drainage Coverage", desc: "Proper concrete drains prevent stagnant pools." },
+            { val: "4.8 km", label: "CC Roads Paved", desc: "All-weather accessibility across village blocks." }
+          ],
+          audits: [
+            { date: "01/06/2026", param: "CC Road Repair (North Hamlet Link)", inspector: "AE Panchayat Engineering", status: "APPROVED / PASSED" },
+            { date: "20/05/2026", param: "Solar Battery & Panel Maintenance", inspector: "APCPDCL Tech Team", status: "FUNCTIONAL" },
+            { date: "10/05/2026", param: "High School Class Room Expansion", inspector: "Sarpanch Devika", status: "IN PROGRESS" }
+          ]
+        },
+        hi: {
+          title: "ग्राम बुनियादी ढांचा प्रगति",
+          desc: "पक्की सड़कों, सड़क प्रकाश ग्रिड, जल निकासी चैनलों और स्थानीय ग्राम पंचायत संपत्तियों का निर्माण लॉग।",
+          detailMatter: "हमारी पंचायत सभी मौसमों में अनुकूल पक्की कंक्रीट सड़कों के निर्माण पर ध्यान केंद्रित कर रही है। रात्रि सुरक्षा सुनिश्चित करने के लिए सड़कों पर सौर स्ट्रीट लाइट ग्रिड स्थापित किया गया है। ग्राम पंचायत कार्यालय को हाई-स्पीड ब्रॉडबैंड और सौर-ऊर्जा बैकअप के साथ एक डिजिटल नागरिक सेवा केंद्र के रूप में उन्नत किया गया है।",
+          imageCaption: "स्मार्ट सौर ऊर्जा रोशनी से रोशन पक्की पत्थर की सड़कें।",
+          milestones: [
+            "VI क्रेडिट 1: बुनियादी सुविधाएं",
+            "VI क्रेडिट 2: शिक्षा अवसंरचना",
+            "VI क्रेडिट 3: अंतर और अंतः ग्राम आवागमन",
+            "VI क्रेडिट 4: पशुधन प्रबंधन",
+            "VI क्रेडिट 5: जल निकायों का संरक्षण और रखरखाव",
+            "VI क्रेडिट 6: जलापूर्ति नेटवर्क",
+            "VI क्रेडिट 7: तूफान जल नेटवर्क",
+            "VI क्रेडिट 8: सीवरेज नेटवर्क",
+            "VI क्रेडिट 9: गांव में हरित आवरण"
+          ],
+          metrics: [
+            { val: "85 इकाइयां", label: "सौर स्ट्रीट लाइट", desc: "ग्रिड-मुक्त स्मार्ट ऑटोमेशन पर संचालित।" },
+            { val: "92%", label: "जल निकासी कवरेज", desc: "कंक्रीट नालियों से जलभराव की रोकथाम।" },
+            { val: "4.8 किमी", label: "पक्की सड़कें", desc: "सभी मौसमों के लिए गांव के ब्लॉकों में सुगम मार्ग।" }
+          ],
+          audits: [
+            { date: "01/06/2026", param: "पक्की सड़क मरम्मत (उत्तर टांडा लिंक)", inspector: "एई पंचायत इंजीनियरिंग", status: "स्वीकृत / उत्तीर्ण" },
+            { date: "20/05/2026", param: "सौर बैटरी और पैनल रखरखाव", inspector: "बिजली विभाग तकनीकी टीम", status: "कार्यशील" },
+            { date: "10/05/2026", param: "हाई स्कूल कक्षा कक्ष विस्तार", inspector: "सरपंच देविका", status: "प्रगति पर" }
+          ]
+        },
+        te: {
+          title: "గ్రామ మౌలిక సదుపాయాల ప్రగతి",
+          desc: "సిమెంట్ రోడ్ల నిర్మాణం, సోలార్ వీధి దీపాలు, మురుగునీటి కాలువలు మరియు గ్రామ పంచాయతీ ఆస్తుల పర్యవేక్షణ డైరి.",
+          detailMatter: "మా పంచాయితీ అన్ని కాలాల్లో రవాణాకు అనుకూలమైన సిమెంట్ రోడ్ల నిర్మాణానికి ప్రాధాన్యత ఇస్తుంది. రాత్రి పూట రక్షణ కొరకు ఆటోమేటిక్ సోలార్ వీధి దీపాల గ్రిడ్‌ను ఏర్పాటు చేసాము. గ్రామ పంచాయతీ కార్యాలయాన్ని హై-స్ప్రీడ్ ఇంటర్నెట్ మరియు సోలార్ పవర్ బ్యాకప్‌తో డిజిటల్ సేవా కేంద్రంగా తీర్చిదిద్దాము.",
+          imageCaption: "సోలార్ విద్యుత్ వెలుగులతో నిండిన గ్రామ రహదారులు.",
+          milestones: [
+            "VI క్రెడిట్ 1: కనీస సౌకర్యాలు",
+            "VI క్రెడిట్ 2: విద్యా మౌలిక సదుపాయాలు",
+            "VI క్రెడిట్ 3: గ్రామ అంతర్గత & బాహ్య రవాణా",
+            "VI క్రెడిట్ 4: పశుసంపద నిర్వహణ",
+            "VI క్రెడిట్ 5: జలవనరుల పరిరక్షణ మరియు నిర్వహణ",
+            "VI క్రెడిట్ 6: నీటి సరఫరా వ్యవస్థ",
+            "VI క్రెడిట్ 7: వర్షపు నీటి కాలువల వ్యవస్థ",
+            "VI క్రెడిట్ 8: మురుగునీటి పారుదల వ్యవస్థ",
+            "VI క్రెడిట్ 9: గ్రామంలో హరిత విస్తీర్ణం"
+          ],
+          metrics: [
+            { val: "85 యూనిట్లు", label: "సోలార్ వీధి దీపాలు", desc: "ఆటోమేటిక్ స్మార్ట్ లైటింగ్‌తో పనిచేస్తాయి." },
+            { val: "92%", label: "మురుగు కాలువల శాతం", desc: "నిల్వ నీరు లేకుండా సిమెంట్ కాలువల నిర్మాణం." },
+            { val: "4.8 కి.మీ", label: "సిమెంట్ రోడ్లు", desc: "అన్ని కాలాల్లో గ్రామస్తుల రవాణాకు సులభ మార్గం." }
+          ],
+          audits: [
+            { date: "01/06/2026", param: "సిమెంట్ రోడ్డు మరమ్మత్తు (ఉత్తర తండా లింక్)", inspector: "AE పంచాయతీ ఇంజనీరింగ్", status: "ఆమోదించబడింది" },
+            { date: "20/05/2026", param: "సోలార్ బ్యాటరీ & ప్యానెల్ నిర్వహణ", inspector: "విద్యుత్ శాఖ టెక్ టీమ్", status: "పనిచేస్తున్నది" },
+            { date: "10/05/2026", param: "హైస్కూల్ గదుల నిర్మాణ పరిశీలన", inspector: "సర్పంచ్ దేవిక", status: "కొనసాగుతోంది" }
+          ]
+        }
+      },
+      water: {
+        icon: "💧",
+        image: "assets/housing_layout.png",
+        en: {
+          title: "Water Conservation & Reserves",
+          desc: "Groundwater recharge measurements, check dam volumes, reservoir limits, and rainfall capture statistics.",
+          detailMatter: "Seetharamapuram Tanda enforces strict rainwater harvesting protocols. We have desilted and renovated the community pond (Amrit Sarovar) and 4 agricultural check dams. Public school buildings and overhead tanks are equipped with recharge pits, achieving a notable 14% improvement in the local groundwater table level.",
+          imageCaption: "Traditional sloped tiled roofs designed to guide rainwater into recharge wells.",
+          milestones: [
+            "WC Credit 1: Rain water Harvesting",
+            "WC Credit 2: Waste water Treatment",
+            "WC Credit 3: Treated Water Reuse"
+          ],
+          metrics: [
+            { val: "+14%", label: "Water Table Rise", desc: "Positive shift in village borewell water column." },
+            { val: "150k L", label: "Reservoir Capacity", desc: "Total community reserve storage capacity." },
+            { val: "4 Units", label: "Check Dams Maintained", desc: "Structured to catch summer monsoon runoffs." }
+          ],
+          audits: [
+            { date: "04/06/2026", param: "Borewell Recharge Grid Audit", inspector: "Groundwater Dept Inspector", status: "OPTIMAL RECHARGE" },
+            { date: "25/05/2026", param: "Reservoir Flow Silt Filtration", inspector: "Panchayat Staff", status: "CLEANED" },
+            { date: "12/05/2026", param: "Check Dam 2 Expansion Audit", inspector: "Welfare Committee Head", status: "COMPLETED" }
+          ]
+        },
+        hi: {
+          title: "जल संरक्षण और जलाशय",
+          desc: "भूजल पुनर्भरण माप, चेक डैम की क्षमता, जलाशय की सीमा और वर्षा जल संचयन के आंकड़े।",
+          detailMatter: "सीतारामपुरम टांडा में वर्षा जल संचयन अनिवार्य है। हमने जल स्तर को बनाए रखने के लिए 4 चेक डैम का जीर्णोद्धार किया है और उपेक्षित सामुदायिक तालाबों को पुनर्जीवित किया है। प्रत्येक सरकारी भवन और स्कूल में वाटर हार्वेस्टिंग पिट स्थापित किए गए हैं, जिससे भूजल रिचार्ज दर में 14% सुधार हुआ है।",
+          imageCaption: "वर्षा के पानी को पुनर्भरण कुओं में ले जाने के लिए ढलान वाली खपरैल छतें।",
+          milestones: [
+            "WC क्रेडिट 1: वर्षा जल संचयन",
+            "WC क्रेडिट 2: अपशिष्ट जल उपचार",
+            "WC क्रेडिट 3: उपचारित जल का पुनरुत्पादन"
+          ],
+          metrics: [
+            { val: "+14%", label: "भूजल स्तर में वृद्धि", desc: "गांव के बोरवेल जल स्तर में सकारात्मक बदलाव।" },
+            { val: "150k लीटर", label: "जलाशय क्षमता", desc: "कुल सामुदायिक सुरक्षित भंडारण क्षमता।" },
+            { val: "4 इकाइयां", label: "चेक डैम रखरखाव", desc: "ग्रीष्मकालीन मानसून के बहाव को रोकने के लिए संरचित।" }
+          ],
+          audits: [
+            { date: "04/06/2026", param: "बोरवेल रिचार्ज ग्रिड ऑडिट", inspector: "भूजल विभाग निरीक्षक", status: "इष्टतम रिचार्ज" },
+            { date: "25/05/2026", param: "जलाशय प्रवाह गाद निस्पंदन", inspector: "पंचायत कर्मचारी", status: "सफाई पूर्ण" },
+            { date: "12/05/2026", param: "चेक डैम 2 विस्तार लेखापरीक्षा", inspector: "कल्याण समिति प्रमुख", status: "पूर्ण" }
+          ]
+        },
+        te: {
+          title: "జల సంరక్షణ & నిల్వలు",
+          desc: "భూగర్భ జలాల పునరుద్ధరణ కొలతలు, చెక్ డ్యామ్‌ల సామర్థ్యం, జలాశయం స్థాయిలు మరియు వర్షపు నీటి నిల్వ నివేదికలు.",
+          detailMatter: "భూగర్భ జలాల పెంపునకు 4 చెక్ డ్యామ్‌లను పునరుద్ధరించాము మరియు పాత చెరువులను రీఛార్జ్ చేసాము. ప్రతి ప్రభుత్వ పాఠశాల మరియు భవనంలో వర్షపు నీటి నిల్వ గుంతలను ఏర్పాటు చేయడంతో భూగర్భ జలాలు 14% పెరిగాయి.",
+          imageCaption: "వర్షపు నీటిని భూమిలోకి ఇంకేలా చేసేందుకు వాలుగా ఉండే సాంప్రదాయ పెంకుటి ఇళ్ళు.",
+          milestones: [
+            "WC క్రెడిట్ 1: వర్షపు నీటి నిల్వ",
+            "WC క్రెడిట్ 2: వ్యర్థ జలాల శుద్ధి",
+            "WC క్రెడిట్ 3: శుద్ధి చేసిన నీటి పునర్వినియోగం"
+          ],
+          metrics: [
+            { val: "+14%", label: "భూగర్భ జలాల పెరుగుదల", desc: "బోరుబావులలో నీటి నిల్వ పెరగడం." },
+            { val: "150k లీ", label: "జలాశయ సామర్థ్యం", desc: "గ్రామ నిల్వ సముదాయ సామర్థ్యం." },
+            { val: "4 యూనిట్లు", label: "చెక్ డ్యామ్‌ల నిర్వహణ", desc: "వర్షపు నీటిని నిల్వ చేయడానికి పటిష్టమైన నిర్మాణం." }
+          ],
+          audits: [
+            { date: "04/06/2026", param: "బోరుబావుల రీఛార్జ్ గ్రిడ్ ఆడిట్", inspector: "భూగర్భ జలాల శాఖ ఇన్స్పెక్టర్", status: "సురక్షితం" },
+            { date: "25/05/2026", param: "జలాశయం సిల్ట్ వడపోత పరిశీలన", inspector: "పంచాయతీ సిబ్బంది", status: "పరిశుభ్రం చేయబడింది" },
+            { date: "12/05/2026", param: "చెక్ డ్యామ్ 2 విస్తరణ పరిశీలన", inspector: "సంక్షేమ కమిటీ అధ్యక్షుడు", status: "పూర్తి చేయబడింది" }
+          ]
+        }
+      },
+      energy: {
+        icon: "⚡",
+        image: "assets/village_solar.png",
+        en: {
+          title: "Green Energy Grid & Efficiency",
+          desc: "Monitoring of off-grid solar generators, LED conversion metrics, and biogas community inputs.",
+          detailMatter: "Energy independence is a major priority for the Tanda. The Gram Panchayat complex is powered via a 24 kW rooftop solar array. All public lighting is retrofitted with energy-efficient LED bulbs, cutting energy consumption by 40%. Organic composting and bio-gas digestors supply methane to communal kitchens, providing clean alternatives to wood fuel.",
+          imageCaption: "Solar street lights representing the village's off-grid solar energy systems.",
+          milestones: [
+            "EA Credit 1: Rural Electrification",
+            "EA Credit 2: Renewable Energy",
+            "EA Credit 3: Energy Efficiency",
+            "EA Credit 4: Solar Water Heating Systems"
+          ],
+          metrics: [
+            { val: "24 kW", label: "Solar Generation", desc: "Peak clean power produced daily at GP complex." },
+            { val: "100%", label: "LED Bulb Adoption", desc: "All public street lights converted to LED." },
+            { val: "45m³", label: "Biogas Input/Day", desc: "Organic fuel supplied to community kitchens." }
+          ],
+          audits: [
+            { date: "03/06/2026", param: "GP Solar Panel Inverter Log", inspector: "Solar Engineer (NREDCAP)", status: "96% EFFICIENCY" },
+            { date: "22/05/2026", param: "Agricultural Pump Set Energy Test", inspector: "Electrical Inspector", status: "RATED STAR-5" },
+            { date: "14/05/2026", param: "Biogas Digester Pressure Test", inspector: "Biogas Operator", status: "OPTIMAL PRESSURE" }
+          ]
+        },
+        hi: {
+          title: "हरित ऊर्जा ग्रिड और दक्षता",
+          desc: "ऑफ-ग्रिड सौर ऊर्जा उत्पादकों, एलईडी रूपांतरण मेट्रिक्स और बायोगैस सामुदायिक इनपुट की निगरानी।",
+          detailMatter: "ग्राम पंचायत ऊर्जा आत्मनिर्भरता की ओर बढ़ रही है। पंचायत परिसर में 24 किलोवाट की सौर प्रणाली से बिजली की आपूर्ति की जाती है। गांव की सभी पुरानी लाइटों को एलईडी बल्बों में बदल दिया गया है, जिससे ऊर्जा की खपत में 40% की कमी आई है। बायोगैस संयंत्रों से ग्रामीण परिवारों को स्वच्छ ईंधन दिया जा रहा है।",
+          imageCaption: "गाँव के सौर ऊर्जा संयंत्रों को दर्शाती सौर स्ट्रीट लाइटें।",
+          milestones: [
+            "EA क्रेडिट 1: ग्रामीण विद्युतीकरण",
+            "EA क्रेडिट 2: अक्षय ऊर्जा",
+            "EA क्रेडिट 3: ऊर्जा दक्षता",
+            "EA क्रेडिट 4: सौर जल तापन प्रणाली"
+          ],
+          metrics: [
+            { val: "24 kW", label: "सौर ऊर्जा उत्पादन", desc: "जीपी परिसर में प्रतिदिन उत्पादित स्वच्छ बिजली।" },
+            { val: "100%", label: "एलईडी बल्ब अपनाना", desc: "सभी सार्वजनिक स्ट्रीट लाइटों को एलईडी में बदला गया।" },
+            { val: "45m³", label: "बायोगैस इनपुट/दिन", desc: "सामुदायिक रसोई को आपूर्ति किया जाने वाला जैविक ईंधन।" }
+          ],
+          audits: [
+            { date: "03/06/2026", param: "जीपी सौर पैनल इन्वर्टर लॉग", inspector: "सौर अभियंता (NREDCAP)", status: "96% दक्षता" },
+            { date: "22/05/2026", param: "कृषि पंप सेट ऊर्जा परीक्षण", inspector: "विद्युत निरीक्षक", status: "5-स्टार रेटेड" },
+            { date: "14/05/2026", param: "बायोगैस डाइजेस्टर दबाव परीक्षण", inspector: "बायोगैस ऑपरेटर", status: "इष्टतम दबाव" }
+          ]
+        },
+        te: {
+          title: "హరిత విద్యుత్ గ్రిడ్ & సామర్థ్యం",
+          desc: "సోలార్ పవర్ ప్లాంట్ జనరేషన్ కొలతలు, ఎల్ఈడీ బల్బుల వివరాలు మరియు బయో-గ్యాస్ ప్లాంట్ నిర్వహణ.",
+          detailMatter: "గ్రామ పంచాయితీ విద్యుత్ స్వయం సమృద్ధి దిశగా సాగుతోంది. పంచాయతీ కార్యాలయంపై 24 కిలోవాట్ల సోలార్ ప్లాంట్ ఏర్పాటు చేసాము. వీధి దీపాలన్నింటినీ ఎల్ఈడీలుగా మార్చడంతో విద్యుత్ వినియోగం 40% తగ్గింది. బయో-గ్యాస్ ప్లాంట్ల ద్వారా వంట గ్యాస్ సరఫరా చేయబడుతోంది.",
+          imageCaption: "గ్రామంలో ఏర్పాటు చేయబడిన పర్యావరణ రహిత సోలార్ వీధి దీపాలు.",
+          milestones: [
+            "EA క్రెడిట్ 1: గ్రామీణ విద్యుద్దీకరణ",
+            "EA క్రెడిట్ 2: పునరుత్పాదక శక్తి",
+            "EA క్రెడిట్ 3: ఇంధన సామర్థ్యం",
+            "EA క్రెడిట్ 4: సోలార్ వాటర్ హీటింగ్ సిస్టమ్స్"
+          ],
+          metrics: [
+            { val: "24 kW", label: "సోలార్ ఉత్పత్తి", desc: "పంచాయతీ భవనం వద్ద నిత్యం ఉత్పత్తయ్యే హరిత విద్యుత్." },
+            { val: "100%", label: "ఎల్ఈడీ వీధి దీపాలు", desc: "అన్ని వీధి దీపాలను ఎల్ఈడీలుగా మార్చడం జరిగింది." },
+            { val: "45m³", label: "బయో-గ్యాస్ ఉత్పత్తి/రోజు", desc: "గ్రామ కమ్యూనిటీ వంటశాలకు సరఫరా చేసే గ్యాస్." }
+          ],
+          audits: [
+            { date: "03/06/2026", param: "సోలార్ ప్యానెల్ ఇన్వర్టర్ ఆడిట్", inspector: "సోలార్ ఇంజనీర్ (NREDCAP)", status: "96% సామర్థ్యం" },
+            { date: "22/05/2026", param: "వ్యవసాయ విద్యుత్ పంపుల ఆడిట్", inspector: "విద్యుత్ ఇన్స్పెక్టర్", status: "5-స్టార్ రేటింగ్" },
+            { date: "14/05/2026", param: "బయో-గ్యాస్ ప్లాంట్ ఒత్తిడి పరీక్ష", inspector: "ప్లాంట్ ఆపరేటర్", status: "సరిగ్గా ఉంది" }
+          ]
+        }
+      },
+      materials: {
+        icon: "🔄",
+        image: "assets/gond_walls.png",
+        en: {
+          title: "Resource & Materials Recycling",
+          desc: "Waste recycling center audit logs, zero-plastic rules enforcement registers, and local clay/weaving outputs.",
+          detailMatter: "We strive to establish a circular economy model in Seetharamapuram Tanda. The dry/wet waste segregation unit composts all organic discards. Simultaneously, we enforce a strict single-use plastic ban. To replace plastics, local cooperative networks have been setup to manufacture traditional earthen clay pottery and Lambadi handwoven fabrics.",
+          imageCaption: "Traditional wall artwork celebrating organic materials and tribal heritage.",
+          milestones: [
+            "MR Credits 1: Local Materials",
+            "MR Credits 2: Alternative Livelihoods",
+            "MR Credits 3: Plastic Handling and Disposal"
+          ],
+          metrics: [
+            { val: "120 kg", label: "Dry Waste Recycled", desc: "Paper and cardboard processed weekly." },
+            { val: "95%", label: "Plastic Reduction", desc: "Single-use plastic bags blocked at village shops." },
+            { val: "2 Active", label: "Weaving Co-ops", desc: "Promoting local cotton and natural fibers." }
+          ],
+          audits: [
+            { date: "02/06/2026", param: "Waste Sorting Audit (Wet/Dry)", inspector: "Panchayat Cleanliness Head", status: "98% COMPLIANCE" },
+            { date: "18/05/2026", param: "Single-Use Plastic Inspection Drive", inspector: "Vigilance Committee Member", status: "NO OFFENDERS" },
+            { date: "08/05/2026", param: "Eco-Clay Crafts Quality Review", inspector: "Handicrafts Board Expert", status: "GRADE-A CERTIFIED" }
+          ]
+        },
+        hi: {
+          title: "सामग्री और परिपत्र संसाधन",
+          desc: "कचरा रीसायकलिंग केंद्र ऑडिट लॉग, प्लास्टिक निषेध प्रवर्तन रजिस्टर और स्थानीय मिट्टी/बुनाई उत्पाद रिपोर्ट।",
+          detailMatter: "हम गांव को शून्य-अपशिष्ट और प्लास्टिक-मुक्त बनाने के लिए प्रतिबद्ध हैं। अपशिष्ट पृथक्करण केंद्र में गीला और सूखा कचरा अलग किया जाता है। स्थानीय कुम्हारों और बुनकरों को प्लास्टिक के विकल्पों का उत्पादन करने के लिए प्रोत्साहित किया जा रहा है, जिससे स्थानीय रोजगार और हस्तशिल्प को बढ़ावा मिल रहा है।",
+          imageCaption: "प्राकृतिक सामग्री और आदिवासियों की विरासत का जश्न मनाने वाली पारंपरिक दीवार कलाकृतियाँ।",
+          milestones: [
+            "MR क्रेडिट 1: स्थानीय सामग्री",
+            "MR क्रेडिट 2: वैकल्पिक आजीविका",
+            "MR क्रेडिट 3: प्लास्टिक प्रबंधन और निपटान"
+          ],
+          metrics: [
+            { val: "120 किलोग्राम", label: "सूखा कचरा रीसायकल", desc: "साप्ताहिक रूप से संसाधित कागज और कार्डबोर्ड।" },
+            { val: "95%", label: "प्लास्टिक में कमी", desc: "दुकानों पर एकल-उपयोग प्लास्टिक पर पूर्ण प्रतिबंध।" },
+            { val: "2 सक्रिय", label: "बुनाई सहकारी समितियां", desc: "स्थानीय कपास और प्राकृतिक रेशों को बढ़ावा।" }
+          ],
+          audits: [
+            { date: "02/06/2026", param: "कचरा छंटनी ऑडिट (गीला/सूखा)", inspector: "पंचायत स्वच्छता प्रमुख", status: "98% अनुपालन" },
+            { date: "18/05/2026", param: "एकल-उपयोग प्लास्टिक निरीक्षण अभियान", inspector: "सतर्कता समिति सदस्य", status: "कोई उल्लंघनकर्ता नहीं" },
+            { date: "08/05/2026", param: "मिट्टी शिल्प गुणवत्ता समीक्षा", inspector: "हस्तशिल्प बोर्ड विशेषज्ञ", status: "ग्रेड-ए प्रमाणित" }
+          ]
+        },
+        te: {
+          title: "వనరులు & రీసైక్లింగ్",
+          desc: "రీసైక్లింగ్ కేంద్రం ఆడిట్ వివరాలు, ప్లాస్టిక్ నిషేధం అమలు మరియు స్థానిక మట్టి/నేత వస్తువుల ఉత్పత్తి.",
+          detailMatter: "మా గ్రామాన్ని శూన్య-వ్యర్థ మరియు ప్లాస్టిక్ రహిత గ్రామంగా మార్చడానికి కృషి చేస్తున్నాము. తడి మరియు పొడి చెత్తను వేరుచేసి రీసైకిల్ చేస్తున్నాము. ప్లాస్టిక్ వస్తువుల స్థానంలో పర్యావరణ అనుకూల మట్టి పాత్రలు, చేనేత బ్యాగుల వాడకాన్ని ప్రోత్సహిస్తున్నాము.",
+          imageCaption: "సేంద్రీయ వనరులు మరియు గిరిజన సంస్కృతికి అద్దంపట్టే గోడ చిత్రాలు.",
+          milestones: [
+            "MR క్రెడిట్ 1: స్థానిక వస్తువులు",
+            "MR క్రెడిట్ 2: ప్రత్యామ్నాయ జీవనోపాధి",
+            "MR క్రెడిట్ 3: ప్లాస్టిక్ నియంత్రణ మరియు విసర్జన"
+          ],
+          metrics: [
+            { val: "120 కిలోలు", label: "రీసైకిల్ చేసిన చెత్త", desc: "ప్రతి వారం రీసైకిల్ చేసే పొడి చెత్త." },
+            { val: "95%", label: "ప్లాస్టిక్ నిర్మూలన", desc: "షాపులలో ప్లాస్టిక్ కవర్ల వినియోగం నిలిపివేత." },
+            { val: "2 సంస్థలు", label: "చేనేత సహకార సంఘాలు", desc: "స్థానిక కాటన్ మరియు సహజ దారాల ప్రోత్సాహం." }
+          ],
+          audits: [
+            { date: "02/06/2026", param: "చెత్త వర్గీకరణ పరిశీలన (తడి/పొడి)", inspector: "పంచాయతీ పారిశుద్ధ్య అధికారి", status: "98% అమలైంది" },
+            { date: "18/05/2026", param: "ప్లాస్టిక్ నిషేధ తనిఖీలు", inspector: "విజిలెన్స్ కమిటీ సభ్యులు", status: "ఎవరూ నిబంధనలు ఉల్లంఘించలేదు" },
+            { date: "08/05/2026", param: "మట్టి పాత్రల నాణ్యత పరిశీలన", inspector: "హస్తకళల బోర్డు నిపుణుడు", status: "గ్రేడ్-ఎ సర్టిఫికేట్" }
+          ]
+        }
+      },
+      social: {
+        icon: "👥",
+        image: "assets/local_weaving.png",
+        en: {
+          title: "Social & Community Action",
+          desc: "Participation metrics at public assemblies (Gram Sabha), women Self-Help Group (SHG) micro-finance audits.",
+          detailMatter: "Social cohesion drives all structural improvements in the Tanda. Over 180 women actively participate in Self-Help Groups (SHGs), managing cooperative micro-loans for sustainable farming setups. All development agendas and budgets undergo rigorous scrutiny at open public Gram Sabha assemblies. We also operate a free public shuttle bus to support educational transit for outer hamlets.",
+          imageCaption: "Women cooperative weavers preserving Lambadi generational embroidery.",
+          milestones: [
+            "SC Credit 1: Green Outreach & Awareness",
+            "SC Credit 2: Green Village Committee",
+            "SC Credit 3: Smart Village Attributes"
+          ],
+          metrics: [
+            { val: "180+", label: "Women in SHGs", desc: "Empowered through microfinance and banking co-ops." },
+            { val: "88%", label: "Gram Sabha Turnout", desc: "Citizens participating in village budgeting." },
+            { val: "42 Passes", label: "Student Shuttles", desc: "Active passes issued to student transits." }
+          ],
+          audits: [
+            { date: "02/06/2026", param: "Gram Sabha Resolution Review", inspector: "Sarpanch Devika", status: "BUDGETFY26 ADOPTED" },
+            { date: "16/05/2026", param: "SHG Micro-Loan Audit (All Wards)", inspector: "Panchayat Cooperative Auditor", status: "0% DEFAULT / HEALTHY" },
+            { date: "05/05/2026", param: "Student Shuttles Safety Inspection", inspector: "Panchayat Transit Officer", status: "SAFETY COMPLIANT" }
+          ]
+        },
+        hi: {
+          title: "सामाजिक और सामुदायिक कार्य",
+          desc: "सार्वजनिक सभाओं (ग्राम सभा) में भागीदारी मेट्रिक्स, महिला स्वयं सहायता समूह (SHG) सूक्ष्म वित्त लेखापरीक्षा।",
+          detailMatter: "सीतारामपुरम टांडा का सामाजिक ताना-बाना मजबूत है। 180 से अधिक महिलाएं स्वयं सहायता समूहों (SHG) से जुड़ी हैं, जो छोटे व्यवसायों के लिए ऋण प्रदान करती हैं। हर निर्णय ग्राम सभा की खुली बैठकों में चर्चा करके लिया जाता है। प्राथमिक विद्यालय के बच्चों के लिए मुफ्त परिवहन सेवा प्रदान की जाती है।",
+          imageCaption: "लंबाडी कढ़ाई कला को जीवित रखने वाली महिला सहकारी बुनकर।",
+          milestones: [
+            "SC क्रेडिट 1: हरित संपर्क और जागरूकता",
+            "SC क्रेडिट 2: हरित ग्राम समिति",
+            "SC क्रेडिट 3: स्मार्ट ग्राम विशेषताएँ"
+          ],
+          metrics: [
+            { val: "180+", label: "स्वयं सहायता समूह में महिलाएं", desc: "सूक्ष्म वित्त और बैंकिंग सहकारी समितियों के माध्यम से सशक्त।" },
+            { val: "88%", label: "ग्राम सभा मतदान", desc: "ग्राम बजट में भाग लेने वाले जागरूक नागरिक।" },
+            { val: "42 पास", label: "छात्र बस पास", desc: "स्कूल यात्रा के लिए सक्रिय रूप से जारी किए गए पास।" }
+          ],
+          audits: [
+            { date: "02/06/2026", param: "ग्राम सभा प्रस्ताव समीक्षा", inspector: "सरपंच देविका", status: "बजट 2026 स्वीकृत" },
+            { date: "16/05/2026", param: "एसएचजी ऋण लेखापरीक्षा (सभी वार्ड)", inspector: "पंचायत सहकारी लेखा परीक्षक", status: "0% डिफॉल्ट / स्वस्थ" },
+            { date: "05/05/2026", param: "छात्र शटल सुरक्षा निरीक्षण", inspector: "पंचायत पारगमन अधिकारी", status: "सुरक्षा अनुपालन" }
+          ]
+        },
+        te: {
+          title: "సామాజిక & కమ్యూనిటీ పనులు",
+          desc: "గ్రామ సభ సమావేశాలలో పౌరుల భాగస్వామ్యం, మహిళా సంఘాల (SHG) రుణ ఆడిట్ వివరాలు.",
+          detailMatter: "ఆర్థిక భద్రత మరియు సామాజిక ఐక్యతకు కమ్యూనిటీ సంఘాలు ఎంతో తోడ్పడతాయి. 180 మందికి పైగా మహిళలు పొదుపు సంఘాల (SHG) ద్వారా స్వయం ఉపాధి పొందుతున్నారు. గ్రామ ప్రణాళికలు మరియు నిధుల ఖర్చు ప్రతి నిర్ణయం గ్రామసభలోనే జరుగుతుంది. హైస్కూల్ విద్యార్థుల ప్రయాణాలకు ఉచిత శటిల్ రవాణా కల్పించబడింది.",
+          imageCaption: "సాంప్రదాయ బంజారా చేనేత వస్త్రాలను మరియు హస్తకళలను తయారు చేసే పొదుపు సంఘాల మహిళలు.",
+          milestones: [
+            "SC క్రెడిట్ 1: హరిత ప్రచారం & అవగాహన",
+            "SC క్రెడిట్ 2: హరిత గ్రామ కమిటీ",
+            "SC క్రెడిట్ 3: స్మార్ట్ గ్రామ లక్షణాలు"
+          ],
+          metrics: [
+            { val: "180+ మంది", label: "మహిళా సంఘాలు", desc: "మైక్రోఫైనాన్స్ మరియు బ్యాంక్ సహకారంతో స్వయం సమృద్ధి." },
+            { val: "88%", label: "గ్రామ సభ హాజరు", desc: "గ్రామ బడ్జెట్ ప్రణాళికలో పాల్గొనే పౌరులు." },
+            { val: "42 పాస్‌లు", label: "ఉచిత విద్యార్థి రవాణా", desc: "విద్యార్థులకు ఉచిత శటిల్ ప్రయాణ పాస్‌ల జారీ." }
+          ],
+          audits: [
+            { date: "02/06/2026", param: "గ్రామసభ తీర్మానాల సమీక్ష", inspector: "సర్పంచ్ దేవిక", status: "ఆమోదించబడింది" },
+            { date: "16/05/2026", param: "SHG రుణాల చెల్లింపు ఆడిట్", inspector: "సహకార ఆడిటర్", status: "0% డిఫాల్ట్" },
+            { date: "05/05/2026", param: "విద్యార్థుల శటిల్ బస్సుల రక్షణ పరిశీలన", inspector: "రవాణా అధికారి", status: "నిబంధనలు బాగున్నాయి" }
+          ]
+        }
+      },
+      green: {
+        icon: "🌱",
+        image: "assets/housing_layout.png",
+        en: {
+          title: "Green Innovation & Social Forestry",
+          desc: "Geotagged tree audit details, climate-resilient crop distribution register, and organic fertilizer compost inputs.",
+          detailMatter: "Climate adaptation drives agricultural support in Seetharamapuram Tanda. The Panchayat operates central vermicompost (earthworm manure) beds, supplying organic fertilizers to reduce chemical dependencies. Social forestry coordinates are logged to audit sapling survivals. We also distribute drought-tolerant seeds to local farmers.",
+          imageCaption: "Eco-friendly, naturally designed rural structures supporting organic farming practices.",
+          milestones: [
+            "GI Credit 1: Innovation 1",
+            "GI Credit 2: Innovation 2",
+            "GI Credit 3: Innovation 3",
+            "GI Credit 4: Innovation 4",
+            "GI Credit 5: Innovation 5"
+          ],
+          metrics: [
+            { val: "370+ Trees", label: "Geotagged Saplings", desc: "Social forestry plantings tracked under SVR map." },
+            { val: "8 Bins", label: "Vermicompost Units", desc: "Organic composting bins producing village fertilizer." },
+            { val: "65%", label: "Organic Farming", desc: "Percentage of local farmers using organic soil inputs." }
+          ],
+          audits: [
+            { date: "06/06/2026", param: "Social Forestry Plantation Audit", inspector: "Forestry Range Officer", status: "94% SURVIVAL RATE" },
+            { date: "24/05/2026", param: "Organic Vermicompost Output Test", inspector: "KVK Agri Scientist", status: "RICH SOIL NUTRIENTS" },
+            { date: "10/05/2026", param: "Climate Resilient Crop Advisory", inspector: "Soil Health Expert", status: "ISSUED / DISTRIBUTED" }
+          ]
+        },
+        hi: {
+          title: "हरित नवाचार और सामाजिक वानिकी",
+          desc: "जियोटैग किए गए वृक्ष लेखापरीक्षा विवरण, जलवायु-अनुकूल फसल वितरण रजिस्टर और जैविक उर्वरक कम्पोस्ट इनपुट।",
+          detailMatter: "हरित नवाचार के तहत हम कृषि में रासायनिक खादों के उपयोग को कम कर रहे हैं। वर्मीकंपोस्ट (केंचुआ खाद) इकाइयों द्वारा जैविक खाद का उत्पादन कर किसानों को वितरित किया जा रहा है। सामाजिक वानिकी योजना के तहत एसवीआर डिजिटल मानचित्र पर 370 से अधिक औषधीय और छायादार पौधों की जियोटैगिंग की गई है।",
+          imageCaption: "जैविक कृषि पद्धतियों का समर्थन करने वाले पर्यावरण-अनुकूल, प्राकृतिक ग्रामीण परिसर।",
+          milestones: [
+            "GI क्रेडिट 1: नवाचार 1",
+            "GI क्रेडिट 2: नवाचार 2",
+            "GI क्रेडिट 3: नवाचार 3",
+            "GI क्रेडिट 4: नवाचार 4",
+            "GI क्रेडिट 5: नवाचार 5"
+          ],
+          metrics: [
+            { val: "370+ पेड़", label: "जियोटैग किए गए पौधे", desc: "एसवीआर मानचित्र के तहत ट्रैक किए गए सामाजिक वानिकी पौधे।" },
+            { val: "8 इकाइयां", label: "केंचुआ खाद इकाइयां", desc: "जैविक खाद का उत्पादन करने वाले कम्पोस्टिंग बिन।" },
+            { val: "65%", label: "जैविक खेती", desc: "जैविक मृदा आदानों का उपयोग करने वाले स्थानीय किसानों का प्रतिशत।" }
+          ],
+          audits: [
+            { date: "06/06/2026", param: "सामाजिक वानिकी वृक्षारोपण लेखापरीक्षा", inspector: "वन क्षेत्र अधिकारी", status: "94% उत्तरजीविता दर" },
+            { date: "24/05/2026", param: "जैविक केंचुआ खाद उत्पादन परीक्षण", inspector: "कृषि वैज्ञानिक (KVK)", status: "समृद्ध मिट्टी पोषक तत्व" },
+            { date: "10/05/2026", param: "जलवायु अनुकूल फसल सलाह", inspector: "मृदा स्वास्थ्य विशेषज्ञ", status: "जारी / वितरित" }
+          ]
+        },
+        te: {
+          title: "హరిత ఆవిష్కరణలు & సామాజిక అడవులు",
+          desc: "జియోట్యాగ్డ్ చెట్ల పెంపకం కొలతలు, వాతావరణ అనుకూల విత్తనాల పంపిణీ మరియు సేంద్రీయ ఎరువుల ఉత్పత్తి వివరాలు.",
+          detailMatter: "హరిత ఆవిష్కరణల కింద రసాయన ఎరువుల వాడకాన్ని తగ్గిస్తున్నాము. వర్మీకంపోస్ట్ (వానపాముల ఎరువు) తయారుచేసి గ్రామ రైతులకు అందిస్తున్నాము. సామాజిక అటవీ కార్యక్రమం కింద SVR డిజిటల్ మ్యాప్‌లో 370 కి పైగా మొక్కల జియోట్యాగింగ్ పూర్తి చేసాము.",
+          imageCaption: "సేంద్రీయ ఎరువుల వినియోగం మరియు పర్యావరణ పరిరక్షణను చూపే గ్రామీణ హరిత వాతావరణం.",
+          milestones: [
+            "GI క్రెడిట్ 1: ఆవిష్కరణ 1",
+            "GI క్రెడిట్ 2: ఆవిష్కరణ 2",
+            "GI క్రెడిట్ 3: ఆవిష్కరణ 3",
+            "GI క్రెడిట్ 4: ఆవిష్కరణ 4",
+            "GI క్రెడిట్ 5: ఆవిష్కరణ 5"
+          ],
+          metrics: [
+            { val: "370+ చెట్లు", label: "జియోట్యాగ్డ్ మొక్కలు", desc: "SVR మ్యాప్ ద్వారా పర్యవేక్షించబడే సామాజిక అటవీ మొక్కలు." },
+            { val: "8 యూనిట్లు", label: "సేంద్రీయ ఎరువుల ప్లాంట్లు", desc: "గ్రామంలో ఎరువులను తయారు చేసే కంపోస్టింగ్ కంపోనెంట్లు." },
+            { val: "65%", label: "సేంద్రీయ వ్యవసాయం", desc: "సేంద్రీయ పద్ధతులను వాడుతున్న స్థానిక రైతుల శాతం." }
+          ],
+          audits: [
+            { date: "06/06/2026", param: "సామాజిక అటవీ మొక్కల ఆడిట్", inspector: "అటవీ అధికారి", status: "94% బతికి ఉన్న మొక్కలు" },
+            { date: "24/05/2026", param: "సేంద్రీయ కంపోస్ట్ నాణ్యత పరీక్ష", inspector: "KVK వ్యవసాయ శాస్త్రవేత్త", status: "పోషకాలు ఎక్కువగా ఉన్నాయి" },
+            { date: "10/05/2026", param: "వాతావరణ పంటల ప్రణాళిక సలహా", inspector: "నేల ఆరోగ్య నిపుణుడు", status: "జారీ చేయబడింది" }
+          ]
+        }
+      }
+    };
+
+    const translationUI = {
+      en: {
+        back: "← Return Home",
+        detailHeading: "Detailed Overview & Report",
+        milestonesHeading: "Smart Village Rating Credits",
+        headingText: "Operational Audit & Tracking Log",
+        statusText: "ACTIVE & STABLE",
+        thDate: "Date",
+        thParam: "Parameter Checked",
+        thInspector: "Inspector",
+        thStatus: "Result Status",
+        footer1: "© 2026 Seetharamapuram Tanda Panchayat | Department of Rural Development",
+        footer2: "Official Digital Civic Node | Andhra Pradesh State Government",
+        facilityTitle: "Household Facility Upgrades",
+        facilityDesc: "Percentage of village households reporting basic amenities:",
+        labelToilet: "🚽 Private Toilet Usage",
+        labelVehicle: "🚗 Personal Vehicle Ownership",
+        labelWater: "🚰 Safe Tap Water Connection",
+        labelEnergy: "⚡ Rooftop Solar / Biogas",
+        labelHouse: "🏠 Own House Ownership",
+        btnTextFacilityUpdate: "Update Household Status",
+        modalTitle: "Update Household Amenities Status",
+        modalDesc: "Self-report your household's upgraded amenities to help update the Gram Panchayat dataset.",
+        lblHouseholdId: "Ration Card or Household ID",
+        lblSelectAmenities: "Select Amenities Present in Your Household:",
+        chkLabelToilet: "We use a Private Toilet",
+        chkLabelVehicle: "We own a Personal Vehicle (Two/Four Wheeler)",
+        chkLabelWater: "We have a Safe Tap Water Connection",
+        chkLabelEnergy: "We use Clean Energy (Solar/Biogas)",
+        chkLabelHouse: "We live in our Own House",
+        btnSubmitHouseholdUpdate: "Submit Update",
+        toastSuccess: "✅ Household details updated successfully!",
+        toastError: "❌ Error updating household details. Please try again.",
+        selfReported: "Self-Reported"
+      },
+      hi: {
+        back: "← मुख्य पृष्ठ",
+        detailHeading: "विस्तृत विवरण और रिपोर्ट",
+        milestonesHeading: "स्मार्ट ग्राम रेटिंग क्रेडिट",
+        headingText: "परिचालन लेखापरीक्षा और ट्रैकिंग लॉग",
+        statusText: "सक्रिय और स्थिर",
+        thDate: "दिनांक",
+        thParam: "पैरामीटर की जाँच की",
+        thInspector: "निरीक्षक",
+        thStatus: "परिणाम स्थिति",
+        footer1: "© 2026 सीतारामपुरम टांडा पंचायत | ग्रामीण विकास विभाग",
+        footer2: "आधिकारिक डिजिटल नागरिक नोड | आंध्र प्रदेश राज्य सरकार",
+        facilityTitle: "घरेलू सुविधा उन्नयन",
+        facilityDesc: "उन्नत नागरिक सुविधाओं की रिपोर्ट करने वाले परिवारों का प्रतिशत:",
+        labelToilet: "🚽 निजी शौचालय का उपयोग",
+        labelVehicle: "🚗 निजी वाहन स्वामित्व",
+        labelWater: "🚰 सुरक्षित नल जल कनेक्शन",
+        labelEnergy: "⚡ रूफटॉप सोलर / बायोगैस",
+        labelHouse: "🏠 पक्के/स्वयं के घर का स्वामित्व",
+        btnTextFacilityUpdate: "घरेलू स्थिति अपडेट करें",
+        modalTitle: "घरेलू सुख-सुविधाओं की स्थिति अपडेट करें",
+        modalDesc: "ग्राम पंचायत डेटासेट को अपडेट करने में मदद करने के लिए अपने घर की उन्नत सुविधाओं की स्व-रिपोर्ट करें।",
+        lblHouseholdId: "राशन कार्ड या घरेलू आईडी",
+        lblSelectAmenities: "अपने घर में मौजूद सुविधाओं का चयन करें:",
+        chkLabelToilet: "हम निजी शौचालय का उपयोग करते हैं",
+        chkLabelVehicle: "हमारे पास निजी वाहन है",
+        chkLabelWater: "हमारे पास सुरक्षित नल जल कनेक्शन है",
+        chkLabelEnergy: "हम स्वच्छ ऊर्जा (सौर/बायोगैस) का उपयोग करते हैं",
+        chkLabelHouse: "हम अपने स्वयं के घर में रहते हैं",
+        btnSubmitHouseholdUpdate: "अपडेट सबमिट करें",
+        toastSuccess: "✅ घरेलू विवरण सफलतापूर्वक अपडेट किए गए!",
+        toastError: "❌ घरेलू विवरण अपडेट करने में त्रुटि। कृपया पुनः प्रयास करें।",
+        selfReported: "स्व-रिपोर्टेड"
+      },
+      te: {
+        back: "← హోమ్ పేజీ",
+        detailHeading: "సవివరమైన సమాచారం & నివేదిక",
+        milestonesHeading: "స్మార్ట్ విలేజ్ రేటింగ్ క్రెడిట్స్",
+        headingText: "పరిపాలన ఆడిట్ & సమాచార లాగ్",
+        statusText: "క్రియాశీలం & స్థిరమైనది",
+        thDate: "తేదీ",
+        thParam: "పరిశీలించిన అంశాలు",
+        thInspector: "అధికారి",
+        thStatus: "ఫలితం",
+        footer1: "© 2026 సీతారామపురం తండా పంచాయితీ | గ్రామీణాభివృద్ధి శాఖ",
+        footer2: "అధికారిక డిజిటల్ సివిక్ నోడ్ | ఆంధ్రప్రదేశ్ ప్రభుత్వ రాష్ట్రం",
+        facilityTitle: "గృహ సదుపాయాల ప్రగతి",
+        facilityDesc: "గ్రామంలో ఆధునిక పౌర సదుపాయాలు కలిగి ఉన్న గృహాల శాతం:",
+        labelToilet: "🚽 వ్యక్తిగత మరుగుదొడ్డి వినియోగం",
+        labelVehicle: "🚗 సొంత వాహనం కలిగి ఉండటం",
+        labelWater: "🚰 సురక్షిత కుళాయి నీటి కనెక్షన్",
+        labelEnergy: "⚡ సోలార్ పవర్ / బయో-గ్యాస్",
+        labelHouse: "🏠 సొంత ఇల్లు కలిగి ఉండటం",
+        btnTextFacilityUpdate: "గృహ సదుపాయాల స్థితిని అప్‌డేట్ చేయి",
+        modalTitle: "గృహ సదుపాయాల సమాచార అప్‌డేట్",
+        modalDesc: "గ్రామ పంచాయతీ డేటాసెట్‌ను అప్‌డేట్ చేయడానికి మీ గృహ సదుపాయాల సమాచారాన్ని స్వీయ-నివేదించండి.",
+        lblHouseholdId: "రేషన్ కార్డ్ లేదా గృహ ఐడి",
+        lblSelectAmenities: "మీ గృహంలో ఉన్న సదుపాయాలను ఎంచుకోండి:",
+        chkLabelToilet: "మేము వ్యక్తిగత మరుగుదొడ్డి వాడుతున్నాము",
+        chkLabelVehicle: "మాకు సొంత వాహనం ఉంది",
+        chkLabelWater: "మాకు సురక్షిత కుళాయి నీటి కనెక్షన్ ఉంది",
+        chkLabelEnergy: "మేము హరిత ఇంధనం (సోలార్/బయో-గ్యాస్) వాడుతున్నాము",
+        chkLabelHouse: "మేము మా సొంత ఇంట్లో నివసిస్తున్నాము",
+        btnSubmitHouseholdUpdate: "సమాచారాన్ని సమర్పించు",
+        toastSuccess: "✅ గృహ వివరాలు విజయవంతంగా అప్‌డేట్ చేయబడ్డాయి!",
+        toastError: "❌ గృహ వివరాల అప్‌డేట్‌లో లోపం సంభవించింది. దయచేసి మళ్లీ ప్రయత్నించండి.",
+        selfReported: "స్వీయ నివేదిక"
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Apply theme
+      const savedTheme = localStorage.getItem('panchayat-theme');
+      document.body.classList.add('ready');
+      if (savedTheme === 'banjara') {
+        document.body.classList.add('banjara-active');
+      }
+
+      // Initialize language selector
+      const select = document.getElementById('lang-select');
+      const savedLang = localStorage.getItem('panchayat-lang') || 'en';
+      select.value = savedLang;
+      currentLanguage = savedLang;
+
+      // Render Page Content initially
+      renderPillarContent(pillarType, savedLang);
+
+      // Listen for language change
+      select.addEventListener('change', (e) => {
+        const lang = e.target.value;
+        currentLanguage = lang;
+        localStorage.setItem('panchayat-lang', lang);
+        
+        renderPillarContent(pillarType, lang);
+
+        const toastMsg = lang === 'hi' ? '🇮🇳 भाषा बदलकर हिंदी कर दी गई है।' : lang === 'te' ? '🇮🇳 భాష తెలుగులోకి మార్చబడింది.' : '🇬🇧 Language switched to English.';
+        showToast(toastMsg, 'success');
+      });
+
+      // Modal trigger setup
+      const openModalBtn = document.getElementById('btn-trigger-facility-update');
+      const closeModalBtn = document.getElementById('btn-close-facility-modal');
+      const modal = document.getElementById('modal-household-update');
+      const form = document.getElementById('household-update-form');
+
+      if (openModalBtn && modal) {
+        openModalBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      }
+
+      const closeFacilityModal = () => {
+        if (modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      };
+
+      if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeFacilityModal);
+      }
+
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeFacilityModal();
+          }
+        });
+      }
+
+      // Initial fetch of household updates
+      fetchHouseholdUpdates();
+
+      // Initialize Voice Assistant
+      initVoiceAssistant();
+    });
+
+    /* ==========================================
+       AI VOICE ASSISTANT WIDGET LOGIC
+       ========================================== */
+    function initVoiceAssistant() {
+      const fab = document.getElementById('voice-assistant-fab');
+      const card = document.getElementById('voice-assistant-card');
+      const closeBtn = document.getElementById('voice-card-close-btn');
+      const statusEl = document.getElementById('voice-status');
+      const transcriptEl = document.getElementById('voice-transcript');
+      const suggestionsEl = document.getElementById('voice-suggestions');
+      const suggestTitleEl = document.getElementById('voice-suggest-title');
+      const cardTitleEl = document.getElementById('voice-card-title');
+      const warningEl = document.getElementById('voice-ip-warning');
+      const textInput = document.getElementById('voice-text-input');
+      const textSubmit = document.getElementById('voice-text-submit');
+
+      if (!fab || !card) return;
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      let recognition = null;
+      let isListening = false;
+
+      const voiceConfigs = {
+        en: {
+          title: "AI Voice Assistant",
+          statusClick: "Click mic to start",
+          statusListening: "Listening... Speak now",
+          statusError: "Error. Click mic to retry",
+          statusRecognized: "Processing...",
+          suggestTitle: "Suggestions",
+          suggestPlaceholder: "Say a command like \"Go home\"...",
+          chips: ["Go home", "Go to health", "Go to water", "Banjara theme", "Open welfare", "Hindi language"],
+          unsupported: "⚠️ Voice Recognition is not supported in this browser.",
+          noMatch: "Command not recognized. Try saying a suggestion.",
+          textPlaceholder: "Or type a command here...",
+          textSubmit: "Send",
+          warningIp: "🎙️ Mic disabled on HTTP IP. Type commands below, or go to chrome://flags/#unsafely-treat-insecure-origin-as-secure and add http://10.253.91.42:8000"
+        },
+        hi: {
+          title: "एआई वॉयस असिस्टेंट",
+          statusClick: "शुरू करने के लिए माइक दबाएं",
+          statusListening: "सुन रहा हूँ... अब बोलें",
+          statusError: "त्रुटि। पुनः प्रयास करने के लिए माइक दबाएं",
+          statusRecognized: "संसाधित किया जा रहा है...",
+          suggestTitle: "सुझाव",
+          suggestPlaceholder: "बोलें: \"मुख्य पृष्ठ\" या \"स्वास्थ्य पर जाएं\"...",
+          chips: ["मुख्य पृष्ठ", "स्वास्थ्य पर जाएं", "पानी पर जाएं", "थीम बदलें", "कल्याण योजना", "तेलुगु भाषा"],
+          unsupported: "⚠️ इस ब्राउज़र में वॉयस रिकग्निशन समर्थित नहीं है।",
+          noMatch: "आदेश समझ नहीं आया। कोई सुझाव बोलकर देखें।",
+          textPlaceholder: "या यहाँ एक आदेश टाइप करें...",
+          textSubmit: "भेजें",
+          warningIp: "🎙️ HTTP आईपी पर माइक अक्षम है। नीचे आदेश टाइप करें, या क्रोम फ़्लैग्स में http://10.253.91.42:8000 जोड़ें"
+        },
+        te: {
+          title: "AI వాయిస్ అసిస్టెంట్",
+          statusClick: "ప్రారంభించడానికి మైక్ నొక్కండి",
+          statusListening: "వింటున్నాను... ఇప్పుడు మాట్లాడండి",
+          statusError: "లోపం. మళ్లీ ప్రయత్నించడానికి మైక్ నొక్కండి",
+          statusRecognized: "ప్రాసెస్ చేయబడుతోంది...",
+          suggestTitle: "సూచనలు",
+          suggestPlaceholder: "చెప్పండి: \"హోమ్ పేజీ\" లేదా \"ఆరోగ్యం\"...",
+          chips: ["హోమ్ పేజీ", "ఆరోగ్యం", "నీరు", "థీమ్ మార్చు", "పథకాలు", "ఇంగ్లీష్ భాష"],
+          unsupported: "⚠️ ఈ బ్రౌజర్‌లో వాయిస్ రికగ్నిషన్ సపోర్ట్ లేదు.",
+          noMatch: "ఆదేశం గుర్తించబడలేదు. సూచనలలో ఒకదాన్ని చెప్పండి.",
+          textPlaceholder: "లేదా ఇక్కడ టైప్ చేయండి...",
+          textSubmit: "పంపు",
+          warningIp: "🎙️ HTTP IP లో మైక్ నిలిపివేయబడింది. కింద టైప్ చేయండి, లేదా క్రోమ్ ఫ్లాగ్స్‌లో http://10.253.91.42:8000 జోడించండి"
+        }
+      };
+
+      const handleTextSubmit = () => {
+        if (textInput) {
+          const val = textInput.value.trim();
+          if (val) {
+            if (isListening) {
+              stopListening();
+            }
+            transcriptEl.textContent = `"${val}"`;
+            processCommand(val);
+            textInput.value = '';
+          }
+        }
+      };
+
+      if (textSubmit) {
+        textSubmit.addEventListener('click', handleTextSubmit);
+      }
+      if (textInput) {
+        textInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            handleTextSubmit();
+          }
+        });
+      }
+
+      function updateCardTexts() {
+        const lang = currentLanguage || 'en';
+        const cfg = voiceConfigs[lang] || voiceConfigs['en'];
+        
+        cardTitleEl.textContent = cfg.title;
+        suggestTitleEl.textContent = cfg.suggestTitle;
+        if (!isListening) {
+          statusEl.textContent = cfg.statusClick;
+          transcriptEl.textContent = cfg.suggestPlaceholder;
+        }
+
+        const isSecure = window.isSecureContext || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        if (warningEl) {
+          if (!isSecure) {
+            warningEl.style.display = 'block';
+            warningEl.textContent = cfg.warningIp;
+          } else {
+            warningEl.style.display = 'none';
+          }
+        }
+
+        if (textInput) {
+          textInput.placeholder = cfg.textPlaceholder;
+        }
+        if (textSubmit) {
+          textSubmit.textContent = cfg.textSubmit;
+        }
+
+        suggestionsEl.innerHTML = '';
+        cfg.chips.forEach(chipText => {
+          const chip = document.createElement('button');
+          chip.className = 'voice-suggestion-chip';
+          chip.textContent = chipText;
+          chip.addEventListener('click', () => {
+            if (isListening) {
+              stopListening();
+            }
+            transcriptEl.textContent = `"${chipText}"`;
+            processCommand(chipText);
+          });
+          suggestionsEl.appendChild(chip);
+        });
+      }
+
+      function speakConfirmation(text) {
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(text);
+          const lang = currentLanguage || 'en';
+          if (lang === 'hi') utterance.lang = 'hi-IN';
+          else if (lang === 'te') utterance.lang = 'te-IN';
+          else utterance.lang = 'en-IN';
+          window.speechSynthesis.speak(utterance);
+        }
+      }
+
+      function startListening() {
+        if (!SpeechRecognition) {
+          showToast(voiceConfigs[currentLanguage || 'en'].unsupported, 'warning');
+          return;
+        }
+
+        if (!recognition) {
+          recognition = new SpeechRecognition();
+          recognition.continuous = false;
+          recognition.interimResults = false;
+
+          recognition.onstart = () => {
+            isListening = true;
+            fab.classList.add('listening');
+            card.classList.add('listening');
+            const cfg = voiceConfigs[currentLanguage || 'en'] || voiceConfigs['en'];
+            statusEl.textContent = cfg.statusListening;
+            transcriptEl.textContent = "...";
+          };
+
+          recognition.onresult = (event) => {
+            const resultText = event.results[0][0].transcript;
+            transcriptEl.textContent = `"${resultText}"`;
+            const cfg = voiceConfigs[currentLanguage || 'en'] || voiceConfigs['en'];
+            statusEl.textContent = cfg.statusRecognized;
+            processCommand(resultText);
+          };
+
+          recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+            const cfg = voiceConfigs[currentLanguage || 'en'] || voiceConfigs['en'];
+            statusEl.textContent = cfg.statusError;
+            stopListening();
+          };
+
+          recognition.onend = () => {
+            stopListening();
+          };
+        }
+
+        const lang = currentLanguage || 'en';
+        if (lang === 'hi') {
+          recognition.lang = 'hi-IN';
+        } else if (lang === 'te') {
+          recognition.lang = 'te-IN';
+        } else {
+          recognition.lang = 'en-IN';
+        }
+
+        try {
+          recognition.start();
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
+      function stopListening() {
+        isListening = false;
+        fab.classList.remove('listening');
+        card.classList.remove('listening');
+        const cfg = voiceConfigs[currentLanguage || 'en'] || voiceConfigs['en'];
+        if (statusEl.textContent === cfg.statusListening) {
+          statusEl.textContent = cfg.statusClick;
+        }
+        if (recognition) {
+          try {
+            recognition.stop();
+          } catch (e) {}
+        }
+      }
+
+      fab.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isActive = card.classList.contains('active');
+        if (isActive) {
+          if (isListening) {
+            stopListening();
+          } else {
+            startListening();
+          }
+        } else {
+          card.classList.add('active');
+          card.setAttribute('aria-hidden', 'false');
+          updateCardTexts();
+          startListening();
+        }
+      });
+
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        card.classList.remove('active');
+        card.setAttribute('aria-hidden', 'true');
+        stopListening();
+      });
+
+      const select = document.getElementById('lang-select');
+      if (select) {
+        select.addEventListener('change', () => {
+          updateCardTexts();
+        });
+      }
+
+      function processCommand(rawText) {
+        const text = rawText.toLowerCase().trim();
+        const lang = currentLanguage || 'en';
+
+        const welfareKeywords = ["welfare", "scheme", "benefit", "aasara", "pension", "farmer", "किसान", "पेंशन", "योजना", "कल्याण", "పథకాలు", "పెన్షన్", "రైతు"];
+        if (welfareKeywords.some(keyword => text.includes(keyword))) {
+          executeNavigation('index.html?openModal=modal-welfare', {
+            en: "Redirecting to home page welfare schemes portal",
+            hi: "मुख्य पृष्ठ कल्याणकारी योजनाएं पोर्टल पर पुनर्निर्देशित किया जा रहा है",
+            te: "హోమ్ పేజీ సంక్షేమ పథకాల పోర్టల్‌కు మళ్లించబడుతోంది"
+          });
+          return;
+        }
+
+        const grievanceKeywords = ["grievance", "complaint", "issue", "problem", "ticket", "शिकायत", "समस्या", "ఫిర్యాదు", "సమస్య"];
+        if (grievanceKeywords.some(keyword => text.includes(keyword))) {
+          executeNavigation('index.html?openModal=modal-grievance', {
+            en: "Redirecting to home page grievances portal",
+            hi: "मुख्य पृष्ठ शिकायत निवारण पोर्टल पर पुनर्निर्देशित किया जा रहा है",
+            te: "హోమ్ పేజీ సమస్యల పరిష్కార పోర్టల్‌కు మళ్లించబడుతోంది"
+          });
+          return;
+        }
+
+        const rationKeywords = ["ration", "food", "dealer", "rice", "wheat", "राशन", "अनाज", "రేషన్"];
+        if (rationKeywords.some(keyword => text.includes(keyword))) {
+          executeNavigation('index.html?openModal=modal-ration', {
+            en: "Redirecting to home page ration card portal",
+            hi: "मुख्य पृष्ठ राशन कार्ड पोर्टल पर पुनर्निर्देशित किया जा रहा है",
+            te: "హోమ్ పేజీ రేషన్ కార్డ్ పోర్టల్‌కు మళ్లించబడుతోంది"
+          });
+          return;
+        }
+
+        const certKeywords = ["certificate", "adangal", "income", "land", "birth", "प्रमाण पत्र", "अदंगल", "ధృవీకరణ", "భూమి"];
+        if (certKeywords.some(keyword => text.includes(keyword))) {
+          executeNavigation('index.html?openModal=modal-certificates', {
+            en: "Redirecting to home page certificates portal",
+            hi: "मुख्य पृष्ठ प्रमाण पत्र पोर्टल पर पुनर्निर्देशित किया जा रहा है",
+            te: "హోమ్ పేజీ ధృవీకరణ పత్రాల పోర్టల్‌కు మళ్లించబడుతోంది"
+          });
+          return;
+        }
+
+        const themeKeywords = ["theme", "banjara", "eco", "color", "थीम", "रंग", "థీమ్"];
+        if (themeKeywords.some(keyword => text.includes(keyword))) {
+          executeAction(() => {
+            const isBanjara = document.body.classList.toggle('banjara-active');
+            localStorage.setItem('panchayat-theme', isBanjara ? 'banjara' : 'eco');
+          }, {
+            en: "Switching layout theme",
+            hi: "थीम बदली जा रही है",
+            te: "థీమ్ మార్చబడుతోంది"
+          });
+          return;
+        }
+
+        const teKeywords = ["telugu", "तेलुगु", "తెలుగు"];
+        const hiKeywords = ["hindi", "हिंदी", "హిందీ"];
+        const enKeywords = ["english", "अंग्रेजी", "ఇంగ్లీష్"];
+
+        if (teKeywords.some(keyword => text.includes(keyword))) {
+          executeLanguageChange('te', {
+            en: "Switching language to Telugu",
+            hi: "भाषा बदलकर तेलुगु की जा रही है",
+            te: "భాష తెలుగులోకి మార్చబడుతోంది"
+          });
+          return;
+        }
+        if (hiKeywords.some(keyword => text.includes(keyword))) {
+          executeLanguageChange('hi', {
+            en: "Switching language to Hindi",
+            hi: "भाषा बदलकर हिंदी की जा रही है",
+            te: "భాష హిందీలోకి మార్చబడుతోంది"
+          });
+          return;
+        }
+        if (enKeywords.some(keyword => text.includes(keyword))) {
+          executeLanguageChange('en', {
+            en: "Switching language to English",
+            hi: "भाषा बदलकर अंग्रेजी की जा रही है",
+            te: "భాష ఇంగ్లీష్‌లోకి మార్చబడుతోంది"
+          });
+          return;
+        }
+
+        const healthNav = ["health", "स्वास्थ्य", "ఆరోగ్యం"];
+        const infraNav = ["infrastructure", "infra", "बुनियादी ढांचा", "మౌలిక సదుపాయాలు"];
+        const waterNav = ["water", "पानी", "నీరు"];
+        const energyNav = ["energy", "ऊर्जा", "విద్యుత్"];
+        const materialsNav = ["material", "resource", "recycling", "सामग्री", "वनरु", "వనరులు"];
+        const socialNav = ["social", "community", "सभा", "సామాజిక"];
+        const greenNav = ["green", "forestry", "हरित", "హరిత"];
+        const homeNav = ["home", "back", "मुख्य", "वापस", "హోమ్", "వెనుకకు"];
+
+        if (healthNav.some(keyword => text.includes(keyword))) {
+          executePillarSwitch('health', {
+            en: "Switching to Health and Hygiene page",
+            hi: "स्वास्थ्य और स्वच्छता पृष्ठ पर जा रहे हैं",
+            te: "ఆరోగ్యం మరియు పరిశుభ్రత పేజీకి వెళ్తున్నాము"
+          });
+          return;
+        }
+        if (infraNav.some(keyword => text.includes(keyword))) {
+          executePillarSwitch('infra', {
+            en: "Switching to Infrastructure page",
+            hi: "बुनियादी ढांचा पृष्ठ पर जा रहे हैं",
+            te: "మౌలిక సదుపాయాల పేజీకి వెళ్తున్నాము"
+          });
+          return;
+        }
+        if (waterNav.some(keyword => text.includes(keyword))) {
+          executePillarSwitch('water', {
+            en: "Switching to Water Conservation page",
+            hi: "जल संरक्षण पृष्ठ पर जा रहे हैं",
+            te: "జల సంరక్షణ పేజీకి వెళ్తున్నాము"
+          });
+          return;
+        }
+        if (energyNav.some(keyword => text.includes(keyword))) {
+          executePillarSwitch('energy', {
+            en: "Switching to Green Energy page",
+            hi: "हरित ऊर्जा पृष्ठ पर जा रहे हैं",
+            te: "విద్యుత్ లభ్యత పేజీకి వెళ్తున్నాము"
+          });
+          return;
+        }
+        if (materialsNav.some(keyword => text.includes(keyword))) {
+          executePillarSwitch('materials', {
+            en: "Switching to Materials and Resources page",
+            hi: "सामग्री और संसाधन पृष्ठ पर जा रहे हैं",
+            te: "వనరులు మరియు రీసైక్లింగ్ పేజీకి వెళ్తున్నాము"
+          });
+          return;
+        }
+        if (socialNav.some(keyword => text.includes(keyword))) {
+          executePillarSwitch('social', {
+            en: "Switching to Social Action page",
+            hi: "सामाजिक कार्य पृष्ठ पर जा रहे हैं",
+            te: "సామాజిక మరియు కమ్యూనిటీ పనుల పేజీకి వెళ్తున్నాము"
+          });
+          return;
+        }
+        if (greenNav.some(keyword => text.includes(keyword))) {
+          executePillarSwitch('green', {
+            en: "Switching to Green Innovation page",
+            hi: "हरित नवाचार पृष्ठ पर जा रहे हैं",
+            te: "హరిత ఆవిష్కరణల పేజీకి వెళ్తున్నాము"
+          });
+          return;
+        }
+        if (homeNav.some(keyword => text.includes(keyword))) {
+          executeNavigation('index.html', {
+            en: "Returning to Home page",
+            hi: "मुख्य पृष्ठ पर वापस जा रहे हैं",
+            te: "హోమ్ పేజీకి తిరిగి వెళ్తున్నాము"
+          });
+          return;
+        }
+
+        const cfg = voiceConfigs[lang] || voiceConfigs['en'];
+        statusEl.textContent = cfg.noMatch;
+        speakConfirmation(cfg.noMatch);
+      }
+
+      function executeAction(actionCallback, responses) {
+        const lang = currentLanguage || 'en';
+        const responseText = responses[lang] || responses['en'];
+        statusEl.textContent = responseText;
+        speakConfirmation(responseText);
+        
+        setTimeout(() => {
+          actionCallback();
+          card.classList.remove('active');
+        }, 1000);
+      }
+
+      function executePillarSwitch(targetType, responses) {
+        const lang = currentLanguage || 'en';
+        const responseText = responses[lang] || responses['en'];
+        statusEl.textContent = responseText;
+        speakConfirmation(responseText);
+
+        setTimeout(() => {
+          pillarType = targetType;
+          window.history.pushState({}, '', `pillars.html?type=${targetType}`);
+          renderPillarContent(targetType, currentLanguage);
+          fetchHouseholdUpdates();
+          updateCardTexts();
+          card.classList.remove('active');
+        }, 1000);
+      }
+
+      function executeLanguageChange(targetLang, responses) {
+        const lang = currentLanguage || 'en';
+        const responseText = responses[lang] || responses['en'];
+        statusEl.textContent = responseText;
+        speakConfirmation(responseText);
+
+        setTimeout(() => {
+          const select = document.getElementById('lang-select');
+          if (select) {
+            select.value = targetLang;
+            select.dispatchEvent(new Event('change'));
+            updateCardTexts();
+          }
+          card.classList.remove('active');
+        }, 1000);
+      }
+
+      function executeNavigation(url, responses) {
+        const lang = currentLanguage || 'en';
+        const responseText = responses[lang] || responses['en'];
+        statusEl.textContent = responseText;
+        speakConfirmation(responseText);
+
+        setTimeout(() => {
+          window.location.href = url;
+        }, 1000);
+      }
+
+      updateCardTexts();
+    }
+
+    function renderPillarContent(type, lang) {
+      const pData = pillarData[type] || pillarData['health'];
+      const langData = pData[lang] || pData['en'];
+      const uiTrans = translationUI[lang] || translationUI['en'];
+
+      // Theme colors matching the original rating sheet tables
+      const themeColors = {
+        health: {
+          bg: "#b4c6e7",
+          text: "#1f4e78",
+          cardBg: "#f2f5fa",
+          progressBg: "#2f5597"
+        },
+        infra: {
+          bg: "#f4b183",
+          text: "#833c0c",
+          cardBg: "#fdf2e9",
+          progressBg: "#c65911"
+        },
+        water: {
+          bg: "#f8c4c8",
+          text: "#c00000",
+          cardBg: "#fdf2f4",
+          progressBg: "#ff0000"
+        },
+        energy: {
+          bg: "#85c1e9",
+          text: "#1b4f72",
+          cardBg: "#ebf5fb",
+          progressBg: "#2980b9"
+        },
+        materials: {
+          bg: "#c6e0b4",
+          text: "#375623",
+          cardBg: "#f4f9f4",
+          progressBg: "#548235"
+        },
+        social: {
+          bg: "#ffe699",
+          text: "#7f6000",
+          cardBg: "#fefdf4",
+          progressBg: "#bf9000"
+        },
+        green: {
+          bg: "#a2d9ce",
+          text: "#117864",
+          cardBg: "#e8f6f3",
+          progressBg: "#16a085"
+        }
+      };
+
+      const theme = themeColors[type] || themeColors.health;
+
+      // Update milestones card visual theme
+      const milestonesCard = document.getElementById('milestones-card-el');
+      if (milestonesCard) {
+        milestonesCard.style.backgroundColor = theme.cardBg;
+        milestonesCard.style.border = `1.5px solid ${theme.bg}`;
+      }
+
+      // Update facility chart card visual theme
+      const facilityCard = document.getElementById('facility-chart-card');
+      if (facilityCard) {
+        facilityCard.style.backgroundColor = theme.cardBg;
+        facilityCard.style.border = `1.5px solid ${theme.bg}`;
+      }
+
+
+      // Render UI texts
+      document.getElementById('btn-back-home').textContent = uiTrans.back;
+      document.getElementById('detail-heading-text').textContent = uiTrans.detailHeading;
+      
+      const milestonesHeading = document.getElementById('milestones-heading-label');
+      if (milestonesHeading) {
+        milestonesHeading.textContent = uiTrans.milestonesHeading;
+        milestonesHeading.style.color = theme.text;
+      }
+      
+
+      document.getElementById('report-heading-text').textContent = uiTrans.headingText;
+      document.getElementById('report-status-text').textContent = uiTrans.statusText;
+      document.getElementById('th-date').textContent = uiTrans.thDate;
+      document.getElementById('th-param').textContent = uiTrans.thParam;
+      document.getElementById('th-inspector').textContent = uiTrans.thInspector;
+      document.getElementById('th-status').textContent = uiTrans.thStatus;
+      document.getElementById('footer-text-1').textContent = uiTrans.footer1;
+      document.getElementById('footer-text-2').textContent = uiTrans.footer2;
+
+      // Translate Household Facility Upgrades Card and Modal
+      document.getElementById('facility-chart-title').textContent = uiTrans.facilityTitle || "Household Facility Upgrades";
+      document.getElementById('facility-chart-desc').textContent = uiTrans.facilityDesc || "Percentage of village households reporting basic amenities:";
+      document.getElementById('label-toilet').textContent = uiTrans.labelToilet || "Private Toilet Usage";
+      document.getElementById('label-vehicle').textContent = uiTrans.labelVehicle || "Personal Vehicle Ownership";
+      document.getElementById('label-water').textContent = uiTrans.labelWater || "Safe Tap Water Connection";
+      document.getElementById('label-energy').textContent = uiTrans.labelEnergy || "Rooftop Solar / Biogas";
+      document.getElementById('label-house').textContent = uiTrans.labelHouse || "Own House Ownership";
+      document.getElementById('btn-text-facility-update').textContent = uiTrans.btnTextFacilityUpdate || "Update Household Status";
+      document.getElementById('household-modal-title').textContent = uiTrans.modalTitle || "Update Household Amenities Status";
+      document.getElementById('household-modal-desc').textContent = uiTrans.modalDesc || "Self-report your household's upgraded amenities to help update the Gram Panchayat dataset.";
+      document.getElementById('lbl-household-id').textContent = uiTrans.lblHouseholdId || "Ration Card or Household ID";
+      document.getElementById('lbl-select-amenities').textContent = uiTrans.lblSelectAmenities || "Select Amenities Present in Your Household:";
+      document.getElementById('chk-label-toilet').textContent = uiTrans.chkLabelToilet || "We use a Private Toilet";
+      document.getElementById('chk-label-vehicle').textContent = uiTrans.chkLabelVehicle || "We own a Personal Vehicle (Two/Four Wheeler)";
+      document.getElementById('chk-label-water').textContent = uiTrans.chkLabelWater || "We have a Safe Tap Water Connection";
+      document.getElementById('chk-label-energy').textContent = uiTrans.chkLabelEnergy || "We use Clean Energy (Solar/Biogas)";
+      document.getElementById('chk-label-house').textContent = uiTrans.chkLabelHouse || "We live in our Own House";
+      document.getElementById('btn-submit-household-update').textContent = uiTrans.btnSubmitHouseholdUpdate || "Submit Update";
+
+      // Render Hero Details
+      document.getElementById('pillar-icon').textContent = pData.icon;
+      document.getElementById('pillar-main-title').textContent = langData.title;
+      document.getElementById('pillar-main-desc').textContent = langData.desc;
+
+      // Render Image and Caption
+      document.getElementById('pillar-image').src = pData.image;
+      document.getElementById('pillar-image-caption').textContent = langData.imageCaption;
+
+      // Render Matter
+      document.getElementById('pillar-detail-matter').textContent = langData.detailMatter;
+
+      // Render Milestones (SVR Credits Table)
+      const milestonesList = document.getElementById('pillar-milestones-list');
+      milestonesList.innerHTML = '';
+
+      // Create table element
+      const table = document.createElement('table');
+      table.style.width = '100%';
+      table.style.borderCollapse = 'collapse';
+      table.style.fontSize = '0.9rem';
+      table.style.textAlign = 'left';
+      table.style.border = `1.5px solid ${theme.bg}`;
+      table.style.backgroundColor = '#ffffff';
+
+      // Header row
+      const headerTr = document.createElement('tr');
+      headerTr.style.backgroundColor = theme.bg;
+      headerTr.style.color = theme.text;
+      
+      const headerTd = document.createElement('td');
+      headerTd.setAttribute('colspan', '3');
+      headerTd.style.padding = '12px 14px';
+      headerTd.style.textTransform = 'uppercase';
+      headerTd.style.border = `1.5px solid ${theme.bg}`;
+      headerTd.style.fontSize = '0.95rem';
+      headerTd.style.letterSpacing = '0.5px';
+      headerTd.style.fontWeight = 'bold';
+      headerTd.style.textAlign = 'center';
+      headerTd.textContent = langData.title; // Localized category title
+      headerTr.appendChild(headerTd);
+      table.appendChild(headerTr);
+
+      // Rows
+      langData.milestones.forEach((m, idx) => {
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = `1px solid ${theme.bg}`;
+        if (idx % 2 === 1) {
+          tr.style.backgroundColor = theme.cardBg;
+        }
+
+        let code = '';
+        let name = m;
+        if (m.includes(':')) {
+          const parts = m.split(':');
+          code = parts[0].trim();
+          name = parts.slice(1).join(':').trim();
+        }
+
+        // Col 1: Code
+        const tdCode = document.createElement('td');
+        tdCode.style.padding = '10px 12px';
+        tdCode.style.fontWeight = '700';
+        tdCode.style.color = theme.text;
+        tdCode.style.width = '25%';
+        tdCode.style.border = `1px solid ${theme.bg}`;
+        tdCode.textContent = code;
+        tr.appendChild(tdCode);
+
+        // Col 2: Description
+        const tdDesc = document.createElement('td');
+        tdDesc.style.padding = '10px 12px';
+        tdDesc.style.color = 'var(--color-text-dark)';
+        tdDesc.style.fontWeight = '600';
+        tdDesc.style.width = '60%';
+        tdDesc.style.border = `1px solid ${theme.bg}`;
+        tdDesc.textContent = name;
+        tr.appendChild(tdDesc);
+
+        // Col 3: Empty status column (selecting option removed)
+        const tdEmpty = document.createElement('td');
+        tdEmpty.style.padding = '10px 12px';
+        tdEmpty.style.width = '15%';
+        tdEmpty.style.border = `1px solid ${theme.bg}`;
+        tr.appendChild(tdEmpty);
+
+        table.appendChild(tr);
+      });
+
+      milestonesList.appendChild(table);
+
+      // Render Metrics
+      const metricsGrid = document.getElementById('pillar-metrics');
+      metricsGrid.innerHTML = '';
+      langData.metrics.forEach(m => {
+        const card = document.createElement('div');
+        card.className = 'metric-card';
+        card.innerHTML = `
+          <div class="metric-value" style="color: ${theme.progressBg};">${m.val}</div>
+          <div class="metric-label" style="color: ${theme.text};">${m.label}</div>
+          <div class="metric-desc">${m.desc}</div>
+        `;
+        metricsGrid.appendChild(card);
+      });
+
+      // Render Audits Table
+      const tableBody = document.getElementById('audit-table-body');
+      tableBody.innerHTML = '';
+      langData.audits.forEach(a => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${a.date}</strong></td>
+          <td>${a.param}</td>
+          <td>${a.inspector}</td>
+          <td><span style="font-weight:700; color: ${theme.progressBg};">${a.status}</span></td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    }
+
+
+
+    function normalizeCode(str) {
+      return str.toLowerCase().replace(/\s+/g, '').trim();
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('alert-toast');
+      const msgText = document.getElementById('toast-message');
+      if (!toast || !msgText) return;
+
+      msgText.textContent = message;
+      
+      // Update border color based on type
+      if (type === 'success') {
+        toast.style.borderLeft = '5px solid var(--color-success)';
+      } else if (type === 'warning') {
+        toast.style.borderLeft = '5px solid #f39c12'; // Warning orange
+      } else if (type === 'danger' || type === 'error') {
+        toast.style.borderLeft = '5px solid #e74c3c'; // Error red
+      } else {
+        toast.style.borderLeft = '5px solid var(--color-primary)';
+      }
+
+      toast.classList.add('active');
+
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 3000);
+    }
+
+    function fetchHouseholdUpdates() {
+      fetch('/api/household-updates')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch');
+        return res.json();
+      })
+      .then(data => {
+        renderHouseholdChart(data);
+      })
+      .catch(err => {
+        console.error('Error fetching updates:', err);
+      });
+    }
+
+    function renderHouseholdChart(data) {
+      const percentages = data.percentages || { privateToilet: 80, vehicle: 60, tapWater: 94, cleanEnergy: 50, ownHouse: 82 };
+      
+      const valToilet = document.getElementById('val-toilet');
+      if (valToilet) valToilet.textContent = `${percentages.privateToilet}%`;
+      const valVehicle = document.getElementById('val-vehicle');
+      if (valVehicle) valVehicle.textContent = `${percentages.vehicle}%`;
+      const valWater = document.getElementById('val-water');
+      if (valWater) valWater.textContent = `${percentages.tapWater}%`;
+      const valEnergy = document.getElementById('val-energy');
+      if (valEnergy) valEnergy.textContent = `${percentages.cleanEnergy}%`;
+      const valHouse = document.getElementById('val-house');
+      if (valHouse) valHouse.textContent = `${percentages.ownHouse}%`;
+
+      const barToilet = document.getElementById('bar-toilet');
+      if (barToilet) barToilet.style.width = `${percentages.privateToilet}%`;
+      const barVehicle = document.getElementById('bar-vehicle');
+      if (barVehicle) barVehicle.style.width = `${percentages.vehicle}%`;
+      const barWater = document.getElementById('bar-water');
+      if (barWater) barWater.style.width = `${percentages.tapWater}%`;
+      const barEnergy = document.getElementById('bar-energy');
+      if (barEnergy) barEnergy.style.width = `${percentages.cleanEnergy}%`;
+      const barHouse = document.getElementById('bar-house');
+      if (barHouse) barHouse.style.width = `${percentages.ownHouse}%`;
+
+      const badge = document.getElementById('household-chart-badge');
+      if (badge) {
+        const totalCount = data.totalUpdates || 50;
+        const uiTrans = translationUI[currentLanguage] || translationUI['en'];
+        const selfReportedText = uiTrans.selfReported || "Self-Reported";
+        badge.textContent = `${selfReportedText} (${totalCount})`;
+      }
+    }
+  </script>
+
+  <!-- AI Voice Assistant FAB -->
+  <button id="voice-assistant-fab" aria-label="Start Voice Assistant" title="AI Voice Assistant">
+    🎙️
+  </button>
+
+  <!-- AI Voice Assistant Card -->
+  <div id="voice-assistant-card" aria-hidden="true">
+    <div class="voice-card-header">
+      <h4>
+        🎙️ <span id="voice-card-title">AI Voice Assistant</span>
+      </h4>
+      <button class="voice-card-close" id="voice-card-close-btn" aria-label="Close Voice Panel">&times;</button>
+    </div>
+    <div class="voice-card-body">
+      <div class="voice-status-wrapper">
+        <span class="voice-status-text" id="voice-status">Click mic to start</span>
+        <div class="voice-wave" id="voice-wave-el">
+          <span class="voice-wave-bar"></span>
+          <span class="voice-wave-bar"></span>
+          <span class="voice-wave-bar"></span>
+          <span class="voice-wave-bar"></span>
+          <span class="voice-wave-bar"></span>
+        </div>
+      </div>
+      <div class="voice-transcript-box" id="voice-transcript">
+        Say a command like "Open welfare schemes"...
+      </div>
+      <div id="voice-ip-warning" style="display: none; background-color: #fff3cd; border: 1px solid #ffeeba; color: #856404; padding: 8px; border-radius: var(--radius-sm); font-size: 0.72rem; line-height: 1.3; margin-top: 8px; text-align: left; font-weight: 500;"></div>
+      <div class="voice-input-fallback" id="voice-input-container" style="display: flex; gap: 8px; margin-top: 8px;">
+        <input type="text" id="voice-text-input" placeholder="Or type a command here..." style="flex-grow: 1; padding: 8px 12px; border: 1px solid rgba(20,40,28,0.2); border-radius: var(--radius-sm); font-size: 0.82rem; outline: none; background: #ffffff; color: var(--color-text-dark); font-family: inherit;" />
+        <button id="voice-text-submit" style="background: var(--color-secondary); color: #ffffff; border: none; padding: 8px 14px; border-radius: var(--radius-sm); font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: background-color 0.2s ease;">Send</button>
+      </div>
+      <div class="voice-suggestions-title" id="voice-suggest-title" style="margin-top: 12px;">Suggestions</div>
+      <div class="voice-suggestions-grid" id="voice-suggestions">
+        <!-- Chips will be dynamically inserted depending on active language -->
+      </div>
+    </div>
+  </div>
+</body>
+</html>

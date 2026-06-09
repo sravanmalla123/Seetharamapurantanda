@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Official Media Gallery | Seetharamapuram Tanda Gram Panchayat</title>
+  <meta name="description" content="Explore photos and videos showcasing Seetharamapuram Tanda Gram Panchayat's development progress, tribal heritage, infrastructure, and water conservation.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Custom Styling for Premium Gallery Interface */
+    .gallery-body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-bg-base);
+    }
+    
+    .gallery-hero {
+      padding: 140px 0 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(12, 28, 18, 0.95), rgba(46, 125, 50, 0.9)), url('assets/housing_layout.png') center/cover;
+    }
+
+    body.banjara-active .gallery-hero {
+      background: linear-gradient(135deg, rgba(45, 6, 18, 0.95), rgba(216, 67, 21, 0.9)), url('assets/housing_layout.png') center/cover;
+    }
+
+    .gallery-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .gallery-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 12px;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .gallery-desc {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 650px;
+      margin: 0 auto;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    /* Filters / Tab Control */
+    .gallery-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 40px 0 24px;
+    }
+
+    .gallery-tab-btn {
+      padding: 10px 24px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--color-secondary);
+      background: var(--color-bg-card);
+      color: var(--color-primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: var(--transition-normal);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .gallery-tab-btn:hover {
+      background: var(--color-secondary-pale);
+      transform: translateY(-2px);
+    }
+
+    .gallery-tab-btn.active {
+      background: var(--color-secondary);
+      color: #ffffff;
+      box-shadow: var(--shadow-glow);
+    }
+
+    body.banjara-active .gallery-tab-btn.active {
+      background: var(--color-secondary);
+      border-color: var(--color-secondary);
+    }
+
+    /* Grid Layout */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+      padding: 20px 0 80px;
+    }
+
+    .media-card {
+      background: var(--color-bg-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--color-border);
+      transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                  box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                  border-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .media-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(20, 40, 28, 0.1), var(--shadow-glow);
+      border-color: var(--color-secondary);
+    }
+
+    .media-preview-container {
+      position: relative;
+      height: 220px;
+      background-color: #000;
+      overflow: hidden;
+    }
+
+    .media-preview-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .media-card:hover .media-preview-container img {
+      transform: scale(1.08);
+    }
+
+    /* Badges & Video Overlay */
+    .media-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      z-index: 2;
+      backdrop-filter: blur(4px);
+    }
+
+    .video-play-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.25);
+      z-index: 1;
+      transition: background-color 0.3s;
+    }
+
+    .media-card:hover .video-play-overlay {
+      background: rgba(0,0,0,0.4);
+    }
+
+    .play-btn-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 0 20px rgba(245, 166, 35, 0.6);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .media-card:hover .play-btn-circle {
+      transform: scale(1.15);
+    }
+
+    .media-details {
+      padding: 20px;
+    }
+
+    .media-details h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: var(--color-primary);
+    }
+
+    .media-details p {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+    }
+
+    .lightbox-overlay.active {
+      display: flex;
+      animation: fadeIn 0.3s forwards;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 85%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .lightbox-media {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transform: scale(0.9);
+      transition: transform 0.3s;
+    }
+
+    .lightbox-overlay.active .lightbox-media {
+      transform: scale(1);
+    }
+
+    .lightbox-caption {
+      margin-top: 16px;
+      color: #ffffff;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 500;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: #ffffff;
+      font-size: 2.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      line-height: 1;
+      transition: transform 0.2s;
+    }
+
+    .lightbox-close:hover {
+      transform: scale(1.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Toast styling in gallery */
+    .alert-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 16px 28px;
+      border-radius: var(--radius-md);
+      background-color: var(--color-bg-card);
+      color: var(--color-text-dark);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(150%);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+      z-index: 1005;
+      border-left: 5px solid var(--color-success);
+    }
+    .alert-popup.active {
+      transform: translateY(0);
+    }
+
+    /* Return button styling */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 2px solid rgba(255,255,255,0.4);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      transition: all 0.3s;
+    }
+
+    .back-btn:hover {
+      background-color: #ffffff;
+      color: var(--color-primary);
+      border-color: #ffffff;
+      transform: translateX(-4px);
+    }
+  </style>
+</head>
+<body class="gallery-body ready">
+
+  <!-- ==========================================
+       HEADER / NAVIGATION
+       ========================================== -->
+  <header class="header-bar" id="main-header" style="position: absolute; left: 0; right: 0; width: 100%; background: transparent; box-shadow: none; border: none;">
+    <div class="container header-container">
+      <a href="/" class="brand" id="brand-logo-link" aria-label="Seetharamapuram Tanda Gram Panchayat Home">
+        <svg class="emblem-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="4"/>
+          <circle cx="50" cy="50" r="41" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
+          <path d="M20,65 Q50,55 80,65 L80,85 Q50,75 20,85 Z" fill="var(--color-secondary-light)" opacity="0.3"/>
+          <path d="M15,75 Q50,65 85,75 L85,88 L15,88 Z" fill="currentColor"/>
+          <circle cx="50" cy="50" r="14" fill="var(--color-accent)"/>
+          <line x1="50" y1="24" x2="50" y2="16" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="50" y1="76" x2="50" y2="84" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="24" y1="50" x2="16" y2="50" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="76" y1="50" x2="84" y2="50" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M50,70 C40,55 45,40 50,45 C55,40 60,55 50,70 Z" fill="currentColor"/>
+        </svg>
+        <div class="brand-text">
+          <h1 id="gp-brand-title" style="color:#ffffff;">Seetharamapuram Tanda</h1>
+          <p id="gp-brand-subtitle" style="color:rgba(255,255,255,0.75);">Gram Panchayat Portal</p>
+        </div>
+      </a>
+      
+      <nav aria-label="Main navigation menu">
+        <ul class="nav-links" id="navigation-links">
+          <li>
+            <div class="lang-selector-wrapper">
+              <select id="lang-select" class="custom-lang-select" aria-label="Select Language" style="background-color: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.4);">
+                <option value="en" style="color:#000;">English</option>
+                <option value="hi" style="color:#000;">हिन्दी (Hindi)</option>
+                <option value="te" style="color:#000;">తెలుగు (Telugu)</option>
+              </select>
+            </div>
+          </li>
+          <li>
+            <a href="/" class="back-btn" id="btn-back-home">
+              ← Return Home
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       HERO BANNER
+       ========================================== -->
+  <section class="gallery-hero">
+    <div class="container gallery-hero-content">
+      <h1 class="gallery-title" id="gallery-main-heading">Village Media Gallery</h1>
+      <p class="gallery-desc" id="gallery-main-desc">A visual window into the rural layout, traditional Lambadi embroidery, sustainable forestry audits, and development highlights of Seetharamapuram Tanda.</p>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       GALLERY CONTAINER
+       ========================================== -->
+  <main class="flex-grow">
+    <div class="container">
+      
+      <!-- Filters -->
+      <div class="gallery-tabs">
+        <button class="gallery-tab-btn active" data-tab="all" id="tab-all">All Media</button>
+        <button class="gallery-tab-btn" data-tab="photo" id="tab-photos">Photos</button>
+        <button class="gallery-tab-btn" data-tab="video" id="tab-videos">Videos</button>
+      </div>
+
+      <!-- Media Grid -->
+      <div class="gallery-grid" id="media-grid">
+        
+        <!-- Photo 1: Wall Murals -->
+        <article class="media-card" data-type="photo" data-src="assets/gond_walls.png" data-caption="Traditional Tribal Murals - Visually preserving folklore and Banjara narratives on courtyard walls.">
+          <div class="media-preview-container">
+            <span class="media-badge" id="badge-heritage-1">Heritage</span>
+            <img src="assets/gond_walls.png" alt="Traditional Tribal Murals" loading="lazy">
+          </div>
+          <div class="media-details">
+            <h3 id="photo-title-1">Traditional Murals</h3>
+            <p id="photo-desc-1">Visually preserving folklore, painting methods, and local animal-centric narratives on village house walls.</p>
+          </div>
+        </article>
+
+        <!-- Photo 2: Housing Layout -->
+        <article class="media-card" data-type="photo" data-src="assets/housing_layout.png" data-caption="Climate-Smart Mud Housing - Mud-insulated and clay-tiled courtyards designed for heat dispersion.">
+          <div class="media-preview-container">
+            <span class="media-badge" id="badge-eco-1">Eco-Home</span>
+            <img src="assets/housing_layout.png" alt="Climate-Smart Mud Housing" loading="lazy">
+          </div>
+          <div class="media-details">
+            <h3 id="photo-title-2">Climate-Smart Housing</h3>
+            <p id="photo-desc-2">Traditional clay tile roofs and courtyard homes optimized naturally for seasonal comfort and durability.</p>
+          </div>
+        </article>
+
+        <!-- Photo 3: Local Weaving -->
+        <article class="media-card" data-type="photo" data-src="assets/local_weaving.png" data-caption="Lambadi Embroidery Craft - Intricate generational mirror-work and embroidery details.">
+          <div class="media-preview-container">
+            <span class="media-badge" id="badge-heritage-2">Artistry</span>
+            <img src="assets/local_weaving.png" alt="Lambadi Embroidery Craft" loading="lazy">
+          </div>
+          <div class="media-details">
+            <h3 id="photo-title-3">Lambadi Craftsmanship</h3>
+            <p id="photo-desc-3"> generational handloom mirror-work and embroidery created by local Banjara artisan cooperatives.</p>
+          </div>
+        </article>
+
+        <!-- Photo 4: Solar Lights -->
+        <article class="media-card" data-type="photo" data-src="assets/village_solar.png" data-caption="Infrastructure - Solar LED street lighting arrays illuminating stone-paved lanes.">
+          <div class="media-preview-container">
+            <span class="media-badge" id="badge-infra-1">Infrastructure</span>
+            <img src="assets/village_solar.png" alt="Solar street lighting" loading="lazy">
+          </div>
+          <div class="media-details">
+            <h3 id="photo-title-4">Smart Solar Lights</h3>
+            <p id="photo-desc-4">Smart off-grid solar LED street lights installed along paved roads to secure community movement after sunset.</p>
+          </div>
+        </article>
+
+        <!-- Video 1: General Tanda Intro -->
+        <article class="media-card" data-type="video" data-src="https://www.w3schools.com/html/mov_bbb.mp4" data-caption="Seetharamapuram Tanda Documentary - Overall development milestones, local livelihood summaries, and community overview.">
+          <div class="media-preview-container">
+            <span class="media-badge" id="badge-doc-1">Documentary</span>
+            <img src="assets/housing_layout.png" alt="Video Thumbnail" loading="lazy" style="filter: brightness(0.6);">
+            <div class="video-play-overlay">
+              <div class="play-btn-circle">▶</div>
+            </div>
+          </div>
+          <div class="media-details">
+            <h3 id="video-title-1">Tanda Livelihood Overview</h3>
+            <p id="video-desc-1">A visual documentary highlighting paddy farming fields, youth workshops, and local governance practices.</p>
+          </div>
+        </article>
+
+        <!-- Video 2: Water harvesting -->
+        <article class="media-card" data-type="video" data-src="https://www.w3schools.com/html/movie.mp4" data-caption="Water Conservation Projects - Building borewell recharge systems and community rainwater catchment basins.">
+          <div class="media-preview-container">
+            <span class="media-badge" id="badge-eco-2">Conservation</span>
+            <img src="assets/gond_walls.png" alt="Video Thumbnail" loading="lazy" style="filter: brightness(0.6);">
+            <div class="video-play-overlay">
+              <div class="play-btn-circle">▶</div>
+            </div>
+          </div>
+          <div class="media-details">
+            <h3 id="video-title-2">Rainwater Harvesting Grid</h3>
+            <p id="video-desc-2">Technical highlights of check dams and smart borewell recharges deployed to combat summer dependency.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer-bottom" style="padding: 24px 0; background: var(--color-primary); color: #fff; text-align: center; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.1);">
+    <div class="container">
+      <p id="footer-text-1">© 2026 Seetharamapuram Tanda Panchayat | Department of Rural Development</p>
+      <p id="footer-text-2" style="opacity:0.75; font-size:0.75rem; margin-top:4px;">Official Digital Civic Node | Andhra Pradesh State Government</p>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       LIGHTBOX / SCREEN VIEWER
+       ========================================== -->
+  <div class="lightbox-overlay" id="lightbox-viewer">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightbox-close-btn">×</button>
+      <div id="lightbox-media-container" style="width:100%; text-align:center;">
+        <!-- Media inserted dynamically -->
+      </div>
+      <p class="lightbox-caption" id="lightbox-caption-text">Caption Text</p>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="alert-popup" id="alert-toast" role="alert" aria-live="polite">
+    <span id="toast-message">Language loaded!</span>
+  </div>
+
+  <!-- ==========================================
+       CLIENT SIDE I18N ENGINE
+       ========================================== -->
+  <script>
+    let currentLanguage = 'en';
+    let originalTexts = {};
+
+    const translationDictionary = {
+      hi: {
+        '#gallery-main-heading': 'ग्राम मीडिया गैलरी',
+        '#gallery-main-desc': 'सीतारामपुरम टांडा ग्राम पंचायत के ग्रामीण परिदृश्य, पारंपरिक लंबाडी कढ़ाई, पर्यावरण-अनुकूल आवासों और विकास कार्यों की दृश्य झलक।',
+        '#tab-all': 'सभी मीडिया',
+        '#tab-photos': 'तस्वीरें',
+        '#tab-videos': 'वीडियो',
+        '#btn-back-home': '← मुख्य पृष्ठ',
+        '#badge-heritage-1': 'धरोहर',
+        '#badge-eco-1': 'पर्यावरण-घर',
+        '#badge-heritage-2': 'कलाकृति',
+        '#badge-infra-1': 'बुनियादी ढांचा',
+        '#badge-doc-1': 'दस्तावेज',
+        '#badge-eco-2': 'संरक्षण',
+        '#photo-title-1': 'पारंपरिक भित्ति चित्र',
+        '#photo-desc-1': 'घरों की दीवारों पर स्थानीय आदिवासी लोककथाओं और जीवन शैलियों का दृश्य संरक्षण।',
+        '#photo-title-2': 'जलवायु-अनुकूल आवास',
+        '#photo-desc-2': 'मौसम के अनुकूल प्राकृतिक रूप से डिजाइन की गई पारंपरिक मिट्टी और खपरैल की छतें।',
+        '#photo-title-3': 'लंबाडी शिल्प कौशल',
+        '#photo-desc-3': 'स्थानीय कारीगरों द्वारा हस्तनिर्मित जीवंत दर्पण और कढ़ाई कार्यों की बंजारा विरासत।',
+        '#photo-title-4': 'स्मार्ट सोलर लाइट्स',
+        '#photo-desc-4': 'सूर्यास्त के बाद सुरक्षा और गतिविधि के लिए पक्की सड़कों पर सौर एलईडी लाइट्स की व्यवस्था।',
+        '#video-title-1': 'टांडा आजीविका विवरण',
+        '#video-desc-1': 'धान की खेती, युवा कार्यशालाओं और स्थानीय पंचायत प्रशासन के कार्यों का वृत्तचित्र।',
+        '#video-title-2': 'वर्षा जल संचयन प्रणाली',
+        '#video-desc-2': 'गर्मी में पानी की कमी को दूर करने के लिए निर्मित चेक डेम और स्मार्ट बोरवेल संचयन ग्रिड।',
+        '#footer-text-1': '© 2026 सीतारामपुरम टांडा पंचायत | ग्रामीण विकास विभाग',
+        '#footer-text-2': 'आधिकारिक डिजिटल नागरिक नोड | आंध्र प्रदेश राज्य सरकार'
+      },
+      te: {
+        '#gallery-main-heading': 'గ్రామ మీడియా గ్యాలరీ',
+        '#gallery-main-desc': 'సీతారామపురం తండా గ్రామ పంచాయతీ యొక్క గ్రామీణ జీవనశైలి, సాంప్రదాయ లంబాడీ హస్తకళలు, ఇకో-గృహాలు మరియు అభివృద్ధి పనుల యొక్క దృశ్య రూపాంతరం.',
+        '#tab-all': 'అన్ని మీడియా',
+        '#tab-photos': 'ఫోటోలు',
+        '#tab-videos': 'వీడియోలు',
+        '#btn-back-home': '← హోమ్ పేజీ',
+        '#badge-heritage-1': 'వారసత్వం',
+        '#badge-eco-1': 'ఇకో-ఇల్లు',
+        '#badge-heritage-2': 'కళా నైపుణ్యం',
+        '#badge-infra-1': 'మౌలిక వసతులు',
+        '#badge-doc-1': 'డాక్యుమెంటరీ',
+        '#badge-eco-2': 'రక్షణ',
+        '#photo-title-1': 'సాంప్రదాయ గోడ చిత్రాలు',
+        '#photo-desc-1': 'గ్రామ గోడలపై స్థానిక గిరిజన జానపద కథలు మరియు జీవనశైలిని సంరక్షించే చిత్రాలు.',
+        '#photo-title-2': 'వాతావరణ-అనుకూల గృహాలు',
+        '#photo-desc-2': 'కాలానుగుణ సౌకర్యం కోసం మట్టి మరియు సాంప్రదాయ పెంకులతో కూడిన ఇళ్ళ నిర్మాణం.',
+        '#photo-title-3': 'లంబాడీ హస్తకళ',
+        '#photo-desc-3': 'శక్తివంతమైన దారాలు, అద్దాలతో కూడిన లంబాడీ/బంజారా తరాల కళా వైభవం.',
+        '#photo-title-4': 'స్మార్ట్ సోలార్ లైట్లు',
+        '#photo-desc-4': 'రాత్రి పూట భద్రత కొరకు గ్రామ రహదారులపై ఏర్పాటు చేసిన సోలార్ వీధి దీపాలు.',
+        '#video-title-1': 'తండా జీవనోపాధి సమాచారం',
+        '#video-desc-1': 'వరి వ్యవసాయం, యువ నైపుణ్య శిక్షణలు మరియు స్థానిక పరిపాలనను చూపించే చిన్న చిత్రం.',
+        '#video-title-2': 'వర్షపు నీటి నిల్వ వ్యవస్థ',
+        '#video-desc-2': 'ఎండకాలం నీటి సమస్య పరిష్కారానికి నిర్మించిన చెక్ డ్యామ్‌లు మరియు స్మార్ట్ రీఛార్జ్ గ్రిడ్లు.',
+        '#footer-text-1': '© 2026 సీతారామపురం తండా పంచాయితీ | గ్రామీణాభివృద్ధి శాఖ',
+        '#footer-text-2': 'అధికారిక డిజిటల్ సివిక్ నోడ్ | ఆంధ్రప్రదేశ్ ప్రభుత్వ రాష్ట్రం'
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('ready');
+      // Sync theme preference
+      const savedTheme = localStorage.getItem('panchayat-theme');
+      if (savedTheme === 'banjara') {
+        document.body.classList.add('banjara-active');
+      }
+
+      // Initialize translations
+      initLanguage();
+      
+      // Initialize tabs & lightbox
+      initGalleryTabs();
+      initLightbox();
+    });
+
+    function initLanguage() {
+      const select = document.getElementById('lang-select');
+      if (!select) return;
+
+      // Save original English copies
+      const selectors = Object.keys(translationDictionary.hi);
+      selectors.forEach(sel => {
+        const el = document.querySelector(sel);
+        if (el) {
+          originalTexts[sel] = el.textContent.trim();
+        }
+      });
+
+      // Load saved preference
+      const savedLang = localStorage.getItem('panchayat-lang') || 'en';
+      select.value = savedLang;
+      applyTranslation(savedLang);
+
+      select.addEventListener('change', (e) => {
+        const lang = e.target.value;
+        applyTranslation(lang);
+        
+        // Sync back to localStorage for main page
+        localStorage.setItem('panchayat-lang', lang);
+
+        const toastMsg = lang === 'hi' ? '🇮🇳 भाषा बदलकर हिंदी कर दी गई है।' : lang === 'te' ? '🇮🇳 భాష తెలుగులోకి మార్చబడింది.' : '🇬🇧 Language switched to English.';
+        showToast(toastMsg, 'success');
+      });
+    }
+
+    function applyTranslation(lang) {
+      currentLanguage = lang;
+      const selectors = Object.keys(translationDictionary.hi);
+      selectors.forEach(sel => {
+        const el = document.querySelector(sel);
+        if (!el) return;
+
+        if (lang === 'en') {
+          if (originalTexts[sel]) {
+            el.textContent = originalTexts[sel];
+          }
+        } else {
+          if (translationDictionary[lang] && translationDictionary[lang][sel]) {
+            el.textContent = translationDictionary[lang][sel];
+          }
+        }
+      });
+    }
+
+    // Tabs functionality
+    function initGalleryTabs() {
+      const tabs = document.querySelectorAll('.gallery-tab-btn');
+      const cards = document.querySelectorAll('.media-card');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+
+          const category = tab.getAttribute('data-tab');
+
+          cards.forEach(card => {
+            const type = card.getAttribute('data-type');
+            if (category === 'all' || type === category) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    }
+
+    // Lightbox popup functionality
+    function initLightbox() {
+      const viewer = document.getElementById('lightbox-viewer');
+      const container = document.getElementById('lightbox-media-container');
+      const caption = document.getElementById('lightbox-caption-text');
+      const closeBtn = document.getElementById('lightbox-close-btn');
+      const cards = document.querySelectorAll('.media-card');
+
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          const type = card.getAttribute('data-type');
+          const src = card.getAttribute('data-src');
+          const cap = card.getAttribute('data-caption');
+
+          container.innerHTML = ''; // Reset container
+
+          if (type === 'photo') {
+            const img = document.createElement('img');
+            img.src = src;
+            img.className = 'lightbox-media';
+            img.alt = 'Enlarged View';
+            container.appendChild(img);
+          } else if (type === 'video') {
+            const video = document.createElement('video');
+            video.src = src;
+            video.className = 'lightbox-media';
+            video.controls = true;
+            video.autoplay = true;
+            video.style.outline = 'none';
+            container.appendChild(video);
+          }
+
+          caption.textContent = cap;
+          viewer.classList.add('active');
+        });
+      });
+
+      const closeLightbox = () => {
+        viewer.classList.remove('active');
+        container.innerHTML = ''; // Stop video playback
+      };
+
+      closeBtn.addEventListener('click', closeLightbox);
+      viewer.addEventListener('click', (e) => {
+        if (e.target === viewer) closeLightbox();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+      });
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('alert-toast');
+      const msgText = document.getElementById('toast-message');
+      if (!toast || !msgText) return;
+
+      msgText.textContent = message;
+      toast.classList.add('active');
+
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>

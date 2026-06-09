@@ -1,0 +1,20 @@
+{
+  "name": "seetharamapuram-panchayat-portal",
+  "version": "1.0.0",
+  "description": "Official Full-Stack Civic and Livelihood Portal of Seetharamapuram Gram Panchayat",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "civic",
+    "panchayat",
+    "full-stack",
+    "livelihood",
+    "vanilla-js"
+  ],
+  "author": "Department of Rural Development & Panchayat Raj",
+  "license": "MIT",
+  "dependencies": {}
+}

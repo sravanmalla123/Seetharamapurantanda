@@ -1,0 +1,452 @@
+{
+  "rationCards": {
+    "369805471203": {
+      "id": "369805471203",
+      "owner": "4c832aba773627bd277bcf1911b3abd6:2a0036ad9168f7e92714af2c4f7f0372d75dd74c4a858cf8ede7b2b82f929d26",
+      "type": "25809a1b0022cfffaeea90a8338e8f2d:082dcaf742559c20a8acf17c049d6996cd60d445585ccf2fbfd077c33418eb8fe5c293ba46b6c37fc2c4c53f55c747a5",
+      "status": "ACTIVE",
+      "shop": "88aa7d1259b8236d65094dc3b823afb8:116f67641fa569745b4eadb4b680d83507249c4cb874bbabc7768f36f9d702395ceb10921d42e5e7ab5d02e72cc7bfdf",
+      "members": "978087894e1cdb50400910e81f337465:7c4244f18bedeb1268bca8542c1700232b9932a2c0a3eaca672d97c45df30774d6d307fdc6aef9eca99deb10ab03bce2",
+      "rice": "57464b6b3f0c8c15dfa153d14df2c9cb:d850d6a6b059bba1d6f98987b3073bddedb07b2dedef8d4e5a2757548c44ea05",
+      "wheat": "7b3ef643992cbe6dc2407803d4dde611:d6d236148769b3735bbdf87f77fe02c5afa2a168234f88cbf3df9a88bc8c7405",
+      "kerosene": "69d1ab551a8c035d9a414282b25317ea:21384415eafd1d4a4374f0b3e8194f9a760a3cf6ac16292af43d846c88fe2f83"
+    },
+    "450123984501": {
+      "id": "450123984501",
+      "owner": "fffe799b5701447d2ca547dde8435f1a:b0da84eee6d417b373092f70c2eee6c7499f3f3523edb405f3a8eab6d67f25c9",
+      "type": "c6f15c748323a4df60dc7d313a49f2da:3c31c7533aadfb7b02be70a036a9a201c252668f56ce221461e07eb8ca05f45b9de53bdde2dd64c126e1f09d216f7b0a",
+      "status": "ACTIVE",
+      "shop": "2d8c884e494d41be8b13c0a5a24ac443:d101f129e397a498c48e3563ae8b4070dfd8a8fa57552151cabe82b474d9721ca852b588b39a2a5f39d27f6eb2ffe21c",
+      "members": "34082c41c4fdb1a83794554b848d8246:cac9e2024a387d5e05aa5f7128c35768aa34cd17aa7433925e7c55c0afc3738f",
+      "rice": "a42bfa2ba541ba6a99d9840aa6c3224b:30c2c93f5e9c22794bce10a983eada9eca0ae2612b33982ae6d456b6ce9d0ae5",
+      "wheat": "2c2a758cc7b842cf4c8aaf2314bc772b:22f26ac13a0bff7ebb7dd454e484e271304569f724dd44ea9ccd0e399ff2404f",
+      "kerosene": "01a4df14e723610a71b4f330ed066640:f6e2b82aa50b47100897276a17ddd52dd4a41ed4b04c2a7fca94a16184861603"
+    }
+  },
+  "grievances": {
+    "GP-2026-X1Y2": {
+      "id": "GP-2026-X1Y2",
+      "name": "908cd0d212739eff4e6947e48e108b5e:0f5bd99171412ea661e1b95d78ce2fdb",
+      "phone": "139001b62ab599122ed0f2fd050d6eab:9ea16226fa4969a1af1918b82f7f6339",
+      "category": "water",
+      "desc": "73b43dad31ab7ab9ccaf6eadc6340ed4:926f3b5fd4af8923b0050c23e23aa07209f266e92d7d09399ada06a0375acbef394e3d989f2ba0b576bd32d057db5b05614b057eb4a72303a56dbf18f108bd0e4704465dc17fd0ab2282f225c1812c26",
+      "status": "In Progress",
+      "assignedTo": "Shri Narasimha (Panchayat Secretary)",
+      "history": [
+        {
+          "status": "Grievance Submitted",
+          "detail": "Complaint logged in portal by Hanuma Nayak.",
+          "time": "04 June 2026"
+        },
+        {
+          "status": "Verification Scheduled",
+          "detail": "Technical officer scheduled for spot water purity check.",
+          "time": "05 June 2026"
+        },
+        {
+          "status": "Work Order Dispatched",
+          "detail": "Pipes flushing work initiated. Spare washers sent to field.",
+          "time": "06 June 2026"
+        }
+      ]
+    },
+    "GP-2026-A4B7": {
+      "id": "GP-2026-A4B7",
+      "name": "38704f21394e5cc128a0c822b41e8f91:9a1879347488ac0aeee1543c7b54fe90",
+      "phone": "d1f4ab8378d5adef7e8c34567a3d8db3:a6682eff05644b99cec870e0686f28da",
+      "category": "roads",
+      "desc": "0e66df7ad2fd2db7bd59387ba96906bc:9a069dfeb42500f6b576114e7cb43a48879202e560843b3e9a8a204d74e3468a94e9551fbde1d0b5285333ec931bc3ca968d57e6db6a5e8455386748ab102ebc57b767515c9be7968d2dedb87d5d30b566d7fcbde60a01864bf88cfdfb5fa6c7",
+      "status": "Resolved",
+      "assignedTo": "Mandal Engineers (R&B)",
+      "history": [
+        {
+          "status": "Grievance Submitted",
+          "detail": "Logged on portal by Ravi G.",
+          "time": "20 May 2026"
+        },
+        {
+          "status": "Officer Investigation",
+          "detail": "Pathway audited. Stone metal gravel load approved.",
+          "time": "22 May 2026"
+        },
+        {
+          "status": "Resolution Implemented",
+          "detail": "Gravel filling and compaction completed by local labor.",
+          "time": "28 May 2026"
+        },
+        {
+          "status": "Resolved",
+          "detail": "Ticket closed. Sarpanch inspection completed.",
+          "time": "30 May 2026"
+        }
+      ]
+    }
+  },
+  "householdUpdates": {
+    "HH-101": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": false
+    },
+    "HH-102": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-103": {
+      "privateToilet": false,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-104": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-105": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-106": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-107": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": false
+    },
+    "HH-108": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-109": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-110": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-111": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-112": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-113": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": false
+    },
+    "HH-114": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-115": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-116": {
+      "privateToilet": false,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-117": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-118": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-119": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": false
+    },
+    "HH-120": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-121": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-122": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-123": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-124": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-125": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": false
+    },
+    "HH-126": {
+      "privateToilet": false,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-127": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-128": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-129": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-130": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-131": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": false
+    },
+    "HH-132": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-133": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-134": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-135": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-136": {
+      "privateToilet": false,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-137": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": false
+    },
+    "HH-138": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-139": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-140": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-141": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-142": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-143": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": false
+    },
+    "HH-144": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-145": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-146": {
+      "privateToilet": false,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-147": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-148": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-149": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": true,
+      "cleanEnergy": false,
+      "ownHouse": false
+    },
+    "HH-150": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    },
+    "HH-301": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true
+    },
+    "HH-999": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
+      "ownHouse": true
+    }
+  },
+  "certificates": {}
+}
