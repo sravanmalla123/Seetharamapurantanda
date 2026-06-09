@@ -18,3 +18,5 @@ Thumbs.db
 db-backup.json
 .cache/
 tmp/
+
+.vercel

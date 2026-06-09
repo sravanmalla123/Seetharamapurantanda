@@ -47,6 +47,18 @@ function initSplashScreen() {
   const splash = document.getElementById('splash-screen');
   if (!splash) return;
 
+  // Check if splash has already been seen in this session to prevent lag on reload/navigation
+  if (sessionStorage.getItem('splashSeen')) {
+    splash.remove();
+    document.body.classList.remove('splash-active');
+    document.body.classList.add('ready');
+    triggerHeroReveal();
+    return;
+  }
+
+  // Set flag for subsequent page visits
+  sessionStorage.setItem('splashSeen', 'true');
+
   // Split splash title into staggered characters
   const splashTitle = splash.querySelector('.splash-title');
   if (splashTitle) {
@@ -86,8 +98,8 @@ function initSplashScreen() {
     }, 1200); // 1.2s matches the door-splitting animation transition duration in CSS
   };
 
-  // Transition and remove the splash screen automatically after 3.0 seconds
-  const autoTimer = setTimeout(triggerTransition, 3000);
+  // Snappy transition: auto-skip splash after 1.5 seconds instead of 3.0 seconds
+  const autoTimer = setTimeout(triggerTransition, 1500);
 
   // Allow immediate skipping by clicking anywhere on the splash screen
   splash.addEventListener('click', () => {

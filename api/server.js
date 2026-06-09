@@ -5,7 +5,7 @@ const url = require('url');
 const crypto = require('crypto');
 
 const PORT = 8000;
-const DB_PATH = path.join(__dirname, 'db.json');
+const DB_PATH = path.join(__dirname, '..', 'db.json');
 
 // Cryptographically Secure AES-256-CBC Encryption configuration
 const ALGORITHM = 'aes-256-cbc';
@@ -81,7 +81,8 @@ function writeDb(data) {
 // Helper to serve static files
 function serveStaticFile(res, filePath) {
   const safePath = path.resolve(filePath);
-  if (!safePath.startsWith(path.resolve(__dirname))) {
+  const rootDir = path.resolve(__dirname, '..', 'public');
+  if (!safePath.startsWith(rootDir)) {
     res.writeHead(403, { 'Content-Type': 'text/plain' });
     res.end('403 Forbidden');
     return;
@@ -403,12 +404,16 @@ const server = http.createServer(async (req, res) => {
   }
 
   // Static File Serving
-  let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
+  let filePath = path.join(__dirname, '..', 'public', pathname === '/' ? 'index.html' : pathname);
   serveStaticFile(res, filePath);
 });
 
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server is running at:`);
-  console.log(`- http://localhost:${PORT}`);
-  console.log(`- http://10.253.91.42:${PORT}`);
-});
+if (!process.env.VERCEL) {
+  server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running at:`);
+    console.log(`- http://localhost:${PORT}`);
+    console.log(`- http://10.253.91.42:${PORT}`);
+  });
+}
+
+module.exports = server;
