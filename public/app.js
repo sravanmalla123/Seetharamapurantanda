@@ -268,28 +268,172 @@ function closeModal(modalId) {
    ========================================== */
 const welfareSchemesData = [
   {
-    name: 'Rythu Bandhu (Farmer Investment Support)',
-    category: 'Agriculture',
-    desc: 'Provides seasonal input support grants of ₹5,000 per acre per season directly to farmers for buying seeds, fertilizer, and labor inputs.',
-    criteria: 'Landowner Farmer with land registered in village records.'
+    category: {
+      en: 'Farmers',
+      hi: 'किसान',
+      te: 'రైతులు'
+    },
+    en: {
+      name: 'Rythu Bandhu (Farmer Investment Support)',
+      desc: 'Provides seasonal input support grants of ₹5,000 per acre per season directly to farmers for buying seeds, fertilizer, and labor inputs.',
+      criteria: 'Land-owning farming families in the village land register.',
+      docs: 'Aadhaar Card, Land Pattadar Passbook, Bank Account Details.',
+      apply: 'Submit passbook & bank copies to the Agricultural Extension Officer (AEO) at the Panchayat Office.'
+    },
+    hi: {
+      name: 'रैथु बंधु (किसान निवेश सहायता)',
+      desc: 'बीज, उर्वरक और श्रम इनपुट खरीदने के लिए किसानों को सीधे प्रति सीजन ₹5,000 प्रति एकड़ की दर से मौसमी निवेश सहायता अनुदान प्रदान करता है।',
+      criteria: 'ग्राम भूमि रजिस्टर में पंजीकृत भूमि स्वामी किसान परिवार।',
+      docs: 'आधार कार्ड, भूमि पट्टादार पासबुक, बैंक खाता विवरण।',
+      apply: 'पंचायत कार्यालय में कृषि विस्तार अधिकारी (AEO) को पासबुक और बैंक विवरण की प्रतियां जमा करें।'
+    },
+    te: {
+      name: 'రైతు బంధు (వ్యవసాయ పెట్టుబడి మద్దతు)',
+      desc: 'విత్తనాలు, ఎరువులు మరియు కార్మిక ఖర్చుల కొరకు రైతులకు నేరుగా ఎకరానికి ఒక సీజన్‌కు ₹5,000 చొప్పున పెట్టుబడి సహాయాన్ని అందిస్తుంది.',
+      criteria: 'గ్రామ భూమి రికార్డులలో నమోదైన భూయజమాన్య రైతు కుటుంబాలు.',
+      docs: 'ఆధార్ కార్డ్, పట్టాదార్ పాస్ బుక్, బ్యాంక్ ఖాతా వివరాలు.',
+      apply: 'పాస్ బుక్ మరియు బ్యాంక్ ఖాతా నకళ్ళను పంచాయతీ కార్యాలయంలోని వ్యవసాయ విస్తరణ అధికారి (AEO) కి సమర్పించండి.'
+    }
   },
   {
-    name: 'Aasara Pensions (Elderly & Widow Support)',
-    category: 'Social Security',
-    desc: 'Provides monthly financial pensions of ₹2,016 to secure livelihoods for elderly villagers, widows, and local manual weavers.',
-    criteria: 'Age over 57, widows, weaver artisans with family income under ₹1.5 Lakhs.'
+    category: {
+      en: 'Students',
+      hi: 'छात्र',
+      te: 'విద్యార్థులు'
+    },
+    en: {
+      name: 'Post-Matric Scholarship & Fee Reimbursement',
+      desc: 'Provides full tuition fee reimbursement and monthly maintenance allowances for students pursuing higher education.',
+      criteria: 'SC/ST/BC/Minority students pursuing Intermediate/Degree/Engineering with annual family income under ₹2 Lakhs.',
+      docs: 'SSC Memo, Aadhaar Card, Caste & Income Certificates, College Study Certificate.',
+      apply: 'Apply online via the Jnanabhumi Portal and submit hard copies to the College Principal.'
+    },
+    hi: {
+      name: 'पोस्ट-मैट्रिक छात्रवृत्ति और शुल्क प्रतिपूर्ति',
+      desc: 'उच्च शिक्षा प्राप्त करने वाले छात्रों के लिए पूर्ण ट्यूशन शुल्क प्रतिपूर्ति और मासिक रखरखाव भत्ता प्रदान करता है।',
+      criteria: '₹2 लाख से कम वार्षिक पारिवारिक आय वाले अनुसूचित जाति/अनुसूचित जनजाति/पिछड़ा वर्ग/अल्पसंख्यक छात्र जो इंटरमीडिएट/डिग्री/इंजीनियरिंग की पढ़ाई कर रहे हैं।',
+      docs: 'एसएससी मेमो, आधार कार्ड, जाति और आय प्रमाण पत्र, कॉलेज अध्ययन प्रमाण पत्र।',
+      apply: 'ज्ञानभूमि पोर्टल के माध्यम से ऑनलाइन आवेदन करें और कॉलेज के प्रिंसिपल को हार्ड कॉपी जमा करें।'
+    },
+    te: {
+      name: 'పోస్ట్-మెట్రిక్ స్కాలర్‌షిప్ & ఫీజు రీయింబర్స్మెంట్',
+      desc: 'ఉన్నత విద్యను అభ్యసిస్తున్న విద్యార్థుల కోసం పూర్తి ట్యూషన్ ఫీజు రీయింబర్స్మెంట్ మరియు నెలవారీ అలవెన్సులను అందిస్తుంది.',
+      criteria: 'రూ. 2 లక్షల లోపు వార్షిక కుటుంబ ఆదాయం కలిగి, ఇంటర్/డిగ్రీ/ఇంజనీరింగ్ చదువుతున్న ఎస్సీ/ఎస్టీ/బీసీ/మైనారిటీ విద్యార్థులు.',
+      docs: 'ఆధార్ కార్డ్, ఎస్ఎస్సీ మెమో, కుల & ఆదాయ ధృవీకరణ పత్రాలు, కాలేజీ స్టడీ సర్టిఫికేట్.',
+      apply: 'జ్ఞానభూమి పోర్టల్ ద్వారా ఆన్‌లైన్‌లో దరఖాస్తు చేసుకుని, హార్డ్ కాపీలను కాలేజీ ప్రిన్సిపాల్‌కు సమర్పించండి.'
+    }
   },
   {
-    name: 'Kalyana Lakshmi / Shaadi Mubarak',
-    category: 'Community',
-    desc: 'One-time financial assistance of ₹1,00,116 given during weddings to prevent wedding debts among minority families.',
-    criteria: 'Brides aged 18+ from low-income families (income < ₹2 Lakhs).'
+    category: {
+      en: 'Women',
+      hi: 'महिलाएं',
+      te: 'మహిళలు'
+    },
+    en: {
+      name: 'YSR Aasara (Self-Help Group Support)',
+      desc: 'Reimburses outstanding bank loans of rural Self-Help Groups (SHGs) in installments to empower women and promote small enterprise.',
+      criteria: 'Female members of registered rural Self-Help Groups (SHGs) under DRDA.',
+      docs: 'SHG Loan Book, Aadhaar Cards of SHG members, Bank Passbook.',
+      apply: 'Apply through the Village Organization (VO) Assistant at the Panchayat Secretariat.'
+    },
+    hi: {
+      name: 'वाईएसआर आसरा (स्वयं सहायता समूह सहायता)',
+      desc: 'महिलाओं को सशक्त बनाने और लघु उद्यम को बढ़ावा देने के लिए ग्रामीण स्वयं सहायता समूहों (SHGs) के बकाया बैंक ऋणों को किश्तों में प्रतिपूर्ति करता है।',
+      criteria: 'डीआरडीए के तहत पंजीकृत ग्रामीण स्वयं सहायता समूहों (SHG) की महिला सदस्य।',
+      docs: 'एसएचजी ऋण पुस्तिका, एसएचजी सदस्यों के आधार कार्ड, बैंक पासबुक।',
+      apply: 'पंचायत सचिवालय में ग्राम संगठन (VO) सहायक के माध्यम से आवेदन करें।'
+    },
+    te: {
+      name: 'వైఎస్ఆర్ ఆసరా (SHG రుణ సహాయ పథకం)',
+      desc: 'మహిళా సాధికారత మరియు చిన్న వ్యాపారాల ప్రోత్సాహం కొరకు గ్రామీణ స్వయం సహాయక సంఘాల (SHG) పాత బ్యాంకు రుణాలను విడతల వారీగా చెల్లిస్తుంది.',
+      criteria: 'DRDA పరిధిలో నమోదైన గ్రామీణ స్వయం సహాయక సంఘాల (SHG) మహిళా సభ్యులు.',
+      docs: 'SHG రుణ పుస్తకం, సభ్యుల ఆధార్ కార్డులు, బ్యాంక్ పాస్ బుక్.',
+      apply: 'పంచాయతీ సెక్రటేరియట్‌లోని విలేజ్ ఆర్గనైజేషన్ (VO) అసిస్టెంట్ ద్వారా దరఖాస్తు చేసుకోండి.'
+    }
   },
   {
-    name: 'PM-KISAN Samman Nidhi',
-    category: 'Central Scheme',
-    desc: 'Direct benefit transfer of ₹6,000 per year paid in three equal installments to rural landholder farmer families.',
-    criteria: 'Small and marginal farmers holding cultivable land records.'
+    category: {
+      en: 'Senior Citizens',
+      hi: 'वरिष्ठ नागरिक',
+      te: 'వృద్ధులు'
+    },
+    en: {
+      name: 'YSR Pension Kanuka (Old Age Pension)',
+      desc: 'Provides secure monthly financial aid directly at the doorstep to elderly and vulnerable villagers to ensure dignified living.',
+      criteria: 'Elderly citizens aged 60 years or above with monthly family income under ₹10,000 (rural) and landholding under 3 acres wet / 10 acres dry.',
+      docs: 'Aadhaar Card (for age proof), Ration Card / Income Certificate, Bank Passbook, Photo.',
+      apply: 'Submit the physical application form to the Ward/Village Volunteer or register at the Panchayat Secretariat.'
+    },
+    hi: {
+      name: 'वाईएसआर पेंशन कनुका (वृद्धावस्था पेंशन)',
+      desc: 'सम्मानजनक जीवन सुनिश्चित करने के लिए बुजुर्ग और कमजोर ग्रामीणों को सीधे दरवाजे पर सुरक्षित मासिक वित्तीय सहायता प्रदान करता है।',
+      criteria: '60 वर्ष या उससे अधिक आयु के बुजुर्ग नागरिक जिनकी मासिक पारिवारिक आय ₹10,000 (ग्रामीण) से कम है और भूमि जोत 3 एकड़ गीली / 10 एकड़ सूखी से कम है।',
+      docs: 'आधार कार्ड (आयु प्रमाण के लिए), राशन कार्ड / आय प्रमाण पत्र, बैंक पासबुक, फोटो।',
+      apply: 'वार्ड/ग्राम स्वयंसेवक को भौतिक आवेदन पत्र जमा करें या पंचायत सचिवालय में पंजीकरण करें।'
+    },
+    te: {
+      name: 'వైఎస్ఆర్ పెన్షన్ కానుక (వృద్ధాప్య పెన్షన్)',
+      desc: 'గౌరవప్రదమైన జీవితాన్ని గడపడం కోసం వృద్ధులకు మరియు వెనుకబడిన గ్రామస్థులకు నేరుగా ఇంటి వద్దకే నెలవారీ ఆర్థిక సహాయాన్ని అందిస్తుంది.',
+      criteria: '60 సంవత్సరాలు లేదా అంతకంటే ఎక్కువ వయస్సు ఉండి, నెలవారీ కుటుంబ ఆదాయం రూ.10,000 లోపు మరియు 3 ఎకరాల మాగాణి/10 ఎకరాల మెట్ట లోపు భూమి ఉన్న వృద్ధులు.',
+      docs: 'ఆధార్ కార్డ్ (వయస్సు రుజువు కోసం), రేషన్ కార్డ్ / ఆదాయ ధృవీకరణ పత్రం, బ్యాంక్ పాస్ బుక్, ఫోటో.',
+      apply: 'వార్డు/గ్రామ వాలంటీర్‌కు దరఖాస్తును సమర్పించండి లేదా పంచాయతీ సెక్రటేరియట్‌లో నమోదు చేసుకోండి.'
+    }
+  },
+  {
+    category: {
+      en: 'Housing',
+      hi: 'आवास',
+      te: 'గృహ నిర్మాణం'
+    },
+    en: {
+      name: 'PM Awas Yojana (PMAY-G Housing)',
+      desc: 'Provides financial assistance and construction subsidies for building permanent pucca houses with basic amenities for shelterless families.',
+      criteria: 'Families without shelter or living in kutcha/dilapidated mud houses in rural areas.',
+      docs: 'Aadhaar Card, Ration Card, Bank Passbook, Land Possession Document / NOC, current house photo.',
+      apply: 'Register details during the Gram Sabha housing survey or submit the form to the Panchayat Secretary.'
+    },
+    hi: {
+      name: 'पीएम आवास योजना (ग्रामीण आवास)',
+      desc: 'बेघर परिवारों के लिए बुनियादी सुविधाओं के साथ स्थायी पक्के मकान बनाने के लिए वित्तीय सहायता और निर्माण सब्सिडी प्रदान करता है।',
+      criteria: 'ग्रामीण क्षेत्रों में बेघर या कच्चे/जर्जर मिट्टी के घरों में रहने वाले परिवार।',
+      docs: 'आधार कार्ड, राशन कार्ड, बैंक पासबुक, भूमि कब्जा दस्तावेज / एनओसी, वर्तमान घर की फोटो।',
+      apply: 'ग्राम सभा आवास सर्वेक्षण के दौरान विवरण दर्ज करें या पंचायत सचिव को फॉर्म जमा करें।'
+    },
+    te: {
+      name: 'పీఎం ఆవాస్ యోజన (గ్రామీణ గృహ నిర్మాణ పథకం)',
+      desc: 'ఇల్లు లేని నిరుపేద కుటుంబాలకు కనీస సదుపాయాలతో శాశ్వత పక్కా ఇళ్ళ నిర్మాణానికి ఆర్థిక సహాయం మరియు సబ్సిడీని అందిస్తుంది.',
+      criteria: 'గ్రామీణ ప్రాంతాలలో ఇల్లు లేని లేదా మట్టి ఇళ్ళు/శిథిలావస్థకు చేరిన ఇళ్ళలో నివసిస్తున్న కుటుంబాలు.',
+      docs: 'ఆధార్ కార్డ్, రేషన్ కార్డ్, బ్యాంక్ పాస్ బుక్, భూమి యాజమాన్య పత్రం / NOC, ప్రస్తుత ఇల్లు ఫోటో.',
+      apply: 'గ్రామసభ గృహ సర్వే సమయంలో వివరాలను నమోదు చేయండి లేదా పంచాయతీ కార్యదర్శికి దరఖాస్తును సమర్పించండి.'
+    }
+  },
+  {
+    category: {
+      en: 'Employment',
+      hi: 'रोजगार',
+      te: 'ఉపాధి'
+    },
+    en: {
+      name: 'MGNREGS (National Rural Employment Guarantee)',
+      desc: 'Guarantees at least 100 days of paid manual labor per financial year to rural households to enhance livelihood security.',
+      criteria: 'Adult members of rural households willing to perform unskilled physical manual labor.',
+      docs: 'Aadhaar Card, Voter ID, Bank Passbook, Passport Size Photograph.',
+      apply: 'Submit a job card application form at the Panchayat Office; jobs are assigned by the Field Assistant within 15 days.'
+    },
+    hi: {
+      name: 'मनरेगा (राष्ट्रीय ग्रामीण रोजगार गारंटी)',
+      desc: 'आजीविका सुरक्षा बढ़ाने के लिए ग्रामीण परिवारों को प्रति वित्तीय वर्ष कम से कम 100 दिनों के सवैतनिक शारीरिक श्रम की गारंटी देता है।',
+      criteria: 'ग्रामीण परिवारों के वयस्क सदस्य जो अकुशल शारीरिक श्रम करने के इच्छुक हैं।',
+      docs: 'आधार कार्ड, वोटर आईडी, बैंक पासबुक, पासपोर्ट साइज फोटो।',
+      apply: 'पंचायत कार्यालय में जॉब कार्ड आवेदन पत्र जमा करें; 15 दिनों के भीतर फील्ड सहायक द्वारा काम आवंटित किया जाता है।'
+    },
+    te: {
+      name: 'ఉపాధి హామీ పథకం (MGNREGS)',
+      desc: 'జీవనోపాధి భద్రతను పెంచడం కోసం గ్రామీణ కుటుంబాలలోని వయోజనులకు ప్రతి ఆర్థిక సంవత్సరంలో కనీసం 100 రోజుల వేతనంతో కూడిన శారీరక శ్రమకు హామీ ఇస్తుంది.',
+      criteria: 'నైపుణ్యం లేని శారీరక శ్రమ చేయడానికి సిద్ధంగా ఉన్న గ్రామీణ కుటుంబాలలోని వయోజన సభ్యులు.',
+      docs: 'ఆధార్ కార్డ్, ఓటర్ ఐడీ, బ్యాంక్ పాస్ బుక్, పాస్‌పోర్ట్ సైజ్ ఫోటో.',
+      apply: 'పంచాయతీ కార్యాలయంలో జాబ్ కార్డ్ దరఖాస్తును సమర్పించండి; ఫీల్డ్ అసిస్టెంట్ 15 రోజుల్లోగా పనిని కేటాయిస్తారు.'
+    }
   }
 ];
 
@@ -331,57 +475,123 @@ function initWelfareEligibility() {
       const income = parseInt(document.getElementById('eligibility-income').value);
       
       let eligibleList = [];
+      const lang = currentLanguage || 'en';
 
-      // Rythu Bandhu: landowner and land size > 0
+      // 1. Rythu Bandhu (Farmer): landowner and land size > 0
       if (occupation === 'farmer' && land > 0) {
         eligibleList.push(welfareSchemesData[0]);
       }
       
-      // Aasara Pensions: age over 57 OR weaver, and low income
-      if ((age >= 57 || occupation === 'weaver' || occupation === 'retired') && income <= 150000) {
+      // 2. Post-Matric Scholarship (Student): age <= 25, and low income
+      if (age <= 25 && income <= 200000) {
         eligibleList.push(welfareSchemesData[1]);
       }
 
-      // Kalyana Lakshmi: low income
-      if (income <= 200000) {
+      // 3. YSR Aasara (SHG Women): income <= 150000
+      if (income <= 150000) {
         eligibleList.push(welfareSchemesData[2]);
       }
 
-      // PM-KISAN: landowner, land size between 0 and 5 acres (small holder)
-      if (occupation === 'farmer' && land > 0 && land <= 5) {
+      // 4. YSR Pension Kanuka (Senior Citizen): age >= 60, or retired and low income
+      if ((age >= 60 || occupation === 'retired') && income <= 120000) {
         eligibleList.push(welfareSchemesData[3]);
+      }
+
+      // 5. PM Awas Yojana (Housing): low income and land <= 2
+      if (income <= 180000 && land <= 2) {
+        eligibleList.push(welfareSchemesData[4]);
+      }
+
+      // 6. MGNREGS (Employment): willing to work (low/medium income, and not retired)
+      if (occupation !== 'retired' && income <= 250000) {
+        eligibleList.push(welfareSchemesData[5]);
       }
 
       // Render results
       resultsList.innerHTML = '';
       if (eligibleList.length > 0) {
         eligibleList.forEach(scheme => {
+          const data = scheme[lang] || scheme['en'];
+          const categoryText = scheme.category[lang] || scheme.category['en'];
+          
+          const labelCriteria = lang === 'te' ? 'సరిపోలిన అర్హత' : lang === 'hi' ? 'पात्रता मानदंड' : 'Criteria Met';
+          const labelDocs = lang === 'te' ? 'అవసరమైన పత్రాలు' : lang === 'hi' ? 'आवश्यक दस्तावेज' : 'Required Documents';
+          const labelApply = lang === 'te' ? 'దరఖాస్తు విధానం' : lang === 'hi' ? 'आवेदन कैसे करें' : 'How to Apply';
+          const labelEligible = lang === 'te' ? 'అర్హులు ✓' : lang === 'hi' ? 'पात्र ✓' : 'Eligible ✓';
+
           const item = document.createElement('div');
           item.className = 'welfare-scheme-item';
           item.innerHTML = `
             <div class="welfare-scheme-header">
-              <h4>${scheme.name}</h4>
-              <span class="scheme-tag eligible">Eligible ✓</span>
+              <h4>${data.name}</h4>
+              <span class="scheme-tag eligible">${labelEligible}</span>
             </div>
-            <p>${scheme.desc}</p>
-            <div class="scheme-criteria"><strong>Criteria Met:</strong> ${scheme.criteria}</div>
+            <p>${data.desc}</p>
+            <div class="scheme-detail-block">
+              <div class="scheme-detail-item"><strong>${labelCriteria}:</strong> ${data.criteria}</div>
+              <div class="scheme-detail-item"><strong>${labelDocs}:</strong> ${data.docs}</div>
+              <div class="scheme-detail-item"><strong>${labelApply}:</strong> ${data.apply}</div>
+            </div>
           `;
           resultsList.appendChild(item);
         });
-        showToast(`🎉 Verified: You match ${eligibleList.length} welfare scheme(s)!`, 'success');
+        
+        const toastMsg = lang === 'hi' ? `🎉 सत्यापन पूर्ण: आप ${eligibleList.length} योजना(ओं) के लिए पात्र हैं!` : lang === 'te' ? `🎉 పరిశీలన పూర్తయింది: మీరు ${eligibleList.length} పథకానికి అర్హులు!` : `🎉 Verified: You match ${eligibleList.length} welfare scheme(s)!`;
+        showToast(toastMsg, 'success');
       } else {
+        const noMatchTitle = lang === 'hi' ? 'कोई मेल खाती योजना नहीं मिली' : lang === 'te' ? 'సరిపోలే పథకాలు లేవు' : 'No Matching Schemes Found';
+        const noMatchDesc = lang === 'hi' ? 'आपके विवरण वर्तमान पात्रता मानदंडों से मेल नहीं खाते हैं। कृपया पंचायत कार्यालय में संपर्क करें।' : lang === 'te' ? 'మీ వివరాలు ప్రస్తుత అర్హత ప్రమాణాలతో సరిపోలడం లేదు. దయచేసి పంచాయతీ కార్యాలయంలో సంప్రదించండి.' : 'Your details do not match current eligibility thresholds. Please visit the Panchayat office for manual review.';
+        
         resultsList.innerHTML = `
           <div style="text-align:center; padding: 20px; color: var(--color-text-muted);">
-            <p style="font-weight: 600; margin-bottom: 6px;">No Matching Schemes Found</p>
-            <p style="font-size: 0.8rem;">Your details do not match current eligibility thresholds. Please visit the Panchayat office for manual review.</p>
+            <p style="font-weight: 600; margin-bottom: 6px;">${noMatchTitle}</p>
+            <p style="font-size: 0.8rem;">${noMatchDesc}</p>
           </div>
         `;
-        showToast('ℹ️ Review completed: No eligible schemes matched.', 'info');
+        
+        const toastMsgInfo = lang === 'hi' ? 'ℹ️ समीक्षा पूर्ण: कोई मेल खाती योजना नहीं मिली।' : lang === 'te' ? 'ℹ️ సమీక్ష పూర్తయింది: సరిపోలే పథకాలు ఏవీ లేవు.' : 'ℹ️ Review completed: No eligible schemes matched.';
+        showToast(toastMsgInfo, 'info');
       }
       
       resultsPanel.style.display = 'block';
     });
   }
+
+  // Initial render of browse list
+  renderBrowseSchemes();
+}
+
+function renderBrowseSchemes() {
+  const browseList = document.getElementById('welfare-browse-list');
+  if (!browseList) return;
+
+  browseList.innerHTML = '';
+  const lang = currentLanguage || 'en';
+
+  welfareSchemesData.forEach(scheme => {
+    const data = scheme[lang] || scheme['en'];
+    const categoryText = scheme.category[lang] || scheme.category['en'];
+    
+    const labelEligibility = lang === 'te' ? 'అర్హత' : lang === 'hi' ? 'पात्रता' : 'Eligibility';
+    const labelDocs = lang === 'te' ? 'అవసరమైన పత్రాలు' : lang === 'hi' ? 'आवश्यक दस्तावेज' : 'Required Documents';
+    const labelApply = lang === 'te' ? 'దరఖాస్తు విధానం' : lang === 'hi' ? 'आवेदन कैसे करें' : 'How to Apply';
+
+    const item = document.createElement('div');
+    item.className = 'welfare-scheme-item';
+    item.innerHTML = `
+      <div class="welfare-scheme-header">
+        <h4>${data.name}</h4>
+        <span class="scheme-tag">${categoryText}</span>
+      </div>
+      <p>${data.desc}</p>
+      <div class="scheme-detail-block">
+        <div class="scheme-detail-item"><strong>${labelEligibility}:</strong> ${data.criteria}</div>
+        <div class="scheme-detail-item"><strong>${labelDocs}:</strong> ${data.docs}</div>
+        <div class="scheme-detail-item"><strong>${labelApply}:</strong> ${data.apply}</div>
+      </div>
+    `;
+    browseList.appendChild(item);
+  });
 }
 
 /* ==========================================
@@ -1633,6 +1843,9 @@ function applyTranslation(lang) {
       btnText.textContent = getTranslatedText('theme_banjara', 'Banjara Theme');
     }
   }
+
+  // Render welfare schemes in the active language
+  renderBrowseSchemes();
 }
 
 function getTranslatedText(key, defaultText) {

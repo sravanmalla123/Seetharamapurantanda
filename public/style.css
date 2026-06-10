@@ -3065,6 +3065,24 @@ body.lang-hi textarea {
   letter-spacing: 0.1px;
 }
 
+/* Welfare Schemes Detail Layout */
+.scheme-detail-block {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.scheme-detail-item {
+  font-size: 0.82rem;
+  color: var(--color-text-dark);
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  line-height: 1.4;
+}
+
+
 
 
 
