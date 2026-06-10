@@ -176,7 +176,8 @@ function initModals() {
     { trigger: 'init-btn-education', modal: 'modal-education' },
     { trigger: 'nav-btn-contact', modal: 'modal-about' },
     { trigger: 'footer-link-about', modal: 'modal-about' },
-    { trigger: 'btn-trigger-facility-update', modal: 'modal-household-update' }
+    { trigger: 'btn-trigger-facility-update', modal: 'modal-household-update' },
+    { trigger: 'service-btn-health', modal: 'modal-health' }
   ];
 
   modalTriggers.forEach(config => {
@@ -231,17 +232,8 @@ function initModals() {
     });
   }
 
-  const healthServiceBtn = document.getElementById('service-btn-health');
-  if (healthServiceBtn) {
-    healthServiceBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      // Show notice of medical camps first, then contact info
-      showToast('🩺 Healthcare Notice: Next vaccine camp is June 13th. Details loaded.', 'info');
-      setTimeout(() => {
-        openModal('modal-about');
-      }, 1000);
-    });
-  }
+  // Health button trigger is handled automatically via modalTriggers list config
+
 }
 
 function openModal(modalId) {
@@ -1581,7 +1573,7 @@ function initLanguageSelector() {
     if (sel.startsWith('#') || sel.startsWith('.')) {
       const el = document.querySelector(sel);
       if (el) {
-        originalTexts[sel] = el.textContent.trim();
+        originalTexts[sel] = el.innerHTML.trim();
       }
     }
   });
@@ -1608,6 +1600,11 @@ function applyTranslation(lang) {
   currentLanguage = lang;
   localStorage.setItem('panchayat-lang', lang);
   
+  // Set lang class on body and attribute on html
+  document.body.classList.remove('lang-en', 'lang-hi', 'lang-te');
+  document.body.classList.add('lang-' + lang);
+  document.documentElement.setAttribute('lang', lang);
+  
   const selectors = Object.keys(translationDictionary.hi);
   selectors.forEach(sel => {
     if (!sel.startsWith('#') && !sel.startsWith('.')) return;
@@ -1617,11 +1614,11 @@ function applyTranslation(lang) {
 
     if (lang === 'en') {
       if (originalTexts[sel]) {
-        el.textContent = originalTexts[sel];
+        el.innerHTML = originalTexts[sel];
       }
     } else {
       if (translationDictionary[lang] && translationDictionary[lang][sel]) {
-        el.textContent = translationDictionary[lang][sel];
+        el.innerHTML = translationDictionary[lang][sel];
       }
     }
   });
@@ -1794,7 +1791,115 @@ const translationDictionary = {
     '#chk-label-water': 'हमारे पास सुरक्षित नल जल कनेक्शन है',
     '#chk-label-energy': 'हम स्वच्छ ऊर्जा (सौर/बायोगैस) का उपयोग करते हैं',
     '#chk-label-house': 'हम अपने स्वयं के घर में रहते हैं',
-    '#btn-submit-household-update': 'अपडेट सबमिट करें'
+    '#btn-submit-household-update': 'अपडेट सबमिट करें',
+    '#about-section-subtitle': 'गाँव और आदिवासी प्रोफ़ाइल के बारे में',
+    '#about-heading': 'सीतारामपुरम टांडा इतिहास और जनसांख्यिकी',
+    '#about-section-desc': 'हमारी ग्राम पंचायत के अनूठे इतिहास, सांस्कृतिक विरासत, भौगोलिक विवरण और व्यापक प्रोफ़ाइल मेट्रिक्स का अन्वेषण करें।',
+    '#about-history-title': 'हमारी विरासत और समझौता',
+    '#about-history-p1': '<strong>इतिहास:</strong> सीतारामपुरम टांडा की स्थापना कई पीढ़ियों पहले बंजारा (लंबाडी) जनजाति के परिवारों द्वारा की गई थी, जो आंध्र प्रदेश के पहाड़ी क्षेत्रों में चले गए थे। एक अस्थायी बस्ती (टांडा) के रूप में शुरू होकर, यह एक स्थायी लचीले कृषि केंद्र के रूप में विकसित हुआ।',
+    '#about-history-p2': '<strong>नामकरण उत्पत्ति:</strong> "सीतारामपुरम" नाम पहाड़ियों के बाहरी इलाके में स्थित ऐतिहासिक सीताराम मंदिर से लिया गया है, जहां समुदाय आज भी पूजा करता है। प्रत्यय "टांडा" बंजारा बस्ती का पारंपरिक शब्द है।',
+    '#about-history-p3': '<strong>आदिवासी पहचान और संस्कृति:</strong> यह गाँव मुख्य रूप से लंबाडी समुदाय द्वारा बसा हुआ है, जो अपनी पारंपरिक रंग-बिरंगी कशीदाकारी पोशाक (दर्पण और कौड़ियों से सजी) और तीज त्योहार के लोक गीतों के माध्यम से अपनी पैतृक संस्कृति को जीवित रखे हुए है।',
+    '#about-history-p4': '<strong>भूगोल और भाषा:</strong> आंध्र प्रदेश के पलनाडु जिले में स्थित, हमारे निवासी आपस में गोर बोली (मूल लंबाडी बोली) बोलते हैं, और बाहरी व्यापार के लिए तेलुगु या हिंदी का उपयोग करते हैं। नजदीकी शहर माचेरला (15 किमी) और नागार्जुन सागर (28 किमी) हैं।',
+    '#about-profile-title': 'ग्राम प्रोफ़ाइल डेटा',
+    '#profile-label-houses': 'कुल मकान',
+    '#profile-label-population': 'कुल जनसंख्या',
+    '#profile-label-male': 'पुरुष जनसंख्या',
+    '#profile-label-female': 'महिला जनसंख्या',
+    '#profile-label-children': 'बच्चे (0-6 वर्ष)',
+    '#profile-label-seniors': 'वरिष्ठ नागरिक',
+    '#profile-label-disabled': 'दिव्यांग व्यक्ति',
+    '#infra-table-title': 'ग्राम बुनियादी ढांचा स्थिति',
+    '#infra-th-facility': 'सुविधा / परिसंपत्ति',
+    '#infra-th-good': 'अच्छी स्थिति',
+    '#infra-th-needs': 'सुधार की आवश्यकता',
+    '#infra-th-notes': 'वर्तमान कार्य / टिप्पणियाँ',
+    '#infra-row-roads': '🛣️ सड़कें (मुख्य और आंतरिक संपर्क)',
+    '#infra-desc-roads': 'सभी बस्तियों को मुख्य राजमार्ग से जोड़ने वाली पक्की सीमेंट सड़कें।',
+    '#infra-row-drainage': '🌧️ जल निकासी (तूफान और सीवेज नालियां)',
+    '#infra-desc-drainage': 'दक्षिणी नालियों की सफाई और कंक्रीट सुदृढ़ीकरण की आवश्यकता है।',
+    '#infra-row-streetlights': '💡 स्ट्रीट लाइट्स (सौर और ग्रिड)',
+    '#infra-desc-streetlights': '85 स्वचालित स्मार्ट सोलर एलईडी स्ट्रीट लाइटें लगाई गईं।',
+    '#infra-row-bus': '🚌 बस सुविधाएं और आश्रय',
+    '#infra-desc-bus': 'मुख्य मार्ग पारगमन आश्रय का सौर छत उन्नयन चल रहा है (60% पूर्ण)।',
+    '#infra-row-halls': '🏫 सामुदायिक भवन',
+    '#infra-desc-halls': 'स्थानीय त्योहारों और बैठकों के लिए स्वच्छ सामुदायिक केंद्र सक्रिय।',
+    '#infra-row-office': '🏢 पंचायत भवन',
+    '#infra-desc-office': 'पंचायत कार्यालय सौर ऊर्जा संचालित डिजिटल नागरिक केंद्र के रूप में कार्य करता है।',
+    '#edu-title-schools-status': 'स्कूल और शैक्षिक स्थिति',
+    '#edu-stat-schools': '1 प्राथमिक, 1 हाई स्कूल',
+    '#edu-label-schools': 'उपलब्ध स्कूल',
+    '#edu-stat-anganwadi': '2 आंगनवाड़ी केंद्र',
+    '#edu-label-anganwadi': 'प्रारंभिक बाल देखभाल',
+    '#edu-stat-students': '184 छात्र',
+    '#edu-label-students': 'नामांकित छात्र',
+    '#edu-stat-metrics': '68% / 4%',
+    '#edu-label-metrics': 'साक्षरता दर / स्कूल छोड़ने की दर',
+    '#edu-title-higher': 'उच्च शिक्षा सहायता',
+    '#edu-desc-higher': 'वर्तमान में, गाँव के 28 छात्र माचेरला और आस-पास के कॉलेज में उच्च शिक्षा प्राप्त कर रहे हैं। उन्हें ग्राम पंचायत से यात्रा पास सब्सिडी मिलती है।',
+    '#edu-title-shuttle': 'पंचायत शटल समय सारणी',
+    '#edu-desc-shuttle': 'सीतारामपुरम टांडा बस्तियों और मंडल मुख्यालय के सरकारी हाई स्कूल के बीच समर्पित मुफ्त परिवहन सेवा।',
+    '#edu-shuttle-col-route': 'मार्ग / दिशा',
+    '#edu-shuttle-col-time': 'प्रस्थान का समय',
+    '#edu-shuttle-route-1': 'सुबह का मार्ग: बस्तियाँ ➔ मंडल हाई स्कूल',
+    '#edu-shuttle-route-2': 'सुबह का मार्ग: मुख्य सड़क ➔ मंडल हाई स्कूल',
+    '#edu-shuttle-route-3': 'शाम का मार्ग: मंडल हाई स्कूल ➔ सभी बस्तियाँ',
+    '#edu-title-allowances': 'छात्र भत्ते और सब्सिडी',
+    '#edu-title-pass': 'हाई स्कूल बस पास सहायता',
+    '#edu-desc-pass': 'कम आय वाले परिवारों के छात्रों के लिए आरटीसी बस पास शुल्क की 100% सब्सिडी। आवेदन प्रमाणपत्र पोर्टल में जमा किए जा सकते हैं।',
+    '#edu-label-papers': 'आवश्यक दस्तावेज़:',
+    '#edu-desc-papers': 'निवास प्रमाण पत्र, अध्ययन प्रमाण पत्र, माता-पिता का आय प्रमाण पत्र।',
+    '#health-modal-title': 'स्वास्थ्य और स्वच्छता सेवाएँ',
+    '#health-title-facilities': 'स्वास्थ्य सुविधाएं और कर्मचारी',
+    '#health-facility-label-subcenter': 'ग्राम स्वास्थ्य उप-केंद्र',
+    '#health-facility-desc-subcenter': 'पूरी तरह से चालू',
+    '#health-facility-label-phc': 'नजदीकी पीएचसी/अस्पताल',
+    '#health-facility-desc-phc': 'माचेरला मंडल अस्पताल (15 किमी)',
+    '#health-facility-label-asha': 'गांव में आशा कार्यकर्ता',
+    '#health-facility-desc-asha': '2 कार्यकर्ता (देविका और लक्ष्मी)',
+    '#health-facility-label-ambulance': 'आपातकालीन एम्बुलेंस संपर्क',
+    '#health-title-hygiene': 'स्वच्छता और स्वच्छता स्थिति',
+    '#health-hygiene-label-toilets': 'शौचालयों की संख्या',
+    '#health-hygiene-desc-toilets': '184 निजी घरेलू शौचालय, 2 सामुदायिक स्वच्छता परिसर',
+    '#health-hygiene-label-odf': 'खुले में शौच मुक्त स्थिति',
+    '#health-hygiene-desc-odf': '100% ओडीएफ (खुले में शौच मुक्त) प्रमाणित',
+    '#health-hygiene-label-waste': 'अपशिष्ट प्रबंधन प्रथाएं',
+    '#health-hygiene-desc-waste': 'दैनिक स्रोत पृथक्करण (गीला/सूखा), केंचुआ खाद यार्ड',
+    '#health-hygiene-label-plastic': 'प्लास्टिक-मुक्त प्रवर्तन',
+    '#health-hygiene-desc-plastic': 'सभी दुकानों में एकल-उपयोग वाले प्लास्टिक बैग पर प्रतिबंध',
+    '#health-title-awareness': 'जागरूकता अभियान और टीकाकरण',
+    '#health-awareness-title-vax': 'मासिक टीकाकरण अभियान',
+    '#health-awareness-desc-vax': 'आंगनवाड़ी केंद्र पर हर महीने के पहले मंगलवार को अनुसूचित टीकाकरण (पोलियो, बीसीजी, एमएमआर) किया जाता है।',
+    '#health-awareness-title-camps': 'नियमित स्वास्थ्य शिविर',
+    '#health-awareness-desc-camps': 'माचेरला पीएचसी के डॉक्टरों द्वारा हर तिमाही में दो बार मुफ्त चिकित्सा और सामान्य स्वास्थ्य जांच शिविर आयोजित किए जाते हैं।',
+    '#water-alert-banner-text': '⚠️ मानसून की तैयारी: 12 जून को टैंक की सफाई निर्धारित है। इस दिन पानी की आपूर्ति का समय अस्थायी रूप से सुबह 5:00 बजे से 6:30 बजे तक रहेगा। कृपया वर्षा जल का संचयन करें।',
+    '#water-title-resource-infra': 'जल संसाधन बुनियादी ढांचा विवरण',
+    '#water-title-sources': 'पेयजल के स्रोत',
+    '#water-desc-sources': 'मुख्य पानी केंद्रीय पंचायत जलाशय से पाइपलाइन के माध्यम से दिया जाता है। 8 चालू बोरवेलों का बैकअप उपलब्ध है।',
+    '#water-title-tanks': 'टैंक और वर्षा जल संचयन',
+    '#water-desc-tanks': '1 मुख्य ओवरहेड टैंक (1,50,000 L) और 2 मिनी वाटर टैंक। सभी घरों में वर्षा जल संचयन अनिवार्य है।',
+    '#water-title-shortages': 'पानी की कमी और गुणवत्ता',
+    '#water-desc-shortages': 'गर्मियों में दक्षिणी बस्ती में पानी की कमी को राशनिंग से प्रबंधित किया जाता है। रासायनिक रूप से पानी सुरक्षित है (फ्लोराइड 0.8 ppm)।',
+    '#agri-label-crops': 'प्रमुख फसलें',
+    '#agri-desc-crops': 'धान, मक्का, मिर्च और दालें',
+    '#agri-label-irrigation': 'सिंचाई के तरीके',
+    '#agri-desc-irrigation': 'नहर प्रवाह, बोरवेल ड्रिप और वर्षा आधारित खेती',
+    '#agri-label-fertilizer': 'उर्वरक का उपयोग',
+    '#agri-desc-fertilizer': 'वर्मीकंपोस्ट (केंचुआ खाद) को प्राथमिकता दी जाती है',
+    '#agri-label-schemes': 'सरकारी योजनाएं',
+    '#agri-desc-schemes': 'रायथु बंधु निवेश सहायता, पीएम-किसान, 80% ड्रिप सब्सिडी',
+    '#agri-crop-selector-desc': 'बुवाई अवधि, उर्वरक इनपुट खुराक और सरकारी बीज सब्सिडी सहायता आवंटन प्राप्त करने के लिए नीचे अपनी फसल का चयन करें।',
+    '#count-population': '1,245',
+    '#stat-population .stat-label': 'जनसंख्या',
+    '#stat-population .stat-desc': 'कुल ग्रामीण जनसंख्या',
+    '#stat-literacy .stat-value': '68%',
+    '#stat-literacy .stat-label': 'साक्षरता दर',
+    '#stat-literacy .stat-desc': 'स्कूल और उच्च शिक्षा दर',
+    '#count-households': '230',
+    '#stat-households .stat-label': 'परिवार',
+    '#stat-households .stat-desc': 'घनिष्ठ बहु-पीढ़ीगत परिवार',
+    '#count-livelihood': 'कृषि',
+    '#stat-livelihood .stat-label': 'मुख्य व्यवसाय',
+    '#stat-livelihood .stat-desc': 'धान, मक्का, मिर्च और दालों पर निर्भरता'
   },
   te: {
     theme_banjara: "బంజారా థీమ్",
@@ -1944,7 +2049,115 @@ const translationDictionary = {
     '#chk-label-water': 'మాకు సురక్షిత కుళాయి నీటి కనెక్షన్ ఉంది',
     '#chk-label-energy': 'మేము హరిత ఇంధనం (సోలార్/బయో-గ్యాస్) వాడుతున్నాము',
     '#chk-label-house': 'మేము మా సొంత ఇంట్లో నివసిస్తున్నాము',
-    '#btn-submit-household-update': 'సమాచారాన్ని సమర్పించు'
+    '#btn-submit-household-update': 'సమాచారాన్ని సమర్పించు',
+    '#about-section-subtitle': 'గ్రామం & గిరిజన ప్రొఫైల్ గురించి',
+    '#about-heading': 'సీతారామపురం తండా చరిత్ర & జనాభా వివరాలు',
+    '#about-section-desc': 'మా గ్రామ పంచాయతీ యొక్క ప్రత్యేక చరిత్ర, సాంస్కృతిక వారసత్వం, భౌగోళిక వివరాలు మరియు సమగ్ర ప్రొఫైల్ కొలతలను అన్వేషించండి.',
+    '#about-history-title': 'మా వారసత్వం & స్థిరనివాసం',
+    '#about-history-p1': '<strong>చరిత్ర:</strong> సీతారామపురం తండా కొన్ని తరాల క్రితం ఆంధ్రప్రదేశ్ కొండ ప్రాంతాలకు వలస వచ్చిన బంజారా (లంబాడీ) గిరిజన కుటుంబాల ద్వారా ఏర్పడింది. ఒక తాత్కాలిక స్థావరం (తండా) గా ప్రారంభమై, ఇది శాశ్వత వ్యవసాయ కేంద్రంగా ఎదిగింది.',
+    '#about-history-p2': '<strong>పేరు వెనుక చరిత్ర:</strong> కొండల శివార్లలో ఉన్న చారిత్రాత్మక సీతారామ ఆలయం నుండి "సీతారామపురం" అనే పేరు వచ్చింది, ఇక్కడ సమాజం నేటికీ పూజలు నిర్వహిస్తుంది. "తండా" అనేది బంజారా స్థావరానికి సంప్రదాయ పదం.',
+    '#about-history-p3': '<strong>గిరిజన గుర్తింపు & సంస్కృతి:</strong> ఈ గ్రామంలో ప్రధానంగా లంబాడీ సమాజం నివసిస్తుంది, వీరు తమ సాంప్రదాయ అద్దాలు, షెల్స్ కలిగిన రంగురంగుల దుస్తులు మరియు తీజ్ పండుగ జానపద పాటల ద్వారా తమ సంస్కృతిని కాపాడుకుంటున్నారు.',
+    '#about-history-p4': '<strong>భౌగోళికం & భాష:</strong> ఆంధ్రప్రదేశ్ లోని పల్నాడు జిల్లాలో ఉన్న ఈ తండా నివాసితులు అంతర్గతంగా గోర్ బోలి (లంబాడీ భాష) మాట్లాడారు, వ్యాపార లావాదేవీల కొరకు తెలుగు లేదా హిందీ ఉపయోగిస్తారు. సమీప పట్టణాలు మాచర్ల (15 కి.మీ) మరియు నాగార్జున సాగర్ (28 కి.మీ).',
+    '#about-profile-title': 'గ్రామ ప్రొఫైల్ సమాచారం',
+    '#profile-label-houses': 'మొత్తం ఇళ్లు',
+    '#profile-label-population': 'మొత్తం జనాభా',
+    '#profile-label-male': 'పురుషుల జనాభా',
+    '#profile-label-female': 'మహిళల జనాభా',
+    '#profile-label-children': 'పిల్లలు (0-6 సం.)',
+    '#profile-label-seniors': 'వృద్ధులు',
+    '#profile-label-disabled': 'వికలాంగులు',
+    '#infra-table-title': 'గ్రామ మౌలిక సదుపాయాల స్థితి',
+    '#infra-th-facility': 'సదుపాయం / ఆస్తి',
+    '#infra-th-good': 'మంచి పరిస్థితి',
+    '#infra-th-needs': 'మెరుగుదల అవసరం',
+    '#infra-th-notes': 'ప్రస్తుత చర్యలు / గమనికలు',
+    '#infra-row-roads': '🛣️ రోడ్లు (ప్రధాన & తండా లింకులు)',
+    '#infra-desc-roads': 'అన్ని తండాలను ప్రధాన రహదారితో కలిపే సిమెంట్ రోడ్లు.',
+    '#infra-row-drainage': '🌧️ మురుగునీరు (వర్షపు నీరు & మురుగు కాలువలు)',
+    '#infra-desc-drainage': 'దక్షిణ కాలువలను శుభ్రపరచడం మరియు సిమెంట్ పటిష్ఠత అవసరం.',
+    '#infra-row-streetlights': '💡 వీధి దీపాలు (సోలార్ & గ్రిడ్)',
+    '#infra-desc-streetlights': '85 ఆటోమేటిక్ స్మార్ట్ సోలార్ ఎల్ఈడీ వీధి దీపాలు ఏర్పాటు చేసాము.',
+    '#infra-row-bus': '🚌 బస్సు సౌకర్యాలు & బస్ స్టాండ్లు',
+    '#infra-desc-bus': 'ప్రధాన రహదారి బస్టాండ్ వద్ద సోలార్ రూఫ్ అప్‌గ్రేడ్ జరుగుతోంది (60% పూర్తయింది).',
+    '#infra-row-halls': '🏫 కమ్యూనిటీ హాళ్లు',
+    '#infra-desc-halls': 'స్థానిక పండుగలు, సమావేశాలకు కమ్యూనిటీ హాళ్లు అందుబాటులో ఉన్నాయి.',
+    '#infra-row-office': '🏢 పంచాయతీ భవనాలు',
+    '#infra-desc-office': 'పంచాయతీ కార్యాలయం సోలార్ డిజిటల్ సిటిజన్ హబ్‌గా పనిచేస్తుంది.',
+    '#edu-title-schools-status': 'పాఠశాలలు & విద్యా స్థితి',
+    '#edu-stat-schools': '1 ప్రాథమిక, 1 ఉన్నత పాఠశాల',
+    '#edu-label-schools': 'అందుబాటులో ఉన్న పాఠశాలలు',
+    '#edu-stat-anganwadi': '2 అంగన్‌వాడీ కేంద్రాలు',
+    '#edu-label-anganwadi': 'శిశు సంరక్షణ',
+    '#edu-stat-students': '184 మంది విద్యార్థులు',
+    '#edu-label-students': 'నమోదైన విద్యార్థులు',
+    '#edu-stat-metrics': '68% / 4%',
+    '#edu-label-metrics': 'అక్షరాస్యత / డ్రాపౌట్ శాతం',
+    '#edu-title-higher': 'ఉన్నత విద్యా మద్దతు',
+    '#edu-desc-higher': 'ప్రస్తుతం, గ్రామానికి చెందిన 28 మంది విద్యార్థులు మాచర్ల మరియు సమీప కాలేజీలలో ఉన్నత విద్యను అభ్యసిస్తున్నారు. వీరికి గ్రామ పంచాయతీ నుండి రవాణా రాయితీ అందుతోంది.',
+    '#edu-title-shuttle': 'పంచాయతీ ఉచిత శటిల్ టైమ్‌టేబుల్',
+    '#edu-desc-shuttle': 'సీతారామపురం తండా మరియు మండల కేంద్రంలోని ప్రభుత్వ ఉన్నత పాఠశాల మధ్య ఉచిత రవాణా సేవ.',
+    '#edu-shuttle-col-route': 'మార్గం / దిశ',
+    '#edu-shuttle-col-time': 'బయలుదేరే సమయం',
+    '#edu-shuttle-route-1': 'ఉదయం మార్గం: తండాల నుండి ➔ ఉన్నత పాఠశాల',
+    '#edu-shuttle-route-2': 'ఉదయం మార్గం: ప్రధాన రహదారి నుండి ➔ ఉన్నత పాఠశాల',
+    '#edu-shuttle-route-3': 'సాయంత్రం మార్గం: ఉన్నత పాఠశాల నుండి ➔ అన్ని తండాలు',
+    '#edu-title-allowances': 'విద్యార్థి భత్యాలు & రాయితీలు',
+    '#edu-title-pass': 'ఉన్నత పాఠశాల బస్ పాస్ సహాయం',
+    '#edu-desc-pass': 'తక్కువ ఆదాయ కుటుంబాల విద్యార్థుల RTC బస్ పాస్ ఫీజుపై 100% రాయితీ. దీని కొరకు సర్టిఫికేట్ పోర్టల్‌లో దరఖాస్తు చేసుకోవచ్చు.',
+    '#edu-label-papers': 'కావలసిన పత్రాలు:',
+    '#edu-desc-papers': 'నివాస ధృవీకరణ పత్రం, స్టడీ సర్టిఫికేట్, తల్లిదండ్రుల ఆదాయ పత్రం.',
+    '#health-modal-title': 'ఆరోగ్యం మరియు పారిశుద్ధ్య సేవలు',
+    '#health-title-facilities': 'ఆరోగ్య సదుపాయాలు & సిబ్బంది',
+    '#health-facility-label-subcenter': 'గ్రామ ఆరోగ్య ఉప-కేంద్రం',
+    '#health-facility-desc-subcenter': 'పూర్తిగా అందుబాటులో ఉంది',
+    '#health-facility-label-phc': 'సమీప PHC/ఆసుపత్రి',
+    '#health-facility-desc-phc': 'మాచర్ల మండల ఆసుపత్రి (15 కి.మీ)',
+    '#health-facility-label-asha': 'గ్రామ ఆశా కార్యకర్తలు',
+    '#health-facility-desc-asha': 'ఇద్దరు కార్యకర్తలు (దేవిక & లక్ష్మి)',
+    '#health-facility-label-ambulance': 'అత్యవసర అంబులెన్స్ సంప్రదింపు',
+    '#health-title-hygiene': 'పరిశుభ్రత & పారిశుద్ధ్య స్థితి',
+    '#health-hygiene-label-toilets': 'మరుగుదొడ్ల సంఖ్య',
+    '#health-hygiene-desc-toilets': '184 వ్యక్తిగత మరుగుదొడ్లు, 2 సామూహిక మరుగుదొడ్ల సముదాయాలు',
+    '#health-hygiene-label-odf': 'బహిరంగ మలవిసర్జన రహిత స్థితి',
+    '#health-hygiene-desc-odf': '100% బహిరంగ మలవిసర్జన రహిత గ్రామం (ODF)',
+    '#health-hygiene-label-waste': 'వ్యర్థాల నిర్వహణ పద్ధతులు',
+    '#health-hygiene-desc-waste': 'రోజువారీ తడి-పొడి చెత్త వర్గీకరణ, వర్మీకంపోస్ట్ కేంద్రం',
+    '#health-hygiene-label-plastic': 'ప్లాస్టిక్ నిషేధం అమలు',
+    '#health-hygiene-desc-plastic': 'అన్ని షాపులలో సింగిల్ యూజ్ ప్లాస్టిక్ కవర్లపై నిషేధం',
+    '#health-title-awareness': 'అవగాహన ప్రచారాలు & టీకాలు',
+    '#health-awareness-title-vax': 'నెలవారీ టీకాల శిబిరాలు',
+    '#health-awareness-desc-vax': 'ప్రతి నెల మొదటి మంగళవారం అంగన్‌వాడీ కేంద్రంలో టీకాలు (పోలియో, బీసీజీ) వేయబడతాయి.',
+    '#health-awareness-title-camps': 'క్రమబద్ధమైన ఆరోగ్య శిబిరాలు',
+    '#health-awareness-desc-camps': 'మాచర్ల PHC వైద్యులచే ప్రతి మూడు నెలలకు రెండుసార్లు ఉచిత వైద్య శిబిరాలు నిర్వహించబడతాయి.',
+    '#water-alert-banner-text': '⚠️ వర్షాకాల తయారీ: జూన్ 12న నీటి ట్యాంక్ శుభ్రపరచడం జరుగుతుంది. ఆ రోజు నీటి సరఫరా సమయం ఉదయం 5:00 నుండి 6:30 వరకు మాత్రమే ఉంటుంది. దయచేసి నీటిని ఆదా చేయండి.',
+    '#water-title-resource-infra': 'జలవనరుల మౌలిక సదుపాయాల వివరాలు',
+    '#water-title-sources': 'త్రాగునీటి వనరులు',
+    '#water-desc-sources': 'ప్రధాన తాగునీరు పైపులైన్ల ద్వారా గ్రామ రిజర్వాయర్ నుండి అందుతుంది. 8 బోరుబావులు కూడా అందుబాటులో ఉన్నాయి.',
+    '#water-title-tanks': 'ట్యాంకులు & వర్షపు నీటి నిల్వ',
+    '#water-desc-tanks': '1 ప్రధాన ఓవర్హెడ్ ట్యాంక్ (1,50,000 లీటర్లు) & 2 చిన్న ట్యాంకులు. ఇళ్లలో వర్షపు నీటి ఇంకుడు గుంతలు తప్పనిసరి.',
+    '#water-title-shortages': 'నీటి సమస్యలు & నీటి నాణ్యత',
+    '#water-desc-shortages': 'ఎండకాలం దక్షిణ తండాలో వచ్చే నీటి కొరతను రేషనింగ్ ద్వారా సర్దుబాటు చేస్తాము. నీటి పరీక్షలో రసాయన స్థాయి సురక్షితంగా ఉంది.',
+    '#agri-label-crops': 'ప్రధాన పంటలు',
+    '#agri-desc-crops': 'వరి, మొక్కజొన్న, మిరప మరియు పప్పులు',
+    '#agri-label-irrigation': 'నీటిపారుదల పద్ధతులు',
+    '#agri-desc-irrigation': 'కాలువ నీరు, బోరు బావుల డ్రిప్ మరియు వర్షాధారిత వ్యవసాయం',
+    '#agri-label-fertilizer': 'ఎరువుల వినియోగం',
+    '#agri-desc-fertilizer': 'సేంద్రీయ వర్మీకంపోస్ట్ (వానపాముల ఎరువు) వాడకం ప్రోత్సహించబడుతుంది',
+    '#agri-label-schemes': 'ప్రభుత్వ పథకాలు',
+    '#agri-desc-schemes': 'రైతు బంధు పెట్టుబడి సాయం, పీఎం-కిసాన్, 80% డ్రిప్ సబ్సిడీ',
+    '#agri-crop-selector-desc': 'విత్తే కాలం, ఎరువుల మోతాదు మరియు విత్తన సబ్సిడీ వివరాల కోసం కింద మీ పంటను ఎంచుకోండి.',
+    '#count-population': '1,245',
+    '#stat-population .stat-label': 'జనాభా',
+    '#stat-population .stat-desc': 'మొత్తం గ్రామీణ జనాభా',
+    '#stat-literacy .stat-value': '68%',
+    '#stat-literacy .stat-label': 'అక్షరాస్యత శాతం',
+    '#stat-literacy .stat-desc': 'పాఠశాల & ఉన్నత విద్యా శాతం',
+    '#count-households': '230',
+    '#stat-households .stat-label': 'కుటుంబాలు',
+    '#stat-households .stat-desc': 'దగ్గరి సంబంధాలు గల కుటుంబాలు',
+    '#count-livelihood': 'వ్యవసాయం',
+    '#stat-livelihood .stat-label': 'ప్రధాన వృత్తి',
+    '#stat-livelihood .stat-desc': 'వరి, మొక్కజొన్న, మిరప, పప్పులపై ఆధారపడటం'
   }
 };
 

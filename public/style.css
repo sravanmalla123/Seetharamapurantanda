@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Telugu:wght@300;400;500;600;700;800&family=Peddana&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800&family=Martel:wght@400;600;700;800&display=swap');
 
 /* ==========================================
    CSS CUSTOM PROPERTIES & VARIABLES
@@ -3004,6 +3004,65 @@ body.banjara-active .voice-suggestion-chip:hover {
   background-color: var(--color-secondary-pale);
   border-color: var(--color-secondary);
   color: var(--color-primary);
+}
+
+/* ==========================================
+   LANGUAGE-SPECIFIC TYPOGRAPHY OVERRIDES
+   ========================================== */
+body.lang-te {
+  --font-sans: 'Noto Sans Telugu', 'Outfit', sans-serif;
+  --font-serif: 'Peddana', 'Lora', serif;
+  line-height: 1.75;
+}
+
+body.lang-te h1,
+body.lang-te h2,
+body.lang-te h3,
+body.lang-te h4,
+body.lang-te h5,
+body.lang-te h6 {
+  line-height: 1.4;
+  letter-spacing: 0; /* Clear Outfit's tight letter spacing for Telugu */
+}
+
+body.lang-te p,
+body.lang-te li,
+body.lang-te td,
+body.lang-te span,
+body.lang-te button,
+body.lang-te input,
+body.lang-te select,
+body.lang-te textarea {
+  line-height: 1.75;
+  letter-spacing: 0.2px;
+}
+
+body.lang-hi {
+  --font-sans: 'Noto Sans Devanagari', 'Outfit', sans-serif;
+  --font-serif: 'Martel', 'Lora', serif;
+  line-height: 1.7;
+}
+
+body.lang-hi h1,
+body.lang-hi h2,
+body.lang-hi h3,
+body.lang-hi h4,
+body.lang-hi h5,
+body.lang-hi h6 {
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+body.lang-hi p,
+body.lang-hi li,
+body.lang-hi td,
+body.lang-hi span,
+body.lang-hi button,
+body.lang-hi input,
+body.lang-hi select,
+body.lang-hi textarea {
+  line-height: 1.7;
+  letter-spacing: 0.1px;
 }
 
 

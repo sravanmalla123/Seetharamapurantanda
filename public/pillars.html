@@ -550,7 +550,7 @@
     <span id="toast-message">Language loaded!</span>
   </div>
 
-  <script>
+<script>
     let currentLanguage = 'en';
     const params = new URLSearchParams(window.location.search);
     let pillarType = params.get('type') || 'health';
@@ -563,14 +563,14 @@
         en: {
           title: "Health & Hygiene Hub",
           desc: "Operational monitoring of local medical sub-centers, vaccination schedules, drinking water audits, and community hygiene indices.",
-          detailMatter: "The Seetharamapuram Tanda Health Sub-Center is fully staffed with registered nurses and auxiliary nurse midwives (ANMs). We conduct weekly sanitization audits and spray bleaching powder across all residential streets to prevent seasonal vector-borne diseases. Our drinking water supply is tested monthly at the mandal headquarters laboratory to guarantee chemical and biological safety for all households.",
+          detailMatter: "The Seetharamapuram Tanda Health Sub-Center is fully staffed with registered nurses and auxiliary nurse midwives (ANMs). Macherla Mandal PHC (15 km away) acts as our primary referral hospital. The sub-center is run by two dedicated ASHA workers, Devika and Laxmi, who manage emergency contacts. With 184 private household toilets and 2 community sanitary complexes, the village is certified 100% Open Defecation Free (ODF). Weekly sanitization audits and bleaching powder spraying are conducted to prevent seasonal vector-borne diseases. Monthly immunization drives (Polio, BCG, MMR) are held at the Anganwadi Center, supplemented by quarterly health camps.",
           imageCaption: "A clean community courtyard environment supporting hygiene initiatives.",
           milestones: [
             "HH Credit 1: Solid Waste collection and Disposal",
             "HH Credit 2: Clean Village",
             "HH Credit 3: Drinking Water Availability",
-            "HH Credit 4: Sanitation Facility",
-            "HH Credit 5: Healthcare Facility",
+            "HH Credit 4: Clean Toilet/Sanitation Facility",
+            "HH Credit 5: Primary Healthcare Facility Access",
             "HH Credit 6: Indoor Air Quality in household",
             "HH Credit 7: Organic Waste Management",
             "HH Credit 8: Sewage Handling Practices",
@@ -579,19 +579,19 @@
           ],
           metrics: [
             { val: "98%", label: "Sub-Center Readiness", desc: "Equipped with essential medicines and first-aid gear." },
-            { val: "100%", label: "Sanitization Rate", desc: "Weekly bleaching and cleaning of all village streets." },
+            { val: "100% ODF", label: "Sanitation Status", desc: "Certified Open Defecation Free with active toilet usage." },
             { val: "94/100", label: "Water Quality Index", desc: "Chemical & biological tests confirm safe water supply." }
           ],
           audits: [
             { date: "05/06/2026", param: "Drinking Water Quality Test (Main Tank)", inspector: "Dr. K. Srinivas", status: "SAFE / COMMENDED" },
-            { date: "28/05/2026", param: "Sanitisation & Bleaching (All Wards)", inspector: "Panchayat Secretary", status: "COMPLETED" },
+            { date: "28/05/2026", param: "ASHA Worker Sanitation Inspection", inspector: "Panchayat Secretary", status: "COMPLETED" },
             { date: "15/05/2026", param: "Child Immunisation Drive (Polio/BCG)", inspector: "ANM Worker Devika", status: "100% COVERAGE" }
           ]
         },
         hi: {
           title: "स्वास्थ्य और स्वच्छता हब",
-          desc: "स्थानीय चिकित्सा उप-केंद्रों, टीकाकरण कार्यक्रम, पेयजल लेखापरीक्षा और सामुदायिक स्वच्छता सूचकांकों की परिचालन निगरानी।",
-          detailMatter: "सीतारामपुरम टांडा स्वास्थ्य उप-केंद्र पंजीकृत नर्सों और एएनएम के साथ पूरी तरह से सुसज्जित है। हम मौसमी बीमारियों को रोकने के लिए सभी आवासीय सड़कों पर साप्ताहिक स्वच्छता ऑडिट और ब्लीचिंग पाउडर का छिड़काव करते हैं। हमारे पीने के पानी की आपूर्ति की रासायनिक और जैविक सुरक्षा की गारंटी के लिए हर महीने मंडल मुख्यालय प्रयोगशाला में परीक्षण किया जाता है।",
+          desc: "स्थानीय चिकित्सा उप-केंद्रों, टीकाकरण कार्यक्रम, पेयजल लेखापरीक्षा और सामुदायिक स्वच्छता सूचकांकों की निगरानी।",
+          detailMatter: "सीतारामपुरम टांडा स्वास्थ्य उप-केंद्र पंजीकृत नर्सों और एएनएम के साथ संचालित है। माचेरला मंडल अस्पताल (15 किमी) प्राथमिक रेफरल अस्पताल है। दो समर्पित आशा कार्यकर्ता, देविका और लक्ष्मी, स्वास्थ्य सेवाओं और आपातकालीन संपर्कों का प्रबंधन करती हैं। 184 निजी शौचालयों और 2 सामुदायिक परिसरों के साथ गाँव को 100% खुले में शौच मुक्त (ODF) प्रमाणित किया गया है। मौसमी बीमारियों को रोकने के लिए साप्ताहिक स्वच्छता ऑडिट और ब्लीचिंग छिड़काव किया जाता है। आंगनवाड़ी केंद्र में हर महीने टीकाकरण अभियान और तिमाही स्वास्थ्य शिविर आयोजित किए जाते हैं।",
           imageCaption: "स्वच्छता और आरोग्य पहल का समर्थन करने वाला एक स्वच्छ सामुदायिक आंगन।",
           milestones: [
             "HH क्रेडिट 1: ठोस कचरा संग्रह और निपटान",
@@ -607,19 +607,19 @@
           ],
           metrics: [
             { val: "98%", label: "उप-केंद्र तत्परता", desc: "आवश्यक दवाओं और प्राथमिक चिकित्सा उपकरणों से लैस।" },
-            { val: "100%", label: "स्वच्छता दर", desc: "सभी ग्रामीण गलियों में साप्ताहिक सफाई और ब्लीचिंग छिड़काव।" },
+            { val: "100% ODF", label: "स्वच्छता स्थिति", desc: "शौचालय के उपयोग के साथ खुले में शौच मुक्त प्रमाणित।" },
             { val: "94/100", label: "जल गुणवत्ता सूचकांक", desc: "रासायनिक और जैविक परीक्षणों द्वारा सुरक्षित पानी की पुष्टि।" }
           ],
           audits: [
             { date: "05/06/2026", param: "पेयजल गुणवत्ता परीक्षण (मुख्य टैंक)", inspector: "डॉ. के. श्रीनिवास", status: "सुरक्षित / प्रशंसित" },
-            { date: "28/05/2026", param: "स्वच्छता और ब्लीचिंग (सभी वार्ड)", inspector: "पंचायत सचिव", status: "पूर्ण" },
+            { date: "28/05/2026", param: "आशा कार्यकर्ता स्वच्छता निरीक्षण", inspector: "पंचायत सचिव", status: "पूर्ण" },
             { date: "15/05/2026", param: "बाल टीकाकरण अभियान (पोलियो/बीसीजी)", inspector: "एएनएम कार्यकर्ता देविका", status: "100% कवरेज" }
           ]
         },
         te: {
           title: "ఆరోగ్యం & పరిశుభ్రత కేంద్రం",
           desc: "స్థానిక వైద్య ఉప-కేంద్రాల పనితీరు, టీకాల క్యాలెండర్లు, త్రాగునీటి ఆడిట్లు మరియు కమ్యూనిటీ పారిశుద్ధ్య సూచికల పర్యవేక్షణ.",
-          detailMatter: "ఆరోగ్య ఉప-కేంద్రం రిజిస్టర్డ్ నర్సులు మరియు ANM లతో పూర్తి సన్నద్ధతతో ఉంది. కాలానుగుణ వ్యాధుల నివారణకు మేము ప్రతి వారం అన్ని వీధుల్లో బ్లీచింగ్ పౌడర్ చల్లడం మరియు పారిశుద్ధ్య తనిఖీలను నిర్వహిస్తాము. తాగునీటి రసాయన మరియు జీవ నాణ్యతను పరీక్షించడానికి ప్రతి నెలా మండలం ల్యాబ్‌కు శాంపిల్స్ పంపబడతాయి.",
+          detailMatter: "ఆరోగ్య ఉప-కేంద్రం రిజిస్టర్డ్ నర్సులు మరియు ANM లతో సేవలు అందిస్తోంది. మాచర్ల మండల ఆసుపత్రి (15 కి.మీ) ప్రధాన రెఫరల్ ఆసుపత్రిగా ఉంది. ఇద్దరు అంకితభావం గల ఆశా కార్యకర్తలు, దేవిక మరియు లక్ష్మి, అత్యవసర సేవలను పర్యవేక్షిస్తారు. 184 వ్యక్తిగత మరుగుదొడ్లు మరియు 2 కమ్యూనిటీ కాంప్లెక్స్‌లతో గ్రామం 100% బహిరంగ మలవిసర్జన రహిత (ODF) గ్రామంగా ధృవీకరించబడింది. రోగాల నివారణకు ప్రతి వారం బ్లీచింగ్ చల్లడం జరుగుతుంది. ప్రతి నెలా అంగన్‌వాడీలో వ్యాక్సినేషన్ మరియు త్రైమాసిక వైద్య శిబిరాలు నిర్వహిస్తాము.",
           imageCaption: "ఆరోగ్యకరమైన పరిసరాలను చూపే గ్రామ నివాస ప్రాంగణం.",
           milestones: [
             "HH క్రెడిట్ 1: ఘన వ్యర్థాల సేకరణ మరియు విసర్జన",
@@ -635,12 +635,12 @@
           ],
           metrics: [
             { val: "98%", label: "వైద్య సన్నద్ధత", desc: "అవసరమైన మందులు మరియు ప్రథమ చికిత్స పరికరాలతో సిద్ధంగా ఉంది." },
-            { val: "100%", label: "పారిశుద్ధ్య శాతం", desc: "అన్ని వీధుల్లో ప్రతివారం బ్లీచింగ్ చల్లడం మరియు శుభ్రపరచడం." },
+            { val: "100% ODF", label: "పరిశుభ్రత స్థితి", desc: "మరుగుదొడ్ల వాడకంతో బహిరంగ మలవిసర్జన రహితంగా ధృవీకరణ." },
             { val: "94/100", label: "నీటి నాణ్యత సూచిక", desc: "రసాయన & జీవ పరీక్షల్లో సురక్షితమైన నీటి సరఫరాగా నిర్ధారణ." }
           ],
           audits: [
             { date: "05/06/2026", param: "త్రాగునీటి నాణ్యత పరీక్ష (ప్రధాన ట్యాంక్)", inspector: "డాక్టర్ కె. శ్రీనివాస్", status: "సురక్షితం" },
-            { date: "28/05/2026", param: "పారిశుద్ధ్యం & బ్లీచింగ్ (అన్ని వార్డులు)", inspector: "పంచాయతీ కార్యదర్శి", status: "పూర్తి చేయబడింది" },
+            { date: "28/05/2026", param: "ఆశా కార్యకర్తల పారిశుద్ధ్య తనిఖీ", inspector: "పంచాయతీ కార్యదర్శి", status: "పూర్తి చేయబడింది" },
             { date: "15/05/2026", param: "పిల్లల పోలియో/బీసీజీ టీకాల శిబిరం", inspector: "ANM కార్యకర్త దేవిక", status: "100% పూర్తయింది" }
           ]
         }
@@ -651,7 +651,7 @@
         en: {
           title: "Infrastructure Progress",
           desc: "Construction log for paved roads, street illumination grids, drainage channels, and local Gram Panchayat assets.",
-          detailMatter: "Our Panchayat has focused heavily on all-weather connectivity. Concrete cement (CC) road paving connects the outer Tanda hamlets directly to the main highway. Public solar LED street lighting grids have been deployed, securing nocturnal pathways. The Gram Panchayat building functions as a unified digital hub, loaded with high-speed satellite broadband and battery backups.",
+          detailMatter: "Our Panchayat has focused heavily on all-weather connectivity. Concrete cement (CC) road paving connects all outer Tanda hamlets directly to the highway and is in good condition. Public street lighting grids feature 85 automated solar LED lights. However, the southern drainage channels need desilting and concrete reinforcement, which is flagged for immediate works. The main road transit bus shelter is undergoing a solar roof upgrade (currently 60% complete). E-Governance utilities are housed in the solar-powered Gram Panchayat building.",
           imageCaption: "Paved stone road pathways illuminated by smart solar energy street lights.",
           milestones: [
             "VI Credit 1: Basic Amenities",
@@ -666,19 +666,19 @@
           ],
           metrics: [
             { val: "85 Units", label: "Solar Street Lights", desc: "Operating on grid-free smart automation." },
-            { val: "92%", label: "Drainage Coverage", desc: "Proper concrete drains prevent stagnant pools." },
+            { val: "92%", label: "Drainage Coverage", desc: "Needs desilting in Southern sectors to prevent stagnation." },
             { val: "4.8 km", label: "CC Roads Paved", desc: "All-weather accessibility across village blocks." }
           ],
           audits: [
-            { date: "01/06/2026", param: "CC Road Repair (North Hamlet Link)", inspector: "AE Panchayat Engineering", status: "APPROVED / PASSED" },
-            { date: "20/05/2026", param: "Solar Battery & Panel Maintenance", inspector: "APCPDCL Tech Team", status: "FUNCTIONAL" },
-            { date: "10/05/2026", param: "High School Class Room Expansion", inspector: "Sarpanch Devika", status: "IN PROGRESS" }
+            { date: "01/06/2026", param: "Bus Stand Solar Roof Upgrade Audit", inspector: "AE Panchayat Engineering", status: "60% COMPLETED" },
+            { date: "20/05/2026", param: "Southern Drainage Channel Silt Check", inspector: "AE Panchayat Engineering", status: "NEEDS ACTION" },
+            { date: "10/05/2026", param: "Gram Panchayat Solar Battery Log", inspector: "APCPDCL Tech Team", status: "ONLINE / OPTIMAL" }
           ]
         },
         hi: {
           title: "ग्राम बुनियादी ढांचा प्रगति",
           desc: "पक्की सड़कों, सड़क प्रकाश ग्रिड, जल निकासी चैनलों और स्थानीय ग्राम पंचायत संपत्तियों का निर्माण लॉग।",
-          detailMatter: "हमारी पंचायत सभी मौसमों में अनुकूल पक्की कंक्रीट सड़कों के निर्माण पर ध्यान केंद्रित कर रही है। रात्रि सुरक्षा सुनिश्चित करने के लिए सड़कों पर सौर स्ट्रीट लाइट ग्रिड स्थापित किया गया है। ग्राम पंचायत कार्यालय को हाई-स्पीड ब्रॉडबैंड और सौर-ऊर्जा बैकअप के साथ एक डिजिटल नागरिक सेवा केंद्र के रूप में उन्नत किया गया है।",
+          detailMatter: "हमारी पंचायत पक्की सीमेंट सड़कों और सुगम मार्ग व्यवस्था पर ध्यान केंद्रित कर रही है। पक्की सड़कें अच्छी स्थिति में हैं। रात्रि सुरक्षा हेतु 85 सौर ऊर्जा संचालित स्ट्रीट लाइटें स्थापित हैं। हालांकि, दक्षिणी जल निकासी चैनलों को गाद निकालने और कंक्रीट सुदृढ़ीकरण की आवश्यकता है। मुख्य मार्ग बस शेल्टर में सौर छत उन्नयन कार्य चल रहा है (60% पूर्ण)। ग्राम पंचायत भवन सौर ऊर्जा और डिजिटल संचार से लैस है।",
           imageCaption: "स्मार्ट सौर ऊर्जा रोशनी से रोशन पक्की पत्थर की सड़कें।",
           milestones: [
             "VI क्रेडिट 1: बुनियादी सुविधाएं",
@@ -693,19 +693,19 @@
           ],
           metrics: [
             { val: "85 इकाइयां", label: "सौर स्ट्रीट लाइट", desc: "ग्रिड-मुक्त स्मार्ट ऑटोमेशन पर संचालित।" },
-            { val: "92%", label: "जल निकासी कवरेज", desc: "कंक्रीट नालियों से जलभराव की रोकथाम।" },
+            { val: "92%", label: "निकासी कवरेज", desc: "जलभराव रोकने के लिए दक्षिणी चैनलों में गाद निकालना आवश्यक है।" },
             { val: "4.8 किमी", label: "पक्की सड़कें", desc: "सभी मौसमों के लिए गांव के ब्लॉकों में सुगम मार्ग।" }
           ],
           audits: [
-            { date: "01/06/2026", param: "पक्की सड़क मरम्मत (उत्तर टांडा लिंक)", inspector: "एई पंचायत इंजीनियरिंग", status: "स्वीकृत / उत्तीर्ण" },
-            { date: "20/05/2026", param: "सौर बैटरी और पैनल रखरखाव", inspector: "बिजली विभाग तकनीकी टीम", status: "कार्यशील" },
-            { date: "10/05/2026", param: "हाई स्कूल कक्षा कक्ष विस्तार", inspector: "सरपंच देविका", status: "प्रगति पर" }
+            { date: "01/06/2026", param: "बस स्टैंड सौर छत उन्नयन निरीक्षण", inspector: "एई पंचायत इंजीनियरिंग", status: "60% पूर्ण" },
+            { date: "20/05/2026", param: "दक्षिणी जल निकासी चैनल गाद निरीक्षण", inspector: "एई पंचायत इंजीनियरिंग", status: "कार्रवाई आवश्यक" },
+            { date: "10/05/2026", param: "ग्राम पंचायत सौर बैटरी लॉग", inspector: "बिजली विभाग तकनीकी टीम", status: "ऑनलाइन / इष्टतम" }
           ]
         },
         te: {
           title: "గ్రామ మౌలిక సదుపాయాల ప్రగతి",
           desc: "సిమెంట్ రోడ్ల నిర్మాణం, సోలార్ వీధి దీపాలు, మురుగునీటి కాలువలు మరియు గ్రామ పంచాయతీ ఆస్తుల పర్యవేక్షణ డైరి.",
-          detailMatter: "మా పంచాయితీ అన్ని కాలాల్లో రవాణాకు అనుకూలమైన సిమెంట్ రోడ్ల నిర్మాణానికి ప్రాధాన్యత ఇస్తుంది. రాత్రి పూట రక్షణ కొరకు ఆటోమేటిక్ సోలార్ వీధి దీపాల గ్రిడ్‌ను ఏర్పాటు చేసాము. గ్రామ పంచాయతీ కార్యాలయాన్ని హై-స్ప్రీడ్ ఇంటర్నెట్ మరియు సోలార్ పవర్ బ్యాకప్‌తో డిజిటల్ సేవా కేంద్రంగా తీర్చిదిద్దాము.",
+          detailMatter: "మా పంచాయితీ అన్ని కాలాల్లో రవాణాకు అనుకూలమైన సిమెంట్ రోడ్ల పనులకు ప్రాధాన్యత ఇస్తుంది। రోడ్లన్నీ మంచి స్థితిలో ఉన్నాయి। గ్రామ రహదారులపై 85 ఆటోమేటిక్ సోలార్ వీధి దీపాలు ఉన్నాయి। అయితే, దక్షిణ ప్రాంత మురుగు కాలువలకు పూడికతీత మరియు కాంక్రీటు పటిష్టత అవసరం। ప్రధాన బస్సు స్టాండ్ వద్ద సోలార్ రూఫ్ పనులు సాగుతున్నాయి (60% పూర్తి)। గ్రామ పంచాయతీ కార్యాలయం సోలార్ విద్యుత్‌తో సేవలు అందిస్తుంది.",
           imageCaption: "సోలార్ విద్యుత్ వెలుగులతో నిండిన గ్రామ రహదారులు.",
           milestones: [
             "VI క్రెడిట్ 1: కనీస సౌకర్యాలు",
@@ -720,13 +720,13 @@
           ],
           metrics: [
             { val: "85 యూనిట్లు", label: "సోలార్ వీధి దీపాలు", desc: "ఆటోమేటిక్ స్మార్ట్ లైటింగ్‌తో పనిచేస్తాయి." },
-            { val: "92%", label: "మురుగు కాలువల శాతం", desc: "నిల్వ నీరు లేకుండా సిమెంట్ కాలువల నిర్మాణం." },
+            { val: "92%", label: "మురుగు కాలువల శాతం", desc: "నిల్వ నీరు లేకుండా దక్షిణ కాలువల పూడికతీత పనులు అవసరం." },
             { val: "4.8 కి.మీ", label: "సిమెంట్ రోడ్లు", desc: "అన్ని కాలాల్లో గ్రామస్తుల రవాణాకు సులభ మార్గం." }
           ],
           audits: [
-            { date: "01/06/2026", param: "సిమెంట్ రోడ్డు మరమ్మత్తు (ఉత్తర తండా లింక్)", inspector: "AE పంచాయతీ ఇంజనీరింగ్", status: "ఆమోదించబడింది" },
-            { date: "20/05/2026", param: "సోలార్ బ్యాటరీ & ప్యానెల్ నిర్వహణ", inspector: "విద్యుత్ శాఖ టెక్ టీమ్", status: "పనిచేస్తున్నది" },
-            { date: "10/05/2026", param: "హైస్కూల్ గదుల నిర్మాణ పరిశీలన", inspector: "సర్పంచ్ దేవిక", status: "కొనసాగుతోంది" }
+            { date: "01/06/2026", param: "బస్సు స్టాండ్ సోలార్ రూఫ్ పరిశీలన", inspector: "AE పంచాయతీ ఇంజనీరింగ్", status: "60% పూర్తి" },
+            { date: "20/05/2026", param: "దక్షిణ మురుగు కాలువల పూడికతీత ఆడిట్", inspector: "AE పంచాయతీ ఇంజనీరింగ్", status: "చర్యలు అవసరం" },
+            { date: "10/05/2026", param: "గ్రామ పంచాయతీ సోలార్ బ్యాటరీ లాగ్", inspector: "విద్యుత్ శాఖ టెక్ టీమ్", status: "ఆన్‌లైన్ / బాగుంది" }
           ]
         }
       },
@@ -736,7 +736,7 @@
         en: {
           title: "Water Conservation & Reserves",
           desc: "Groundwater recharge measurements, check dam volumes, reservoir limits, and rainfall capture statistics.",
-          detailMatter: "Seetharamapuram Tanda enforces strict rainwater harvesting protocols. We have desilted and renovated the community pond (Amrit Sarovar) and 4 agricultural check dams. Public school buildings and overhead tanks are equipped with recharge pits, achieving a notable 14% improvement in the local groundwater table level.",
+          detailMatter: "Seetharamapuram Tanda draws drinking water from the central reservoir (150,000 L capacity), backed by 8 functional borewells. Laboratory reports confirm safe fluoride levels (0.8 ppm). Shortages in the Southern Hamlet during the hot dry spell of April-May are mitigated via a structured rationing schedule. Rainwater harvesting pits are mandatory in all homes, which together with 4 agricultural check dams and Amrit Sarovar has led to a 14% rise in groundwater levels.",
           imageCaption: "Traditional sloped tiled roofs designed to guide rainwater into recharge wells.",
           milestones: [
             "WC Credit 1: Rain water Harvesting",
@@ -745,19 +745,19 @@
           ],
           metrics: [
             { val: "+14%", label: "Water Table Rise", desc: "Positive shift in village borewell water column." },
-            { val: "150k L", label: "Reservoir Capacity", desc: "Total community reserve storage capacity." },
-            { val: "4 Units", label: "Check Dams Maintained", desc: "Structured to catch summer monsoon runoffs." }
+            { val: "150k L", label: "Reservoir Capacity", desc: "Total overhead and ground storage capacity." },
+            { val: "8/8 Active", label: "Borewell Grid", desc: "Borewells equipped with groundwater recharge pits." }
           ],
           audits: [
-            { date: "04/06/2026", param: "Borewell Recharge Grid Audit", inspector: "Groundwater Dept Inspector", status: "OPTIMAL RECHARGE" },
-            { date: "25/05/2026", param: "Reservoir Flow Silt Filtration", inspector: "Panchayat Staff", status: "CLEANED" },
-            { date: "12/05/2026", param: "Check Dam 2 Expansion Audit", inspector: "Welfare Committee Head", status: "COMPLETED" }
+            { date: "04/06/2026", param: "Drinking Water Quality Lab Test", inspector: "Groundwater Dept Inspector", status: "SAFE (0.8 ppm Fluoride)" },
+            { date: "25/05/2026", param: "Southern Hamlet Rationing Audit", inspector: "Panchayat Secretary", status: "IN OPERATION" },
+            { date: "12/05/2026", param: "Check Dam Catchment Expansion", inspector: "Welfare Committee Head", status: "COMPLETED" }
           ]
         },
         hi: {
           title: "जल संरक्षण और जलाशय",
           desc: "भूजल पुनर्भरण माप, चेक डैम की क्षमता, जलाशय की सीमा और वर्षा जल संचयन के आंकड़े।",
-          detailMatter: "सीतारामपुरम टांडा में वर्षा जल संचयन अनिवार्य है। हमने जल स्तर को बनाए रखने के लिए 4 चेक डैम का जीर्णोद्धार किया है और उपेक्षित सामुदायिक तालाबों को पुनर्जीवित किया है। प्रत्येक सरकारी भवन और स्कूल में वाटर हार्वेस्टिंग पिट स्थापित किए गए हैं, जिससे भूजल रिचार्ज दर में 14% सुधार हुआ है।",
+          detailMatter: "गाँव में पीने का पानी 150,000 लीटर क्षमता के केंद्रीय जलाशय और 8 सक्रिय बोरवेलों से आता है। रासायनिक प्रयोगशाला परीक्षण सुरक्षित फ्लोराइड स्तर (0.8 ppm) की पुष्टि करते हैं। अप्रैल-मई की गर्मियों में दक्षिणी वार्ड में होने वाली पानी की कमी को राशनिंग कार्यक्रम के माध्यम से प्रबंधित किया जाता है। अनिवार्य घरेलू वर्षा जल संचयन और 4 चेक डैम के कारण भूजल स्तर में 14% का सुधार हुआ है।",
           imageCaption: "वर्षा के पानी को पुनर्भरण कुओं में ले जाने के लिए ढलान वाली खपरैल छतें।",
           milestones: [
             "WC क्रेडिट 1: वर्षा जल संचयन",
@@ -766,19 +766,19 @@
           ],
           metrics: [
             { val: "+14%", label: "भूजल स्तर में वृद्धि", desc: "गांव के बोरवेल जल स्तर में सकारात्मक बदलाव।" },
-            { val: "150k लीटर", label: "जलाशय क्षमता", desc: "कुल सामुदायिक सुरक्षित भंडारण क्षमता।" },
-            { val: "4 इकाइयां", label: "चेक डैम रखरखाव", desc: "ग्रीष्मकालीन मानसून के बहाव को रोकने के लिए संरचित।" }
+            { val: "150k लीटर", label: "जलाशय क्षमता", desc: "कुल ओवरहेड और ग्राउंड स्टोरेज क्षमता।" },
+            { val: "8/8 सक्रिय", label: "बोरवेल ग्रिड", desc: "पुनर्भरण कुओं से लैस कार्यात्मक बोरवेल।" }
           ],
           audits: [
-            { date: "04/06/2026", param: "बोरवेल रिचार्ज ग्रिड ऑडिट", inspector: "भूजल विभाग निरीक्षक", status: "इष्टतम रिचार्ज" },
-            { date: "25/05/2026", param: "जलाशय प्रवाह गाद निस्पंदन", inspector: "पंचायत कर्मचारी", status: "सफाई पूर्ण" },
-            { date: "12/05/2026", param: "चेक डैम 2 विस्तार लेखापरीक्षा", inspector: "कल्याण समिति प्रमुख", status: "पूर्ण" }
+            { date: "04/06/2026", param: "पेयजल रासायनिक प्रयोगशाला परीक्षण", inspector: "भूजल विभाग निरीक्षक", status: "सुरक्षित (0.8 ppm फ्लोराइड)" },
+            { date: "25/05/2026", param: "दक्षिणी वार्ड जल राशनिंग ऑडिट", inspector: "पंचायत सचिव", status: "संचालन में" },
+            { date: "12/05/2026", param: "चेक डैम जलग्रहण क्षेत्र विस्तार", inspector: "कल्याण समिति प्रमुख", status: "पूर्ण" }
           ]
         },
         te: {
           title: "జల సంరక్షణ & నిల్వలు",
           desc: "భూగర్భ జలాల పునరుద్ధరణ కొలతలు, చెక్ డ్యామ్‌ల సామర్థ్యం, జలాశయం స్థాయిలు మరియు వర్షపు నీటి నిల్వ నివేదికలు.",
-          detailMatter: "భూగర్భ జలాల పెంపునకు 4 చెక్ డ్యామ్‌లను పునరుద్ధరించాము మరియు పాత చెరువులను రీఛార్జ్ చేసాము. ప్రతి ప్రభుత్వ పాఠశాల మరియు భవనంలో వర్షపు నీటి నిల్వ గుంతలను ఏర్పాటు చేయడంతో భూగర్భ జలాలు 14% పెరిగాయి.",
+          detailMatter: "గ్రామస్తుల త్రాగునీటి అవసరాల కొరకు 150,000 లీటర్ల సామర్థ్యం గల జలాశయం మరియు 8 బోరుబావులు ఉన్నాయి. పరీక్షలలో ఫ్లోరైడ్ సురక్షిత స్థాయిలో (0.8 ppm) ఉన్నట్లు నిర్ధారించబడింది. ఏప్రిల్-మే నెలల్లో దక్షిణ తండాలో తలెత్తే నీటి కొరతను రేషనింగ్ షెడ్యూల్ ద్వారా పరిష్కరిస్తున్నాము. ప్రతి ఇంటా వర్షపు నీటి ఇంకుడు గుంతలు మరియు 4 చెక్ డ్యామ్‌ల ద్వారా భూగర్భ జలాలు 14% పెరిగాయి.",
           imageCaption: "వర్షపు నీటిని భూమిలోకి ఇంకేలా చేసేందుకు వాలుగా ఉండే సాంప్రదాయ పెంకుటి ఇళ్ళు.",
           milestones: [
             "WC క్రెడిట్ 1: వర్షపు నీటి నిల్వ",
@@ -786,14 +786,14 @@
             "WC క్రెడిట్ 3: శుద్ధి చేసిన నీటి పునర్వినియోగం"
           ],
           metrics: [
-            { val: "+14%", label: "భూగర్భ జలాల పెరుగుదల", desc: "బోరుబావులలో నీటి నిల్వ పెరగడం." },
-            { val: "150k లీ", label: "జలాశయ సామర్థ్యం", desc: "గ్రామ నిల్వ సముదాయ సామర్థ్యం." },
-            { val: "4 యూనిట్లు", label: "చెక్ డ్యామ్‌ల నిర్వహణ", desc: "వర్షపు నీటిని నిల్వ చేయడానికి పటిష్టమైన నిర్మాణం." }
+            { val: "+14%", label: "భూగర్భ జలాలు", desc: "బోరుబావులలో నీటి నిల్వ పెరగడం." },
+            { val: "150k లీ", label: "జలాశయ సామర్థ్యం", desc: "గ్రామ ప్రధాన నీటి నిల్వ సామర్థ్యం." },
+            { val: "8/8 సజీవం", label: "బోరుబావుల గ్రిడ్", desc: "రీఛార్జ్ గుంతలతో అనుసంధానించబడిన బోరుబావులు." }
           ],
           audits: [
-            { date: "04/06/2026", param: "బోరుబావుల రీఛార్జ్ గ్రిడ్ ఆడిట్", inspector: "భూగర్భ జలాల శాఖ ఇన్స్పెక్టర్", status: "సురక్షితం" },
-            { date: "25/05/2026", param: "జలాశయం సిల్ట్ వడపోత పరిశీలన", inspector: "పంచాయతీ సిబ్బంది", status: "పరిశుభ్రం చేయబడింది" },
-            { date: "12/05/2026", param: "చెక్ డ్యామ్ 2 విస్తరణ పరిశీలన", inspector: "సంక్షేమ కమిటీ అధ్యక్షుడు", status: "పూర్తి చేయబడింది" }
+            { date: "04/06/2026", param: "తాగునీటి ల్యాబ్ పరీక్ష ఆడిట్", inspector: "భూగర్భ జలాల శాఖ ఇన్స్పెక్టర్", status: "సురక్షితం (0.8 ppm ఫ్లోరైడ్)" },
+            { date: "25/05/2026", param: "దక్షిణ తండా నీటి రేషనింగ్ ఆడిట్", inspector: "పంచాయతీ కార్యదర్శి", status: "అమలులో ఉంది" },
+            { date: "12/05/2026", param: "చెక్ డ్యామ్ జల నిల్వ విస్తరణ ఆడిట్", inspector: "సంక్షేమ కమిటీ అధ్యక్షుడు", status: "పూర్తి చేయబడింది" }
           ]
         }
       },
@@ -803,7 +803,7 @@
         en: {
           title: "Green Energy Grid & Efficiency",
           desc: "Monitoring of off-grid solar generators, LED conversion metrics, and biogas community inputs.",
-          detailMatter: "Energy independence is a major priority for the Tanda. The Gram Panchayat complex is powered via a 24 kW rooftop solar array. All public lighting is retrofitted with energy-efficient LED bulbs, cutting energy consumption by 40%. Organic composting and bio-gas digestors supply methane to communal kitchens, providing clean alternatives to wood fuel.",
+          detailMatter: "The Tanda maintains 100% household electrification. The Gram Panchayat complex is powered via a 24 kW rooftop solar array, supplying off-grid clean energy to public administrative services. All public street lights have been converted to energy-efficient LEDs, reducing electricity bills by 40%. Organic waste and biogas digestors provide clean gas to communal kitchens, reducing firewood harvesting.",
           imageCaption: "Solar street lights representing the village's off-grid solar energy systems.",
           milestones: [
             "EA Credit 1: Rural Electrification",
@@ -813,19 +813,19 @@
           ],
           metrics: [
             { val: "24 kW", label: "Solar Generation", desc: "Peak clean power produced daily at GP complex." },
-            { val: "100%", label: "LED Bulb Adoption", desc: "All public street lights converted to LED." },
-            { val: "45m³", label: "Biogas Input/Day", desc: "Organic fuel supplied to community kitchens." }
+            { val: "100%", label: "Electrification", desc: "Full grid connectivity for all village households." },
+            { val: "45m³", label: "Biogas Output", desc: "Organic cooking fuel supplied daily to communal kitchens." }
           ],
           audits: [
-            { date: "03/06/2026", param: "GP Solar Panel Inverter Log", inspector: "Solar Engineer (NREDCAP)", status: "96% EFFICIENCY" },
-            { date: "22/05/2026", param: "Agricultural Pump Set Energy Test", inspector: "Electrical Inspector", status: "RATED STAR-5" },
-            { date: "14/05/2026", param: "Biogas Digester Pressure Test", inspector: "Biogas Operator", status: "OPTIMAL PRESSURE" }
+            { date: "03/06/2026", param: "GP Solar Inverter Daily Log", inspector: "Solar Engineer (NREDCAP)", status: "96% EFFICIENCY" },
+            { date: "22/05/2026", param: "Household Electrification Audit", inspector: "Electrical Inspector", status: "100% COVERAGE" },
+            { date: "14/05/2026", param: "Biogas Digester Pressure Test", inspector: "Biogas Operator", status: "OPTIMAL" }
           ]
         },
         hi: {
           title: "हरित ऊर्जा ग्रिड और दक्षता",
           desc: "ऑफ-ग्रिड सौर ऊर्जा उत्पादकों, एलईडी रूपांतरण मेट्रिक्स और बायोगैस सामुदायिक इनपुट की निगरानी।",
-          detailMatter: "ग्राम पंचायत ऊर्जा आत्मनिर्भरता की ओर बढ़ रही है। पंचायत परिसर में 24 किलोवाट की सौर प्रणाली से बिजली की आपूर्ति की जाती है। गांव की सभी पुरानी लाइटों को एलईडी बल्बों में बदल दिया गया है, जिससे ऊर्जा की खपत में 40% की कमी आई है। बायोगैस संयंत्रों से ग्रामीण परिवारों को स्वच्छ ईंधन दिया जा रहा है।",
+          detailMatter: "टांडा गाँव में 100% घरेलू विद्युतीकरण बनाए रखा गया है। पंचायत भवन में 24 किलोवाट की सौर प्रणाली से प्रशासनिक सुविधाओं को निर्बाध बिजली की आपूर्ति की जाती है। सभी सार्वजनिक स्ट्रीट लाइटों को एलईडी बल्बों में बदल दिया गया है, जिससे बिजली की खपत में 40% की कमी आई है। बायोगैस संयंत्रों से ग्रामीण परिवारों को स्वच्छ ईंधन दिया जा रहा है।",
           imageCaption: "गाँव के सौर ऊर्जा संयंत्रों को दर्शाती सौर स्ट्रीट लाइटें।",
           milestones: [
             "EA क्रेडिट 1: ग्रामीण विद्युतीकरण",
@@ -835,19 +835,19 @@
           ],
           metrics: [
             { val: "24 kW", label: "सौर ऊर्जा उत्पादन", desc: "जीपी परिसर में प्रतिदिन उत्पादित स्वच्छ बिजली।" },
-            { val: "100%", label: "एलईडी बल्ब अपनाना", desc: "सभी सार्वजनिक स्ट्रीट लाइटों को एलईडी में बदला गया।" },
-            { val: "45m³", label: "बायोगैस इनपुट/दिन", desc: "सामुदायिक रसोई को आपूर्ति किया जाने वाला जैविक ईंधन।" }
+            { val: "100%", label: "विद्युतीकरण", desc: "गाँव के सभी घरों में ग्रिड बिजली कनेक्शन।" },
+            { val: "45m³", label: "बायोगैस उत्पादन", desc: "सामुदायिक रसोई को दैनिक रूप से आपूर्ति किया जाने वाला जैविक ईंधन।" }
           ],
           audits: [
             { date: "03/06/2026", param: "जीपी सौर पैनल इन्वर्टर लॉग", inspector: "सौर अभियंता (NREDCAP)", status: "96% दक्षता" },
-            { date: "22/05/2026", param: "कृषि पंप सेट ऊर्जा परीक्षण", inspector: "विद्युत निरीक्षक", status: "5-स्टार रेटेड" },
-            { date: "14/05/2026", param: "बायोगैस डाइजेस्टर दबाव परीक्षण", inspector: "बायोगैस ऑपरेटर", status: "इष्टतम दबाव" }
+            { date: "22/05/2026", param: "घरेलू ग्रिड कनेक्टिविटी ऑडिट", inspector: "विद्युत निरीक्षक", status: "100% कवरेज" },
+            { date: "14/05/2026", param: "बायोगैस डाइजेस्टर दबाव परीक्षण", inspector: "बायोगैस ऑपरेटर", status: "इष्टतम" }
           ]
         },
         te: {
           title: "హరిత విద్యుత్ గ్రిడ్ & సామర్థ్యం",
           desc: "సోలార్ పవర్ ప్లాంట్ జనరేషన్ కొలతలు, ఎల్ఈడీ బల్బుల వివరాలు మరియు బయో-గ్యాస్ ప్లాంట్ నిర్వహణ.",
-          detailMatter: "గ్రామ పంచాయితీ విద్యుత్ స్వయం సమృద్ధి దిశగా సాగుతోంది. పంచాయతీ కార్యాలయంపై 24 కిలోవాట్ల సోలార్ ప్లాంట్ ఏర్పాటు చేసాము. వీధి దీపాలన్నింటినీ ఎల్ఈడీలుగా మార్చడంతో విద్యుత్ వినియోగం 40% తగ్గింది. బయో-గ్యాస్ ప్లాంట్ల ద్వారా వంట గ్యాస్ సరఫరా చేయబడుతోంది.",
+          detailMatter: "తండా పరిధిలోని అన్ని ఇళ్లకు 100% విద్యుద్దీకరణ సాధించబడింది। పంచాయతీ కార్యాలయంపై 24 కిలోవాట్ల సోలార్ ప్యానెల్స్ ద్వారా కార్యాలయ సేవలకు విద్యుత్ లభిస్తోంది। వీధి దీపాలన్నింటినీ ఎల్ఈడీలుగా మార్చడంతో కరెంటు ఖర్చులు 40% తగ్గాయి। సేంద్రీయ వ్యర్థాల ద్వారా కమ్యూనిటీ వంటశాలకు బయో-గ్యాస్ ఇంధనం సరఫరా చేయబడుతోంది।",
           imageCaption: "గ్రామంలో ఏర్పాటు చేయబడిన పర్యావరణ రహిత సోలార్ వీధి దీపాలు.",
           milestones: [
             "EA క్రెడిట్ 1: గ్రామీణ విద్యుద్దీకరణ",
@@ -856,14 +856,14 @@
             "EA క్రెడిట్ 4: సోలార్ వాటర్ హీటింగ్ సిస్టమ్స్"
           ],
           metrics: [
-            { val: "24 kW", label: "సోలార్ ఉత్పత్తి", desc: "పంచాయతీ భవనం వద్ద నిత్యం ఉత్పత్తయ్యే హరిత విద్యుత్." },
-            { val: "100%", label: "ఎల్ఈడీ వీధి దీపాలు", desc: "అన్ని వీధి దీపాలను ఎల్ఈడీలుగా మార్చడం జరిగింది." },
-            { val: "45m³", label: "బయో-గ్యాస్ ఉత్పత్తి/రోజు", desc: "గ్రామ కమ్యూనిటీ వంటశాలకు సరఫరా చేసే గ్యాస్." }
+            { val: "24 kW", label: "సోలార్ ఉత్పత్తి", desc: "పంచాయతీ భవనం వద్ద నిత్యం ఉత్పత్తయ్యే హరిత విద్యుత్।" },
+            { val: "100%", label: "విద్యుద్దీకరణ", desc: "గ్రామములోని అన్ని ఇళ్లకు గ్రిడ్ కరెంట్ కనెక్షన్।" },
+            { val: "45m³", label: "బయో-గ్యాస్ ఉత్పత్తి", desc: "కమ్యూనిటీ వంటశాలలకు సరఫరా చేసే గ్యాస్।" }
           ],
           audits: [
             { date: "03/06/2026", param: "సోలార్ ప్యానెల్ ఇన్వర్టర్ ఆడిట్", inspector: "సోలార్ ఇంజనీర్ (NREDCAP)", status: "96% సామర్థ్యం" },
-            { date: "22/05/2026", param: "వ్యవసాయ విద్యుత్ పంపుల ఆడిట్", inspector: "విద్యుత్ ఇన్స్పెక్టర్", status: "5-స్టార్ రేటింగ్" },
-            { date: "14/05/2026", param: "బయో-గ్యాస్ ప్లాంట్ ఒత్తిడి పరీక్ష", inspector: "ప్లాంట్ ఆపరేటర్", status: "సరిగ్గా ఉంది" }
+            { date: "22/05/2026", param: "ఇళ్ల విద్యుద్దీకరణ తనిఖీ ఆడిట్", inspector: "విద్యుత్ ఇన్స్పెక్టర్", status: "100% కవరేజ్" },
+            { date: "14/05/2026", param: "బయో-గ్యాస్ ఒత్తిడి తనిఖీ", inspector: "ప్లాంట్ ఆపరేటర్", status: "బాగుంది" }
           ]
         }
       },
@@ -873,7 +873,7 @@
         en: {
           title: "Resource & Materials Recycling",
           desc: "Waste recycling center audit logs, zero-plastic rules enforcement registers, and local clay/weaving outputs.",
-          detailMatter: "We strive to establish a circular economy model in Seetharamapuram Tanda. The dry/wet waste segregation unit composts all organic discards. Simultaneously, we enforce a strict single-use plastic ban. To replace plastics, local cooperative networks have been setup to manufacture traditional earthen clay pottery and Lambadi handwoven fabrics.",
+          detailMatter: "We strive to establish a circular economy model in Seetharamapuram Tanda. The dry/wet waste segregation unit composts organic discards daily. Simultaneously, zero-plastic rules are strictly enforced at all village shops. To replace plastics, local cooperative networks manufacture traditional earthen clay pottery and Lambadi handwoven fabrics, enhancing self-reliance.",
           imageCaption: "Traditional wall artwork celebrating organic materials and tribal heritage.",
           milestones: [
             "MR Credits 1: Local Materials",
@@ -881,9 +881,9 @@
             "MR Credits 3: Plastic Handling and Disposal"
           ],
           metrics: [
-            { val: "120 kg", label: "Dry Waste Recycled", desc: "Paper and cardboard processed weekly." },
+            { val: "120 kg", label: "Dry Waste Sorted", desc: "Paper and cardboard processed weekly at segregation unit." },
             { val: "95%", label: "Plastic Reduction", desc: "Single-use plastic bags blocked at village shops." },
-            { val: "2 Active", label: "Weaving Co-ops", desc: "Promoting local cotton and natural fibers." }
+            { val: "2 Active", label: "Weaving Co-ops", desc: "Promoting cotton bags and natural fiber fabrics." }
           ],
           audits: [
             { date: "02/06/2026", param: "Waste Sorting Audit (Wet/Dry)", inspector: "Panchayat Cleanliness Head", status: "98% COMPLIANCE" },
@@ -1731,6 +1731,11 @@
       const pData = pillarData[type] || pillarData['health'];
       const langData = pData[lang] || pData['en'];
       const uiTrans = translationUI[lang] || translationUI['en'];
+
+      // Set lang class on body and attribute on html
+      document.body.classList.remove('lang-en', 'lang-hi', 'lang-te');
+      document.body.classList.add('lang-' + lang);
+      document.documentElement.setAttribute('lang', lang);
 
       // Theme colors matching the original rating sheet tables
       const themeColors = {
