@@ -74,7 +74,7 @@ function initSplashScreen() {
       const span = document.createElement('span');
       span.textContent = char === ' ' ? '\u00A0' : char;
       span.className = 'splash-char';
-      span.style.animationDelay = `${idx * 60}ms`;
+      span.style.animationDelay = `${idx * 20}ms`;
       splashTitle.appendChild(span);
     });
   }
@@ -95,11 +95,11 @@ function initSplashScreen() {
     // Clean up splash overlay DOM element after transition completes
     setTimeout(() => {
       splash.remove();
-    }, 1200); // 1.2s matches the door-splitting animation transition duration in CSS
+    }, 500); // 0.5s matches the door-splitting animation transition duration in CSS
   };
 
-  // Snappy transition: auto-skip splash after 1.5 seconds instead of 3.0 seconds
-  const autoTimer = setTimeout(triggerTransition, 1500);
+  // Snappy transition: auto-skip splash after 0.5 seconds
+  const autoTimer = setTimeout(triggerTransition, 500);
 
   // Allow immediate skipping by clicking anywhere on the splash screen
   splash.addEventListener('click', () => {
