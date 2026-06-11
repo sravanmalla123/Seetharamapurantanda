@@ -178,7 +178,7 @@
     }
   </style>
 </head>
-<body class="profile-body">
+<body class="profile-body ready">
   <!-- Check Auth -->
   <script>
     if (sessionStorage.getItem('panchayat-role') !== 'villager') {
@@ -285,6 +285,7 @@
     const userId = sessionStorage.getItem('panchayat-userId');
 
     document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('ready');
       // Sync theme preference
       const savedTheme = localStorage.getItem('panchayat-theme');
       if (savedTheme === 'banjara') {
