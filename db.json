@@ -461,7 +461,7 @@
     },
     "hero": {
       "title": {
-        "en": "Seetharampuram Thanda Village Portal!",
+        "en": "Seetharampuram Thanda Village !",
         "hi": "\"धरोहर का संरक्षण, सतत प्रगति का प्रयास\"",
         "te": "\"వారసత్వాన్ని గౌరవిస్తూ, సుస్థిరత కోసం శ్రమిద్దాం\""
       },
@@ -478,7 +478,7 @@
     },
     "stats": {
       "population": {
-        "en": "1,245",
+        "en": "2000",
         "hi": "1,245",
         "te": "1,245"
       },
@@ -664,7 +664,7 @@
     },
     "profileCounts": {
       "houses": "230",
-      "population": "2000",
+      "population": "5000",
       "male": "635",
       "female": "610",
       "children": "120",
@@ -787,14 +787,14 @@
     },
     "waterDashboard": {
       "capacity": 150000,
-      "current": 117000,
+      "current": 142000,
       "supplyHours": {
-        "en": "06:00 AM - 08:00 AM",
+        "en": "05:30 AM - 08:30 AM",
         "hi": "सुबह 06:00 बजे - 08:00 बजे",
         "te": "ఉదయం 06:00 - 08:00"
       },
       "weeklyLimit": {
-        "en": "240 Litres / Family",
+        "en": "300 Litres / Family",
         "hi": "240 लीटर / परिवार",
         "te": "240 లీటర్లు / కుటుంబం"
       },
@@ -859,7 +859,7 @@
     },
     "agriDashboard": {
       "cropsGrown": {
-        "en": "Paddy, Maize, Chili, and Pulses",
+        "en": "Paddy, Maize, Chili, and Pulses rice",
         "hi": "धान, मक्का, मिर्च और दालें",
         "te": "వరి, మొక్కజొన్న, మిరప మరియు పప్పుధాన్యాలు"
       },
@@ -1332,7 +1332,7 @@
         },
         "caption": {
           "en": "Solar Panchayat Office - The newly upgraded solar-powered administration building serving as a digital service node.",
-          "hi": "सौर पंचायत कार्यालय - डिजिटल नागरिक सेवाओं के लिए सौर ऊर्जा से संचालित उन्नत प्रशासनिक भ��न।",
+          "hi": "सौर पंचायत कार्यालय - डिजिटल नागरिक सेवाओं के लिए सौर ऊर्जा से संचालित उन्नत प्रशासनिक भ��������न।",
           "te": "సోలార్ పంచాయతీ కార్యాలయం - డిజిటల్ సివిక్ సేవలను అందించే సోలార్ విద్యుత్ ఆధారిత నూతన పరిపాలన భవనం."
         }
       },

@@ -229,6 +229,17 @@ function initModals() {
 function openModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) {
+    // Dynamically refresh page configuration when opening dashboard modals
+    if (['modal-water', 'modal-agri', 'modal-health'].includes(modalId)) {
+      fetch('/api/main-page-config')
+        .then(res => res.json())
+        .then(config => {
+          mainPageConfig = config;
+          renderDynamicMainPageContent();
+        })
+        .catch(err => console.error('Error refreshing modal dashboard config:', err));
+    }
+
     modal.classList.add('active');
     activeModals.add(modalId);
     document.body.style.overflow = 'hidden'; // Lock background scroll
@@ -3186,6 +3197,43 @@ function renderDynamicMainPageContent() {
     if (alertEl) {
       const alertMsg = waterConfig.alertBanner[lang] || waterConfig.alertBanner['en'] || '';
       alertEl.innerHTML = `⚠️ <strong>${lang === 'hi' ? 'मानसून की तैयारी' : lang === 'te' ? 'వర్షాకాలం సన్నద్ధత' : 'Monsoon Prep'}:</strong> ${alertMsg}`;
+    }
+
+    // Update accessibility label on water tank visual
+    const visualEl = document.querySelector('.water-tank-visual');
+    if (visualEl) {
+      const label = lang === 'hi'
+        ? `जलाशय की क्षमता ${pct}% है`
+        : lang === 'te'
+          ? `జలాశయం నిల్వ సామర్థ్యం ${pct}% వద్ద ఉంది`
+          : `Reservoir capacity is at ${pct}%`;
+      visualEl.setAttribute('aria-label', label);
+    }
+
+    // Update interactive map pin for water reservoir (w1)
+    const waterMapNode = document.querySelector('.map-node.water');
+    if (waterMapNode) {
+      let speciesText = 'Panchayat Reservoir Inlet';
+      let countText = `Capacity: ${cap.toLocaleString()} Litres`;
+      let dateText = 'Daily Inspected';
+      let statusText = `${pct}% full`;
+
+      if (lang === 'hi') {
+        speciesText = 'पंचायत जलाशय इनलेट';
+        countText = `क्षमता: ${cap.toLocaleString()} लीटर`;
+        dateText = 'दैनिक निरीक्षण';
+        statusText = `${pct}% भरा हुआ`;
+      } else if (lang === 'te') {
+        speciesText = 'పంచాయతీ జలాశయం ఇన్లెట్';
+        countText = `సామర్థ్యం: ${cap.toLocaleString()} లీటర్లు`;
+        dateText = 'రోజువారీ తనిఖీ';
+        statusText = `${pct}% నిండింది`;
+      }
+
+      waterMapNode.setAttribute('data-species', speciesText);
+      waterMapNode.setAttribute('data-count', countText);
+      waterMapNode.setAttribute('data-date', dateText);
+      waterMapNode.setAttribute('data-status', statusText);
     }
 
     // Infra Details cards
