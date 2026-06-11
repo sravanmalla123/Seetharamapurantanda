@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citizen Profile | Seetharamapuram Tanda Gram Panchayat</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .profile-body {
+      background-color: var(--color-bg-base);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .profile-header {
+      background-color: var(--color-primary);
+      color: #ffffff;
+      padding: 16px 0;
+      box-shadow: var(--shadow-md);
+    }
+    .profile-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .profile-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+    }
+    .profile-brand h2 {
+      font-size: 1.4rem;
+      margin: 0;
+    }
+    .profile-brand p {
+      font-size: 0.75rem;
+      opacity: 0.8;
+      margin: 0;
+    }
+    .profile-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      width: 100%;
+      flex-grow: 1;
+    }
+    .logout-btn {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .logout-btn:hover {
+      background: #ffffff;
+      color: var(--color-primary);
+      border-color: #ffffff;
+    }
+    
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 30px;
+    }
+    
+    .profile-card {
+      background: var(--color-bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      padding: 28px;
+      box-shadow: var(--shadow-md);
+    }
+    .profile-card-header {
+      border-bottom: 2px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+    .profile-card-header h3 {
+      font-size: 1.2rem;
+      color: var(--color-primary);
+      margin: 0;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--color-border);
+      font-size: 0.9rem;
+    }
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+    .detail-label {
+      font-weight: 600;
+      color: var(--color-text-muted);
+    }
+    .detail-value {
+      font-weight: 700;
+      color: var(--color-text-dark);
+    }
+
+    .ration-allocation-box {
+      background-color: var(--color-primary-pale);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-top: 15px;
+    }
+    .ration-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .ration-item:last-child {
+      margin-bottom: 0;
+    }
+    .ration-icon {
+      font-size: 1.5rem;
+    }
+    .ration-details h5 {
+      font-size: 0.85rem;
+      margin: 0;
+      color: var(--color-text-dark);
+    }
+    .ration-details p {
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+
+    .badge-status {
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+    .badge-submitted { background-color: #e3f2fd; color: #1e88e5; }
+    .badge-inprogress { background-color: #fff3e0; color: #fb8c00; }
+    .badge-resolved { background-color: #e8f5e9; color: #43a047; }
+    
+    .personal-grievance-item {
+      background: var(--color-bg-base);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .personal-grievance-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .timeline-container {
+      margin-top: 16px;
+      border-left: 2px solid var(--color-border);
+      padding-left: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .timeline-step {
+      font-size: 0.8rem;
+      position: relative;
+    }
+    .timeline-step::before {
+      content: '●';
+      color: var(--color-secondary);
+      position: absolute;
+      left: -20px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body class="profile-body">
+  <!-- Check Auth -->
+  <script>
+    if (sessionStorage.getItem('panchayat-role') !== 'villager') {
+      window.location.replace('/');
+    }
+  </script>
+
+  <!-- PROFILE HEADER -->
+  <header class="profile-header">
+    <div class="container profile-nav">
+      <div class="profile-brand">
+        <svg style="width:40px; height:40px;" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="4"/>
+          <path d="M50,70 C40,55 45,40 50,45 C55,40 60,55 50,70 Z"/>
+        </svg>
+        <div>
+          <h2>Seetharamapuram Tanda Citizen Portal</h2>
+          <p>Gram Panchayat Citizen Dashboard</p>
+        </div>
+      </div>
+      <button class="logout-btn" onclick="handleLogout()">Logout 📤</button>
+    </div>
+  </header>
+
+  <!-- MAIN AREA -->
+  <main class="profile-container">
+    <div class="profile-grid">
+      <!-- Left Column: Citizen & Ration card info -->
+      <section class="profile-card">
+        <div class="profile-card-header">
+          <h3>👤 Citizen & Ration Card Profile</h3>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Card Holder Name</span>
+          <span class="detail-value" id="citizen-name">-</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Ration Card ID</span>
+          <span class="detail-value" id="citizen-card-id">-</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Card Type</span>
+          <span class="detail-value" id="citizen-card-type">-</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Allocated FPS Shop</span>
+          <span class="detail-value" id="citizen-fps-shop">-</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Family Members</span>
+          <span class="detail-value" id="citizen-members">-</span>
+        </div>
+        
+        <div class="ration-allocation-box">
+          <h4 style="font-size:0.9rem; margin-bottom:12px; color:var(--color-primary);">📋 Monthly Quota Allocations</h4>
+          <div class="ration-item">
+            <span class="ration-icon">🌾</span>
+            <div class="ration-details">
+              <h5>Rice Allocation</h5>
+              <p id="quota-rice">-</p>
+            </div>
+          </div>
+          <div class="ration-item">
+            <span class="ration-icon">🍞</span>
+            <div class="ration-details">
+              <h5>Wheat Allocation</h5>
+              <p id="quota-wheat">-</p>
+            </div>
+          </div>
+          <div class="ration-item">
+            <span class="ration-icon">🛢️</span>
+            <div class="ration-details">
+              <h5>Kerosene Allocation</h5>
+              <p id="quota-kerosene">-</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Filed Grievances -->
+      <section class="profile-card">
+        <div class="profile-card-header">
+          <h3>📝 My Submitted Grievances</h3>
+        </div>
+        <div id="personal-grievances-container" style="display: flex; flex-direction: column; gap: 20px;">
+          <p style="color: var(--color-text-muted); text-align: center; padding: 20px;">Checking filed grievances in Tanda database...</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer style="padding: 24px 0; background: var(--color-primary); color: #fff; text-align: center; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 40px;">
+    <div class="container">
+      <p>© 2026 Seetharamapuram Tanda Citizen Services | Secured Portal</p>
+    </div>
+  </footer>
+
+  <!-- Alert Toast System -->
+  <div class="alert-popup" id="alert-toast" role="alert" aria-live="polite">
+    <span id="toast-message">Submission successful!</span>
+  </div>
+
+  <script>
+    const userId = sessionStorage.getItem('panchayat-userId');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sync theme preference
+      const savedTheme = localStorage.getItem('panchayat-theme');
+      if (savedTheme === 'banjara') {
+        document.body.classList.add('banjara-active');
+      }
+
+      if (userId) {
+        loadCitizenProfile(userId);
+      } else {
+        window.location.replace('/');
+      }
+    });
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('alert-toast');
+      const msgText = document.getElementById('toast-message');
+      
+      if (!toast || !msgText) return;
+      
+      toast.className = 'alert-popup';
+      toast.classList.add(type);
+      msgText.textContent = message;
+      
+      toast.classList.add('active');
+      
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 3500);
+    }
+
+    function loadCitizenProfile(cardId) {
+      // 1. Fetch Ration Details
+      fetch(`/api/ration?id=${encodeURIComponent(cardId)}`)
+      .then(res => {
+        if (!res.ok) throw new Error('Ration card not found');
+        return res.json();
+      })
+      .then(card => {
+        document.getElementById('citizen-name').textContent = card.owner;
+        document.getElementById('citizen-card-id').textContent = card.id;
+        document.getElementById('citizen-card-type').textContent = card.type;
+        document.getElementById('citizen-fps-shop').textContent = `Shop No. ${card.shop}`;
+        document.getElementById('citizen-members').textContent = card.members;
+        
+        document.getElementById('quota-rice').textContent = card.rice;
+        document.getElementById('quota-wheat').textContent = card.wheat;
+        document.getElementById('quota-kerosene').textContent = card.kerosene;
+
+        // Load grievances matching the citizen's name
+        loadCitizenGrievances(card.owner);
+      })
+      .catch(err => {
+        console.error(err);
+        showToast('❌ Failed to fetch ration profile records.', 'error');
+      });
+    }
+
+    function loadCitizenGrievances(ownerName) {
+      const container = document.getElementById('personal-grievances-container');
+      
+      fetch('/api/grievances')
+      .then(res => res.json())
+      .then(list => {
+        // Filter list by ownerName (case insensitive check)
+        const myTickets = list.filter(t => t.name.toLowerCase().trim() === ownerName.toLowerCase().trim());
+        
+        container.innerHTML = '';
+        if (myTickets.length === 0) {
+          container.innerHTML = `
+            <div style="text-align: center; color: var(--color-text-muted); padding: 30px;">
+              <p style="font-weight:600; margin-bottom:4px;">No filed concerns found.</p>
+              <p style="font-size:0.75rem;">If you have a civic issue, please log a complaint from the homepage.</p>
+            </div>
+          `;
+          return;
+        }
+
+        myTickets.forEach(ticket => {
+          const badgeClass = ticket.status === 'Resolved' ? 'badge-resolved' : ticket.status === 'In Progress' ? 'badge-inprogress' : 'badge-submitted';
+          
+          const card = document.createElement('div');
+          card.className = 'personal-grievance-item';
+          
+          // History mapping
+          let historyStepsHTML = '';
+          ticket.history.forEach(step => {
+            historyStepsHTML += `
+              <div class="timeline-step">
+                <strong>${step.status}</strong> (${step.time})<br/>
+                <span style="font-size:0.75rem; color: var(--color-text-muted);">${step.detail}</span>
+              </div>
+            `;
+          });
+
+          card.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--color-border); padding-bottom:8px; margin-bottom:12px;">
+              <strong>ID: ${ticket.id}</strong>
+              <span class="badge-status ${badgeClass}">${ticket.status}</span>
+            </div>
+            <div style="font-size:0.85rem; line-height:1.4;">
+              <p><strong>Category:</strong> ${ticket.category.toUpperCase()}</p>
+              <p><strong>Details:</strong> ${ticket.desc}</p>
+              <p><strong>Assigned Officer:</strong> ${ticket.assignedTo}</p>
+            </div>
+            <div class="timeline-container">
+              <h5 style="font-size:0.75rem; font-weight:700; color:var(--color-primary); margin:0;">Resolution History Timeline</h5>
+              ${historyStepsHTML}
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error('Error fetching grievances:', err);
+        container.innerHTML = '<p style="color:var(--color-danger); text-align:center;">Failed to connect to grievances database.</p>';
+      });
+    }
+
+    function handleLogout() {
+      sessionStorage.clear();
+      window.location.replace('/');
+    }
+  </script>
+</body>
+</html>

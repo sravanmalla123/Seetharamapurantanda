@@ -107,6 +107,11 @@
               <span id="theme-btn-icon">✨</span> <span id="theme-btn-text">Banjara Theme</span>
             </button>
           </li>
+          <li>
+            <button class="btn btn-primary btn-sm" id="btn-login-trigger" aria-haspopup="dialog" style="margin-left: 6px; background-color: var(--color-secondary); border-color: var(--color-secondary);">
+              <span>🔑</span> <span id="nav-login-text">Login</span>
+            </button>
+          </li>
         </ul>
       </nav>
     </div>
@@ -1572,6 +1577,37 @@
           <h5 style="font-size:0.95rem; font-weight:700; color:var(--color-primary); margin-bottom:6px;" id="health-awareness-title-camps">Periodic Health Camps</h5>
           <p style="font-size:0.8rem; margin-bottom:0;" id="health-awareness-desc-camps">Free diagnostic, eye check-up, and general medicine distribution camps are conducted by doctors from the Macherla PHC twice a quarter.</p>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal-overlay" id="modal-login" role="dialog" aria-modal="true" aria-labelledby="login-modal-title">
+    <div class="modal-content" style="max-width: 400px; padding: 24px; background: var(--color-bg-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border-top: 5px solid var(--color-primary);">
+      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3 id="login-modal-title" style="margin: 0; font-size: 1.3rem; color: var(--color-primary);">🔑 Citizen & Admin Login</h3>
+        <button class="modal-close-btn" aria-label="Close modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text-muted);">×</button>
+      </div>
+      <div class="modal-body" style="padding: 0;">
+        <form id="login-form" onsubmit="handleLoginSubmit(event)">
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label for="login-username" style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.85rem; color: var(--color-text-dark);">User ID / Username</label>
+            <input type="text" id="login-username" required placeholder="e.g. admin or Ration Card ID" style="width: 100%; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--color-border); outline: none; background: #fff; color: #000;" />
+          </div>
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label for="login-password" style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.85rem; color: var(--color-text-dark);">Password</label>
+            <input type="password" id="login-password" required placeholder="Enter password" style="width: 100%; padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--color-border); outline: none; background: #fff; color: #000;" />
+          </div>
+          <div id="login-error-message" style="display: none; color: #c0392b; font-size: 0.82rem; font-weight: 600; margin-bottom: 12px; background-color: #fdf2f2; padding: 8px; border-radius: var(--radius-sm); border: 1px solid #fcdcdc;">
+            Invalid credentials.
+          </div>
+          <div style="font-size: 0.72rem; color: var(--color-text-muted); margin-bottom: 16px; line-height: 1.4; background-color: var(--color-primary-pale); padding: 10px; border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+            💡 <strong>Demo Credentials:</strong><br/>
+            • Admin: <code>admin</code> / <code>admin</code><br/>
+            • Villager: <code>369805471203</code> / <code>user123</code>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-weight: 700; background-color: var(--color-primary); color: #fff; border: none; border-radius: var(--radius-sm); cursor: pointer;">Sign In</button>
+        </form>
       </div>
     </div>
   </div>

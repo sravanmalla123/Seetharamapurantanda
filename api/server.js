@@ -156,6 +156,36 @@ const server = http.createServer(async (req, res) => {
     try {
       const db = readDb();
 
+      // POST /api/login
+      if (pathname === '/api/login' && req.method === 'POST') {
+        const body = await getJsonBody(req);
+        const { username, password } = body;
+
+        if (!username || !password) {
+          res.writeHead(400);
+          res.end(JSON.stringify({ error: 'Missing username or password' }));
+          return;
+        }
+
+        // Check Admin
+        if (username === 'admin' && password === 'admin') {
+          res.writeHead(200);
+          res.end(JSON.stringify({ status: 'success', role: 'admin', dest: 'admin.html' }));
+          return;
+        }
+
+        // Check Villager (Ration Card ID check)
+        if (db.rationCards[username] && password === 'user123') {
+          res.writeHead(200);
+          res.end(JSON.stringify({ status: 'success', role: 'villager', userId: username, dest: 'profile.html' }));
+          return;
+        }
+
+        res.writeHead(401);
+        res.end(JSON.stringify({ error: 'Invalid username or password' }));
+        return;
+      }
+
       // GET /api/grievances
       if (pathname === '/api/grievances' && req.method === 'GET') {
         const ticketId = parsedUrl.query.id;
@@ -177,6 +207,38 @@ const server = http.createServer(async (req, res) => {
           );
           res.writeHead(200);
           res.end(JSON.stringify(decryptedList));
+        }
+        return;
+      }
+
+      // POST /api/grievances/update
+      if (pathname === '/api/grievances/update' && req.method === 'POST') {
+        const body = await getJsonBody(req);
+        const { id, status, detail } = body;
+
+        if (!id || !status || !detail) {
+          res.writeHead(400);
+          res.end(JSON.stringify({ error: 'Missing parameters' }));
+          return;
+        }
+
+        const ticket = db.grievances[id];
+        if (ticket) {
+          ticket.status = status;
+          if (!ticket.history) {
+            ticket.history = [];
+          }
+          ticket.history.push({
+            status: status === 'Resolved' ? 'Grievance Resolved' : status === 'In Progress' ? 'Work Initiated' : status,
+            detail: detail,
+            time: new Date().toLocaleDateString('en-GB')
+          });
+          writeDb(db);
+          res.writeHead(200);
+          res.end(JSON.stringify({ success: true }));
+        } else {
+          res.writeHead(404);
+          res.end(JSON.stringify({ error: 'Ticket not found' }));
         }
         return;
       }

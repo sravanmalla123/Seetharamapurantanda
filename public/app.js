@@ -165,7 +165,8 @@ function initModals() {
     { trigger: 'nav-btn-contact', modal: 'modal-about' },
     { trigger: 'footer-link-about', modal: 'modal-about' },
     { trigger: 'btn-trigger-facility-update', modal: 'modal-household-update' },
-    { trigger: 'service-btn-health', modal: 'modal-health' }
+    { trigger: 'service-btn-health', modal: 'modal-health' },
+    { trigger: 'btn-login-trigger', modal: 'modal-login' }
   ];
 
   modalTriggers.forEach(config => {
@@ -250,6 +251,49 @@ function closeModal(modalId) {
     }
   }
 }
+
+/* ==========================================
+   AUTHENTICATION SUBMISSION
+   ========================================== */
+window.handleLoginSubmit = function(event) {
+  event.preventDefault();
+  const usernameInput = document.getElementById('login-username');
+  const passwordInput = document.getElementById('login-password');
+  const errorMsg = document.getElementById('login-error-message');
+  
+  if (!usernameInput || !passwordInput) return;
+  
+  const username = usernameInput.value.trim();
+  const password = passwordInput.value;
+  
+  if (errorMsg) errorMsg.style.display = 'none';
+  
+  fetch('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password })
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw new Error('Authentication failed');
+    }
+    return res.json();
+  })
+  .then(data => {
+    showToast('🔑 Login successful! Redirecting...', 'success');
+    sessionStorage.setItem('panchayat-role', data.role);
+    sessionStorage.setItem('panchayat-userId', data.userId || '');
+    
+    setTimeout(() => {
+      window.location.href = data.dest;
+    }, 1000);
+  })
+  .catch(err => {
+    console.error('Login error:', err);
+    if (errorMsg) errorMsg.style.display = 'block';
+    showToast('❌ Invalid credentials. Please try again.', 'error');
+  });
+};
 
 /* ==========================================
    WELFARE SCHEMES & ELIGIBILITY
