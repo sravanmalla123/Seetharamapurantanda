@@ -3105,6 +3105,39 @@
       document.body.classList.add('lang-' + lang);
       document.documentElement.setAttribute('lang', lang);
 
+      // Show/hide language input rows dynamically based on selected language switcher state
+      document.querySelectorAll('.lang-input-row').forEach(row => {
+        const hasEn = row.querySelector('.lang-badge.en');
+        const hasHi = row.querySelector('.lang-badge.hi');
+        const hasTe = row.querySelector('.lang-badge.te');
+        
+        const isEn = lang === 'en';
+        const isHi = lang === 'hi';
+        const isTe = lang === 'te';
+        
+        let shouldShow = false;
+        if (hasEn && isEn) shouldShow = true;
+        if (hasHi && isHi) shouldShow = true;
+        if (hasTe && isTe) shouldShow = true;
+        
+        row.style.display = shouldShow ? 'flex' : 'none';
+        
+        // Prevent hidden required inputs from blocking HTML5 form validation checks
+        const inputs = row.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+          if (shouldShow) {
+            if (input.dataset.wasRequired === 'true') {
+              input.setAttribute('required', 'required');
+            }
+          } else {
+            if (input.hasAttribute('required')) {
+              input.dataset.wasRequired = 'true';
+              input.removeAttribute('required');
+            }
+          }
+        });
+      });
+
       const selectors = Object.keys(translationDictionary.hi);
       selectors.forEach(sel => {
         const el = document.querySelector(sel);
