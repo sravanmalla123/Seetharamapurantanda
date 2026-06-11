@@ -552,6 +552,7 @@
   <script>
     let currentLanguage = 'en';
     let originalTexts = {};
+    let galleryItems = [];
 
     const translationDictionary = {
       hi: {
@@ -561,46 +562,6 @@
         '#tab-photos': 'तस्वीरें',
         '#tab-videos': 'वीडियो',
         '#btn-back-home': '← मुख्य पृष्ठ',
-        '#badge-heritage-1': 'धरोहर',
-        '#badge-eco-1': 'पर्यावरण-घर',
-        '#badge-heritage-2': 'कलाकृति',
-        '#badge-infra-1': 'बुनियादी ढांचा',
-        '#badge-doc-1': 'दस्तावेज',
-        '#badge-eco-2': 'संरक्षण',
-        '#badge-landmark': 'तीर्थस्थल',
-        '#badge-culture': 'संस्कृति',
-        '#badge-dev-office': 'विकास',
-        '#badge-drone': 'हवाई दृश्य',
-        '#photo-title-1': 'पारंपरिक भित्ति चित्र',
-        '#photo-desc-1': 'घरों की दीवारों पर स्थानीय आदिवासी लोककथाओं और जीवन शैलियों का दृश्य संरक्षण।',
-        '#photo-title-1-caption': 'पारंपरिक आदिवासी भित्ति चित्र - आंगन की दीवारों पर लोककथाओं और बंजारा आख्यानों को कलात्मक रूप से सहेजना।',
-        '#photo-title-2': 'जलवायु-अनुकूल आवास',
-        '#photo-desc-2': 'मौसम के अनुकूल प्राकृतिक रूप से डिजाइन की गई पारंपरिक मिट्टी और खपरैल की छतें।',
-        '#photo-title-2-caption': 'जलवायु-अनुकूल मिट्टी के घर - गर्मी के फैलाव के लिए डिज़ाइन किए गए मिट्टी-रोधी और मिट्टी-की-खपरैल वाले आंगन।',
-        '#photo-title-3': 'लंबाडी शिल्प कौशल',
-        '#photo-desc-3': 'स्थानीय कारीगरों द्वारा हस्तनिर्मित जीवंत दर्पण और कढ़ाई कार्यों की बंजारा विरासत।',
-        '#photo-title-3-caption': 'लंबाडी कढ़ाई शिल्प - पीढ़ी-दर-पीढ़ी चली आ रही जटिल दर्पण-कार्य और कढ़ाई विवरण।',
-        '#photo-title-4': 'स्मार्ट सोलर लाइट्स',
-        '#photo-desc-4': 'सूर्यास्त के बाद सुरक्षा और गतिविधि के लिए पक्की सड़कों पर सौर एलईडी लाइट्स की व्यवस्था।',
-        '#photo-title-4-caption': 'बुनियादी ढांचा - पत्थरों से पक्की सड़कों को रोशन करने वाली सौर एलईडी स्ट्रीट लाइट प्रणाली।',
-        '#photo-title-5': 'सीताराम मंदिर',
-        '#photo-desc-5': 'ऐतिहासिक आध्यात्मिक स्थल, जो पहाड़ियों की तलहटी में स्थित है और हमारी गाँव की आध्यात्मिक धरोहर का केंद्र है।',
-        '#photo-title-5-caption': 'ऐतिहासिक सीताराम मंदिर - पहाड़ियों की तलहटी में स्थित आध्यात्मिक स्थल, जो हमारे गाँव की अनमोल धरोहर है।',
-        '#photo-title-6': 'तीज महोत्सव',
-        '#photo-desc-6': 'पारंपरिक बंजारा तीज नृत्य और लोक गीतों के साथ मनाया जाने वाला रंगारंग उत्सव।',
-        '#photo-title-6-caption': 'बंजारा तीज महोत्सव - पारंपरिक बंजारा नृत्य और लोक गीतों के साथ मनाया जाने वाला रंगारंग आदिवासी उत्सव।',
-        '#photo-title-7': 'सौर पंचायत कार्यालय',
-        '#photo-desc-7': 'सौर ऊर्जा से संचालित आधुनिक प्रशासनिक भवन जो गाँव के लिए डिजिटल सेवा केंद्र के रूप में कार्य करता है।',
-        '#photo-title-7-caption': 'सौर पंचायत कार्यालय - डिजिटल नागरिक सेवाओं के लिए सौर ऊर्जा से संचालित उन्नत प्रशासनिक भवन।',
-        '#video-title-1': 'टांडा आजीविका विवरण',
-        '#video-desc-1': 'धान की खेती, युवा कार्यशालाओं और स्थानीय पंचायत प्रशासन के कार्यों का वृत्तचित्र।',
-        '#video-title-1-caption': 'सीतारामपुरम टांडा वृत्तचित्र - समग्र विकास उपलब्धियां, स्थानीय आजीविका और ग्राम पंचायत का संक्षिप्त विवरण।',
-        '#video-title-2': 'वर्षा जल संचयन प्रणाली',
-        '#video-desc-2': 'गर्मी में पानी की कमी को दूर करने के लिए निर्मित चेक डेम और स्मार्ट बोरवेल संचयन ग्रिड।',
-        '#video-title-2-caption': 'जल संरक्षण परियोजनाएं - गर्मी में पानी की कमी को रोकने के लिए निर्मित चेक डेम और रीचार्ज कुओं का विवरण।',
-        '#video-title-3': 'ड्रोन द्वारा कृषि दृश्य',
-        '#video-desc-3': 'हरे-भरे धान के खेतों, मक्का की फसलों और सुंदर जंगलों का ऊपर से लिया गया विहंगम दृश्य।',
-        '#video-title-3-caption': 'ड्रोन द्वारा कृषि दृश्य - हरे-भरे धान के खेतों और सुंदर जंगलों का ऊपर से लिया गया विहंगम दृश्य।',
         '#footer-text-1': '© 2026 सीतारामपुरम टांडा पंचायत | ग्रामीण विकास विभाग',
         '#footer-text-2': 'आधिकारिक डिजिटल नागरिक नोड | आंध्र प्रदेश राज्य सरकार'
       },
@@ -611,46 +572,6 @@
         '#tab-photos': 'ఫోటోలు',
         '#tab-videos': 'వీడియోలు',
         '#btn-back-home': '← హోమ్ పేజీ',
-        '#badge-heritage-1': 'వారసత్వం',
-        '#badge-eco-1': 'ఇకో-ఇల్లు',
-        '#badge-heritage-2': 'కళా నైపుణ్యం',
-        '#badge-infra-1': 'మౌలిక వసతులు',
-        '#badge-doc-1': 'డాక్యుమెంటరీ',
-        '#badge-eco-2': 'రక్షణ',
-        '#badge-landmark': 'ఆలయం',
-        '#badge-culture': 'సంస్కృతి',
-        '#badge-dev-office': 'అభివృద్ధి',
-        '#badge-drone': 'వైమానిక',
-        '#photo-title-1': 'సాంప్రదాయ గోడ చిత్రాలు',
-        '#photo-desc-1': 'గ్రామ గోడలపై స్థానిక గిరిజన జానపద కథలు మరియు జీవనశైలిని సంరక్షించే చిత్రాలు.',
-        '#photo-title-1-caption': 'సాంప్రదాయ గిరిజన గోడ చిత్రాలు - ముంగిలి గోడలపై బంజారా జానపద కథలను దృశ్యరూపంలో భద్రపరచడం.',
-        '#photo-title-2': 'వాతావరణ-అనుకూల గృహాలు',
-        '#photo-desc-2': 'కాలానుగుణ సౌకర్యం కోసం మట్టి మరియు సాంప్రదాయ పెంకులతో కూడిన ఇళ్ళ నిర్మాణం.',
-        '#photo-title-2-caption': 'వాతావరణ అనుకూల మట్టి గృహాలు - ఉష్ణోగ్రతను తగ్గించేలా మట్టి మరియు సాంప్రదాయ పెంకులతో కూడిన ఇళ్ళ నిర్మాణం.',
-        '#photo-title-3': 'లంబాడీ హస్తకళ',
-        '#photo-desc-3': 'శక్తివంతమైన దారాలు, అద్దాలతో కూడిన లంబాడీ/బంజారా తరాల కళా వైభవం.',
-        '#photo-title-3-caption': 'లంబాడీ క్రాఫ్ట్ - అద్దాల పనితనం మరియు చేనేత ఎంబ్రాయిడరీ యొక్క కళా వైభవం.',
-        '#photo-title-4': 'స్మార్ట్ సోలార్ లైట్లు',
-        '#photo-desc-4': 'రాత్రి పూట భద్రత కొరకు గ్రామ రహదారులపై ఏర్పాటు చేసిన సోలార్ వీధి దీపాలు.',
-        '#photo-title-4-caption': 'మౌలిక వసతులు - గ్రామ సిమెంట్ రహదారులపై ఏర్పాటు చేసిన సోలార్ వీధి దీపాలు.',
-        '#photo-title-5': 'సీతారామ ఆలయం',
-        '#photo-desc-5': 'కొండల చివరన ఉన్న చారిత్రాత్మక ఆలయం, ఇది మన గ్రామం యొక్క ఆధ్యాత్మిక వారసత్వ కేంద్రం.',
-        '#photo-title-5-caption': 'చారిత్రక సీతారామ ఆలయం - కొండల చివరన ఉన్న ఆధ్యాత్మిక వారసత్వ కేంద్రం.',
-        '#photo-title-6': 'తీజ్ పండుగ వేడుకలు',
-        '#photo-desc-6': 'సాంప్రదాయ బంజారా నృత్యాలు మరియు జానపద పాటలతో జరుపుకునే రంగుల పండుగ వేడుక.',
-        '#photo-title-6-caption': 'బంజారా తీజ్ వేడుకలు - సాంప్రదాయ నృత్యాలు మరియు జానపద పాటలతో జరుపుకునే పండుగ.',
-        '#photo-title-7': 'సోలార్ పంచాయతీ కార్యాలయం',
-        '#photo-desc-7': 'డిజిటల్ సివిక్ సేవలను అందించే సౌర విద్యుత్ ఆధారిత నూతన పరిపాలన భవనం.',
-        '#photo-title-7-caption': 'సోలార్ పంచాయతీ కార్యాలయం - డిజిటల్ సివిక్ సేవలను అందించే సౌర విద్యుత్ ఆధారిత నూతన పరిపాలన భవనం.',
-        '#video-title-1': 'తండా జీవనోపాధి సమాచారం',
-        '#video-desc-1': 'వరి వ్యవసాయం, యువ నైపుణ్య శిక్షణలు మరియు స్థానిక పరిపాలనను చూపించే చిన్న చిత్రం.',
-        '#video-title-1-caption': 'సీతారామపురం తండా డాక్యుమెంటరీ - గ్రామీణ అభివృద్ధి మైలురాళ్ళు మరియు జీవనోపాధి వివరణ.',
-        '#video-title-2': 'వర్షపు నీటి నిల్వ వ్యవస్థ',
-        '#video-desc-2': 'ఎండకాలం నీటి సమస్య పరిష్కారానికి నిర్మించిన చెక్ డ్యామ్‌లు మరియు స్మార్ట్ రీఛార్జ్ గ్రిడ్లు.',
-        '#video-title-2-caption': 'జల సంరక్షణ ప్రాజెక్టులు - భూగర్భ జలాల పెంపునకు నిర్మించిన చెక్ డ్యామ్‌లు మరియు రీఛార్జ్ గ్రిడ్ల దృశ్యం.',
-        '#video-title-3': 'డ్రోన్ వ్యవసాయ దృశ్యాలు',
-        '#video-desc-3': 'పచ్చని వరి పొలాలు, మక్కా పంటలు మరియు అడవి పరిసరాల యొక్క వైమానిక పనోరమిక్ వీక్షణం.',
-        '#video-title-3-caption': 'డ్రోన్ వ్యవసాయ దృశ్యాలు - పచ్చని వరి పొలాలు మరియు అడవి పరిసరాల వైమానిక వీక్షణం.',
         '#footer-text-1': '© 2026 సీతారామపురం తండా పంచాయితీ | గ్రామీణాభివృద్ధి శాఖ',
         '#footer-text-2': 'అధికారిక డిజిటల్ సివిక్ నోడ్ | ఆంధ్రప్రదేశ్ ప్రభుత్వ రాష్ట్రం'
       }
@@ -664,19 +585,7 @@
         document.body.classList.add('banjara-active');
       }
 
-      // Initialize translations
-      initLanguage();
-      
-      // Initialize tabs & lightbox
-      initGalleryTabs();
-      initLightbox();
-    });
-
-    function initLanguage() {
-      const select = document.getElementById('lang-select');
-      if (!select) return;
-
-      // Save original English copies
+      // Initialize translation original texts
       const selectors = Object.keys(translationDictionary.hi);
       selectors.forEach(sel => {
         const el = document.querySelector(sel);
@@ -685,27 +594,44 @@
         }
       });
 
-      // Load saved preference
+      // Load saved language preference
       const savedLang = localStorage.getItem('panchayat-lang') || 'en';
-      select.value = savedLang;
-      applyTranslation(savedLang);
+      currentLanguage = savedLang;
+      const select = document.getElementById('lang-select');
+      if (select) {
+        select.value = savedLang;
+        select.addEventListener('change', (e) => {
+          const lang = e.target.value;
+          currentLanguage = lang;
+          localStorage.setItem('panchayat-lang', lang);
+          applyTranslation(lang);
+          renderGalleryGrid();
+          const toastMsg = lang === 'hi' ? '🇮🇳 भाषा बदलकर हिंदी कर दी गई है।' : lang === 'te' ? '🇮🇳 భాష తెలుగులోకి మార్చబడింది.' : '🇬🇧 Language switched to English.';
+          showToast(toastMsg, 'success');
+        });
+      }
 
-      select.addEventListener('change', (e) => {
-        const lang = e.target.value;
-        applyTranslation(lang);
-        
-        // Sync back to localStorage for main page
-        localStorage.setItem('panchayat-lang', lang);
-
-        const toastMsg = lang === 'hi' ? '🇮🇳 भाषा बदलकर हिंदी कर दी गई है।' : lang === 'te' ? '🇮🇳 భాష తెలుగులోకి మార్చబడింది.' : '🇬🇧 Language switched to English.';
-        showToast(toastMsg, 'success');
-      });
-    }
+      // Fetch dynamic gallery and initialize
+      fetch('/api/main-page-config')
+        .then(res => {
+          if (!res.ok) throw new Error('Network response not ok');
+          return res.json();
+        })
+        .then(config => {
+          galleryItems = config.gallery || [];
+          applyTranslation(currentLanguage);
+          renderGalleryGrid();
+          initGalleryTabs();
+          initLightbox();
+        })
+        .catch(err => {
+          console.error("Error loading gallery data:", err);
+          showToast("❌ Failed to load gallery items from server.", "error");
+        });
+    });
 
     function applyTranslation(lang) {
       currentLanguage = lang;
-      
-      // Set lang class on body and attribute on html
       document.body.classList.remove('lang-en', 'lang-hi', 'lang-te');
       document.body.classList.add('lang-' + lang);
       document.documentElement.setAttribute('lang', lang);
@@ -727,89 +653,149 @@
       });
     }
 
-    // Tabs functionality
+    function renderGalleryGrid() {
+      const grid = document.getElementById('media-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      const lang = currentLanguage || 'en';
+
+      if (galleryItems.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:var(--color-text-muted); padding: 40px 0;">No media items configured. Manage them in Admin Panel.</p>';
+        return;
+      }
+
+      galleryItems.forEach((item, index) => {
+        const title = item.title[lang] || item.title.en || '';
+        const desc = item.desc[lang] || item.desc.en || '';
+        const badge = item.badge[lang] || item.badge.en || '';
+        const caption = item.caption[lang] || item.caption.en || '';
+        const thumbnail = item.thumbnail || (item.type === 'video' ? 'assets/housing_layout.png' : item.src);
+
+        const card = document.createElement('article');
+        card.className = 'media-card';
+        card.setAttribute('data-type', item.type);
+        card.setAttribute('data-src', item.src);
+        card.setAttribute('data-caption', caption);
+        card.setAttribute('data-index', index);
+
+        card.innerHTML = `
+          <div class="media-preview-container">
+            <span class="media-badge">${badge}</span>
+            <img src="${thumbnail}" alt="${title}" loading="lazy" style="${item.type === 'video' ? 'filter: brightness(0.6);' : ''}">
+            ${item.type === 'video' ? `
+              <div class="video-play-overlay">
+                <div class="play-btn-circle">▶</div>
+              </div>
+            ` : ''}
+          </div>
+          <div class="media-details">
+            <h3>${title}</h3>
+            <p>${desc}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      filterGalleryGrid();
+    }
+
+    function filterGalleryGrid() {
+      const activeTabBtn = document.querySelector('.gallery-tab-btn.active');
+      if (!activeTabBtn) return;
+      const category = activeTabBtn.getAttribute('data-tab');
+      const cards = document.querySelectorAll('.media-card');
+      cards.forEach(card => {
+        const type = card.getAttribute('data-type');
+        if (category === 'all' || type === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
     function initGalleryTabs() {
       const tabs = document.querySelectorAll('.gallery-tab-btn');
-      const cards = document.querySelectorAll('.media-card');
-
       tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          tabs.forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-
-          const category = tab.getAttribute('data-tab');
-
-          cards.forEach(card => {
-            const type = card.getAttribute('data-type');
-            if (category === 'all' || type === category) {
-              card.style.display = 'block';
-            } else {
-              card.style.display = 'none';
-            }
-          });
+        const newTab = tab.cloneNode(true);
+        tab.parentNode.replaceChild(newTab, tab);
+        newTab.addEventListener('click', () => {
+          document.querySelectorAll('.gallery-tab-btn').forEach(t => t.classList.remove('active'));
+          newTab.classList.add('active');
+          filterGalleryGrid();
         });
       });
     }
 
-    // Lightbox popup functionality
     function initLightbox() {
       const viewer = document.getElementById('lightbox-viewer');
       const container = document.getElementById('lightbox-media-container');
       const caption = document.getElementById('lightbox-caption-text');
       const closeBtn = document.getElementById('lightbox-close-btn');
-      const cards = document.querySelectorAll('.media-card');
+      const grid = document.getElementById('media-grid');
+      if (!grid) return;
 
-      cards.forEach(card => {
-        card.addEventListener('click', () => {
-          const type = card.getAttribute('data-type');
-          const src = card.getAttribute('data-src');
-          let cap = card.getAttribute('data-caption');
+      const newGrid = grid.cloneNode(false);
+      while(grid.firstChild) {
+        newGrid.appendChild(grid.firstChild);
+      }
+      grid.parentNode.replaceChild(newGrid, grid);
 
-          // Translate caption if applicable
-          const titleEl = card.querySelector('h3');
-          if (titleEl && currentLanguage !== 'en') {
-            const titleId = '#' + titleEl.id;
-            const captionKey = titleId + '-caption';
-            if (translationDictionary[currentLanguage] && translationDictionary[currentLanguage][captionKey]) {
-              cap = translationDictionary[currentLanguage][captionKey];
-            }
-          }
+      newGrid.addEventListener('click', (e) => {
+        const card = e.target.closest('.media-card');
+        if (!card) return;
 
-          container.innerHTML = ''; // Reset container
+        const type = card.getAttribute('data-type');
+        const src = card.getAttribute('data-src');
+        const cap = card.getAttribute('data-caption');
 
-          if (type === 'photo') {
-            const img = document.createElement('img');
-            img.src = src;
-            img.className = 'lightbox-media';
-            img.alt = 'Enlarged View';
-            container.appendChild(img);
-          } else if (type === 'video') {
-            const video = document.createElement('video');
-            video.src = src;
-            video.className = 'lightbox-media';
-            video.controls = true;
-            video.autoplay = true;
-            video.style.outline = 'none';
-            container.appendChild(video);
-          }
+        container.innerHTML = '';
 
-          caption.textContent = cap;
-          viewer.classList.add('active');
-        });
+        if (type === 'photo') {
+          const img = document.createElement('img');
+          img.src = src;
+          img.className = 'lightbox-media';
+          img.alt = 'Enlarged View';
+          container.appendChild(img);
+        } else if (type === 'video') {
+          const video = document.createElement('video');
+          video.src = src;
+          video.className = 'lightbox-media';
+          video.controls = true;
+          video.autoplay = true;
+          video.style.outline = 'none';
+          container.appendChild(video);
+        }
+
+        caption.textContent = cap;
+        viewer.classList.add('active');
       });
 
       const closeLightbox = () => {
         viewer.classList.remove('active');
-        container.innerHTML = ''; // Stop video playback
+        container.innerHTML = '';
       };
 
-      closeBtn.addEventListener('click', closeLightbox);
-      viewer.addEventListener('click', (e) => {
-        if (e.target === viewer) closeLightbox();
+      const newCloseBtn = closeBtn.cloneNode(true);
+      closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+      newCloseBtn.addEventListener('click', closeLightbox);
+
+      const newViewer = viewer.cloneNode(true);
+      viewer.parentNode.replaceChild(newViewer, viewer);
+      newViewer.addEventListener('click', (e) => {
+        if (e.target === newViewer || e.target.id === 'lightbox-close-btn') closeLightbox();
       });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeLightbox();
-      });
+
+      document.removeEventListener('keydown', escapeKeyHandler);
+      document.addEventListener('keydown', escapeKeyHandler);
+
+      function escapeKeyHandler(e) {
+        if (e.key === 'Escape') {
+          newViewer.classList.remove('active');
+          document.getElementById('lightbox-media-container').innerHTML = '';
+        }
+      }
     }
 
     function showToast(message, type = 'success') {
@@ -825,5 +811,4 @@
       }, 3000);
     }
   </script>
-</body>
 </html>

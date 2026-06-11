@@ -1094,6 +1094,268 @@
           }
         }
       }
-    }
+    },
+    "gallery": [
+      {
+        "id": "gallery-item-1",
+        "type": "photo",
+        "src": "assets/gond_walls.png",
+        "thumbnail": "assets/gond_walls.png",
+        "badge": {
+          "en": "Heritage",
+          "hi": "धरोहर",
+          "te": "వారసత్వం"
+        },
+        "title": {
+          "en": "Traditional Murals",
+          "hi": "पारंपरिक भित्ति चित्र",
+          "te": "సాంప్రదాయ గోడ చిత్రాలు"
+        },
+        "desc": {
+          "en": "Visually preserving folklore, painting methods, and local animal-centric narratives on village house walls.",
+          "hi": "घरों की दीवारों पर स्थानीय आदिवासी लोककथाओं और जीवन शैलियों का दृश्य संरक्षण।",
+          "te": "గ్రామ గోడలపై స్థానిక గిరిజన జానపద కథలు మరియు జీవనశైలిని సంరక్షించే చిత్రాలు."
+        },
+        "caption": {
+          "en": "Traditional Tribal Murals - Visually preserving folklore and Banjara narratives on courtyard walls.",
+          "hi": "पारंपरिक आदिवासी भित्ति चित्र - आंगन की दीवारों पर लोककथाओं और बंजारा आख्यानों को कलात्मक रूप से सहेजना।",
+          "te": "సాంప్రదాయ గిరిజన గోడ చిత్రాలు - ముంగిలి గోడలపై బంజారా జానపద కథలను దృశ్యరూపంలో భద్రపరచడం।"
+        }
+      },
+      {
+        "id": "gallery-item-2",
+        "type": "photo",
+        "src": "assets/housing_layout.png",
+        "thumbnail": "assets/housing_layout.png",
+        "badge": {
+          "en": "Eco-Home",
+          "hi": "पर्यावरण-घर",
+          "te": "ఇకో-ఇల్లు"
+        },
+        "title": {
+          "en": "Climate-Smart Housing",
+          "hi": "जलवायु-अनुकूल आवास",
+          "te": "వాతావరణ-అనుకూల గృహాలు"
+        },
+        "desc": {
+          "en": "Traditional clay tile roofs and courtyard homes optimized naturally for seasonal comfort and durability.",
+          "hi": "मौसम के अनुकूल प्राकृतिक रूप से डिजाइन की गई पारंपरिक मिट्टी और खपरैल की छतें।",
+          "te": "కాలానుగుణ సౌకర్యం కోసం మట్టి మరియు సాంప్రదాయ పెంకులతో కూడిన ఇళ్ళ నిర్మాణం."
+        },
+        "caption": {
+          "en": "Climate-Smart Mud Housing - Mud-insulated and clay-tiled courtyards designed for heat dispersion.",
+          "hi": "जलवायु-अनुकूल मिट्टी के घर - गर्मी के फैलाव के लिए डिज़ाइन किए गए मिट्टी-रोधी और मिट्टी-की-खपरैल वाले आंगन।",
+          "te": "వాతావరణ అనుకూల మట్టి గృహాలు - ఉష్ణోగ్రతను తగ్గించేలా మట్టి మరియు సాంప్రదాయ పెంకులతో కూడిన ఇళ్ళ నిర్మాణం।"
+        }
+      },
+      {
+        "id": "gallery-item-3",
+        "type": "photo",
+        "src": "assets/local_weaving.png",
+        "thumbnail": "assets/local_weaving.png",
+        "badge": {
+          "en": "Artistry",
+          "hi": "कलाकृति",
+          "te": "కళా నైపుణ్యం"
+        },
+        "title": {
+          "en": "Lambadi Craftsmanship",
+          "hi": "लंबाडी शिल्प कौशल",
+          "te": "లంబాడీ హస్తకళ"
+        },
+        "desc": {
+          "en": "Generational handloom mirror-work and embroidery created by local Banjara artisan cooperatives.",
+          "hi": "स्थानीय कारीगरों द्वारा हस्तनिर्मित जीवंत दर्पण and कढ़ाई कार्यों की बंजारा विरासत।",
+          "te": "శక్తివంతమైన దారాలు, అద్దాలతో కూడిన లంబాడీ/బంజారా తరాల కళా వైభవం."
+        },
+        "caption": {
+          "en": "Lambadi Embroidery Craft - Intricate generational mirror-work and embroidery details.",
+          "hi": "लंबाडी कढ़ाई शिल्प - पीढ़ी-दर-पीढ़ी चली आ रही जटिल दर्पण-कार्य और कढ़ाई विवरण।",
+          "te": "లంబాడీ క్రాఫ్ట్ - అద్దాల పనితనం మరియు చేనేత ఎంబ్రాయిడరీ యొక్క కళా వైభవం।"
+        }
+      },
+      {
+        "id": "gallery-item-4",
+        "type": "photo",
+        "src": "assets/village_solar.png",
+        "thumbnail": "assets/village_solar.png",
+        "badge": {
+          "en": "Infrastructure",
+          "hi": "बुनियादी ढांचा",
+          "te": "మౌలిక వసతులు"
+        },
+        "title": {
+          "en": "Smart Solar Lights",
+          "hi": "स्मार्ट सोलर लाइट्स",
+          "te": "స్మార్ట్ సోలార్ లైట్లు"
+        },
+        "desc": {
+          "en": "Smart off-grid solar LED street lights installed along paved roads to secure community movement after sunset.",
+          "hi": "सूर्यास्त के बाद सुरक्षा और गतिविधि के लिए पक्की सड़कों पर सौर एलईडी लाइट्स की व्यवस्था।",
+          "te": "రాత్రి పూట భద్రత కొరకు గ్రామ రహదారులపై ఏర్పాటు చేసిన సోలార్ వీధి దీపాలు."
+        },
+        "caption": {
+          "en": "Infrastructure - Solar LED street lighting arrays illuminating stone-paved lanes.",
+          "hi": "बुनियादी ढांचा - पत्थरों से पक्की सड़कों को रोशन करने वाली सौर एलईडी स्ट्रीट लाइट प्रणाली।",
+          "te": "మౌలిక వసతులు - గ్రామ సిమెంట్ రహదారులపై ఏర్పాటు చేసిన సోలార్ వీధి దీపాలు।"
+        }
+      },
+      {
+        "id": "gallery-item-5",
+        "type": "video",
+        "src": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "thumbnail": "assets/housing_layout.png",
+        "badge": {
+          "en": "Documentary",
+          "hi": "दस्तावेज",
+          "te": "డాక్యుమెంటరీ"
+        },
+        "title": {
+          "en": "Tanda Livelihood Overview",
+          "hi": "टांडा आजीविका विवरण",
+          "te": "తండా జీవనోపాధి సమాచారం"
+        },
+        "desc": {
+          "en": "A visual documentary highlighting paddy farming fields, youth workshops, and local governance practices.",
+          "hi": "धान की खेती, युवा कार्यशालाओं और स्थानीय पंचायत प्रशासन के कार्यों का वृत्तचित्र।",
+          "te": "వరి వ్యవసాయం, యువ నైపుణ్య శిక్షణలు మరియు స్థానిక పరిపాలనను చూపించే చిన్న చిత్రం."
+        },
+        "caption": {
+          "en": "Seetharamapuram Tanda Documentary - Overall development milestones, local livelihood summaries, and community overview.",
+          "hi": "सीतारामपुरम टांडा वृत्तचित्र - समग्र विकास उपलब्धियां, स्थानीय आजीविका और ग्राम पंचायत का संक्षिप्त विवरण।",
+          "te": "సీతారామపురం తండా డాక్యుమెంటరీ - గ్రామీణ అభివృద్ధి మైలురాళ్ళు మరియు జీవనోపాధి వివరణ."
+        }
+      },
+      {
+        "id": "gallery-item-6",
+        "type": "video",
+        "src": "https://www.w3schools.com/html/movie.mp4",
+        "thumbnail": "assets/gond_walls.png",
+        "badge": {
+          "en": "Conservation",
+          "hi": "संरक्षण",
+          "te": "రక్షణ"
+        },
+        "title": {
+          "en": "Rainwater Harvesting Grid",
+          "hi": "वर्षा जल संचयन प्रणाली",
+          "te": "వర్షపు నీటి నిల్వ వ్యవస్థ"
+        },
+        "desc": {
+          "en": "Technical highlights of check dams and smart borewell recharges deployed to combat summer dependency.",
+          "hi": "गर्मी में पानी की कमी को दूर करने के लिए निर्मित चेक डेम और स्मार्ट बोरवेल संचयन ग्रिड।",
+          "te": "ఎండకాలం నీటి సమస్య పరిష్కారానికి నిర్మించిన చెక్ డ్యామ్‌లు మరియు స్మార్ట్ రీఛార్జ్ గ్రిడ్లు."
+        },
+        "caption": {
+          "en": "Water Conservation Projects - Building borewell recharge systems and community rainwater catchment basins.",
+          "hi": "जल संरक्षण परियोजनाएं - गर्मी में पानी की कमी को रोकने के लिए निर्मित चेक डेम और रीचार्ज कुओं का विवरण।",
+          "te": "జల సంరక్షణ ప్రాజెక్టులు - భూగర్భ జలాల పెంపునకు నిర్మించిన చెక్ డ్యామ్‌లు మరియు రీఛార్జ్ గ్రిడ్ల దృశ్యం."
+        }
+      },
+      {
+        "id": "gallery-item-7",
+        "type": "photo",
+        "src": "assets/seetharama_temple.png",
+        "thumbnail": "assets/seetharama_temple.png",
+        "badge": {
+          "en": "Landmark",
+          "hi": "तीर्थस्थल",
+          "te": "ఆలయం"
+        },
+        "title": {
+          "en": "Seetharama Temple",
+          "hi": "सीताराम मंदिर",
+          "te": "సీతారామ ఆలయం"
+        },
+        "desc": {
+          "en": "Historic spiritual landmark on the outskirts of the hills, representing the core heritage of our community.",
+          "hi": "ऐतिहासिक आध्यात्मिक स्थल, जो पहाड़ियों की तलहटी में स्थित है और हमारी गाँव की आध्यात्मिक धरोहर का केंद्र है।",
+          "te": "కొండల చివరన ఉన్న చారిత్రాత్మక ఆలయం, ఇది మన గ్రామం యొక్క आध्यात्मिक వారసత్వ కేంద్రం."
+        },
+        "caption": {
+          "en": "Historic Seetharama Temple - Spiritual landmark on the outskirts of the hills, representing the core heritage.",
+          "hi": "ऐतिहासिक सीताराम मंदिर - पहाड़ियों की तलहटी में स्थित आध्यात्मिक स्थल, जो हमारे गाँव की अनमोल धरोहर है।",
+          "te": "చారిత్రక సీతారామ ఆలయం - కొండల చివరన ఉన్న आध्यात्मिक వారసత్వ కేంద్రం."
+        }
+      },
+      {
+        "id": "gallery-item-8",
+        "type": "photo",
+        "src": "assets/teej_festival.png",
+        "thumbnail": "assets/teej_festival.png",
+        "badge": {
+          "en": "Culture",
+          "hi": "संस्कृति",
+          "te": "సంస్కృతి"
+        },
+        "title": {
+          "en": "Teej Celebration",
+          "hi": "तीज महोत्सव",
+          "te": "తీజ్ పండుగ వేడుకలు"
+        },
+        "desc": {
+          "en": "A traditional colorful festival celebrated by the Lambadi community with devotional dances and tribal songs.",
+          "hi": "पारंपरिक बंजारा तीज नृत्य और लोक गीतों के साथ मनाया जाने वाला रंगारंग उत्सव।",
+          "te": "సాంప్రదాయ బంజారా నృత్యాలు మరియు జానపద పాటలతో జరుపుకునే రంగుల పండుగ వేడుక."
+        },
+        "caption": {
+          "en": "Banjara Teej Celebration - A traditional colorful festival celebrated with devotional dances and tribal songs.",
+          "hi": "बंजारा तीज महोत्सव - पारंपरिक बंजारा नृत्य और लोक गीतों के साथ मनाया जाने वाला रंगारंग आदिवासी उत्सव।",
+          "te": "బంజారా తీజ్ వేడుకలు - సాంప్రదాయ నృత్యాలు మరియు జానపద పాటలతో జరుపుకునే పండుగ."
+        }
+      },
+      {
+        "id": "gallery-item-9",
+        "type": "photo",
+        "src": "assets/panchayat_office.png",
+        "thumbnail": "assets/panchayat_office.png",
+        "badge": {
+          "en": "Development",
+          "hi": "विकास",
+          "te": "అభివృద్ధి"
+        },
+        "title": {
+          "en": "Solar Panchayat Office",
+          "hi": "सौर पंचायत कार्यालय",
+          "te": "సోలార్ పంచాయతీ కార్యాలయం"
+        },
+        "desc": {
+          "en": "The newly upgraded solar-powered administration building serving as a digital service node for all residents.",
+          "hi": "सौर ऊर्जा से संचालित आधुनिक प्रशासनिक भवन जो गाँव के लिए डिजिटल सेवा केंद्र के रूप में कार्य करता है।",
+          "te": "డిజిటల్ సివిక్ సేవలను అందించే సోలార్ విద్యుత్ ఆధారిత నూతన పరిపాలన భవనం."
+        },
+        "caption": {
+          "en": "Solar Panchayat Office - The newly upgraded solar-powered administration building serving as a digital service node.",
+          "hi": "सौर पंचायत कार्यालय - डिजिटल नागरिक सेवाओं के लिए सौर ऊर्जा से संचालित उन्नत प्रशासनिक भवन।",
+          "te": "సోలార్ పంచాయతీ కార్యాలయం - డిజిటల్ సివిక్ సేవలను అందించే సోలార్ విద్యుత్ ఆధారిత నూతన పరిపాలన భవనం."
+        }
+      },
+      {
+        "id": "gallery-item-10",
+        "type": "video",
+        "src": "https://www.w3schools.com/html/mov_bbb.mp4",
+        "thumbnail": "assets/drone_fields.png",
+        "badge": {
+          "en": "Aerial",
+          "hi": "हव�����ई दृश्य",
+          "te": "వైమానిక"
+        },
+        "title": {
+          "en": "Agricultural Drone Footage",
+          "hi": "ड्रोन द्वा��ा ���ृषि दृश्य",
+          "te": "డ్రోన్ వ్యవసాయ దృశ్యాలు"
+        },
+        "desc": {
+          "en": "Panoramic aerial views of lush green paddy fields, maize crops, and surrounding forest groves.",
+          "hi": "हरे-भरे धान के खेतों, मक्का की फसलों और सुंदर जंगलों का ऊपर से लिया गया विहंगम दृश्य।",
+          "te": "పచ్చని వరి పొలాలు, మక్కా పంటలు మరియు అడవి పరిసరాల యొక్క వైమానిక పనోరమిక్ వీక్షణం."
+        },
+        "caption": {
+          "en": "Agricultural Drone Footage - Panoramic aerial views of lush green paddy fields and surrounding forest groves.",
+          "hi": "ड्रोन द्वारा कृषि दृश्य - हरे-भरे धान के खेतों और सुंदर जंगलों का ऊपर से लिया गया विहंगम दृश्य।",
+          "te": "డ్రోన్ వ్యవసాయ దృశ్యాలు - పచ్చని వరి పొలాలు మరియు అడవి పరిసరాల వైమానిక వీక్షణం."
+        }
+      }
+    ]
   }
 }
