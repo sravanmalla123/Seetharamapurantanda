@@ -2999,5 +2999,100 @@ function renderDynamicMainPageContent() {
       noticesContainer.appendChild(noticeItem);
     });
   }
+
+  // 6. Smart Village Pillars
+  const pillars = mainPageConfig.pillars;
+  if (pillars) {
+    const pillarKeys = ['health', 'infra', 'water', 'energy', 'materials', 'social', 'green'];
+    pillarKeys.forEach(key => {
+      const descEl = document.getElementById(`pillar-desc-${key}`);
+      if (descEl && pillars[key]) {
+        descEl.textContent = pillars[key][lang] || pillars[key]['en'] || '';
+      }
+    });
+  }
+
+  // 7. History & Heritage
+  const history = mainPageConfig.history;
+  if (history) {
+    const historyTitleEl = document.getElementById('about-history-title');
+    if (historyTitleEl && history.title) {
+      historyTitleEl.textContent = history.title[lang] || history.title['en'] || '';
+    }
+    ['p1', 'p2', 'p3', 'p4'].forEach(key => {
+      const pEl = document.getElementById(`about-history-${key}`);
+      if (pEl && history[key]) {
+        let prefix = '';
+        if (key === 'p1') prefix = `<strong>${lang === 'te' ? 'చరిత్ర' : lang === 'hi' ? 'इतिहास' : 'History'}:</strong> `;
+        else if (key === 'p2') prefix = `<strong>${lang === 'te' ? 'పేరు వెనుక చరిత్ర' : lang === 'hi' ? 'नामकरण उत्पत्ति' : 'Naming Origin'}:</strong> `;
+        else if (key === 'p3') prefix = `<strong>${lang === 'te' ? 'గిరిజన గుర్తింపు & సంస్కృతి' : lang === 'hi' ? 'आदिवासी पहचान और संस्कृति' : 'Tribal Identity & Culture'}:</strong> `;
+        else if (key === 'p4') prefix = `<strong>${lang === 'te' ? 'భౌగోళికం & భాష' : lang === 'hi' ? 'भूगोल और भाषा' : 'Geography & Language'}:</strong> `;
+        
+        pEl.innerHTML = prefix + (history[key][lang] || history[key]['en'] || '');
+      }
+    });
+  }
+
+  // 8. Profile Counts
+  const profileCounts = mainPageConfig.profileCounts;
+  if (profileCounts) {
+    const countKeys = ['houses', 'population', 'male', 'female', 'children', 'seniors', 'disabled'];
+    countKeys.forEach(key => {
+      const countEl = document.getElementById(`profile-count-${key}`);
+      if (countEl && profileCounts[key] !== undefined) {
+        countEl.textContent = profileCounts[key];
+      }
+    });
+  }
+
+  // 9. Infrastructure Audit
+  const infraAudit = mainPageConfig.infraAudit;
+  if (infraAudit) {
+    const infraKeys = ['roads', 'drainage', 'streetlights', 'bus', 'halls', 'office'];
+    infraKeys.forEach(key => {
+      const descEl = document.getElementById(`infra-desc-${key}`);
+      if (descEl && infraAudit[key]) {
+        descEl.textContent = infraAudit[key][lang] || infraAudit[key]['en'] || '';
+      }
+    });
+  }
+
+  // 10. Helpline & Contacts
+  const contacts = mainPageConfig.contacts;
+  if (contacts) {
+    const contactKeys = ['secretary', 'sarpanch', 'address', 'timing'];
+    contactKeys.forEach(key => {
+      const valEl = document.getElementById(`about-modal-contact-val-${key}`);
+      if (valEl && contacts[key]) {
+        valEl.textContent = contacts[key][lang] || contacts[key]['en'] || '';
+      }
+    });
+  }
+
+  // 11. FAQs Accordion
+  const faqContainer = document.getElementById('faq-accordion-container');
+  if (faqContainer && mainPageConfig.faqs) {
+    faqContainer.innerHTML = '';
+    mainPageConfig.faqs.forEach(faq => {
+      const qText = faq.question[lang] || faq.question['en'] || '';
+      const aText = faq.answer[lang] || faq.answer['en'] || '';
+      
+      const faqItem = document.createElement('div');
+      faqItem.className = 'faq-item';
+      faqItem.innerHTML = `
+        <button class="faq-trigger" aria-expanded="false" aria-controls="${faq.id}">
+          <span>${qText}</span>
+          <span class="faq-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" id="${faq.id}" aria-hidden="true">
+          <p>${aText}</p>
+        </div>
+      `;
+      faqContainer.appendChild(faqItem);
+    });
+    
+    // Reinitialize accordion listeners
+    initFaqAccordion();
+  }
 }
 

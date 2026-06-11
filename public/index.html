@@ -514,34 +514,34 @@
             
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
               <div style="background: var(--color-primary-pale); border-radius: var(--radius-md); padding: 12px; text-align: center; border: 1px solid var(--color-border);">
-                <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);">230</div>
+                <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);" id="profile-count-houses">230</div>
                 <div style="font-size: 0.75rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase;" id="profile-label-houses">Total Houses</div>
               </div>
               <div style="background: var(--color-primary-pale); border-radius: var(--radius-md); padding: 12px; text-align: center; border: 1px solid var(--color-border);">
-                <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);">1,245</div>
+                <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);" id="profile-count-population">1,245</div>
                 <div style="font-size: 0.75rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase;" id="profile-label-population">Total Population</div>
               </div>
               <div style="background: var(--color-primary-pale); border-radius: var(--radius-md); padding: 12px; text-align: center; border: 1px solid var(--color-border);">
-                <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);">635</div>
+                <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);" id="profile-count-male">635</div>
                 <div style="font-size: 0.75rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase;" id="profile-label-male">Male Population</div>
               </div>
               <div style="background: var(--color-primary-pale); border-radius: var(--radius-md); padding: 12px; text-align: center; border: 1px solid var(--color-border);">
-                <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);">610</div>
+                <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);" id="profile-count-female">610</div>
                 <div style="font-size: 0.75rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase;" id="profile-label-female">Female Population</div>
               </div>
               <div style="background: var(--color-primary-pale); border-radius: var(--radius-md); padding: 12px; text-align: center; border: 1px solid var(--color-border);">
-                <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);">120</div>
+                <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);" id="profile-count-children">120</div>
                 <div style="font-size: 0.75rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase;" id="profile-label-children">Children (0-6 yrs)</div>
               </div>
               <div style="background: var(--color-primary-pale); border-radius: var(--radius-md); padding: 12px; text-align: center; border: 1px solid var(--color-border);">
-                <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);">95</div>
+                <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-secondary);" id="profile-count-seniors">95</div>
                 <div style="font-size: 0.75rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase;" id="profile-label-seniors">Senior Citizens</div>
               </div>
             </div>
             
             <div style="background: var(--color-primary-pale); border-radius: var(--radius-md); padding: 12px 20px; border: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center;">
               <span style="font-size: 0.82rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase;" id="profile-label-disabled">Disabled Persons</span>
-              <span style="font-size: 1.3rem; font-weight: 800; color: var(--color-secondary);">18</span>
+              <span style="font-size: 1.3rem; font-weight: 800; color: var(--color-secondary);" id="profile-count-disabled">18</span>
             </div>
           </div>
         </div>
@@ -823,46 +823,8 @@
           <p class="section-desc">Quick answers on civic documents, application wait times, and direct portal usage guidelines.</p>
         </div>
         
-        <div class="faq-accordion-wrapper">
-          <div class="faq-item">
-            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-ans-1">
-              <span>📄 What documents are needed to apply for a Land Adangal record?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-ans-1" aria-hidden="true">
-              <p>You need your 12-digit Survey Number, Aadhaar Card for identification, and the registered landowner name particulars. Applications can be submitted directly through the Vital Certificates tab.</p>
-            </div>
-          </div>
-          
-          <div class="faq-item">
-            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-ans-2">
-              <span>⏱️ How long does it take to resolve a filed grievance ticket?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-ans-2" aria-hidden="true">
-              <p>Standard civic issues (like water valve leaks or garbage clearing) are inspected within 24–48 hours. Major road repairs or electrical grid concerns may take 7–10 working days. You can track your status live in the Grievance tab.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-ans-3">
-              <span>💼 Who is eligible for the MGNREGS rural labor wages?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-ans-3" aria-hidden="true">
-              <p>All adult residents of the Seetharamapuram Tanda Gram Panchayat holding a valid Job Card are eligible for standard daily manual labor. Wages are set at ₹300/day. You can browse active muster rolls in the Employment Portal.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-trigger" aria-expanded="false" aria-controls="faq-ans-4">
-              <span>🎒 How do students apply for school shuttle transport pass subsidies?</span>
-              <span class="faq-icon" aria-hidden="true">+</span>
-            </button>
-            <div class="faq-answer" id="faq-ans-4" aria-hidden="true">
-              <p>Parents can apply by submitting a resident verification letter from the Ward Member and a study certificate from the high school. Once verified, free passes for the Gram Panchayat Shuttle are issued at the school complex.</p>
-            </div>
-          </div>
+        <div class="faq-accordion-wrapper" id="faq-accordion-container">
+          <!-- Dynamically populated from JS -->
         </div>
       </div>
     </section>
@@ -1501,19 +1463,19 @@
         <div class="water-info-panel">
           <div class="water-metric-row">
             <span id="about-modal-contact-label-secretary">Panchayat Secretary</span>
-            <span>Shri K. Narasimha (Mobile: +91 94408 12345)</span>
+            <span id="about-modal-contact-val-secretary">Shri K. Narasimha (Mobile: +91 94408 12345)</span>
           </div>
           <div class="water-metric-row">
             <span id="about-modal-contact-label-sarpanch">Sarpanch Office</span>
-            <span>Smt. L. Devika (Email: contact@seetharamapuram.gp.gov.in)</span>
+            <span id="about-modal-contact-val-sarpanch">Smt. L. Devika (Email: contact@seetharamapuram.gp.gov.in)</span>
           </div>
           <div class="water-metric-row">
             <span id="about-modal-contact-label-address">Panchayat Office Address</span>
-            <span id="about-modal-contact-desc-address">Gram Panchayat Complex, Main Street, Seetharamapuram Tanda</span>
+            <span id="about-modal-contact-val-address">Gram Panchayat Complex, Main Street, Seetharamapuram Tanda</span>
           </div>
           <div class="water-metric-row">
             <span id="about-modal-contact-label-timing">Office Timing</span>
-            <span id="about-modal-contact-desc-timing">9:30 AM - 5:00 PM (Monday to Saturday)</span>
+            <span id="about-modal-contact-val-timing">9:30 AM - 5:00 PM (Monday to Saturday)</span>
           </div>
         </div>
       </div>

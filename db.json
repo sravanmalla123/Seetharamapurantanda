@@ -477,22 +477,54 @@
       }
     },
     "stats": {
-      "population": { "en": "1,245", "hi": "1,245", "te": "1,245" },
-      "families": { "en": "230", "hi": "230", "te": "230" },
-      "literacy": { "en": "68%", "hi": "68%", "te": "68%" },
-      "occupation": { "en": "Agriculture", "hi": "कृषि", "te": "వ్యవసాయం" }
+      "population": {
+        "en": "1,245",
+        "hi": "1,245",
+        "te": "1,245"
+      },
+      "families": {
+        "en": "230",
+        "hi": "230",
+        "te": "230"
+      },
+      "literacy": {
+        "en": "68%",
+        "hi": "68%",
+        "te": "68%"
+      },
+      "occupation": {
+        "en": "Agriculture",
+        "hi": "कृषि",
+        "te": "వ్యవసాయం"
+      }
     },
     "budget": {
-      "water": { "percent": 35, "amount": "₹5.2L" },
-      "roads": { "percent": 25, "amount": "₹3.7L" },
-      "forest": { "percent": 20, "amount": "₹3.0L" },
-      "transit": { "percent": 20, "amount": "₹3.0L" }
+      "water": {
+        "percent": 35,
+        "amount": "₹5.2L"
+      },
+      "roads": {
+        "percent": 25,
+        "amount": "₹3.7L"
+      },
+      "forest": {
+        "percent": 20,
+        "amount": "₹3.0L"
+      },
+      "transit": {
+        "percent": 20,
+        "amount": "₹3.0L"
+      }
     },
     "notices": [
       {
         "id": "notice-1",
         "date": "08 June 2026",
-        "category": { "en": "Development", "hi": "विकास", "te": "అభివృద్ధి" },
+        "category": {
+          "en": "Development",
+          "hi": "विकास",
+          "te": "అభివృద్ధి"
+        },
         "badgeClass": "info",
         "title": {
           "en": "Bus Stand & ZP High School Construction Status",
@@ -508,7 +540,11 @@
       {
         "id": "notice-2",
         "date": "07 June 2026",
-        "category": { "en": "Critical", "hi": "महत्वपूर्ण", "te": "అత్యవసరం" },
+        "category": {
+          "en": "Critical",
+          "hi": "महत्वपूर्ण",
+          "te": "అత్యవసరం"
+        },
         "badgeClass": "critical",
         "title": {
           "en": "Gram Sabha Notice: Seasonal Water Resource Planning",
@@ -524,7 +560,11 @@
       {
         "id": "notice-3",
         "date": "05 June 2026",
-        "category": { "en": "Healthcare", "hi": "स्वास्थ्य सेवा", "te": "ఆరోగ్య సంరక్షణ" },
+        "category": {
+          "en": "Healthcare",
+          "hi": "स्वास्थ्य सेवा",
+          "te": "ఆరోగ్య సంరక్షణ"
+        },
         "badgeClass": "healthcare",
         "title": {
           "en": "Scheduled Free Health Camp This Weekend",
@@ -540,7 +580,11 @@
       {
         "id": "notice-4",
         "date": "02 June 2026",
-        "category": { "en": "Info", "hi": "जानकारी", "te": "సమాచారం" },
+        "category": {
+          "en": "Info",
+          "hi": "जानकारी",
+          "te": "సమాచారం"
+        },
         "badgeClass": "info",
         "title": {
           "en": "Primary School Transport Subsidies Released",
@@ -553,6 +597,187 @@
           "te": "హైస్కూల్ ప్రయాణాలకు విద్యార్థుల రవాణా భత్యం ఆమోదించబడింది. అర్హులైన తల్లిదండ్రులు ధృవీకరణ పత్ర దరఖాస్తులను డౌన్‌లోడ్ చేసుకుని భత్యం పొందడానికి సమర్పించవచ్చు।"
         }
       }
-    ]
+    ],
+    "pillars": {
+      "health": {
+        "en": "Medical sub-center readiness, regular sanitation drives, digital health record management, and clean drinking water audits.",
+        "hi": "चिकित्सा उप-केंद्र की तैयारी, नियमित स्वच्छता अभियान, डिजिटल स्वास्थ्य रिकॉर्ड प्रबंधन और स्वच्छ पेयजल लेखापरीक्षा।",
+        "te": "వైద్య ఉప-కేంద్రం సన్నద్ధత, రెగ్యులర్ శానిటేషన్ డ్రైవ్‌లు, డిజిటల్ హెల్త్ రికార్డ్ నిర్వహణ మరియు తాగునీటి నాణ్యత తనిఖీలు."
+      },
+      "infra": {
+        "en": "All-weather paved roads, community center enhancements, solar street grid integration, and digital Gram Panchayat hubs.",
+        "hi": "सभी मौसमों के अनुकूल पक्की सड़कें, सामुदायिक केंद्र संवर्धन, सौर स्ट्रीट ग्रिड एकीकरण और डिजिटल ग्राम पंचायत केंद्र।",
+        "te": "అన్ని కాలాలకు సరిపోయే పక్కా రోడ్లు, కమ్యూనిటీ సెంటర్ అభివృద్ధి, సోలార్ వీధి దీపాల అనుసంధానం మరియు డిజిటల్ గ్రామ పంచాయతీ కేంద్రాలు."
+      },
+      "water": {
+        "en": "Community rainwater catchment structures, check dam status audits, and smart borewell groundwater level monitoring.",
+        "hi": "सामुदायिक वर्षा जल संचयन संरचनाएं, चेक डैम स्थिति ऑडिट और स्मार्ट बोरवेल भूजल स्तर की निगरानी।",
+        "te": "కమ్యూనిటీ వర్షపు నీటి నిల్వ నిర్మాణాలు, చెక్ డ్యామ్ ఆడిట్ మరియు బోరుబావుల భూగర్భ జలాల పర్యవేక్షణ."
+      },
+      "energy": {
+        "en": "Off-grid solar grid operation, LED street lights, energy efficiency audits, and bio-gas grid initiatives.",
+        "hi": "ऑफ-ग्रिड सौर ग्रिड संचालन, एलईडी स्ट्रीट लाइट, ऊर्जा दक्षता ऑडिट और बायो-गैस ग्रिड पहल।",
+        "te": "ఆఫ్-గ్రిడ్ సోలార్ గ్రిడ్ నిర్వహణ, ఎల్ఈడి వీధి దీపాలు, ఇంధన పొదుపు ఆడిట్ మరియు బయో-గ్యాస్ గ్రిడ్ కార్యక్రమాలు."
+      },
+      "materials": {
+        "en": "Zero-plastic packaging policies, waste sorting centers (dry/wet sorting), and local eco-materials promotion.",
+        "hi": "शून्य-प्लास्टिक पैकेजिंग नीतियां, कचरा छँटाई केंद्र (सूखा/गीला छँटाई) और स्थानीय पर्यावरण-सामग्री का प्रचार।",
+        "te": "ప్లాస్టిక్ రహిత ప్యాకేజింగ్ విధానాలు, వ్యర్థాల విభజన కేంద్రాలు (పొడి/తడి వ్యర్థాలు) మరియు స్థానిక పర్యావరణ అనుకూల వస్తువుల ప్రోత్సాహం."
+      },
+      "social": {
+        "en": "Self-help groups (SHG) banking cooperatives, Gram Sabha citizen meetings, and primary school transit assistance.",
+        "hi": "स्वयं सहायता समूह (एसएचजी) बैंकिंग सहकारी समितियां, ग्राम सभा नागरिक बैठकें और प्राथमिक विद्यालय पारगमन सहायता।",
+        "te": "స్వయం సహాయక సంఘాల (SHG) బ్యాంకింగ్ సహకార సంఘాలు, గ్రామసభ పౌరుల సమావేశాలు మరియు ప్రాథమిక పాఠశాల రవాణా సహాయం."
+      },
+      "green": {
+        "en": "Social forestry tree plantation coordinates audits, climate-resilient crop selections, and organic compost networks.",
+        "hi": "सामाजिक वानिकी वृक्षारोपण निर्देशांक ऑडिट, जलवायु-लचीली फसल चयन और जैविक खाद नेटवर्क।",
+        "te": "సామాజిక అటవీ తోటల పెంపకం ఆడిట్, వాతావరణాన్ని తట్టుకునే పంటల ఎంపిక మరియు సేంద్రీయ ఎరువుల నెట్‌వర్క్."
+      }
+    },
+    "history": {
+      "title": {
+        "en": "Our Heritage & Settlement",
+        "hi": "हमारी विरासत और समझौता",
+        "te": "మన వారసత్వం & స్థావరం"
+      },
+      "p1": {
+        "en": "Seetharamapuram Tanda was settled several generations ago by families from the Banjara (Lambadi) tribe who migrated to the rocky terrains of Andhra Pradesh. Starting as a temporary settlement (Tanda), it grew into a permanent resilient agricultural hub.",
+        "hi": "सीतारामपुरम टांडा कई पीढ़ी पहले बंजारा (लंबाडी) जनजाति के परिवारों द्वारा बसाया गया था, जो आंध्र प्रदेश के पथरीले इलाकों में प्रवास कर गए थे। एक अस्थायी बस्ती (टांडा) के रूप में शुरू होकर, यह एक स्थायी लचीले कृषि केंद्र के रूप में विकसित हुआ।",
+        "te": "ఆంధ్రప్రదేశ్‌లోని రాతి ప్రాంతాలకు వలస వచ్చిన బంజారా (లంబాడీ) తెగకు చెందిన కుటుంబాల చేత సీతారామపురం తండా కొన్ని తరాల క్రితం ఏర్పడింది. ఒక తాత్కాలిక నివాసం (తండా)గా ప్రారంభమై, ఇది శాశ్వత వ్యవసాయ కేంద్రంగా ఎదిగింది."
+      },
+      "p2": {
+        "en": "The name 'Seetharamapuram' is derived from the historic Seetharama Temple located on the outskirts of the hills, where the community continues to offer prayers. The suffix 'Tanda' is the traditional term for a Banjara settlement.",
+        "hi": "नाम 'सीतारामपुरम' पहाड़ियों के बाहरी इलाके में स्थित ऐतिहासिक सीताराम मंदिर से लिया गया है, जहां समुदाय प्रार्थना करना जारी रखता है। प्रत्यय 'टांडा' बंजारा बस्ती के लिए पारंपरिक शब्द है।",
+        "te": "'సీతారామపురం' అనే పేరు కొండల వెలుపల ఉన్న చారిత్రక సీతారామ దేవాలయం నుండి వచ్చింది, ఇక్కడ ప్రజలు ఇప్పటికీ పూజలు చేస్తుంటారు. 'తండా' అనేది సాంప్రదాయ బంజారా నివాస పదం."
+      },
+      "p3": {
+        "en": "The village is predominantly inhabited by the Lambadi community, preserving ancestral customs, traditional multi-colored embroidered dresses featuring mirrors and cowrie shells, and dancing to Teej festival folk songs.",
+        "hi": "यह गाँव मुख्य रूप से लंबाडी समुदाय द्वारा आबाद है, जो पैतृक रीति-रिवाजों, दर्पणों और कौड़ी के गोले वाली पारंपरिक बहु-रंगीन कढ़ाई वाले परिधानों को संरक्षित करता है, और तीज उत्सव के लोक गीतों पर नृत्य करता है।",
+        "te": "ఈ గ్రామంలో ప్రధానంగా లంబాడీ సంఘం వారు నివసిస్తున్నారు, వీరు పూర్వీకుల ఆచారాలను, అద్దాలు మరియు కవ్వడి షెల్స్ కలిగిన సాంప్రదాయ బహుళ-రంగుల ఎంబ్రాయిడరీ దుస్తులను మరియు తీజ్ పండుగ జానపద పాటల నృత్యాలను కాపాడుకుంటున్నారు."
+      },
+      "p4": {
+        "en": "Geography & Language: Nestled in the Palnadu district of Andhra Pradesh, our residents speak Gor Boli (the native Lambadi dialect) internally, and Telugu or Hindi for external trade. The nearby towns are Macherla (15 km) and Nagarjuna Sagar (28 km).",
+        "hi": "भूगोल और भाषा: आंध्र प्रदेश के पलनाडु जिले में स्थित, हमारे निवासी आंतरिक रूप से गोर बोली (मूल लंबाडी बोली) बोलते हैं, और बाहरी व्यापार के लिए तेलुगु या हिंदी बोलते हैं। पास के शहर माचेरला (15 किमी) और नागार्जुन सागर (28 किमी) हैं।",
+        "te": "భౌగోళికం & భాష: ఆంధ్రప్రదేశ్‌లోని పల్నాడు జిల్లాలో ఉన్న మా నివాసితులు అంతర్గతంగా గోర్ బోలి (లంబాడీ యాస) మాట్లాడతారు, మరియు వ్యాపార అవసరాల కోసం తెలుగు లేదా హిందీ మాట్లాడతారు. సమీప పట్టణాలు మాచర్ల (15 కి.మీ) మరియు నాగార్జున సాగర్ (28 కి.మీ)."
+      }
+    },
+    "profileCounts": {
+      "houses": "230",
+      "population": "1,245",
+      "male": "635",
+      "female": "610",
+      "children": "120",
+      "seniors": "95",
+      "disabled": "18"
+    },
+    "infraAudit": {
+      "roads": {
+        "en": "Paved cement roads connect all hamlets to the highway.",
+        "hi": "पक्की सीमेंट सड़कें सभी बस्तियों को राजमार्ग से जोड़ती हैं।",
+        "te": "సిమెంట్ రోడ్లు అన్ని తండాలను హైవేకి అనుసంధానిస్తాయి."
+      },
+      "drainage": {
+        "en": "Southern channels require desilting and concrete reinforcement.",
+        "hi": "दक्षिणी चैनलों को गाद निकालने और कंक्रीट सुदृढीकरण की आवश्यकता होती है।",
+        "te": "దక్షిణ కాలువలకు పూడికతీత మరియు కాంక్రీటు బలోపేతం అవసరం."
+      },
+      "streetlights": {
+        "en": "85 automated smart solar LED street lights installed.",
+        "hi": "85 स्वचालित स्मार्ट सौर एलईडी स्ट्रीट लाइटें स्थापित की गईं।",
+        "te": "85 ఆటోమేటెడ్ స్మార్ట్ సోలార్ LED వీధి దీపాలు ఏర్పాటు చేయబడ్డాయి."
+      },
+      "bus": {
+        "en": "Main road transit shelter is undergoing solar roof upgrade (60% complete).",
+        "hi": "मुख्य सड़क पारगमन आश्रय में सौर छत उन्नयन चल रहा है (60% पूर्ण)।",
+        "te": "ప్రధాన రహదారి బస్సు షెల్టర్ సోలార్ రూఫ్ అప్‌గ్రేడ్ ప్రక్రియలో ఉంది (60% పూర్తయింది)."
+      },
+      "halls": {
+        "en": "Clean community centers active for local festivals and assemblies.",
+        "hi": "स्थानीय त्योहारों और सभाओं के लिए सक्रिय स्वच्छ सामुदायिक केंद्र।",
+        "te": "స్థానిక పండుగలు మరియు సమావేశాల కోసం కమ్యూనిటీ హాళ్ళు అందుబాటులో ఉన్నాయి."
+      },
+      "office": {
+        "en": "Panchayat Office functions as a solar-powered digital citizen hub.",
+        "hi": "पंचायत कार्यालय सौर ऊर्जा संचालित डिजिटल नागरिक केंद्र के रूप में कार्य करता है।",
+        "te": "పంచాయతీ కార్యాలయం సోలార్ పవర్డ్ డిజిటల్ సిటిజన్ హబ్‌గా పనిచేస్తుంది."
+      }
+    },
+    "faqs": [
+      {
+        "id": "faq-1",
+        "question": {
+          "en": "What documents are needed to apply for a Land Adangal record?",
+          "hi": "भूमि अदंगल रिकॉर्ड के लिए आवेदन करने के लिए किन दस्तावेजों की आवश्यकता है?",
+          "te": "భూమి అడంగల్ రికార్డు కోసం దరఖాస్తు చేసుకోవడానికి ఏ పత్రాలు అవసరం?"
+        },
+        "answer": {
+          "en": "You need your 12-digit Survey Number, Aadhaar Card for identification, and the registered landowner name particulars. Applications can be submitted directly through the Vital Certificates tab.",
+          "hi": "आपको अपना 12-अंकीय सर्वेक्षण नंबर, पहचान के लिए आधार कार्ड और पंजीकृत भूमि मालिक के नाम के विवरण की आवश्यकता होगी। आवेदन सीधे महत्वपूर्ण प्रमाणपत्र टैब के माध्यम से जमा किए जा सकते हैं।",
+          "te": "మీకు మీ 12-అంకెల సర్వే నంబర్, గుర్తింపు కోసం ఆధార్ కార్డ్ మరియు రిజిస్టర్డ్ భూయజమాని పేరు వివరాలు అవసరం. దరఖాస్తులను నేరుగా వైటల్ సర్టిఫికేట్ ట్యాబ్ ద్వారా సమర్పించవచ్చు."
+        }
+      },
+      {
+        "id": "faq-2",
+        "question": {
+          "en": "How long does it take to resolve a filed grievance ticket?",
+          "hi": "दर्ज की गई शिकायत टिकट को हल करने में कितना समय लगता है?",
+          "te": "దాఖలు చేసిన సమస్య పరిష్కారానికి ఎంత సమయం పడుతుంది?"
+        },
+        "answer": {
+          "en": "Standard civic issues (like water valve leaks or garbage clearing) are inspected within 24–48 hours. Major road repairs or electrical grid concerns may take 7–10 working days. You can track your status live in the Grievance tab.",
+          "hi": "मानक नागरिक मुद्दों (जैसे पानी के वाल्व लीक या कचरा साफ करना) का 24-48 घंटों के भीतर निरीक्षण किया जाता है। प्रमुख सड़क मरम्मत या विद्युत ग्रिड संबंधी चिंताओं में 7-10 कार्य दिवस लग सकते हैं। आप शिकायत टैब में अपनी स्थिति को लाइव ट्रैक कर सकते हैं।",
+          "te": "సాధారణ పౌర సమస్యలు (నీటి వాల్వ్ లీకులు లేదా చెత్త క్లియరింగ్ వంటివి) 24-48 గంటల్లో పరిష్కరించబడతాయి. ప్రధాన రహదారి మరమ్మతులు లేదా విద్యుత్ గ్రిడ్ సమస్యలకు 7-10 పని దినాలు పట్టవచ్చు. మీరు గ్రీవెన్స్ ట్యాబ్‌లో మీ స్థితిని లైవ్‌గా ట్రాక్ చేయవచ్చు."
+        }
+      },
+      {
+        "id": "faq-3",
+        "question": {
+          "en": "Who is eligible for the MGNREGS rural labor wages?",
+          "hi": "मनरेगा ग्रामीण श्रम मजदूरी के लिए कौन पात्र है?",
+          "te": "MGNREGS గ్రామీణ ఉపాధి వేతనాలకు ఎవరు అర్హులు?"
+        },
+        "answer": {
+          "en": "All adult residents of the Seetharamapuram Tanda Gram Panchayat holding a valid Job Card are eligible for standard daily manual labor. Wages are set at ₹300/day. You can browse active muster rolls in the Employment Portal.",
+          "hi": "एक वैध जॉब कार्ड धारक सीतारामपुरम टांडा ग्राम पंचायत के सभी वयस्क निवासी मानक दैनिक शारीरिक श्रम के लिए पात्र हैं। मजदूरी ₹300/दिन निर्धारित है। आप रोजगार पोर्टल में सक्रिय मस्टर रोल ब्राउज़ कर सकते हैं।",
+          "te": "చెల్లుబాటు అయ్యే జాబ్ కార్డ్ ఉన్న సీతారామపురం తండా గ్రామ పంచాయతీ వయోజన నివాసితులందరూ ప్రామాణిక రోజువారీ శారీరక శ్రమకు అర్హులు. వేతనం రోజుకు ₹300 గా నిర్ణయించబడింది. మీరు ఉపాధి పోర్టల్‌లో యాక్టివ్ మస్టర్ రోల్స్ బ్రౌజ్ చేయవచ్చు."
+        }
+      },
+      {
+        "id": "faq-4",
+        "question": {
+          "en": "How do students apply for school shuttle transport pass subsidies?",
+          "hi": "छात्र स्कूल शटल परिवहन पास सब्सिडी के लिए कैसे आवेदन करते हैं?",
+          "te": "విద్యార్థులు పాఠశాల రవాణా రాయితీ పాస్ కోసం ఎలా దరఖాస్తు చేసుకోవాలి?"
+        },
+        "answer": {
+          "en": "Parents can apply by submitting a resident verification letter from the Ward Member and a study certificate from the high school. Once verified, free passes for the Gram Panchayat Shuttle are issued at the school complex.",
+          "hi": "अभिभावक वार्ड सदस्य से निवास सत्यापन पत्र और हाई स्कूल से अध्ययन प्रमाण पत्र जमा करके आवेदन कर सकते हैं। एक बार सत्यापित होने के बाद, स्कूल परिसर में ग्राम पंचायत शटल के लिए मुफ्त पास जारी किए जाते हैं।",
+          "te": "తల్లిదండ్రులు వార్డు సభ్యుని నుండి నివాస ధృవీకరణ పత్రం మరియు ఉన్నత పాఠశాల నుండి స్టడీ సర్టిఫికేట్ సమర్పించడం ద్వారా దరఖాస్తు చేసుకోవచ్చు. ధృవీకరించిన తర్వాత, పాఠశాల ప్రాంగణంలో గ్రామ పంచాయతీ షటిల్ కోసం ఉచిత పాస్ జారీ చేయబడుతుంది."
+        }
+      }
+    ],
+    "contacts": {
+      "secretary": {
+        "en": "Shri K. Narasimha (Mobile: +91 94408 12345)",
+        "hi": "श्री के. नरसिम्हा (मोबाइल: +91 94408 12345)",
+        "te": "శ్రీ కె. నరసింహ (మొబైల్: +91 94408 12345)"
+      },
+      "sarpanch": {
+        "en": "Smt. L. Devika (Email: contact@seetharamapuram.gp.gov.in)",
+        "hi": "श्रीमती एल. देविका (ईमेल: contact@seetharamapuram.gp.gov.in)",
+        "te": "శ్రీమతి ఎల్. దేవిక (ఈమెయిల్: contact@seetharamapuram.gp.gov.in)"
+      },
+      "address": {
+        "en": "Gram Panchayat Complex, Main Street, Seetharamapuram Tanda",
+        "hi": "ग्राम पंचायत परिसर, मुख्य सड़क, सीतारामपुरम टांडा",
+        "te": "గ్రామ పంచాయతీ కార్యాలయం, మెయిన్ స్ట్రీట్, సీతారామపురం తండా"
+      },
+      "timings": {
+        "en": "9:30 AM - 5:00 PM (Monday to Saturday)",
+        "hi": "9:30 AM - 5:00 PM (सोमवार से शनिवार)",
+        "te": "9:30 AM - 5:00 PM (సోమవారం నుండి శనివారం)"
+      }
+    }
   }
 }
