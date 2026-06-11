@@ -1251,6 +1251,13 @@
               <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="infra-roads-en" class="form-control" /></div>
               <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="infra-roads-hi" class="form-control" /></div>
               <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="infra-roads-te" class="form-control" /></div>
+              <div class="lang-input-row" style="margin-top: 4px;">
+                <span class="lang-badge" style="background-color: var(--color-primary-light); min-width: 55px; font-size: 0.62rem;">STATUS</span>
+                <select id="infra-roads-status" class="form-control">
+                  <option value="good">Good Condition ✓</option>
+                  <option value="needs_improvement">Needs Improvement ⚠️</option>
+                </select>
+              </div>
             </div>
             <!-- Drainage -->
             <div class="lang-input-group">
@@ -1258,6 +1265,13 @@
               <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="infra-drainage-en" class="form-control" /></div>
               <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="infra-drainage-hi" class="form-control" /></div>
               <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="infra-drainage-te" class="form-control" /></div>
+              <div class="lang-input-row" style="margin-top: 4px;">
+                <span class="lang-badge" style="background-color: var(--color-primary-light); min-width: 55px; font-size: 0.62rem;">STATUS</span>
+                <select id="infra-drainage-status" class="form-control">
+                  <option value="good">Good Condition ✓</option>
+                  <option value="needs_improvement">Needs Improvement ⚠️</option>
+                </select>
+              </div>
             </div>
             <!-- Streetlights -->
             <div class="lang-input-group">
@@ -1265,6 +1279,13 @@
               <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="infra-streetlights-en" class="form-control" /></div>
               <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="infra-streetlights-hi" class="form-control" /></div>
               <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="infra-streetlights-te" class="form-control" /></div>
+              <div class="lang-input-row" style="margin-top: 4px;">
+                <span class="lang-badge" style="background-color: var(--color-primary-light); min-width: 55px; font-size: 0.62rem;">STATUS</span>
+                <select id="infra-streetlights-status" class="form-control">
+                  <option value="good">Good Condition ✓</option>
+                  <option value="needs_improvement">Needs Improvement ⚠️</option>
+                </select>
+              </div>
             </div>
             <!-- Bus facilities -->
             <div class="lang-input-group">
@@ -1272,6 +1293,13 @@
               <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="infra-bus-en" class="form-control" /></div>
               <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="infra-bus-hi" class="form-control" /></div>
               <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="infra-bus-te" class="form-control" /></div>
+              <div class="lang-input-row" style="margin-top: 4px;">
+                <span class="lang-badge" style="background-color: var(--color-primary-light); min-width: 55px; font-size: 0.62rem;">STATUS</span>
+                <select id="infra-bus-status" class="form-control">
+                  <option value="good">Good Condition ✓</option>
+                  <option value="needs_improvement">Needs Improvement ⚠️</option>
+                </select>
+              </div>
             </div>
             <!-- Community Halls -->
             <div class="lang-input-group">
@@ -1279,6 +1307,13 @@
               <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="infra-halls-en" class="form-control" /></div>
               <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="infra-halls-hi" class="form-control" /></div>
               <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="infra-halls-te" class="form-control" /></div>
+              <div class="lang-input-row" style="margin-top: 4px;">
+                <span class="lang-badge" style="background-color: var(--color-primary-light); min-width: 55px; font-size: 0.62rem;">STATUS</span>
+                <select id="infra-halls-status" class="form-control">
+                  <option value="good">Good Condition ✓</option>
+                  <option value="needs_improvement">Needs Improvement ⚠️</option>
+                </select>
+              </div>
             </div>
             <!-- Panchayat building -->
             <div class="lang-input-group">
@@ -1286,6 +1321,13 @@
               <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="infra-office-en" class="form-control" /></div>
               <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="infra-office-hi" class="form-control" /></div>
               <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="infra-office-te" class="form-control" /></div>
+              <div class="lang-input-row" style="margin-top: 4px;">
+                <span class="lang-badge" style="background-color: var(--color-primary-light); min-width: 55px; font-size: 0.62rem;">STATUS</span>
+                <select id="infra-office-status" class="form-control">
+                  <option value="good">Good Condition ✓</option>
+                  <option value="needs_improvement">Needs Improvement ⚠️</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -1721,6 +1763,12 @@
           document.getElementById(`infra-${inf}-en`).value = config.infraAudit[inf].en || '';
           document.getElementById(`infra-${inf}-hi`).value = config.infraAudit[inf].hi || '';
           document.getElementById(`infra-${inf}-te`).value = config.infraAudit[inf].te || '';
+          
+          let defaultStatus = 'good';
+          if (inf === 'drainage' || inf === 'bus') {
+            defaultStatus = 'needs_improvement';
+          }
+          document.getElementById(`infra-${inf}-status`).value = config.infraAudit[inf].status || defaultStatus;
         });
 
         // Populate Water Dashboard
@@ -2303,31 +2351,37 @@
       // Get Infrastructure Audit Notes
       cachedPageConfig.infraAudit = {
         roads: {
+          status: document.getElementById('infra-roads-status').value,
           en: document.getElementById('infra-roads-en').value.trim(),
           hi: document.getElementById('infra-roads-hi').value.trim(),
           te: document.getElementById('infra-roads-te').value.trim()
         },
         drainage: {
+          status: document.getElementById('infra-drainage-status').value,
           en: document.getElementById('infra-drainage-en').value.trim(),
           hi: document.getElementById('infra-drainage-hi').value.trim(),
           te: document.getElementById('infra-drainage-te').value.trim()
         },
         streetlights: {
+          status: document.getElementById('infra-streetlights-status').value,
           en: document.getElementById('infra-streetlights-en').value.trim(),
           hi: document.getElementById('infra-streetlights-hi').value.trim(),
           te: document.getElementById('infra-streetlights-te').value.trim()
         },
         bus: {
+          status: document.getElementById('infra-bus-status').value,
           en: document.getElementById('infra-bus-en').value.trim(),
           hi: document.getElementById('infra-bus-hi').value.trim(),
           te: document.getElementById('infra-bus-te').value.trim()
         },
         halls: {
+          status: document.getElementById('infra-halls-status').value,
           en: document.getElementById('infra-halls-en').value.trim(),
           hi: document.getElementById('infra-halls-hi').value.trim(),
           te: document.getElementById('infra-halls-te').value.trim()
         },
         office: {
+          status: document.getElementById('infra-office-status').value,
           en: document.getElementById('infra-office-en').value.trim(),
           hi: document.getElementById('infra-office-hi').value.trim(),
           te: document.getElementById('infra-office-te').value.trim()

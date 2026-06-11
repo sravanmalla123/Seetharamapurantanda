@@ -3088,6 +3088,26 @@ function renderDynamicMainPageContent() {
       if (descEl && infraAudit[key]) {
         descEl.textContent = infraAudit[key][lang] || infraAudit[key]['en'] || '';
       }
+      const goodEl = document.getElementById(`infra-good-${key}`);
+      const needsEl = document.getElementById(`infra-needs-${key}`);
+      if (goodEl && needsEl && infraAudit[key]) {
+        let fallback = 'good';
+        if (key === 'drainage' || key === 'bus') {
+          fallback = 'needs_improvement';
+        }
+        const isGood = (infraAudit[key].status || fallback) === 'good';
+        if (isGood) {
+          goodEl.textContent = '✓';
+          goodEl.style.color = 'var(--color-success)';
+          needsEl.textContent = '—';
+          needsEl.style.color = 'inherit';
+        } else {
+          goodEl.textContent = '—';
+          goodEl.style.color = 'inherit';
+          needsEl.textContent = '✓';
+          needsEl.style.color = 'var(--color-warning)';
+        }
+      }
     });
   }
 
