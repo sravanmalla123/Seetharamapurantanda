@@ -16,5 +16,7 @@
   ],
   "author": "Department of Rural Development & Panchayat Raj",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "jsdom": "^29.1.1"
+  }
 }

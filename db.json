@@ -461,7 +461,7 @@
     },
     "hero": {
       "title": {
-        "en": "\"Honoring Heritage, Striving for Sustainability\"",
+        "en": "Seetharampuram Thanda Village Portal!",
         "hi": "\"धरोहर का संरक्षण, सतत प्रगति का प्रयास\"",
         "te": "\"వారసత్వాన్ని గౌరవిస్తూ, సుస్థిరత కోసం శ్రమిద్దాం\""
       },
@@ -664,7 +664,7 @@
     },
     "profileCounts": {
       "houses": "230",
-      "population": "1,245",
+      "population": "2000",
       "male": "635",
       "female": "610",
       "children": "120",
@@ -673,31 +673,37 @@
     },
     "infraAudit": {
       "roads": {
+        "status": "good",
         "en": "Paved cement roads connect all hamlets to the highway.",
         "hi": "पक्की सीमेंट सड़कें सभी बस्तियों को राजमार्ग से जोड़ती हैं।",
         "te": "సిమెంట్ రోడ్లు అన్ని తండాలను హైవేకి అనుసంధానిస్తాయి."
       },
       "drainage": {
+        "status": "needs_improvement",
         "en": "Southern channels require desilting and concrete reinforcement.",
         "hi": "दक्षिणी चैनलों को गाद निकालने और कंक्रीट सुदृढीकरण की आवश्यकता होती है।",
         "te": "దక్షిణ కాలువలకు పూడికతీత మరియు కాంక్రీటు బలోపేతం అవసరం."
       },
       "streetlights": {
+        "status": "good",
         "en": "85 automated smart solar LED street lights installed.",
         "hi": "85 स्वचालित स्मार्ट सौर एलईडी स्ट्रीट लाइटें स्थापित की गईं।",
         "te": "85 ఆటోమేటెడ్ స్మార్ట్ సోలార్ LED వీధి దీపాలు ఏర్పాటు చేయబడ్డాయి."
       },
       "bus": {
+        "status": "needs_improvement",
         "en": "Main road transit shelter is undergoing solar roof upgrade (60% complete).",
         "hi": "मुख्य सड़क पारगमन आश्रय में सौर छत उन्नयन चल रहा है (60% पूर्ण)।",
         "te": "ప్రధాన రహదారి బస్సు షెల్టర్ సోలార్ రూఫ్ అప్‌గ్రేడ్ ప్రక్రియలో ఉంది (60% పూర్తయింది)."
       },
       "halls": {
+        "status": "good",
         "en": "Clean community centers active for local festivals and assemblies.",
         "hi": "स्थानीय त्योहारों और सभाओं के लिए सक्रिय स्वच्छ सामुदायिक केंद्र।",
         "te": "స్థానిక పండుగలు మరియు సమావేశాల కోసం కమ్యూనిటీ హాళ్ళు అందుబాటులో ఉన్నాయి."
       },
       "office": {
+        "status": "good",
         "en": "Panchayat Office functions as a solar-powered digital citizen hub.",
         "hi": "पंचायत कार्यालय सौर ऊर्जा संचालित डिजिटल नागरिक केंद्र के रूप में कार्य करता है।",
         "te": "పంచాయతీ కార్యాలయం సోలార్ పవర్డ్ డిజిటల్ సిటిజన్ హబ్‌గా పనిచేస్తుంది."
@@ -1326,7 +1332,7 @@
         },
         "caption": {
           "en": "Solar Panchayat Office - The newly upgraded solar-powered administration building serving as a digital service node.",
-          "hi": "सौर पंचायत कार्यालय - डिजिटल नागरिक सेवाओं के लिए सौर ऊर्जा से संचालित उन्नत प्रशासनिक भवन।",
+          "hi": "सौर पंचायत कार्यालय - डिजिटल नागरिक सेवाओं के लिए सौर ऊर्जा से संचालित उन्नत प्रशासनिक भ��न।",
           "te": "సోలార్ పంచాయతీ కార్యాలయం - డిజిటల్ సివిక్ సేవలను అందించే సోలార్ విద్యుత్ ఆధారిత నూతన పరిపాలన భవనం."
         }
       },
