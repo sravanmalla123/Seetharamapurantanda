@@ -294,11 +294,20 @@
           <path d="M50,70 C40,55 45,40 50,45 C55,40 60,55 50,70 Z"/>
         </svg>
         <div>
-          <h2>Seetharampuram Thanda Administration</h2>
-          <p>Gram Panchayat Control Panel</p>
+          <h2 id="lbl-admin-title">Seetharampuram Thanda Administration</h2>
+          <p id="lbl-admin-subtitle">Gram Panchayat Control Panel</p>
         </div>
       </div>
-      <button class="logout-btn" onclick="handleLogout()">Logout 📤</button>
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <div class="lang-selector-wrapper">
+          <select id="lang-select" class="custom-lang-select" aria-label="Select Language" style="background-color: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.4); padding: 8px 12px; border-radius: var(--radius-sm); outline: none; font-family: inherit; font-size: 0.85rem; cursor: pointer;">
+            <option value="en" selected>English</option>
+            <option value="hi" style="color:#000;">हिन्दी (Hindi)</option>
+            <option value="te" style="color:#000;">తెలుగు (Telugu)</option>
+          </select>
+        </div>
+        <button class="logout-btn" onclick="handleLogout()" id="lbl-logout-btn">Logout 📤</button>
+      </div>
     </div>
   </header>
 
@@ -306,8 +315,8 @@
   <main class="admin-container">
     <!-- Admin Navigation Tabs -->
     <div class="admin-tabs">
-      <button class="admin-tab-btn active" onclick="switchAdminTab('dashboard')">📊 Dashboard & Concerns</button>
-      <button class="admin-tab-btn" onclick="switchAdminTab('editor')">✏️ Edit Main Page Content</button>
+      <button class="admin-tab-btn active" onclick="switchAdminTab('dashboard')" id="tab-btn-dashboard">📊 Dashboard & Concerns</button>
+      <button class="admin-tab-btn" onclick="switchAdminTab('editor')" id="tab-btn-editor">✏️ Edit Main Page Content</button>
     </div>
 
     <!-- TAB 1: DASHBOARD & CONCERNS -->
@@ -316,37 +325,37 @@
       <section class="admin-stats-grid">
         <div class="admin-stat-card">
           <h3 id="stat-total-tickets">0</h3>
-          <p>Total Grievances</p>
+          <p id="lbl-stat-total">Total Grievances</p>
         </div>
         <div class="admin-stat-card">
           <h3 id="stat-pending-tickets" style="color: #fb8c00;">0</h3>
-          <p>Pending Review</p>
+          <p id="lbl-stat-pending">Pending Review</p>
         </div>
         <div class="admin-stat-card">
           <h3 id="stat-resolved-tickets" style="color: #43a047;">0</h3>
-          <p>Resolved Issues</p>
+          <p id="lbl-stat-resolved">Resolved Issues</p>
         </div>
         <div class="admin-stat-card">
           <h3 id="stat-households">0</h3>
-          <p>SDG Surveyed Households</p>
+          <p id="lbl-stat-households">SDG Surveyed Households</p>
         </div>
       </section>
 
       <!-- Grievances Table -->
       <section class="admin-card">
         <div class="admin-card-header">
-          <h3>📋 Citizen Grievance Registry</h3>
+          <h3 id="lbl-grievances-title">📋 Citizen Grievance Registry</h3>
         </div>
         <div style="overflow-x: auto;">
           <table class="admin-table">
             <thead>
               <tr>
-                <th>Ticket ID</th>
-                <th>Citizen Name</th>
-                <th>Category</th>
-                <th>Registered Date</th>
-                <th>Current Status</th>
-                <th>Actions</th>
+                <th id="th-ticket">Ticket ID</th>
+                <th id="th-name">Citizen Name</th>
+                <th id="th-category">Category</th>
+                <th id="th-date">Registered Date</th>
+                <th id="th-status">Current Status</th>
+                <th id="th-actions">Actions</th>
               </tr>
             </thead>
             <tbody id="grievances-table-body">
@@ -359,12 +368,12 @@
 
         <!-- Action Panel Overlay (for status changes) -->
         <div class="update-panel" id="action-update-panel">
-          <h4 style="margin-bottom: 12px; color: var(--color-primary);">🛠️ Update Grievance Resolution Progress</h4>
+          <h4 style="margin-bottom: 12px; color: var(--color-primary);" id="lbl-update-progress-title">🛠️ Update Grievance Resolution Progress</h4>
           <form id="action-update-form" onsubmit="submitGrievanceAction(event)">
             <input type="hidden" id="action-ticket-id" />
             <div style="display: grid; grid-template-columns: 1.2fr 2fr; gap: 20px;">
               <div class="form-group">
-                <label for="action-status">New Status</label>
+                <label for="action-status" id="lbl-action-status">New Status</label>
                 <select id="action-status" class="form-control" required>
                   <option value="Submitted">Submitted</option>
                   <option value="In Progress">In Progress</option>
@@ -372,13 +381,13 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="action-details">Action Details / Resolution Remarks</label>
+                <label for="action-details" id="lbl-action-details">Action Details / Resolution Remarks</label>
                 <input type="text" id="action-details" class="form-control" required placeholder="e.g. Dispatched pipes repair crew to street 4." />
               </div>
             </div>
             <div style="margin-top: 14px; display: flex; gap: 10px;">
-              <button type="submit" class="btn btn-primary btn-sm">Save Update</button>
-              <button type="button" class="btn btn-outline btn-sm" onclick="closeActionPanel()" style="background:#fff; border-color:var(--color-border); color:var(--color-primary);">Cancel</button>
+              <button type="submit" class="btn btn-primary btn-sm" id="btn-action-save">Save Update</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="closeActionPanel()" style="background:#fff; border-color:var(--color-border); color:var(--color-primary);" id="btn-action-cancel">Cancel</button>
             </div>
           </form>
         </div>
@@ -387,19 +396,19 @@
       <!-- Household Stats Table -->
       <section class="admin-card">
         <div class="admin-card-header">
-          <h3>📊 Sustainable Development Goals (SDG) Survey Stats</h3>
+          <h3 id="lbl-sdg-title">📊 Sustainable Development Goals (SDG) Survey Stats</h3>
         </div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
           <div>
-            <h4 style="margin-bottom: 16px; color: var(--color-primary);">Key Hygiene & Asset Percentages</h4>
+            <h4 style="margin-bottom: 16px; color: var(--color-primary);" id="lbl-hygiene-title">Key Hygiene & Asset Percentages</h4>
             <div id="household-stats-list" style="display: flex; flex-direction: column; gap: 14px;">
               <!-- Dynamic stats -->
               <p>Loading survey updates...</p>
             </div>
           </div>
           <div style="display: flex; flex-direction: column; justify-content: center; background-color: var(--color-primary-pale); border-radius: var(--radius-md); padding: 24px; border: 1px dashed var(--color-border);">
-            <h5 style="margin-bottom: 6px; font-weight:700;">💡 Administration Notice</h5>
-            <p style="font-size: 0.82rem; line-height:1.4; color: var(--color-text-muted); margin: 0;">
+            <h5 style="margin-bottom: 6px; font-weight:700;" id="lbl-notice-title">💡 Administration Notice</h5>
+            <p style="font-size: 0.82rem; line-height:1.4; color: var(--color-text-muted); margin: 0;" id="lbl-notice-desc">
               Household metric percentages are calculated dynamically from survey updates logged by village volunteers. Use these indices to allocate pipeline resources and sanitation budget subsidies during the monthly Gram Sabha.
             </p>
           </div>
@@ -411,8 +420,8 @@
     <div id="tab-editor" class="admin-tab-content">
       <section class="admin-card">
         <div class="admin-card-header">
-          <h3>✏️ Modify Portal Landing Page Content</h3>
-          <button class="action-btn" onclick="saveAllPageConfig()">Save Main Page Changes 💾</button>
+          <h3 id="lbl-editor-title">✏️ Modify Portal Landing Page Content</h3>
+          <button class="action-btn" onclick="saveAllPageConfig()" id="lbl-save-config-btn">Save Main Page Changes 💾</button>
         </div>
 
         <div class="editor-form-grid">
@@ -420,7 +429,7 @@
           <div>
             <!-- Sitewide Alert Banner Editor -->
             <div class="editor-subcard">
-              <h4>🚨 Sitewide Banner Alert</h4>
+              <h4 id="lbl-sub-alert">🚨 Sitewide Banner Alert</h4>
               <div class="form-group">
                 <label style="display:flex; align-items:center; gap:8px;">
                   <input type="checkbox" id="banner-active" style="width:18px; height:18px;" />
@@ -454,7 +463,7 @@
 
             <!-- Hero Section Content Editor -->
             <div class="editor-subcard">
-              <h4>🌟 Hero Header Section</h4>
+              <h4 id="lbl-sub-hero">🌟 Hero Header Section</h4>
               <div class="lang-input-group">
                 <label>Main Welcome Title</label>
                 <div class="lang-input-row">
@@ -504,7 +513,7 @@
 
             <!-- Contact Administration Editor -->
             <div class="editor-subcard">
-              <h4>📞 Contact Administration & Helplines</h4>
+              <h4 id="lbl-sub-contacts">📞 Contact Administration & Helplines</h4>
               <div class="lang-input-group">
                 <label>Panchayat Secretary Contact Info</label>
                 <div class="lang-input-row">
@@ -569,7 +578,7 @@
 
             <!-- Water Dashboard Editor -->
             <div class="editor-subcard" style="margin-top:20px;">
-              <h4>💧 Water Availability Dashboard</h4>
+              <h4 id="lbl-sub-water">💧 Water Availability Dashboard</h4>
               <p style="font-size:0.82rem; color:var(--color-text-muted); margin-bottom:16px;">
                 Configure the village reservoir capacity, current volume, supply schedules, and water-related infrastructure details.
               </p>
@@ -683,7 +692,7 @@
 
             <!-- Agriculture Modal Editor -->
             <div class="editor-subcard" style="margin-top:20px;">
-              <h4>🌾 Agriculture Sowing & Input Support</h4>
+              <h4 id="lbl-sub-agri">🌾 Agriculture Sowing & Input Support</h4>
               <p style="font-size:0.82rem; color:var(--color-text-muted); margin-bottom:16px;">
                 Configure the top-level agricultural statistics and sowing advisories.
               </p>
@@ -890,7 +899,7 @@
 
             <!-- Health and Hygiene Editor -->
             <div class="editor-subcard" style="margin-top:20px;">
-              <h4>🏥 Health & Hygiene Services</h4>
+              <h4 id="lbl-sub-health">🏥 Health & Hygiene Services</h4>
               <p style="font-size:0.82rem; color:var(--color-text-muted); margin-bottom:16px;">
                 Configure health facilities status, sanitation metrics, and health awareness campaigns.
               </p>
@@ -995,7 +1004,7 @@
           <div>
             <!-- Glance Stats Editor -->
             <div class="editor-subcard">
-              <h4>📊 Glance Demographics Stats</h4>
+              <h4 id="lbl-sub-demographics">📊 Glance Demographics Stats</h4>
               <div class="lang-input-group">
                 <label>Total Population</label>
                 <div class="lang-input-row">
@@ -1060,7 +1069,7 @@
 
             <!-- Budget Allocations Editor -->
             <div class="editor-subcard">
-              <h4>💰 Panchayat Budget Allocations</h4>
+              <h4 id="lbl-sub-budget">💰 Panchayat Budget Allocations</h4>
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
                 <div class="form-group">
                   <label for="budget-water-pct">Water Works %</label>
@@ -1105,7 +1114,7 @@
 
             <!-- Profile Counts Editor -->
             <div class="editor-subcard">
-              <h4>👥 Village Profile Grid Counts</h4>
+              <h4 id="lbl-sub-profile">👥 Village Profile Grid Counts</h4>
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
                 <div class="form-group">
                   <label for="profile-houses">Total Houses</label>
@@ -1146,7 +1155,7 @@
 
         <!-- Smart Village Pillars Editor -->
         <div class="editor-subcard">
-          <h4>🌱 Smart Village & Sustainability Pillars Descriptions</h4>
+          <h4 id="lbl-sub-pillars">🌱 Smart Village & Sustainability Pillars Descriptions</h4>
           <p style="font-size:0.82rem; color:var(--color-text-muted); margin-bottom:16px;">
             Configure the descriptions for each of the 7 SDG/Smart Village Pillars shown in the Sustainability section.
           </p>
@@ -1205,7 +1214,7 @@
 
         <!-- History Section Editor -->
         <div class="editor-subcard">
-          <h4>📖 Village History & Heritage Paragraphs</h4>
+          <h4 id="lbl-sub-history">📖 Village History & Heritage Paragraphs</h4>
           <div class="lang-input-group">
             <label>History Section Main Title</label>
             <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="history-title-en" class="form-control" /></div>
@@ -1240,7 +1249,7 @@
 
         <!-- Infrastructure Audit Editor -->
         <div class="editor-subcard">
-          <h4>🛠️ Village Infrastructure Audit Current Action Notes</h4>
+          <h4 id="lbl-sub-infra">🛠️ Village Infrastructure Audit Current Action Notes</h4>
           <p style="font-size:0.82rem; color:var(--color-text-muted); margin-bottom:16px;">
             Configure the specific action remarks displayed for each facilities inside the Village Infrastructure Status table.
           </p>
@@ -1334,10 +1343,10 @@
 
         <!-- Notices Board Editor Section -->
         <div class="editor-subcard" style="margin-top:20px;">
-          <h4>📰 Notice Board Announcements Manager</h4>
+          <h4 id="lbl-sub-announcements">📰 Notice Board Announcements Manager</h4>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
             <p style="font-size:0.85rem; color:var(--color-text-muted); margin:0;">Create, edit, or remove official notices shown on the landing page notice board.</p>
-            <button class="action-btn" onclick="openNewNoticeForm()">Add New Notice ➕</button>
+            <button class="action-btn" onclick="openNewNoticeForm()" id="btn-new-notice">Add New Notice ➕</button>
           </div>
 
           <!-- Dynamic notices manager list -->
@@ -1425,10 +1434,10 @@
 
         <!-- Citizens FAQ Manager Section -->
         <div class="editor-subcard" style="margin-top:20px;">
-          <h4>💡 Citizen FAQ Accordion Manager</h4>
+          <h4 id="lbl-sub-faqs">💡 Citizen FAQ Accordion Manager</h4>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
             <p style="font-size:0.85rem; color:var(--color-text-muted); margin:0;">Create, edit, or remove FAQ items displayed in the Citizen Helpdesk Accordion.</p>
-            <button class="action-btn" onclick="openNewFaqForm()">Add New FAQ Item ➕</button>
+            <button class="action-btn" onclick="openNewFaqForm()" id="btn-new-faq">Add New FAQ Item ➕</button>
           </div>
 
           <!-- Dynamic FAQs manager list -->
@@ -1485,10 +1494,10 @@
 
         <!-- Photo & Video Gallery Manager Section -->
         <div class="editor-subcard" style="margin-top:20px;">
-          <h4>🖼️ Photo & Video Gallery Manager</h4>
+          <h4 id="lbl-sub-gallery">🖼️ Photo & Video Gallery Manager</h4>
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
             <p style="font-size:0.85rem; color:var(--color-text-muted); margin:0;">Create, edit, or remove photos and videos shown in the Media Gallery.</p>
-            <button class="action-btn" onclick="openNewGalleryForm()">Add New Media Item ➕</button>
+            <button class="action-btn" onclick="openNewGalleryForm()" id="btn-new-gallery">Add New Media Item ➕</button>
           </div>
 
           <!-- Dynamic gallery manager list -->
@@ -1617,6 +1626,7 @@
       }
       
       loadDashboardData();
+      initLanguageSelector();
     });
 
     function showToast(message, type = 'success') {
@@ -2941,6 +2951,175 @@
     function handleLogout() {
       sessionStorage.clear();
       window.location.replace('/');
+    }
+
+    const translationDictionary = {
+      hi: {
+        "#lbl-admin-title": "सीतारामपुरम थंडा प्रशासन",
+        "#lbl-admin-subtitle": "ग्राम पंचायत नियंत्रण कक्ष",
+        "#lbl-logout-btn": "लॉगआउट 📤",
+        "#tab-btn-dashboard": "📊 डैशबोर्ड और शिकायतें",
+        "#tab-btn-editor": "✏️ मुख्य पृष्ठ सामग्री संपादित करें",
+        
+        // Tab 1
+        "#lbl-stat-total": "कुल शिकायतें",
+        "#lbl-stat-pending": "समीक्षा के लिए लंबित",
+        "#lbl-stat-resolved": "सुलझाई गई समस्याएं",
+        "#lbl-stat-households": "एसडीजी सर्वेक्षित परिवार",
+        
+        "#lbl-grievances-title": "📋 नागरिक शिकायत पंजी",
+        "#th-ticket": "शिकायत आईडी",
+        "#th-name": "नागरिक का नाम",
+        "#th-category": "श्रेणी",
+        "#th-date": "पंजीकरण तिथि",
+        "#th-status": "वर्तमान स्थिति",
+        "#th-actions": "कार्रवाई",
+        
+        "#lbl-update-progress-title": "🛠️ शिकायत निवारण प्रगति अपडेट करें",
+        "#lbl-action-status": "नई स्थिति",
+        "#lbl-action-details": "कार्रवाई विवरण / समाधान टिप्पणी",
+        "#btn-action-save": "अपडेट सहेजें",
+        "#btn-action-cancel": "रद्द करें",
+        
+        "#lbl-sdg-title": "📊 सतत विकास लक्ष्य (SDG) सर्वेक्षण आंकड़े",
+        "#lbl-hygiene-title": "प्रमुख स्वच्छता और संपत्ति प्रतिशत",
+        "#lbl-notice-title": "💡 प्रशासनिक सूचना",
+        "#lbl-notice-desc": "गांव के स्वयंसेवकों द्वारा दर्ज किए गए सर्वेक्षण अपडेट से घरेलू मीट्रिक प्रतिशत की गणना की जाती है। मासिक ग्राम सभा के दौरान पाइपलाइन संसाधनों और स्वच्छता बजट सब्सिडी आवंटित करने के लिए इन सूचकांकों का उपयोग करें।",
+        
+        // Tab 2
+        "#lbl-editor-title": "✏️ पोर्टल लैंडिंग पृष्ठ सामग्री संशोधित करें",
+        "#lbl-save-config-btn": "मुख्य पृष्ठ परिवर्तन सहेजें 💾",
+        
+        "#lbl-sub-alert": "🚨 देशव्यापी बैनर अलर्ट",
+        "#lbl-sub-hero": "🌟 मुख्य शीर्ष लेख खंड",
+        "#lbl-sub-contacts": "📞 प्रशासनिक संपर्क और हेल्पलाइन",
+        "#lbl-sub-demographics": "📊 जनसांख्यिकी आंकड़े",
+        "#lbl-sub-budget": "💰 पंचायत बजट आवंटन",
+        "#lbl-sub-profile": "👥 ग्रामीण प्रोफ़ाइल गणना",
+        "#lbl-sub-pillars": "🌱 सतत विकास और आजीविका विकास स्तंभ",
+        "#lbl-sub-history": "📖 ग्रामीण इतिहास और विरासत पैराग्राफ",
+        "#lbl-sub-infra": "🏗️ ग्राम बुनियादी ढांचा लेखा परीक्षा",
+        "#lbl-sub-water": "🚰 जल जलाशय और गुणवत्ता डैशबोर्ड",
+        "#lbl-sub-agri": "🌾 कृषि इनपुट सहायता और बुवाई सलाह",
+        "#lbl-sub-health": "🏥 स्वास्थ्य और स्वच्छता सेवाएं",
+        
+        "#lbl-sub-announcements": "📰 सूचना बोर्ड घोषणा प्रबंधक",
+        "#btn-new-notice": "नया नोटिस जोड़ें ➕",
+        "#lbl-sub-faqs": "💡 नागरिक अक्सर पूछे जाने वाले प्रश्न प्रबंधक",
+        "#btn-new-faq": "नया अक्सर पूछे जाने वाले प्रश्न जोड़ें ➕",
+        "#lbl-sub-gallery": "🖼️ फोटो और वीडियो गैलरी प्रबंधक",
+        "#btn-new-gallery": "नया मीडिया आइटम जोड़ें ➕"
+      },
+      te: {
+        "#lbl-admin-title": "సీతారాంపురం తండా పరిపాలన",
+        "#lbl-admin-subtitle": "గ్రామ పంచాయతీ నియంత్రణ ప్యానెల్",
+        "#lbl-logout-btn": "లాగ్ అవుట్ 📤",
+        "#tab-btn-dashboard": "📊 డ్యాష్‌బోర్డ్ & సమస్యలు",
+        "#tab-btn-editor": "✏️ ప్రధాన పేజీ కంటెంట్‌ను సవరించండి",
+        
+        // Tab 1
+        "#lbl-stat-total": "మొత్తం ఫిర్యాదులు",
+        "#lbl-stat-pending": "సమీక్షలో ఉన్నవి",
+        "#lbl-stat-resolved": "పరిష్కరించబడినవి",
+        "#lbl-stat-households": "SDG సర్వే చేయబడిన ఇళ్ళు",
+        
+        "#lbl-grievances-title": "📋 పౌరుల ఫిర్యాదుల రిజిస్ట్రీ",
+        "#th-ticket": "ఫిర్యాదు ఐడి",
+        "#th-name": "పౌరుడి పేరు",
+        "#th-category": "వర్గం",
+        "#th-date": "నమోదైన తేదీ",
+        "#th-status": "ప్రస్తుత స్థితి",
+        "#th-actions": "చర్యలు",
+        
+        "#lbl-update-progress-title": "🛠️ ఫిర్యాదు పరిష్కార పురోగతిని నవీకరించండి",
+        "#lbl-action-status": "కొత్త స్థితి",
+        "#lbl-action-details": "చర్య వివరాలు / పరిష్కార వ్యాఖ్యలు",
+        "#btn-action-save": "నవీకరణను సేవ్ చేయి",
+        "#btn-action-cancel": "రద్దు చేయి",
+        
+        "#lbl-sdg-title": "📊 సుస్థిర అభివృద్ధి లక్ష్యాల (SDG) సర్వే గణాంకాలు",
+        "#lbl-hygiene-title": "ముఖ్యమైన పరిశుభ్రత & ఆస్తి శాతాలు",
+        "#lbl-notice-title": "💡 పరిపాలనా నోటీసు",
+        "#lbl-notice-desc": "గ్రామ స్వచ్ఛంద సేవకులు నమోదు చేసిన సర్వే ఆధారంగా కుటుంబ సూచికల శాతాలు లెక్కించబడతాయి. నెలవారీ గ్రామసభలో పైప్‌లైన్ వనరులు మరియు పారిశుద్ధ్య బడ్జెట్ రాయితీలను కేటాయించడానికి ఈ సూచికలను ఉపయోగించండి.",
+        
+        // Tab 2
+        "#lbl-editor-title": "✏️ పోర్టల్ ల్యాండింగ్ పేజీ కంటెంట్‌ను సవరించండి",
+        "#lbl-save-config-btn": "ప్రధాన పేజీ మార్పులను సేవ్ చేయి 💾",
+        
+        "#lbl-sub-alert": "🚨 సైట్ వ్యాప్త బ్యానర్ అలర్ట్",
+        "#lbl-sub-hero": "🌟 హీరో హెడర్ విభాగం",
+        "#lbl-sub-contacts": "📞 పరిపాలనా సంప్రదింపులు & హెల్ప్‌లైన్‌లు",
+        "#lbl-sub-demographics": "📊 జనాభా గణాంకాలు",
+        "#lbl-sub-budget": "💰 పంచాయతీ బడ్జెట్ కేటాయింపులు",
+        "#lbl-sub-profile": "👥 గ్రామ ప్రొఫైల్ లెక్కలు",
+        "#lbl-sub-pillars": "🌱 సుస్థిరత & జీవనోపాధి అభివృద్ధి స్తంభాలు",
+        "#lbl-sub-history": "📖 గ్రామ చరిత్ర & వారసత్వ పేరాలు",
+        "#lbl-sub-infra": "🏗️ గ్రామ మౌలిక సదుపాయాల ఆడిట్",
+        "#lbl-sub-water": "🚰 నీటి నిల్వ & నాణ్యత డ్యాష్‌బోర్డ్",
+        "#lbl-sub-agri": "🌾 వ్యవసాయ ఇన్పుట్ మద్దతు & విత్తన సలహాలు",
+        "#lbl-sub-health": "🏥 ఆరోగ్య & పారిశుద్ధ్య సేవలు",
+        
+        "#lbl-sub-announcements": "📰 నోటీసు బోర్డు ప్రకటనల నిర్వాహకుడు",
+        "#btn-new-notice": "కొత్త నోటీసును జోడించు ➕",
+        "#lbl-sub-faqs": "💡 పౌరుల FAQల నిర్వాహకుడు",
+        "#btn-new-faq": "కొత్త FAQ ని జోడించు ➕",
+        "#lbl-sub-gallery": "🖼️ ఫోటో & వీడియో గ్యాలరీ నిర్వాహకుడు",
+        "#btn-new-gallery": "కొత్త మీడియా అంశాన్ని జోడించు ➕"
+      }
+    };
+
+    let originalTexts = {};
+    let currentLanguage = 'en';
+
+    function initLanguageSelector() {
+      const select = document.getElementById('lang-select');
+      if (!select) return;
+
+      // Save original English texts
+      const selectors = Object.keys(translationDictionary.hi);
+      selectors.forEach(sel => {
+        const el = document.querySelector(sel);
+        if (el) {
+          originalTexts[sel] = el.innerHTML.trim();
+        }
+      });
+
+      // Load saved language preference
+      const savedLang = localStorage.getItem('panchayat-lang') || 'en';
+      select.value = savedLang;
+      applyTranslation(savedLang);
+
+      select.addEventListener('change', (e) => {
+        const lang = e.target.value;
+        applyTranslation(lang);
+        const toastMsg = lang === 'hi' ? '🇮🇳 भाषा बदलकर हिंदी कर दी गई है।' : lang === 'te' ? '🇮🇳 భాష తెలుగులోకి మార్చబడింది.' : '🇬🇧 Language switched to English.';
+        showToast(toastMsg, 'success');
+      });
+    }
+
+    function applyTranslation(lang) {
+      currentLanguage = lang;
+      localStorage.setItem('panchayat-lang', lang);
+
+      document.body.classList.remove('lang-en', 'lang-hi', 'lang-te');
+      document.body.classList.add('lang-' + lang);
+      document.documentElement.setAttribute('lang', lang);
+
+      const selectors = Object.keys(translationDictionary.hi);
+      selectors.forEach(sel => {
+        const el = document.querySelector(sel);
+        if (!el) return;
+
+        if (lang === 'en') {
+          if (originalTexts[sel]) {
+            el.innerHTML = originalTexts[sel];
+          }
+        } else {
+          if (translationDictionary[lang] && translationDictionary[lang][sel]) {
+            el.innerHTML = translationDictionary[lang][sel];
+          }
+        }
+      });
     }
   </script>
 </body>
