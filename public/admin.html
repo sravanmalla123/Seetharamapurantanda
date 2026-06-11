@@ -421,7 +421,11 @@
       <section class="admin-card">
         <div class="admin-card-header">
           <h3 id="lbl-editor-title">✏️ Modify Portal Landing Page Content</h3>
-          <button class="action-btn" onclick="saveAllPageConfig()" id="lbl-save-config-btn">Save Main Page Changes 💾</button>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="action-btn" onclick="saveAllPageConfig()" id="lbl-save-config-btn" style="background-color: var(--color-secondary);">Save Changes 💾</button>
+            <button class="action-btn" onclick="exportDatabaseFile()" style="background-color: var(--color-primary);" title="Download full db.json to commit/push to GitHub">Export db.json 📥</button>
+            <button class="action-btn" onclick="resetPageConfigToDefaults()" style="background-color: #c62828;" title="Clear local changes and load from server">Reset Defaults 🔄</button>
+          </div>
         </div>
 
         <div class="editor-form-grid">
@@ -1790,9 +1794,9 @@
     }
 
     function loadPageEditorData() {
-      fetch('/api/main-page-config')
-      .then(res => res.json())
-      .then(config => {
+      const localConfig = localStorage.getItem('panchayat-main-page-config');
+      
+      const renderEditorForm = (config) => {
         cachedPageConfig = config;
         
         // Populate Alert Banner
@@ -2061,10 +2065,35 @@
         renderAdminFaqsList();
         // Populate Gallery list editor
         renderAdminGalleryList();
+      };
+
+      if (localConfig) {
+        try {
+          renderEditorForm(JSON.parse(localConfig));
+        } catch (e) {
+          console.error("Error parsing local config:", e);
+        }
+      }
+
+      fetch('/api/main-page-config')
+      .then(res => res.json())
+      .then(config => {
+        if (localConfig) {
+          try {
+            const merged = { ...config, ...JSON.parse(localConfig) };
+            renderEditorForm(merged);
+          } catch (e) {
+            renderEditorForm(config);
+          }
+        } else {
+          renderEditorForm(config);
+        }
       })
       .catch(err => {
         console.error('Error loading config:', err);
-        showToast('❌ Failed to retrieve page config from server.', 'error');
+        if (!localConfig) {
+          showToast('❌ Failed to retrieve page config from server.', 'error');
+        }
       });
     }
 
@@ -2757,6 +2786,9 @@
         }
       };
 
+      // Write config changes directly to local storage to override dynamic rendering on the main & gallery pages
+      localStorage.setItem('panchayat-main-page-config', JSON.stringify(cachedPageConfig));
+
       fetch('/api/main-page-config', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -2771,8 +2803,52 @@
       })
       .catch(err => {
         console.error('Error saving config:', err);
-        showToast('❌ Failed to update main page configurations on server.', 'error');
+        showToast('✓ Changes saved to browser cache! (Server write skipped on read-only deployment; use "Export db.json" to persist)', 'warning');
       });
+    }
+
+    function exportDatabaseFile() {
+      if (!cachedPageConfig) {
+        showToast('⚠️ No configuration loaded to export.', 'error');
+        return;
+      }
+      
+      // Fetch latest database state from server
+      fetch('/api/export-db')
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to fetch database export from server');
+          return res.json();
+        })
+        .then(db => {
+          // Merge local modifications into the exported DB object
+          db.mainPageConfig = cachedPageConfig;
+          
+          // Trigger file download as db.json
+          const dataStr = JSON.stringify(db, null, 2);
+          const blob = new Blob([dataStr], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'db.json';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          
+          showToast('✓ db.json exported successfully! Commit and push this file to GitHub to update permanent settings.', 'success');
+        })
+        .catch(err => {
+          console.error('Error exporting database:', err);
+          showToast('❌ Failed to export database state from server.', 'error');
+        });
+    }
+
+    function resetPageConfigToDefaults() {
+      if (!confirm('Are you sure you want to clear your local overrides and revert to server defaults?')) return;
+      
+      localStorage.removeItem('panchayat-main-page-config');
+      loadPageEditorData();
+      showToast('✓ Local configurations cleared. Reverted to server defaults.', 'success');
     }
 
     function switchCropEditor(cropVal) {

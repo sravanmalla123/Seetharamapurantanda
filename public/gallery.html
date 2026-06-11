@@ -612,13 +612,38 @@
       }
 
       // Fetch dynamic gallery and initialize
+      const localConfigStr = localStorage.getItem('panchayat-main-page-config');
+      if (localConfigStr) {
+        try {
+          const localConfig = JSON.parse(localConfigStr);
+          galleryItems = localConfig.gallery || [];
+          applyTranslation(currentLanguage);
+          renderGalleryGrid();
+          initGalleryTabs();
+          initLightbox();
+        } catch (e) {
+          console.error("Error parsing local config in gallery:", e);
+        }
+      }
+
       fetch('/api/main-page-config')
         .then(res => {
           if (!res.ok) throw new Error('Network response not ok');
           return res.json();
         })
         .then(config => {
-          galleryItems = config.gallery || [];
+          let mergedGallery = config.gallery || [];
+          if (localConfigStr) {
+            try {
+              const localConfig = JSON.parse(localConfigStr);
+              if (localConfig.gallery) {
+                mergedGallery = localConfig.gallery;
+              }
+            } catch (e) {
+              console.error("Error merging local gallery config:", e);
+            }
+          }
+          galleryItems = mergedGallery;
           applyTranslation(currentLanguage);
           renderGalleryGrid();
           initGalleryTabs();
@@ -626,7 +651,9 @@
         })
         .catch(err => {
           console.error("Error loading gallery data:", err);
-          showToast("❌ Failed to load gallery items from server.", "error");
+          if (!localConfigStr) {
+            showToast("❌ Failed to load gallery items from server.", "error");
+          }
         });
     });
 

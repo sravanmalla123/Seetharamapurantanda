@@ -358,6 +358,7 @@ const server = http.createServer(async (req, res) => {
         let tapWaterCount = 0;
         let cleanEnergyCount = 0;
         let ownHouseCount = 0;
+        let aadhaarCount = 0;
 
         keys.forEach(k => {
           if (updates[k].privateToilet) toiletCount++;
@@ -365,6 +366,7 @@ const server = http.createServer(async (req, res) => {
           if (updates[k].tapWater) tapWaterCount++;
           if (updates[k].cleanEnergy) cleanEnergyCount++;
           if (updates[k].ownHouse) ownHouseCount++;
+          if (updates[k].aadhaar) aadhaarCount++;
         });
 
         res.writeHead(200);
@@ -375,14 +377,16 @@ const server = http.createServer(async (req, res) => {
             vehicle: vehicleCount,
             tapWater: tapWaterCount,
             cleanEnergy: cleanEnergyCount,
-            ownHouse: ownHouseCount
+            ownHouse: ownHouseCount,
+            aadhaar: aadhaarCount
           },
           percentages: {
             privateToilet: Math.round((toiletCount / total) * 100),
             vehicle: Math.round((vehicleCount / total) * 100),
             tapWater: Math.round((tapWaterCount / total) * 100),
             cleanEnergy: Math.round((cleanEnergyCount / total) * 100),
-            ownHouse: Math.round((ownHouseCount / total) * 100)
+            ownHouse: Math.round((ownHouseCount / total) * 100),
+            aadhaar: Math.round((aadhaarCount / total) * 100)
           }
         }));
         return;
@@ -391,7 +395,7 @@ const server = http.createServer(async (req, res) => {
       // POST /api/household-updates
       if (pathname === '/api/household-updates' && req.method === 'POST') {
         const body = await getJsonBody(req);
-        const { householdId, privateToilet, vehicle, tapWater, cleanEnergy, ownHouse } = body;
+        const { householdId, privateToilet, vehicle, tapWater, cleanEnergy, ownHouse, aadhaar } = body;
 
         if (!householdId) {
           res.writeHead(400);
@@ -408,7 +412,8 @@ const server = http.createServer(async (req, res) => {
           vehicle: !!vehicle,
           tapWater: !!tapWater,
           cleanEnergy: !!cleanEnergy,
-          ownHouse: !!ownHouse
+          ownHouse: !!ownHouse,
+          aadhaar: !!aadhaar
         };
 
         writeDb(db);
@@ -422,6 +427,7 @@ const server = http.createServer(async (req, res) => {
         let tapWaterCount = 0;
         let cleanEnergyCount = 0;
         let ownHouseCount = 0;
+        let aadhaarCount = 0;
 
         keys.forEach(k => {
           if (updates[k].privateToilet) toiletCount++;
@@ -429,6 +435,7 @@ const server = http.createServer(async (req, res) => {
           if (updates[k].tapWater) tapWaterCount++;
           if (updates[k].cleanEnergy) cleanEnergyCount++;
           if (updates[k].ownHouse) ownHouseCount++;
+          if (updates[k].aadhaar) aadhaarCount++;
         });
 
         res.writeHead(200);
@@ -439,16 +446,25 @@ const server = http.createServer(async (req, res) => {
             vehicle: vehicleCount,
             tapWater: tapWaterCount,
             cleanEnergy: cleanEnergyCount,
-            ownHouse: ownHouseCount
+            ownHouse: ownHouseCount,
+            aadhaar: aadhaarCount
           },
           percentages: {
             privateToilet: Math.round((toiletCount / total) * 100),
             vehicle: Math.round((vehicleCount / total) * 100),
             tapWater: Math.round((tapWaterCount / total) * 100),
             cleanEnergy: Math.round((cleanEnergyCount / total) * 100),
-            ownHouse: Math.round((ownHouseCount / total) * 100)
+            ownHouse: Math.round((ownHouseCount / total) * 100),
+            aadhaar: Math.round((aadhaarCount / total) * 100)
           }
         }));
+        return;
+      }
+
+      // GET /api/export-db
+      if (pathname === '/api/export-db' && req.method === 'GET') {
+        res.writeHead(200);
+        res.end(JSON.stringify(db, null, 2));
         return;
       }
 
@@ -467,6 +483,88 @@ const server = http.createServer(async (req, res) => {
         writeDb(db);
         res.writeHead(200);
         res.end(JSON.stringify({ success: true, config: db.mainPageConfig }));
+        return;
+      }
+
+      // GET /api/suggestions
+      if (pathname === '/api/suggestions' && req.method === 'GET') {
+        const list = db.suggestions || [];
+        res.writeHead(200);
+        res.end(JSON.stringify(list));
+        return;
+      }
+
+      // POST /api/suggestions
+      if (pathname === '/api/suggestions' && req.method === 'POST') {
+        const body = await getJsonBody(req);
+        const { category, title, text } = body;
+
+        if (!category || !title || !text) {
+          res.writeHead(400);
+          res.end(JSON.stringify({ error: 'Missing required parameters' }));
+          return;
+        }
+
+        if (!db.suggestions) {
+          db.suggestions = [];
+        }
+
+        const id = 'sug-' + Math.random().toString(36).substr(2, 9).toUpperCase();
+        const newSuggestion = {
+          id,
+          category,
+          title,
+          text,
+          date: new Date().toLocaleDateString('en-GB')
+        };
+
+        db.suggestions.push(newSuggestion);
+        writeDb(db);
+
+        res.writeHead(201);
+        res.end(JSON.stringify(newSuggestion));
+        return;
+      }
+
+      // GET /api/polls
+      if (pathname === '/api/polls' && req.method === 'GET') {
+        const polls = db.polls || {};
+        res.writeHead(200);
+        res.end(JSON.stringify(polls));
+        return;
+      }
+
+      // POST /api/polls/vote
+      if (pathname === '/api/polls/vote' && req.method === 'POST') {
+        const body = await getJsonBody(req);
+        const { pollId, optionId } = body;
+
+        if (!pollId || !optionId) {
+          res.writeHead(400);
+          res.end(JSON.stringify({ error: 'Missing pollId or optionId' }));
+          return;
+        }
+
+        if (!db.polls || !db.polls[pollId]) {
+          res.writeHead(404);
+          res.end(JSON.stringify({ error: 'Poll not found' }));
+          return;
+        }
+
+        const poll = db.polls[pollId];
+        const option = poll.options.find(opt => opt.id === optionId);
+
+        if (!option) {
+          res.writeHead(404);
+          res.end(JSON.stringify({ error: 'Option not found' }));
+          return;
+        }
+
+        option.votes = (option.votes || 0) + 1;
+        writeDb(db);
+
+        res.writeHead(200);
+        res.end(JSON.stringify(poll));
         return;
       }
 

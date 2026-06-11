@@ -1101,6 +1101,43 @@
         }
       }
     },
+    "villageDashboard": {
+      "overview": {
+        "totalPopulation": "2,000",
+        "totalFamilies": "230",
+        "totalHouses": "230",
+        "totalFarmers": "340",
+        "totalStudents": "185",
+        "totalEmployees": "128",
+        "sarpanchName": "Smt. L. Devika",
+        "numberOfWards": "5"
+      },
+      "statistics": {
+        "malePopulation": "1,045",
+        "femalePopulation": "955",
+        "literacyRate": "68%",
+        "employmentRate": "54%",
+        "agricultureArea": "520 Acres",
+        "irrigatedLand": "310 Acres",
+        "mainCrops": "Paddy, Maize, Chili, Pulses",
+        "farmersWithSubsidy": "280"
+      },
+      "education": {
+        "numberOfSchools": "2 (Primary & Upper Primary)",
+        "totalStudents": "185",
+        "scholarshipsProvided": "112 Students"
+      },
+      "schemes": {
+        "beneficiaries": "340 Families",
+        "activeSchemes": "8 Active Schemes",
+        "pendingApplications": "14 Applications"
+      },
+      "announcements": {
+        "upcomingEvents": "Special Health Camp (June 15)",
+        "gramSabhaMeetings": "Next Gram Sabha: June 22 at 10 AM",
+        "governmentNotifications": "New subsidy for organic manure"
+      }
+    },
     "gallery": [
       {
         "id": "gallery-item-1",
@@ -1363,5 +1400,68 @@
         }
       }
     ]
+  },
+  "suggestions": [
+    {
+      "id": "sug-1",
+      "category": "water",
+      "title": "Borewell recharge system in Southern hamlet",
+      "text": "The Southern hamlet is experiencing rapid groundwater decline. We should install a community-led borewell recharge pit near the temple.",
+      "date": "10/06/2026"
+    },
+    {
+      "id": "sug-XHQSBFPWA",
+      "category": "roads",
+      "title": "Solar light repair near school",
+      "text": "The street light near the ZP High School has been broken for 3 days.",
+      "date": "11/06/2026"
+    }
+  ],
+  "polls": {
+    "poll-1": {
+      "question": {
+        "en": "Which street needs solar light repair next?",
+        "hi": "अगली बार किस गली में सोलर लाइट मरम्मत की आवश्यकता है?",
+        "te": "తదుపరి సోలార్ లైట్ మరమ్మత్తు ఏ వీధిలో అవసరం?"
+      },
+      "options": [
+        {
+          "id": "opt-1",
+          "text": {
+            "en": "Main Road Hamlet",
+            "hi": "मुख्य मार्ग बस्ती",
+            "te": "మెయిన్ రోడ్ తండా"
+          },
+          "votes": 24
+        },
+        {
+          "id": "opt-2",
+          "text": {
+            "en": "ZP High School Lane",
+            "hi": "ZP हाई स्कूल गली",
+            "te": "జెడ్పీ హై స్కూల్ వీధి"
+          },
+          "votes": 38
+        },
+        {
+          "id": "opt-3",
+          "text": {
+            "en": "South Colony Crossing",
+            "hi": "दक्षिणी कॉलोनी क्रॉसिंग",
+            "te": "దక్షిణ కాలనీ కూడలి"
+          },
+          "votes": 15
+        },
+        {
+          "id": "opt-4",
+          "text": {
+            "en": "North Temple Lane",
+            "hi": "उत्तरी मंदिर गली",
+            "te": "ఉత్తర దేవాలయ వీధి"
+          },
+          "votes": 12
+        }
+      ]
+    }
   }
 }

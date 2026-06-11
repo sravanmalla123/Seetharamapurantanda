@@ -393,7 +393,7 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.82) 100%);
   z-index: 2;
 }
 
@@ -2626,7 +2626,7 @@ body.banjara-active .scroll-progress-bar {
 }
 
 body.banjara-active .hero {
-  background-color: rgba(45, 6, 18, 0.62); /* Warm Banjara Crimson transparent backdrop */
+  background-color: rgba(20, 2, 8, 0.82); /* Darker Banjara Crimson transparent backdrop */
 }
 
 /* Custom CSS Transition Clip Reveal on Theme Switch */
@@ -2649,11 +2649,11 @@ body {
   display: inline-block;
   opacity: 0;
   transform: translate3d(0, 18px, 0);
-  /* Removed filter:blur — animating blur on many spans simultaneously is very GPU-heavy */
   transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1),
               opacity 0.55s ease,
               color 0.25s ease,
-              text-shadow 0.25s ease;
+              text-shadow 0.25s ease,
+              filter 0.25s ease;
   will-change: transform, opacity;
 }
 
@@ -2662,10 +2662,44 @@ body {
   transform: translate3d(0, 0, 0);
 }
 
+/* Hero Title - Solid White Characters with Dark Backing Drop Shadow */
+.hero-title .letter-reveal {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-fill-color: #ffffff !important;
+  background: none !important;
+  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.95)) drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.85));
+}
+
+.hero-title .letter-reveal:hover {
+  color: var(--color-accent) !important;
+  -webkit-text-fill-color: var(--color-accent) !important;
+  text-fill-color: var(--color-accent) !important;
+  transform: translate3d(0, -8px, 0) scale(1.28) !important;
+  filter: drop-shadow(0px 0px 15px var(--color-accent)) drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.6)) !important;
+  cursor: default;
+}
+
+/* Hero Subtitle - Shell Gold/Accent Glowing Effect */
+.hero-subtitle .letter-reveal {
+  color: var(--color-accent) !important;
+  text-shadow: 0 0 10px rgba(255, 165, 0, 0.45), 0 2px 4px rgba(0, 0, 0, 0.8);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.hero-subtitle .letter-reveal:hover {
+  color: #ffffff !important;
+  transform: translate3d(0, -5px, 0) scale(1.2) !important;
+  text-shadow: 0 0 15px #ffffff, 0 0 25px var(--color-accent), 0 2px 5px rgba(0, 0, 0, 0.9) !important;
+  cursor: default;
+}
+
+/* General hover fallback for non-hero reveals */
 .letter-reveal:hover {
   color: var(--color-accent) !important;
-  transform: translate3d(0, -6px, 0) scale(1.22) !important;
-  text-shadow: 0 0 12px var(--color-accent) !important;
+  transform: translate3d(0, -4px, 0) scale(1.15) !important;
+  text-shadow: 0 0 10px var(--color-accent) !important;
   cursor: default;
 }
 
@@ -2678,10 +2712,27 @@ body {
 
 #gp-brand-title .letter-reveal {
   color: var(--color-primary) !important;
+  -webkit-text-fill-color: var(--color-primary) !important;
+  text-fill-color: var(--color-primary) !important;
+  background-image: none !important;
+  filter: none !important;
 }
 
 #gp-brand-title .letter-reveal:hover {
   color: var(--color-accent) !important;
+  -webkit-text-fill-color: var(--color-accent) !important;
+  text-fill-color: var(--color-accent) !important;
+  transform: translate3d(0, -3px, 0) scale(1.18) !important;
+  text-shadow: 0 0 8px var(--color-accent) !important;
+}
+
+@keyframes textShimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 /* ==========================================
@@ -3254,6 +3305,202 @@ body.lang-hi textarea {
   line-height: 1.4;
   color: var(--color-text-dark);
   margin: 0;
+}
+
+/* ==========================================
+   SMART PANCHAYAT HUB CUSTOM STYLES
+   ========================================== */
+.smart-hub {
+  background-color: var(--color-bg-base);
+  border-top: 1px solid var(--color-border);
+}
+
+.smart-card {
+  border-top: 4px solid var(--color-secondary);
+}
+
+.smart-card:hover {
+  border-top-color: var(--color-accent);
+}
+
+.smart-how-to {
+  margin-top: 12px;
+  margin-bottom: 20px;
+  background-color: var(--color-secondary-pale);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--color-text-dark);
+}
+
+.smart-how-to strong {
+  color: var(--color-primary);
+  display: block;
+  font-weight: 700;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+}
+
+/* Warnings States for Disaster Warning Panel */
+.green-status {
+  border-color: var(--color-success) !important;
+  background-color: hsla(140, 60%, 35%, 0.05) !important;
+}
+
+.yellow-status {
+  border-color: var(--color-warning) !important;
+  background-color: hsla(36, 90%, 45%, 0.05) !important;
+  animation: pulse-border-yellow 2s infinite ease-in-out;
+}
+
+.red-status {
+  border-color: var(--color-danger) !important;
+  background-color: hsla(0, 75%, 45%, 0.05) !important;
+  animation: pulse-border-red 2s infinite ease-in-out;
+}
+
+@keyframes pulse-border-yellow {
+  0% { box-shadow: 0 0 0 0 rgba(230, 126, 34, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(230, 126, 34, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(230, 126, 34, 0); }
+}
+
+@keyframes pulse-border-red {
+  0% { box-shadow: 0 0 0 0 rgba(192, 41, 43, 0.5); }
+  70% { box-shadow: 0 0 0 12px rgba(192, 41, 43, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(192, 41, 43, 0); }
+}
+
+/* Voting Poll Results Visualizer */
+.poll-result-bar-wrapper {
+  margin-bottom: 8px;
+}
+
+.poll-result-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.poll-result-bar-bg {
+  background-color: var(--color-secondary-light);
+  border-radius: var(--radius-full);
+  height: 12px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.poll-result-bar-fill {
+  background: linear-gradient(90deg, var(--color-secondary) 0%, var(--color-primary) 100%);
+  border-radius: var(--radius-full);
+  height: 100%;
+  width: 0%;
+  transition: width 1.2s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+.poll-result-votes {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.med-row {
+  transition: background-color var(--transition-fast);
+}
+
+.med-row.highlight-match {
+  background-color: var(--color-secondary-light);
+}
+
+.btn-pdf-download, .btn-play-lecture {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  font-weight: bold;
+}
+
+/* Village Dashboard Redesign Sidebar Layout */
+.vd-sidebar {
+  transition: all 0.3s ease;
+}
+
+.vd-tab-btn {
+  transition: all 0.2s ease;
+  border-left: 4px solid transparent;
+  color: var(--color-text-muted);
+}
+
+.vd-tab-btn:hover {
+  background-color: var(--color-bg-base-hover) !important;
+  color: var(--color-primary) !important;
+}
+
+.vd-tab-btn.active {
+  background-color: var(--color-primary-pale) !important;
+  color: var(--color-primary) !important;
+  border-left-color: var(--color-primary) !important;
+}
+
+.vd-content-pane {
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.vd-section {
+  animation: slideFadeIn 0.3s ease;
+}
+
+@keyframes slideFadeIn {
+  from { opacity: 0; transform: translateX(8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Responsiveness for mobile screens */
+@media (max-width: 768px) {
+  #modal-village-dashboard .modal-body {
+    flex-direction: column !important;
+    overflow-y: auto !important;
+  }
+  .vd-sidebar {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--color-border) !important;
+    padding: 10px 0 !important;
+  }
+  .vd-sidebar ul {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    padding: 0 10px !important;
+    gap: 4px !important;
+  }
+  .vd-sidebar ul li {
+    flex-shrink: 0 !important;
+  }
+  .vd-tab-btn {
+    padding: 8px 16px !important;
+    border-left: none !important;
+    border-bottom: 3px solid transparent !important;
+    font-size: 0.85rem !important;
+  }
+  .vd-tab-btn.active {
+    border-left-color: transparent !important;
+    border-bottom-color: var(--color-primary) !important;
+  }
+  .vd-content-pane {
+    max-height: none !important;
+    overflow-y: visible !important;
+  }
 }
 
 

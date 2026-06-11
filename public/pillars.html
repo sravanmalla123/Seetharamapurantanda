@@ -331,6 +331,11 @@
             </div>
           </li>
           <li>
+            <a href="#" class="back-btn" id="nav-link-dashboard-pillars" style="background-color: var(--color-primary-light); color: #fff; margin-right: 8px;">
+                Dashboard
+            </a>
+          </li>
+          <li>
             <a href="/" class="back-btn" id="btn-back-home">
               ← Return Home
             </a>
@@ -465,6 +470,15 @@
                 <div id="bar-house" style="width:82%; height:100%; background-color:#8e24aa; border-radius:var(--radius-full);"></div>
               </div>
             </div>
+            <div class="budget-bar-row">
+              <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:600; margin-bottom:4px;">
+                <span id="label-aadhaar">🆔 Aadhaar Card Possession</span>
+                <span id="val-aadhaar">85%</span>
+              </div>
+              <div style="width:100%; height:8px; background-color:var(--color-primary-pale); border-radius:var(--radius-full); overflow:hidden;">
+                <div id="bar-aadhaar" style="width:85%; height:100%; background-color:#d81b60; border-radius:var(--radius-full);"></div>
+              </div>
+            </div>
           </div>
           <div style="margin-top: 16px; text-align: center;">
             <button class="btn btn-secondary btn-sm" id="btn-trigger-facility-update" style="width: 100%; padding: 8px 12px; font-size: 0.85rem; font-weight: 700; border-radius: var(--radius-md);">
@@ -535,12 +549,258 @@
               <input type="checkbox" id="chk-house" style="width: 18px; height: 18px; cursor: pointer;" />
               <span id="chk-label-house">We live in our Own House</span>
             </label>
+            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.88rem; font-weight: 600;">
+              <input type="checkbox" id="chk-aadhaar" style="width: 18px; height: 18px; cursor: pointer;" />
+              <span id="chk-label-aadhaar">We possess an Aadhaar Card</span>
+            </label>
           </div>
 
           <button type="submit" class="btn btn-primary" id="btn-submit-household-update" style="width: 100%; padding: 12px; margin-top: 10px; font-weight: 700; background-color: var(--color-primary); color: #fff; border: none; border-radius: var(--radius-md); cursor: pointer;">
             Submit Update
           </button>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- VILLAGE DASHBOARD MODAL -->
+  <div class="modal-overlay" id="modal-village-dashboard" role="dialog" aria-modal="true" aria-labelledby="village-dashboard-modal-title">
+    <div class="modal-content" style="max-width: 900px; height: 85vh; display: flex; flex-direction: column; overflow: hidden; background-color: #ffffff; color: var(--color-text-dark);">
+      <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--color-border); padding-bottom: 12px; margin-bottom: 0;">
+        <h3 id="village-dashboard-modal-title" style="margin: 0; font-size: 1.25rem; color: var(--color-primary);">📊 Village Dashboard</h3>
+        <button class="modal-close-btn" aria-label="Close modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text-muted);">&times;</button>
+      </div>
+      <div class="modal-body" style="padding: 0; display: flex; flex: 1; overflow: hidden;">
+        
+        <!-- Left Sidebar Menu -->
+        <div class="vd-sidebar" style="width: 240px; background-color: var(--color-bg-base); border-right: 1px solid var(--color-border); display: flex; flex-direction: column; padding: 20px 0; flex-shrink: 0; overflow-y: auto;">
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px;">
+            <li>
+              <button type="button" class="vd-tab-btn active" id="vd-tab-overview" style="width: 100%; text-align: left; padding: 12px 24px; border: none; background: none; font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--color-primary); border-left: 4px solid var(--color-primary); outline: none;">
+                <span>📊</span> <span id="vd-lbl-tab-overview">Overview</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="vd-tab-btn" id="vd-tab-statistics" style="width: 100%; text-align: left; padding: 12px 24px; border: none; background: none; font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--color-text-muted); border-left: 4px solid transparent; outline: none;">
+                <span>📈</span> <span id="vd-lbl-tab-statistics">Statistics</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="vd-tab-btn" id="vd-tab-education" style="width: 100%; text-align: left; padding: 12px 24px; border: none; background: none; font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--color-text-muted); border-left: 4px solid transparent; outline: none;">
+                <span>🎓</span> <span id="vd-lbl-tab-education">Education</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="vd-tab-btn" id="vd-tab-schemes" style="width: 100%; text-align: left; padding: 12px 24px; border: none; background: none; font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--color-text-muted); border-left: 4px solid transparent; outline: none;">
+                <span>💰</span> <span id="vd-lbl-tab-schemes">Government Schemes</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" class="vd-tab-btn" id="vd-tab-announcements" style="width: 100%; text-align: left; padding: 12px 24px; border: none; background: none; font-size: 0.95rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 10px; color: var(--color-text-muted); border-left: 4px solid transparent; outline: none;">
+                <span>📢</span> <span id="vd-lbl-tab-announcements">Announcements</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Right Content Pane -->
+        <div class="vd-content-pane" style="flex: 1; padding: 24px; overflow-y: auto; background-color: var(--color-bg-card);">
+          
+          <!-- Section 1: Overview -->
+          <div class="vd-section" id="vd-sec-overview" style="display: block;">
+            <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--color-primary); margin-bottom: 18px; display: flex; align-items: center; gap: 8px;">
+              <span>📊</span> <span id="vd-lbl-sec-overview">Overview Cards</span>
+            </h4>
+            <div id="village-overview-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px;">
+              <div class="village-stat-card" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%); border-radius: var(--radius-md); padding: 18px 16px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.6rem; margin-bottom: 4px;">👥</div>
+                <div style="font-size: 0.72rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;" id="vd-lbl-total-pop">Total Population</div>
+                <div id="vd-total-population" style="font-size: 1.5rem; font-weight: 800;">2,000</div>
+              </div>
+              <div class="village-stat-card" style="background: linear-gradient(135deg, hsl(200,70%,30%) 0%, hsl(200,70%,45%) 100%); border-radius: var(--radius-md); padding: 18px 16px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.6rem; margin-bottom: 4px;">👨‍👩‍👧‍👦</div>
+                <div style="font-size: 0.72rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;" id="vd-lbl-total-fam">Total Families</div>
+                <div id="vd-total-families" style="font-size: 1.5rem; font-weight: 800;">230</div>
+              </div>
+              <div class="village-stat-card" style="background: linear-gradient(135deg, hsl(28,80%,35%) 0%, hsl(38,92%,50%) 100%); border-radius: var(--radius-md); padding: 18px 16px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.6rem; margin-bottom: 4px;">🏠</div>
+                <div style="font-size: 0.72rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;" id="vd-lbl-total-houses">Total Houses</div>
+                <div id="vd-total-houses" style="font-size: 1.5rem; font-weight: 800;">230</div>
+              </div>
+              <div class="village-stat-card" style="background: linear-gradient(135deg, hsl(120,50%,22%) 0%, hsl(140,55%,38%) 100%); border-radius: var(--radius-md); padding: 18px 16px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.6rem; margin-bottom: 4px;">🌾</div>
+                <div style="font-size: 0.72rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;" id="vd-lbl-total-farmers">Total Farmers</div>
+                <div id="vd-total-farmers" style="font-size: 1.5rem; font-weight: 800;">340</div>
+              </div>
+              <div class="village-stat-card" style="background: linear-gradient(135deg, hsl(260,55%,30%) 0%, hsl(270,55%,50%) 100%); border-radius: var(--radius-md); padding: 18px 16px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.6rem; margin-bottom: 4px;">🎓</div>
+                <div style="font-size: 0.72rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;" id="vd-lbl-total-students">Total Students</div>
+                <div id="vd-total-students" style="font-size: 1.5rem; font-weight: 800;">185</div>
+              </div>
+              <div class="village-stat-card" style="background: linear-gradient(135deg, hsl(170,55%,25%) 0%, hsl(170,55%,42%) 100%); border-radius: var(--radius-md); padding: 18px 16px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.6rem; margin-bottom: 4px;">💼</div>
+                <div style="font-size: 0.72rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;" id="vd-lbl-total-employees">Total Employees</div>
+                <div id="vd-total-employees" style="font-size: 1.5rem; font-weight: 800;">128</div>
+              </div>
+              <div class="village-stat-card" style="background: linear-gradient(135deg, hsl(350,60%,28%) 0%, hsl(350,65%,48%) 100%); border-radius: var(--radius-md); padding: 18px 16px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.6rem; margin-bottom: 4px;">👑</div>
+                <div style="font-size: 0.72rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;" id="vd-lbl-sarpanch">Sarpanch Name</div>
+                <div id="vd-sarpanch-name" style="font-size: 1.05rem; font-weight: 800; line-height: 1.2;">Smt. L. Devika</div>
+              </div>
+              <div class="village-stat-card" style="background: linear-gradient(135deg, hsl(48,80%,28%) 0%, hsl(48,85%,45%) 100%); border-radius: var(--radius-md); padding: 18px 16px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.6rem; margin-bottom: 4px;">🛡️</div>
+                <div style="font-size: 0.72rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;" id="vd-lbl-num-wards">Number of Wards</div>
+                <div id="vd-number-of-wards" style="font-size: 1.5rem; font-weight: 800;">5</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Statistics -->
+          <div class="vd-section" id="vd-sec-statistics" style="display: none;">
+            <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--color-primary); margin-bottom: 18px; display: flex; align-items: center; gap: 8px;">
+              <span>📈</span> <span id="vd-lbl-sec-stats">Statistics</span>
+            </h4>
+            <div style="margin-bottom: 24px; background: var(--color-secondary-pale); border-radius: var(--radius-md); padding: 20px; border: 1px solid var(--color-border);">
+              <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--color-primary); margin-bottom: 14px;" id="vd-lbl-gender-split-title">👥 Male vs Female Population</h5>
+              <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 120px;">
+                  <div style="font-size: 0.75rem; font-weight: 600; color: var(--color-text-muted); margin-bottom: 4px;" id="vd-lbl-male">👨 Male</div>
+                  <div id="vd-male-pop" style="font-size: 1.6rem; font-weight: 800; color: var(--color-primary);">1,045</div>
+                </div>
+                <div style="flex: 1; min-width: 120px;">
+                  <div style="font-size: 0.75rem; font-weight: 600; color: var(--color-text-muted); margin-bottom: 4px;" id="vd-lbl-female">👩 Female</div>
+                  <div id="vd-female-pop" style="font-size: 1.6rem; font-weight: 800; color: hsl(330,55%,45%);">955</div>
+                </div>
+                <div style="flex: 2; min-width: 240px;">
+                  <div style="font-size: 0.75rem; font-weight: 600; color: var(--color-text-muted); margin-bottom: 6px;" id="vd-lbl-pop-split">Population split</div>
+                  <div style="height: 18px; background: #e0e0e0; border-radius: var(--radius-full); overflow: hidden;">
+                    <div id="vd-gender-bar" style="height: 100%; background: linear-gradient(90deg, var(--color-primary) 0%, hsl(330,55%,45%) 100%); width: 52%; border-radius: var(--radius-full); transition: width 1s ease;"></div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--color-text-muted); margin-top: 6px;">
+                    <span id="vd-male-pct">52.2% Male</span>
+                    <span id="vd-female-pct">47.8% Female</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+              <div style="background: var(--color-primary-pale); border-radius: var(--radius-md); padding: 20px; border-left: 5px solid var(--color-secondary); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); border-right: 1px solid var(--color-border);">
+                <div style="font-size: 1.6rem; margin-bottom: 6px;">📚</div>
+                <div style="font-size: 0.75rem; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 1px;" id="vd-lbl-lit-rate">Literacy Rate</div>
+                <div id="vd-literacy-rate" style="font-size: 2.2rem; font-weight: 800; color: var(--color-primary); margin-top: 4px;">68%</div>
+                <div style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 6px;" id="vd-lbl-lit-sub">of adult population</div>
+              </div>
+              <div style="background: var(--color-primary-pale); border-radius: var(--radius-md); padding: 20px; border-left: 5px solid var(--color-accent); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); border-right: 1px solid var(--color-border);">
+                <div style="font-size: 1.6rem; margin-bottom: 6px;">🛠️</div>
+                <div style="font-size: 0.75rem; font-weight: 600; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 1px;" id="vd-lbl-emp-rate">Employment Rate</div>
+                <div id="vd-employment-rate" style="font-size: 2.2rem; font-weight: 800; color: var(--color-warning); margin-top: 4px;">54%</div>
+                <div style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: 6px;" id="vd-lbl-emp-sub">of working-age adults</div>
+              </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, var(--color-secondary-pale) 0%, var(--color-primary-pale) 100%); border-radius: var(--radius-md); padding: 20px; border: 1px solid var(--color-border);">
+              <h5 style="font-size: 0.95rem; font-weight: 700; color: var(--color-primary); margin-bottom: 16px;" id="vd-lbl-agri-stats-title">🌾 Agriculture Statistics</h5>
+              <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px;">
+                <div>
+                  <div style="font-size: 0.72rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px;" id="vd-lbl-agri-area">Agriculture Area</div>
+                  <div id="vd-agri-area" style="font-size: 1.15rem; font-weight: 800; color: var(--color-primary);">520 Acres</div>
+                </div>
+                <div>
+                  <div style="font-size: 0.72rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px;" id="vd-lbl-irrigated-land">Irrigated Land</div>
+                  <div id="vd-irrigated-land" style="font-size: 1.15rem; font-weight: 800; color: var(--color-secondary);">310 Acres</div>
+                </div>
+                <div>
+                  <div style="font-size: 0.72rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px;" id="vd-lbl-main-crops">Main Crops</div>
+                  <div id="vd-main-crops" style="font-size: 0.9rem; font-weight: 700; color: var(--color-primary); line-height: 1.3;">Paddy, Maize, Chili, Pulses</div>
+                </div>
+                <div>
+                  <div style="font-size: 0.72rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px;" id="vd-lbl-farmers-subsidy">Farmers w/ Subsidy</div>
+                  <div id="vd-farmers-subsidy" style="font-size: 1.15rem; font-weight: 800; color: var(--color-accent);">280</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Education -->
+          <div class="vd-section" id="vd-sec-education" style="display: none;">
+            <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--color-primary); margin-bottom: 18px; display: flex; align-items: center; gap: 8px;">
+              <span>🎓</span> <span id="vd-lbl-sec-edu">Education</span>
+            </h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+              <div class="village-stat-card" style="background: linear-gradient(135deg, hsl(210,70%,35%) 0%, hsl(210,70%,50%) 100%); border-radius: var(--radius-md); padding: 20px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.8rem; margin-bottom: 6px;">🏫</div>
+                <div style="font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;" id="vd-lbl-num-schools">Number of Schools</div>
+                <div id="vd-num-schools" style="font-size: 1.3rem; font-weight: 800;">2 (Primary & Upper Primary)</div>
+              </div>
+              <div class="village-stat-card" style="background: linear-gradient(135deg, hsl(150,60%,28%) 0%, hsl(150,60%,42%) 100%); border-radius: var(--radius-md); padding: 20px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.8rem; margin-bottom: 6px;">👨‍🎓</div>
+                <div style="font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;" id="vd-lbl-edu-students">Total Students</div>
+                <div id="vd-edu-students" style="font-size: 1.6rem; font-weight: 800;">185</div>
+              </div>
+              <div class="village-stat-card" style="background: linear-gradient(135deg, hsl(280,60%,35%) 0%, hsl(280,60%,50%) 100%); border-radius: var(--radius-md); padding: 20px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.8rem; margin-bottom: 6px;">📜</div>
+                <div style="font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;" id="vd-lbl-edu-scholarships">Scholarships Provided</div>
+                <div id="vd-edu-scholarships" style="font-size: 1.6rem; font-weight: 800;">112 Students</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Government Schemes -->
+          <div class="vd-section" id="vd-sec-schemes" style="display: none;">
+            <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--color-primary); margin-bottom: 18px; display: flex; align-items: center; gap: 8px;">
+              <span>💰</span> <span id="vd-lbl-sec-schemes">Government Schemes</span>
+            </h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+              <div class="village-stat-card" style="background: linear-gradient(135deg, hsl(32,85%,35%) 0%, hsl(42,90%,48%) 100%); border-radius: var(--radius-md); padding: 20px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.8rem; margin-bottom: 6px;">🤝</div>
+                <div style="font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;" id="vd-lbl-scheme-beneficiaries">Beneficiaries</div>
+                <div id="vd-scheme-beneficiaries" style="font-size: 1.6rem; font-weight: 800;">340 Families</div>
+              </div>
+              <div class="village-stat-card" style="background: linear-gradient(135deg, hsl(170,70%,25%) 0%, hsl(170,70%,40%) 100%); border-radius: var(--radius-md); padding: 20px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.8rem; margin-bottom: 6px;">📋</div>
+                <div style="font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;" id="vd-lbl-scheme-active">Active Schemes</div>
+                <div id="vd-scheme-active" style="font-size: 1.4rem; font-weight: 800;">8 Active Schemes</div>
+              </div>
+              <div class="village-stat-card" style="background: linear-gradient(135deg, hsl(355,65%,30%) 0%, hsl(355,65%,45%) 100%); border-radius: var(--radius-md); padding: 20px; color: #fff; box-shadow: var(--shadow-md);">
+                <div style="font-size: 1.8rem; margin-bottom: 6px;">⏳</div>
+                <div style="font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;" id="vd-lbl-scheme-pending">Pending Applications</div>
+                <div id="vd-scheme-pending" style="font-size: 1.6rem; font-weight: 800;">14 Applications</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5: Announcements -->
+          <div class="vd-section" id="vd-sec-announcements" style="display: none;">
+            <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--color-primary); margin-bottom: 18px; display: flex; align-items: center; gap: 8px;">
+              <span>📢</span> <span id="vd-lbl-sec-announce">Announcements</span>
+            </h4>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div style="background-color: var(--color-primary-pale); border-left: 5px solid var(--color-primary); padding: 16px; border-radius: var(--radius-md); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); border-right: 1px solid var(--color-border);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <span style="font-size: 0.88rem; font-weight: 700; color: var(--color-primary);" id="vd-lbl-up-event">Upcoming Event</span>
+                  <span style="font-size: 0.7rem; font-weight: 600; color: var(--color-text-muted); background: rgba(0,0,0,0.05); padding: 2px 8px; border-radius: var(--radius-sm);">LATEST</span>
+                </div>
+                <p id="vd-announce-event" style="font-size: 0.88rem; line-height: 1.4; color: var(--color-text-dark); margin: 0; font-weight: 600;">Special Health Camp (June 15)</p>
+              </div>
+              <div style="background-color: var(--color-secondary-pale); border-left: 5px solid var(--color-secondary); padding: 16px; border-radius: var(--radius-md); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); border-right: 1px solid var(--color-border);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <span style="font-size: 0.88rem; font-weight: 700; color: var(--color-primary);" id="vd-lbl-gs-meeting">Gram Sabha Meeting</span>
+                  <span style="font-size: 0.7rem; font-weight: 600; color: var(--color-text-muted); background: rgba(0,0,0,0.05); padding: 2px 8px; border-radius: var(--radius-sm);">SCHEDULED</span>
+                </div>
+                <p id="vd-announce-meeting" style="font-size: 0.88rem; line-height: 1.4; color: var(--color-text-dark); margin: 0; font-weight: 600;">Next Gram Sabha: June 22 at 10 AM</p>
+              </div>
+              <div style="background-color: var(--color-accent-pale); border-left: 5px solid var(--color-accent); padding: 16px; border-radius: var(--radius-md); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); border-right: 1px solid var(--color-border);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <span style="font-size: 0.88rem; font-weight: 700; color: var(--color-primary);" id="vd-lbl-gov-notif">Government Notification</span>
+                  <span style="font-size: 0.7rem; font-weight: 600; color: var(--color-text-muted); background: rgba(0,0,0,0.05); padding: 2px 8px; border-radius: var(--radius-sm);">NEW</span>
+                </div>
+                <p id="vd-announce-notif" style="font-size: 0.88rem; line-height: 1.4; color: var(--color-text-dark); margin: 0; font-weight: 600;">New subsidy for organic manure announced by Agri Dept.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
@@ -552,6 +812,7 @@
 
 <script>
     let currentLanguage = 'en';
+    let mainPageConfig = null;
     const params = new URLSearchParams(window.location.search);
     let pillarType = params.get('type') || 'health';
 
@@ -858,8 +1119,6 @@
           metrics: [
             { val: "24 kW", label: "సోలార్ ఉత్పత్తి", desc: "పంచాయతీ భవనం వద్ద నిత్యం ఉత్పత్తయ్యే హరిత విద్యుత్।" },
             { val: "100%", label: "విద్యుద్దీకరణ", desc: "గ్రామములోని అన్ని ఇళ్లకు గ్రిడ్ కరెంట్ కనెక్షన్।" },
-            { val: "45m³", label: "బయో-గ్యాస్ ఉత్పత్తి", desc: "కమ్యూనిటీ వంటశాలలకు సరఫరా చేసే గ్యాస్।" }
-          ],
           audits: [
             { date: "03/06/2026", param: "సోలార్ ప్యానెల్ ఇన్వర్టర్ ఆడిట్", inspector: "సోలార్ ఇంజనీర్ (NREDCAP)", status: "96% సామర్థ్యం" },
             { date: "22/05/2026", param: "ఇళ్ల విద్యుద్దీకరణ తనిఖీ ఆడిట్", inspector: "విద్యుత్ ఇన్స్పెక్టర్", status: "100% కవరేజ్" },
@@ -1106,10 +1365,54 @@
         chkLabelWater: "We have a Safe Tap Water Connection",
         chkLabelEnergy: "We use Clean Energy (Solar/Biogas)",
         chkLabelHouse: "We live in our Own House",
+        labelAadhaar: "🆔 Aadhaar Card Possession",
+        chkLabelAadhaar: "We possess an Aadhaar Card",
         btnSubmitHouseholdUpdate: "Submit Update",
         toastSuccess: "✅ Household details updated successfully!",
         toastError: "❌ Error updating household details. Please try again.",
-        selfReported: "Self-Reported"
+        selfReported: "Self-Reported",
+        navLinkDashboard: "Dashboard",
+        villageDashboardModalTitle: "📊 Village Dashboard",
+        vdLblTabOverview: "Overview",
+        vdLblTabStatistics: "Statistics",
+        vdLblTabEducation: "Education",
+        vdLblTabSchemes: "Government Schemes",
+        vdLblTabAnnouncements: "Announcements",
+        vdLblSecOverview: "Overview Cards",
+        vdLblSecStats: "Statistics",
+        vdLblSecEdu: "Education",
+        vdLblSecSchemes: "Government Schemes",
+        vdLblSecAnnounce: "Announcements",
+        vdLblTotalPop: "Total Population",
+        vdLblTotalFam: "Total Families",
+        vdLblTotalHouses: "Total Houses",
+        vdLblTotalFarmers: "Total Farmers",
+        vdLblTotalStudents: "Total Students",
+        vdLblTotalEmployees: "Total Employees",
+        vdLblSarpanch: "Sarpanch Name",
+        vdLblNumWards: "Number of Wards",
+        vdLblGenderSplitTitle: "👥 Male vs Female Population",
+        vdLblMale: "👨 Male",
+        vdLblFemale: "👩 Female",
+        vdLblPopSplit: "Population split",
+        vdLblLitRate: "Literacy Rate",
+        vdLblLitSub: "of adult population",
+        vdLblEmpRate: "Employment Rate",
+        vdLblEmpSub: "of working-age adults",
+        vdLblAgriStatsTitle: "🌾 Agriculture Statistics",
+        vdLblAgriArea: "Agriculture Area",
+        vdLblIrrigatedLand: "Irrigated Land",
+        vdLblMainCrops: "Main Crops",
+        vdLblFarmersSubsidy: "Farmers w/ Subsidy",
+        vdLblNumSchools: "Number of Schools",
+        vdLblEduStudents: "Total Students",
+        vdLblEduScholarships: "Scholarships Provided",
+        vdLblSchemeBeneficiaries: "Beneficiaries",
+        vdLblSchemeActive: "Active Schemes",
+        vdLblSchemePending: "Pending Applications",
+        vdLblUpEvent: "Upcoming Event",
+        vdLblGsMeeting: "Gram Sabha Meeting",
+        vdLblGovNotif: "Government Notification"
       },
       hi: {
         back: "← मुख्य पृष्ठ",
@@ -1140,10 +1443,54 @@
         chkLabelWater: "हमारे पास सुरक्षित नल जल कनेक्शन है",
         chkLabelEnergy: "हम स्वच्छ ऊर्जा (सौर/बायोगैस) का उपयोग करते हैं",
         chkLabelHouse: "हम अपने स्वयं के घर में रहते हैं",
+        labelAadhaar: "🆔 आधार कार्ड धारक",
+        chkLabelAadhaar: "हमारे पास आधार कार्ड है",
         btnSubmitHouseholdUpdate: "अपडेट सबमिट करें",
         toastSuccess: "✅ घरेलू विवरण सफलतापूर्वक अपडेट किए गए!",
         toastError: "❌ घरेलू विवरण अपडेट करने में त्रुटि। कृपया पुनः प्रयास करें।",
-        selfReported: "स्व-रिपोर्टेड"
+        selfReported: "स्व-रिपोर्टेड",
+        navLinkDashboard: "डैशबोर्ड",
+        villageDashboardModalTitle: "📊 ग्राम डैशबोर्ड",
+        vdLblTabOverview: "अवलोकन",
+        vdLblTabStatistics: "सांख्यिकी",
+        vdLblTabEducation: "शिक्षा",
+        vdLblTabSchemes: "सरकारी योजनाएं",
+        vdLblTabAnnouncements: "घोषणाएं",
+        vdLblSecOverview: "अवलोकन कार्ड",
+        vdLblSecStats: "सांख्यिकी",
+        vdLblSecEdu: "शिक्षा",
+        vdLblSecSchemes: "सरकारी योजनाएं",
+        vdLblSecAnnounce: "घोषणाएं",
+        vdLblTotalPop: "कुल जनसंख्या",
+        vdLblTotalFam: "कुल परिवार",
+        vdLblTotalHouses: "कुल घर",
+        vdLblTotalFarmers: "कुल किसान",
+        vdLblTotalStudents: "कुल छात्र",
+        vdLblTotalEmployees: "कुल कर्मचारी",
+        vdLblSarpanch: "सरपंच का नाम",
+        vdLblNumWards: "वार्डों की संख्या",
+        vdLblGenderSplitTitle: "👥 पुरुष बनाम महिला जनसंख्या",
+        vdLblMale: "👨 पुरुष",
+        vdLblFemale: "👩 महिला",
+        vdLblPopSplit: "जनसंख्या विभाजन",
+        vdLblLitRate: "साक्षरता दर",
+        vdLblLitSub: "वयस्क जनसंख्या का",
+        vdLblEmpRate: "रोजगार दर",
+        vdLblEmpSub: "कार्यशील आयु के वयस्कों का",
+        vdLblAgriStatsTitle: "🌾 कृषि सांख्यिकी",
+        vdLblAgriArea: "कृषि क्षेत्र",
+        vdLblIrrigatedLand: "सिंचित भूमि",
+        vdLblMainCrops: "मुख्य फसलें",
+        vdLblFarmersSubsidy: "सब्सिडी वाले किसान",
+        vdLblNumSchools: "स्कूलों की संख्या",
+        vdLblEduStudents: "कुल छात्र",
+        vdLblEduScholarships: "प्रदान की गई छात्रवृत्ति",
+        vdLblSchemeBeneficiaries: "लाभार्थी",
+        vdLblSchemeActive: "सक्रिय योजनाएं",
+        vdLblSchemePending: "लंबित आवेदन",
+        vdLblUpEvent: "आगामी कार्यक्रम",
+        vdLblGsMeeting: "ग्राम सभा बैठक",
+        vdLblGovNotif: "सरकारी अधिसूचना"
       },
       te: {
         back: "← హోమ్ పేజీ",
@@ -1174,10 +1521,54 @@
         chkLabelWater: "మాకు సురక్షిత కుళాయి నీటి కనెక్షన్ ఉంది",
         chkLabelEnergy: "మేము హరిత ఇంధనం (సోలార్/బయో-గ్యాస్) వాడుతున్నాము",
         chkLabelHouse: "మేము మా సొంత ఇంట్లో నివసిస్తున్నాము",
+        labelAadhaar: "🆔 ఆధార్ కార్డు వివరాలు",
+        chkLabelAadhaar: "మేము ఆధార్ కార్డు కలిగి ఉన్నాము",
         btnSubmitHouseholdUpdate: "సమాచారాన్ని సమర్పించు",
         toastSuccess: "✅ గృహ వివరాలు విజయవంతంగా అప్‌డేట్ చేయబడ్డాయి!",
         toastError: "❌ గృహ వివరాల అప్‌డేట్‌లో లోపం సంభవించింది. దయచేసి మళ్లీ ప్రయత్నించండి.",
-        selfReported: "స్వీయ నివేదిక"
+        selfReported: "స్వీయ నివేదిక",
+        navLinkDashboard: "డ్యాష్‌బోర్డ్",
+        villageDashboardModalTitle: "📊 గ్రామ డ్యాష్‌బోర్డ్",
+        vdLblTabOverview: "అవలోకనం",
+        vdLblTabStatistics: "గణాంకాలు",
+        vdLblTabEducation: "విద్య",
+        vdLblTabSchemes: "ప్రభుత్వ పథకాలు",
+        vdLblTabAnnouncements: "ప్రకటనలు",
+        vdLblSecOverview: "అవలోకనం కార్డులు",
+        vdLblSecStats: "గణాంకాలు",
+        vdLblSecEdu: "విద్య",
+        vdLblSecSchemes: "ప్రభుత్వ పథకాలు",
+        vdLblSecAnnounce: "ప్రకటనలు",
+        vdLblTotalPop: "మొత్తం జనాభా",
+        vdLblTotalFam: "మొత్తం కుటుంబాలు",
+        vdLblTotalHouses: "మొత్తం ఇళ్లు",
+        vdLblTotalFarmers: "మొత్తం రైతులు",
+        vdLblTotalStudents: "మొత్తం విద్యార్థులు",
+        vdLblTotalEmployees: "మొత్తం ఉద్యోగులు",
+        vdLblSarpanch: "సర్పంచ్ పేరు",
+        vdLblNumWards: "వార్డుల సంఖ్య",
+        vdLblGenderSplitTitle: "👥 పురుషులు వర్సెస్ మహిళలు జనాభా",
+        vdLblMale: "👨 పురుషులు",
+        vdLblFemale: "👩 మహిళలు",
+        vdLblPopSplit: "జనాభా విభజన",
+        vdLblLitRate: "అక్షరాస్యత రేటు",
+        vdLblLitSub: "వయోజన జనాభాలో",
+        vdLblEmpRate: "ఉపాధి రేటు",
+        vdLblEmpSub: "పనిచేసే వయస్సు గల వారిలో",
+        vdLblAgriStatsTitle: "🌾 వ్యవసాయ గణాంకాలు",
+        vdLblAgriArea: "వ్యవసాయ ప్రాంతం",
+        vdLblIrrigatedLand: "సాగునీటి భూమి",
+        vdLblMainCrops: "ప్రధాన పంటలు",
+        vdLblFarmersSubsidy: "సబ్సిడీ పొందుతున్న రైతులు",
+        vdLblNumSchools: "పాఠశాలల సంఖ్య",
+        vdLblEduStudents: "మొత్తం విద్యార్థులు",
+        vdLblEduScholarships: "అందించిన స్కాలర్‌షిప్‌లు",
+        vdLblSchemeBeneficiaries: "లబ్ధిదారులు",
+        vdLblSchemeActive: "క్రియాశీల పథకాలు",
+        vdLblSchemePending: "పెండింగ్ దరఖాస్తులు",
+        vdLblUpEvent: "రాబోయే కార్యక్రమం",
+        vdLblGsMeeting: "గ్రామ సభ సమావేశం",
+        vdLblGovNotif: "ప్రభుత్వ నోటిఫికేషన్"
       }
     };
 
@@ -1246,6 +1637,110 @@
       // Initial fetch of household updates
       fetchHouseholdUpdates();
 
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const householdId = document.getElementById('update-household-id').value.trim();
+          const privateToilet = document.getElementById('chk-toilet').checked;
+          const vehicle = document.getElementById('chk-vehicle').checked;
+          const tapWater = document.getElementById('chk-water').checked;
+          const cleanEnergy = document.getElementById('chk-energy').checked;
+          const ownHouse = document.getElementById('chk-house').checked;
+          const aadhaar = document.getElementById('chk-aadhaar').checked;
+
+          fetch('/api/household-updates', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              householdId,
+              privateToilet,
+              vehicle,
+              tapWater,
+              cleanEnergy,
+              ownHouse,
+              aadhaar
+            })
+          })
+          .then(res => {
+            if (!res.ok) throw new Error('API failed');
+            return res.json();
+          })
+          .then(data => {
+            const uiTrans = translationUI[currentLanguage] || translationUI['en'];
+            const toastMsg = uiTrans.toastSuccess || '✅ Household details updated successfully!';
+            showToast(toastMsg, 'success');
+            
+            form.reset();
+            closeFacilityModal();
+            renderHouseholdChart(data);
+          })
+          .catch(err => {
+            console.error('Error updating household details:', err);
+            const uiTrans = translationUI[currentLanguage] || translationUI['en'];
+            const errorMsg = uiTrans.toastError || '❌ Error updating household details. Please try again.';
+            showToast(errorMsg, 'error');
+          });
+        });
+      }
+
+      // Initialize Village Dashboard
+      initVillageDashboard();
+
+      const openDashboardBtn = document.getElementById('nav-link-dashboard-pillars');
+      const closeDashboardBtn = document.querySelector('#modal-village-dashboard .modal-close-btn');
+      const dashboardModal = document.getElementById('modal-village-dashboard');
+
+      if (openDashboardBtn && dashboardModal) {
+        openDashboardBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          dashboardModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+          if (mainPageConfig) {
+            renderVillageDashboardData();
+          } else {
+            fetch('/api/main-page-config')
+              .then(res => res.json())
+              .then(config => {
+                mainPageConfig = config;
+                renderVillageDashboardData();
+              })
+              .catch(err => console.error('Error loading config:', err));
+          }
+        });
+      }
+
+      if (closeDashboardBtn && dashboardModal) {
+        closeDashboardBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          dashboardModal.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      }
+
+      if (dashboardModal) {
+        dashboardModal.addEventListener('click', (e) => {
+          if (e.target === dashboardModal) {
+            dashboardModal.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
+      }
+
+      // Check URL parameter to auto-open dashboard modal
+      const openModalParam = params.get('openModal');
+      if (openModalParam === 'modal-village-dashboard' && dashboardModal) {
+        dashboardModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        fetch('/api/main-page-config')
+          .then(res => res.json())
+          .then(config => {
+            mainPageConfig = config;
+            renderVillageDashboardData();
+          })
+          .catch(err => console.error('Error loading config:', err));
+      }
+
       // Initialize Voice Assistant
       initVoiceAssistant();
     });
@@ -1281,7 +1776,7 @@
           statusRecognized: "Processing...",
           suggestTitle: "Suggestions",
           suggestPlaceholder: "Say a command like \"Go home\"...",
-          chips: ["Go home", "Go to health", "Go to water", "Banjara theme", "Open welfare", "Hindi language"],
+          chips: ["Go home", "Go to health", "Go to water", "Banjara theme", "Open welfare", "Open dashboard"],
           unsupported: "⚠️ Voice Recognition is not supported in this browser.",
           noMatch: "Command not recognized. Try saying a suggestion.",
           textPlaceholder: "Or type a command here...",
@@ -1296,7 +1791,7 @@
           statusRecognized: "संसाधित किया जा रहा है...",
           suggestTitle: "सुझाव",
           suggestPlaceholder: "बोलें: \"मुख्य पृष्ठ\" या \"स्वास्थ्य पर जाएं\"...",
-          chips: ["मुख्य पृष्ठ", "स्वास्थ्य पर जाएं", "पानी पर जाएं", "थीम बदलें", "कल्याण योजना", "तेलुगु भाषा"],
+          chips: ["मुख्य पृष्ठ", "स्वास्थ्य पर जाएं", "पानी पर जाएं", "थीम बदलें", "कल्याण योजना", "डैशबोर्ड खोलें"],
           unsupported: "⚠️ इस ब्राउज़र में वॉयस रिकग्निशन समर्थित नहीं है।",
           noMatch: "आदेश समझ नहीं आया। कोई सुझाव बोलकर देखें।",
           textPlaceholder: "या यहाँ एक आदेश टाइप करें...",
@@ -1311,7 +1806,7 @@
           statusRecognized: "ప్రాసెస్ చేయబడుతోంది...",
           suggestTitle: "సూచనలు",
           suggestPlaceholder: "చెప్పండి: \"హోమ్ పేజీ\" లేదా \"ఆరోగ్యం\"...",
-          chips: ["హోమ్ పేజీ", "ఆరోగ్యం", "నీరు", "థీమ్ మార్చు", "పథకాలు", "ఇంగ్లీష్ భాష"],
+          chips: ["హోమ్ పేజీ", "ఆరోగ్యం", "నీరు", "థీమ్ మార్చు", "పథకాలు", "డ్యాష్‌బోర్డ్"],
           unsupported: "⚠️ ఈ బ్రౌజర్‌లో వాయిస్ రికగ్నిషన్ సపోర్ట్ లేదు.",
           noMatch: "ఆదేశం గుర్తించబడలేదు. సూచనలలో ఒకదాన్ని చెప్పండి.",
           textPlaceholder: "లేదా ఇక్కడ టైప్ చేయండి...",
@@ -1506,6 +2001,33 @@
       function processCommand(rawText) {
         const text = rawText.toLowerCase().trim();
         const lang = currentLanguage || 'en';
+
+        const dashboardKeywords = ["dashboard", "overview", "village dashboard", "डैशबोर्ड", "डैश बोर्ड", "డ్యాష్‌బోర్డ్", "డ్యాష్ బోర్డ్"];
+        if (dashboardKeywords.some(keyword => text.includes(keyword))) {
+          executeAction(() => {
+            const dbModal = document.getElementById('modal-village-dashboard');
+            if (dbModal) {
+              dbModal.classList.add('active');
+              document.body.style.overflow = 'hidden';
+              if (mainPageConfig) {
+                renderVillageDashboardData();
+              } else {
+                fetch('/api/main-page-config')
+                  .then(res => res.json())
+                  .then(config => {
+                    mainPageConfig = config;
+                    renderVillageDashboardData();
+                  })
+                  .catch(err => console.error('Error loading config:', err));
+              }
+            }
+          }, {
+            en: "Opening Village Dashboard",
+            hi: "ग्राम डैशबोर्ड खोला जा रहा है",
+            te: "గ్రామ డ్యాష్‌బోర్డ్ తెరవబడుతోంది"
+          });
+          return;
+        }
 
         const welfareKeywords = ["welfare", "scheme", "benefit", "aasara", "pension", "farmer", "किसान", "पेंशन", "योजना", "कल्याण", "పథకాలు", "పెన్షన్", "రైతు"];
         if (welfareKeywords.some(keyword => text.includes(keyword))) {
@@ -1727,6 +2249,121 @@
       updateCardTexts();
     }
 
+    function triggerGenderBarAnimation() {
+      const bar = document.getElementById('vd-gender-bar');
+      if (bar) {
+        bar.style.width = '0%';
+        setTimeout(() => {
+          if (mainPageConfig && mainPageConfig.villageDashboard && mainPageConfig.villageDashboard.statistics) {
+            const st = mainPageConfig.villageDashboard.statistics;
+            const male = parseInt((st.malePopulation || '').replace(/,/g, '')) || 0;
+            const female = parseInt((st.femalePopulation || '').replace(/,/g, '')) || 0;
+            const total = male + female;
+            if (total > 0) {
+              const malePct = Math.round((male / total) * 100);
+              bar.style.width = `${malePct}%`;
+            }
+          }
+        }, 100);
+      }
+    }
+
+    function initVillageDashboard() {
+      const tabs = ['overview', 'statistics', 'education', 'schemes', 'announcements'];
+      tabs.forEach(tabName => {
+        const btn = document.getElementById(`vd-tab-${tabName}`);
+        if (btn) {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            tabs.forEach(t => {
+              const b = document.getElementById(`vd-tab-${t}`);
+              if (b) {
+                b.classList.remove('active');
+                b.style.color = 'var(--color-text-muted)';
+                b.style.borderLeftColor = 'transparent';
+              }
+              const s = document.getElementById(`vd-sec-${t}`);
+              if (s) s.style.display = 'none';
+            });
+
+            btn.classList.add('active');
+            btn.style.color = 'var(--color-primary)';
+            btn.style.borderLeftColor = 'var(--color-primary)';
+            
+            const sec = document.getElementById(`vd-sec-${tabName}`);
+            if (sec) sec.style.display = 'block';
+
+            if (tabName === 'statistics') {
+              triggerGenderBarAnimation();
+            }
+          });
+        }
+      });
+    }
+
+    function renderVillageDashboardData() {
+      if (!mainPageConfig || !mainPageConfig.villageDashboard) return;
+      const villageConfig = mainPageConfig.villageDashboard;
+      const ov = villageConfig.overview || {};
+      const st = villageConfig.statistics || {};
+      const edu = villageConfig.education || {};
+      const sch = villageConfig.schemes || {};
+      const ann = villageConfig.announcements || {};
+
+      const setEl = (id, val) => {
+        const el = document.getElementById(id);
+        if (el && val !== undefined) el.textContent = val;
+      };
+
+      // Overview Cards
+      setEl('vd-total-population', ov.totalPopulation);
+      setEl('vd-total-families',   ov.totalFamilies);
+      setEl('vd-total-houses',     ov.totalHouses);
+      setEl('vd-total-farmers',    ov.totalFarmers);
+      setEl('vd-total-students',   ov.totalStudents);
+      setEl('vd-total-employees',  ov.totalEmployees);
+      setEl('vd-sarpanch-name',    ov.sarpanchName);
+      setEl('vd-number-of-wards',  ov.numberOfWards);
+
+      // Statistics
+      setEl('vd-male-pop',        st.malePopulation);
+      setEl('vd-female-pop',      st.femalePopulation);
+      setEl('vd-literacy-rate',   st.literacyRate);
+      setEl('vd-employment-rate', st.employmentRate);
+      setEl('vd-agri-area',       st.agricultureArea);
+      setEl('vd-irrigated-land',  st.irrigatedLand);
+      setEl('vd-main-crops',      st.mainCrops);
+      setEl('vd-farmers-subsidy', st.farmersWithSubsidy);
+
+      // Education
+      setEl('vd-num-schools',      edu.numberOfSchools);
+      setEl('vd-edu-students',     edu.totalStudents);
+      setEl('vd-edu-scholarships', edu.scholarshipsProvided);
+
+      // Schemes
+      setEl('vd-scheme-beneficiaries', sch.beneficiaries);
+      setEl('vd-scheme-active',        sch.activeSchemes);
+      setEl('vd-scheme-pending',       sch.pendingApplications);
+
+      // Announcements
+      setEl('vd-announce-event',   ann.upcomingEvents);
+      setEl('vd-announce-meeting', ann.gramSabhaMeetings);
+      setEl('vd-announce-notif',   ann.governmentNotifications);
+
+      // Gender bar calculation
+      const male = parseInt((st.malePopulation || '').replace(/,/g, '')) || 0;
+      const female = parseInt((st.femalePopulation || '').replace(/,/g, '')) || 0;
+      const total = male + female;
+      if (total > 0) {
+        const malePct = Math.round((male / total) * 100);
+        const femalePct = 100 - malePct;
+        const bar = document.getElementById('vd-gender-bar');
+        if (bar) bar.style.width = `${malePct}%`;
+        setEl('vd-male-pct',   `${malePct}% Male`);
+        setEl('vd-female-pct', `${femalePct}% Female`);
+      }
+    }
+
     function renderPillarContent(type, lang) {
       const pData = pillarData[type] || pillarData['health'];
       const langData = pData[lang] || pData['en'];
@@ -1838,7 +2475,57 @@
       document.getElementById('chk-label-water').textContent = uiTrans.chkLabelWater || "We have a Safe Tap Water Connection";
       document.getElementById('chk-label-energy').textContent = uiTrans.chkLabelEnergy || "We use Clean Energy (Solar/Biogas)";
       document.getElementById('chk-label-house').textContent = uiTrans.chkLabelHouse || "We live in our Own House";
+      document.getElementById('label-aadhaar').textContent = uiTrans.labelAadhaar || "Aadhaar Card Possession";
+      document.getElementById('chk-label-aadhaar').textContent = uiTrans.chkLabelAadhaar || "We possess an Aadhaar Card";
       document.getElementById('btn-submit-household-update').textContent = uiTrans.btnSubmitHouseholdUpdate || "Submit Update";
+
+      const setEl = (id, text) => {
+        const el = document.getElementById(id);
+        if (el && text !== undefined) el.textContent = text;
+      };
+
+      setEl('nav-link-dashboard-pillars', uiTrans.navLinkDashboard);
+      setEl('village-dashboard-modal-title', uiTrans.villageDashboardModalTitle);
+      setEl('vd-lbl-tab-overview', uiTrans.vdLblTabOverview);
+      setEl('vd-lbl-tab-statistics', uiTrans.vdLblTabStatistics);
+      setEl('vd-lbl-tab-education', uiTrans.vdLblTabEducation);
+      setEl('vd-lbl-tab-schemes', uiTrans.vdLblTabSchemes);
+      setEl('vd-lbl-tab-announcements', uiTrans.vdLblTabAnnouncements);
+      setEl('vd-lbl-sec-overview', uiTrans.vdLblSecOverview);
+      setEl('vd-lbl-sec-stats', uiTrans.vdLblSecStats);
+      setEl('vd-lbl-sec-edu', uiTrans.vdLblSecEdu);
+      setEl('vd-lbl-sec-schemes', uiTrans.vdLblSecSchemes);
+      setEl('vd-lbl-sec-announce', uiTrans.vdLblSecAnnounce);
+      setEl('vd-lbl-total-pop', uiTrans.vdLblTotalPop);
+      setEl('vd-lbl-total-fam', uiTrans.vdLblTotalFam);
+      setEl('vd-lbl-total-houses', uiTrans.vdLblTotalHouses);
+      setEl('vd-lbl-total-farmers', uiTrans.vdLblTotalFarmers);
+      setEl('vd-lbl-total-students', uiTrans.vdLblTotalStudents);
+      setEl('vd-lbl-total-employees', uiTrans.vdLblTotalEmployees);
+      setEl('vd-lbl-sarpanch', uiTrans.vdLblSarpanch);
+      setEl('vd-lbl-num-wards', uiTrans.vdLblNumWards);
+      setEl('vd-lbl-gender-split-title', uiTrans.vdLblGenderSplitTitle);
+      setEl('vd-lbl-male', uiTrans.vdLblMale);
+      setEl('vd-lbl-female', uiTrans.vdLblFemale);
+      setEl('vd-lbl-pop-split', uiTrans.vdLblPopSplit);
+      setEl('vd-lbl-lit-rate', uiTrans.vdLblLitRate);
+      setEl('vd-lbl-lit-sub', uiTrans.vdLblLitSub);
+      setEl('vd-lbl-emp-rate', uiTrans.vdLblEmpRate);
+      setEl('vd-lbl-emp-sub', uiTrans.vdLblEmpSub);
+      setEl('vd-lbl-agri-stats-title', uiTrans.vdLblAgriStatsTitle);
+      setEl('vd-lbl-agri-area', uiTrans.vdLblAgriArea);
+      setEl('vd-lbl-irrigated-land', uiTrans.vdLblIrrigatedLand);
+      setEl('vd-lbl-main-crops', uiTrans.vdLblMainCrops);
+      setEl('vd-lbl-farmers-subsidy', uiTrans.vdLblFarmersSubsidy);
+      setEl('vd-lbl-num-schools', uiTrans.vdLblNumSchools);
+      setEl('vd-lbl-edu-students', uiTrans.vdLblEduStudents);
+      setEl('vd-lbl-edu-scholarships', uiTrans.vdLblEduScholarships);
+      setEl('vd-lbl-scheme-beneficiaries', uiTrans.vdLblSchemeBeneficiaries);
+      setEl('vd-lbl-scheme-active', uiTrans.vdLblSchemeActive);
+      setEl('vd-lbl-scheme-pending', uiTrans.vdLblSchemePending);
+      setEl('vd-lbl-up-event', uiTrans.vdLblUpEvent);
+      setEl('vd-lbl-gs-meeting', uiTrans.vdLblGsMeeting);
+      setEl('vd-lbl-gov-notif', uiTrans.vdLblGovNotif);
 
       // Render Hero Details
       document.getElementById('pillar-icon').textContent = pData.icon;
@@ -2018,6 +2705,8 @@
       if (valEnergy) valEnergy.textContent = `${percentages.cleanEnergy}%`;
       const valHouse = document.getElementById('val-house');
       if (valHouse) valHouse.textContent = `${percentages.ownHouse}%`;
+      const valAadhaar = document.getElementById('val-aadhaar');
+      if (valAadhaar) valAadhaar.textContent = `${percentages.aadhaar || 0}%`;
 
       const barToilet = document.getElementById('bar-toilet');
       if (barToilet) barToilet.style.width = `${percentages.privateToilet}%`;
@@ -2029,6 +2718,8 @@
       if (barEnergy) barEnergy.style.width = `${percentages.cleanEnergy}%`;
       const barHouse = document.getElementById('bar-house');
       if (barHouse) barHouse.style.width = `${percentages.ownHouse}%`;
+      const barAadhaar = document.getElementById('bar-aadhaar');
+      if (barAadhaar) barAadhaar.style.width = `${percentages.aadhaar || 0}%`;
 
       const badge = document.getElementById('household-chart-badge');
       if (badge) {
