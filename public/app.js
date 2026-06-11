@@ -904,6 +904,51 @@ const cropAdvisoryData = {
   }
 };
 
+function updateCropAdvisoryDisplay(cropKey, lang) {
+  let advisory = null;
+  if (mainPageConfig && mainPageConfig.agriDashboard && mainPageConfig.agriDashboard.crops && mainPageConfig.agriDashboard.crops[cropKey]) {
+    const dbCrop = mainPageConfig.agriDashboard.crops[cropKey];
+    advisory = {
+      name: dbCrop.name[lang] || dbCrop.name['en'] || '',
+      type: dbCrop.type[lang] || dbCrop.type['en'] || '',
+      period: dbCrop.period[lang] || dbCrop.period['en'] || '',
+      water: dbCrop.water[lang] || dbCrop.water['en'] || '',
+      subsidy: dbCrop.subsidy[lang] || dbCrop.subsidy['en'] || '',
+      msp: dbCrop.msp[lang] || dbCrop.msp['en'] || '',
+      notes: dbCrop.notes[lang] || dbCrop.notes['en'] || ''
+    };
+  } else if (cropAdvisoryData && cropAdvisoryData[cropKey]) {
+    advisory = cropAdvisoryData[cropKey];
+  }
+
+  if (advisory) {
+    const nameEl = document.getElementById('advisory-crop-name');
+    if (nameEl) nameEl.textContent = advisory.name;
+
+    const periodEl = document.getElementById('advisory-sowing-period');
+    if (periodEl) periodEl.textContent = advisory.period;
+
+    const waterEl = document.getElementById('advisory-water-need');
+    if (waterEl) waterEl.textContent = advisory.water;
+
+    const subsidyEl = document.getElementById('advisory-subsidy');
+    if (subsidyEl) subsidyEl.textContent = advisory.subsidy;
+
+    const mspEl = document.getElementById('advisory-msp');
+    if (mspEl) mspEl.textContent = advisory.msp;
+
+    const notesEl = document.getElementById('advisory-notes');
+    if (notesEl) notesEl.textContent = advisory.notes;
+    
+    // Category Badge Update
+    const badge = document.getElementById('advisory-crop-type');
+    if (badge) {
+      badge.textContent = advisory.type;
+    }
+  }
+  return advisory;
+}
+
 function initCropAdvisory() {
   const cropBtns = document.querySelectorAll('.crop-select-btn');
   
@@ -921,23 +966,12 @@ function initCropAdvisory() {
 
       // Update contents
       const cropKey = btn.id.replace('crop-btn-', '');
-      const advisory = cropAdvisoryData[cropKey];
+      const lang = currentLanguage || 'en';
+      const advisory = updateCropAdvisoryDisplay(cropKey, lang);
 
       if (advisory) {
-        document.getElementById('advisory-crop-name').textContent = advisory.name;
-        document.getElementById('advisory-sowing-period').textContent = advisory.period;
-        document.getElementById('advisory-water-need').textContent = advisory.water;
-        document.getElementById('advisory-subsidy').textContent = advisory.subsidy;
-        document.getElementById('advisory-msp').textContent = advisory.msp;
-        document.getElementById('advisory-notes').textContent = advisory.notes;
-        
-        // Category Badge Update
-        const badge = document.querySelector('#crop-advisory-details .scheme-tag');
-        if (badge) {
-          badge.textContent = advisory.type;
-        }
-
-        showToast(`🌱 Sowing advisory loaded: ${advisory.name}`, 'success');
+        const toastPrefix = lang === 'hi' ? '🌱 बुवाई सलाह लोड की गई' : lang === 'te' ? '🌱 సాగు సలహా లోడ్ చేయబడింది' : '🌱 Sowing advisory loaded';
+        showToast(`${toastPrefix}: ${advisory.name}`, 'success');
       }
     });
   });
@@ -3093,6 +3127,115 @@ function renderDynamicMainPageContent() {
     
     // Reinitialize accordion listeners
     initFaqAccordion();
+  }
+
+  // 12. Water Availability Dashboard
+  const waterConfig = mainPageConfig.waterDashboard;
+  if (waterConfig) {
+    const cap = parseInt(waterConfig.capacity) || 150000;
+    const curr = parseInt(waterConfig.current) || 117000;
+    const pct = Math.round((curr / cap) * 100);
+
+    const fillEl = document.getElementById('reservoir-level-fill');
+    if (fillEl) fillEl.style.height = `${pct}%`;
+
+    const pctText = document.getElementById('reservoir-percentage-text');
+    if (pctText) pctText.textContent = `${pct}%`;
+
+    const volText = document.getElementById('reservoir-vol-text');
+    if (volText) {
+      volText.textContent = `${curr.toLocaleString()} / ${cap.toLocaleString()} Litres`;
+    }
+
+    const hoursEl = document.getElementById('water-metric-hours');
+    if (hoursEl) hoursEl.textContent = waterConfig.supplyHours[lang] || waterConfig.supplyHours['en'] || '';
+
+    const limitEl = document.getElementById('water-metric-limit');
+    if (limitEl) limitEl.textContent = waterConfig.weeklyLimit[lang] || waterConfig.weeklyLimit['en'] || '';
+
+    const wellsEl = document.getElementById('water-metric-borewells');
+    if (wellsEl) wellsEl.textContent = waterConfig.borewellStatus[lang] || waterConfig.borewellStatus['en'] || '';
+
+    const fluorideEl = document.getElementById('water-metric-fluoride');
+    if (fluorideEl) fluorideEl.textContent = waterConfig.fluorideLevel[lang] || waterConfig.fluorideLevel['en'] || '';
+
+    const labEl = document.getElementById('water-metric-labdate');
+    if (labEl) labEl.textContent = waterConfig.lastLabDate[lang] || waterConfig.lastLabDate['en'] || '';
+
+    const alertEl = document.getElementById('water-alert-banner-text');
+    if (alertEl) {
+      const alertMsg = waterConfig.alertBanner[lang] || waterConfig.alertBanner['en'] || '';
+      alertEl.innerHTML = `⚠️ <strong>${lang === 'hi' ? 'मानसून की तैयारी' : lang === 'te' ? 'వర్షాకాలం సన్నద్ధత' : 'Monsoon Prep'}:</strong> ${alertMsg}`;
+    }
+
+    // Infra Details cards
+    if (waterConfig.infraDetails) {
+      ['sources', 'tanks', 'shortages'].forEach(key => {
+        const details = waterConfig.infraDetails[key];
+        if (details) {
+          const titleEl = document.getElementById(`water-title-${key}`);
+          if (titleEl) titleEl.textContent = details.title[lang] || details.title['en'] || '';
+          const descEl = document.getElementById(`water-desc-${key}`);
+          if (descEl) descEl.textContent = details.desc[lang] || details.desc['en'] || '';
+        }
+      });
+    }
+  }
+
+  // 13. Agriculture Dashboard (Live Crops Grown & Sowing Advisories)
+  const agriConfig = mainPageConfig.agriDashboard;
+  if (agriConfig) {
+    const cropsEl = document.getElementById('agri-desc-crops');
+    if (cropsEl) cropsEl.textContent = agriConfig.cropsGrown[lang] || agriConfig.cropsGrown['en'] || '';
+
+    const irrEl = document.getElementById('agri-desc-irrigation');
+    if (irrEl) irrEl.textContent = agriConfig.irrigationMethods[lang] || agriConfig.irrigationMethods['en'] || '';
+
+    const fertEl = document.getElementById('agri-desc-fertilizer');
+    if (fertEl) fertEl.textContent = agriConfig.fertilizerUsage[lang] || agriConfig.fertilizerUsage['en'] || '';
+
+    const schEl = document.getElementById('agri-desc-schemes');
+    if (schEl) schEl.textContent = agriConfig.govSchemes[lang] || agriConfig.govSchemes['en'] || '';
+
+    // Populate active crop details in correct language
+    const activeBtn = document.querySelector('.crop-select-btn.active');
+    const activeCropKey = activeBtn ? activeBtn.id.replace('crop-btn-', '') : 'paddy';
+    updateCropAdvisoryDisplay(activeCropKey, lang);
+  }
+
+  // 14. Health and Hygiene Services Dashboard
+  const healthConfig = mainPageConfig.healthDashboard;
+  if (healthConfig) {
+    // Facilities & Staff
+    if (healthConfig.facilities) {
+      ['subcenter', 'phc', 'asha', 'ambulance'].forEach(key => {
+        const el = document.getElementById(`health-facility-desc-${key}`);
+        if (el && healthConfig.facilities[key]) {
+          el.textContent = healthConfig.facilities[key][lang] || healthConfig.facilities[key]['en'] || '';
+        }
+      });
+    }
+    // Hygiene & Sanitation Status
+    if (healthConfig.hygiene) {
+      ['toilets', 'odf', 'waste', 'plastic'].forEach(key => {
+        const el = document.getElementById(`health-hygiene-desc-${key}`);
+        if (el && healthConfig.hygiene[key]) {
+          el.textContent = healthConfig.hygiene[key][lang] || healthConfig.hygiene[key]['en'] || '';
+        }
+      });
+    }
+    // Campaigns & Vaccination
+    if (healthConfig.campaigns) {
+      ['vax', 'camps'].forEach(key => {
+        const campaign = healthConfig.campaigns[key];
+        if (campaign) {
+          const titleEl = document.getElementById(`health-awareness-title-${key}`);
+          if (titleEl) titleEl.textContent = campaign.title[lang] || campaign.title['en'] || '';
+          const descEl = document.getElementById(`health-awareness-desc-${key}`);
+          if (descEl) descEl.textContent = campaign.desc[lang] || campaign.desc['en'] || '';
+        }
+      });
+    }
   }
 }
 

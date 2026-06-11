@@ -773,10 +773,326 @@
         "hi": "ग्राम पंचायत परिसर, मुख्य सड़क, सीतारामपुरम टांडा",
         "te": "గ్రామ పంచాయతీ కార్యాలయం, మెయిన్ స్ట్రీట్, సీతారామపురం తండా"
       },
-      "timings": {
+      "timing": {
         "en": "9:30 AM - 5:00 PM (Monday to Saturday)",
         "hi": "9:30 AM - 5:00 PM (सोमवार से शनिवार)",
         "te": "9:30 AM - 5:00 PM (సోమవారం నుండి శనివారం)"
+      }
+    },
+    "waterDashboard": {
+      "capacity": 150000,
+      "current": 117000,
+      "supplyHours": {
+        "en": "06:00 AM - 08:00 AM",
+        "hi": "सुबह 06:00 बजे - 08:00 बजे",
+        "te": "ఉదయం 06:00 - 08:00"
+      },
+      "weeklyLimit": {
+        "en": "240 Litres / Family",
+        "hi": "240 लीटर / परिवार",
+        "te": "240 లీటర్లు / కుటుంబం"
+      },
+      "borewellStatus": {
+        "en": "8 / 8 Active",
+        "hi": "8 / 8 सक्रिय",
+        "te": "8 / 8 క్రియాశీలం"
+      },
+      "fluorideLevel": {
+        "en": "Safe (0.8 ppm)",
+        "hi": "सुरक्षित (0.8 ppm)",
+        "te": "సురక్షితం (0.8 ppm)"
+      },
+      "lastLabDate": {
+        "en": "04 June 2026",
+        "hi": "04 जून 2026",
+        "te": "04 జూన్ 2026"
+      },
+      "alertBanner": {
+        "en": "Monsoon Prep: Tank cleaning is scheduled for June 12th. Water supply hours will temporarily adjust to 5:00 AM - 6:30 AM on this day. Please harvest runoff rainwater.",
+        "hi": "मानसून की तैयारी: टंकी की सफाई 12 जून को होनी तय है। इस दिन पानी की आपूर्ति का समय अस्थायी रूप से सुबह 5:00 बजे - 6:30 बजे कर दिया जाएगा। कृपया वर्षा जल का संचयन करें।",
+        "te": "వర్షాకాలం సన్నద్ధత: జూన్ 12న ట్యాంక్ క్లీనింగ్ షెడ్యూల్ చేయబడింది. ఈ రోజున నీటి సరఫరా వేళలు తాత్కాలికంగా ఉదయం 5:00 నుండి 6:30 గంటల వరకు మార్చబడతాయి. దయచేసి వర్షపు నీటిని నిల్వ చేసుకోండి."
+      },
+      "infraDetails": {
+        "sources": {
+          "title": {
+            "en": "Drinking Water Sources",
+            "hi": "पेयजल स्रोत",
+            "te": "త్రాగునీటి వనరులు"
+          },
+          "desc": {
+            "en": "Primary water is drawn from the central panchayat reservoir, connected via a pipeline network. Backed up by 8 functional borewells.",
+            "hi": "मुख्य पानी केंद्रीय पंचायत जलाशय से प्राप्त किया जाता है, जो पाइपलाइन नेटवर्क के माध्यम से जुड़ा हुआ है। 8 कार्यात्मक बोरवेल द्वारा समर्थित।",
+            "te": "పైప్‌లైన్ నెట్‌వర్క్ ద్వారా అనుసంధానించబడిన కేంద్ర పంచాయితీ జలాశయం నుండి ప్రధానంగా నీరు తీసుకోబడుతుంది. 8 క్రియాశీల బోరుబావుల మద్దతు ఉంది."
+          }
+        },
+        "tanks": {
+          "title": {
+            "en": "Tanks & Rainwater Harvesting",
+            "hi": "टंकी और वर्षा जल संचयन",
+            "te": "ట్యాంకులు & వర్షపు నీటి నిల్వ"
+          },
+          "desc": {
+            "en": "1 main overhead tank (150,000 L) and 2 mini ground water tanks. Rainwater recharge pits are mandatory in all houses.",
+            "hi": "1 मुख्य ओवरहेड टैंक (150,000 L) और 2 मिनी ग्राउंड वाटर टैंक। सभी घरों में वर्षा जल पुनर्भरण गड्ढे अनिवार्य हैं।",
+            "te": "1 ప్రధాన ఓవర్‌హెడ్ ట్యాంక్ (150,000 లీటర్లు) మరియు 2 మినీ భూగర్భ నీటి ట్యాంకులు. అన్ని ఇళ్లలో వర్షపు నీటి రీఛార్జ్ గుంతలు తప్పనిసరి."
+          }
+        },
+        "shortages": {
+          "title": {
+            "en": "Shortages & Water Quality",
+            "hi": "किल्लत और पानी की गुणवत्ता",
+            "te": "కొరతలు & నీటి నాణ్యత"
+          },
+          "desc": {
+            "en": "Shortages in Southern Hamlet in April-May are managed via rationing. Chemistry labs confirm safe Fluoride (0.8 ppm) and biological levels.",
+            "hi": "अप्रैल-मई में दक्षिणी बस्ती में पानी की किल्लत को राशनिंग के माध्यम से प्रबंधित किया जाता है। रसायन विज्ञान प्रयोगशालाएं सुरक्षित फ्लोराइड (0.8 ppm) और जैविक स्तर की पुष्टि करती हैं।",
+            "te": "ఏప్రిల్-మేలో దక్షిణ తండాలోని కొరతను రేషనింగ్ ద్వారా సరిచేస్తారు. కెమిస్ట్రీ ల్యాబ్‌లు సురక్షితమైన ఫ్లోరైడ్ (0.8 ppm) మరియు ఇతర నాణ్యతా ప్రమాణాలను నిర్ధారించాయి."
+          }
+        }
+      }
+    },
+    "agriDashboard": {
+      "cropsGrown": {
+        "en": "Paddy, Maize, Chili, and Pulses",
+        "hi": "धान, मक्का, मिर्च और दालें",
+        "te": "వరి, మొక్కజొన్న, మిరప మరియు పప్పుధాన్యాలు"
+      },
+      "irrigationMethods": {
+        "en": "Canal Flow, Borewell Drip, and Rain-fed fields",
+        "hi": "नहर प्रवाह, बोरवेल ड्रिप और वर्षा आधारित खेत",
+        "te": "కాలువ నీరు, బోరుబావుల డ్రిప్ మరియు వర్షాధార పొలాలు"
+      },
+      "fertilizerUsage": {
+        "en": "Vermicompost (Earthworm Organic Manure) preferred",
+        "hi": "केंचुआ जैविक खाद (वर्मीकम्पोस्ट) को प्राथमिकता",
+        "te": "వర్మీకంపోస్ట్ (ఎర్రమట్టి సేంద్రీయ ఎరువు) ప్రాధాన్యత"
+      },
+      "govSchemes": {
+        "en": "Rythu Bandhu Investment Support, PM-KISAN, 80% Drip Subsidy",
+        "hi": "रैतु बंधु निवेश सहायता, पीएम-किसान, 80% ड्रिप सब्सिडी",
+        "te": "రైతు బంధు పెట్టుబడి సహాయం, పీఎం-కిసాన్, 80% డ్రిప్ సబ్సిడీ"
+      },
+      "crops": {
+        "paddy": {
+          "name": {
+            "en": "Paddy Sowing Advisory",
+            "hi": "धान बुवाई सलाह",
+            "te": "వరి సాగు సలహా"
+          },
+          "type": {
+            "en": "Wet Crop",
+            "hi": "गीली फसल",
+            "te": "తడి పంట"
+          },
+          "period": {
+            "en": "June - July (Kharif)",
+            "hi": "जून - जुलाई (खरीफ)",
+            "te": "జూన్ - జూలై (ఖరీఫ్)"
+          },
+          "water": {
+            "en": "High (Canal / Monsoon)",
+            "hi": "उच्च (नहर / मानसून)",
+            "te": "అధికం (కాలువ / వర్షాకాలం)"
+          },
+          "subsidy": {
+            "en": "40% Seed Grant",
+            "hi": "40% बीज अनुदान",
+            "te": "40% విత్తన రాయితీ"
+          },
+          "msp": {
+            "en": "₹2,183 / Quintal",
+            "hi": "₹2,183 / क्विंटल",
+            "te": "₹2,183 / క్వింటాల్"
+          },
+          "notes": {
+            "en": "Paddy crops require sustained moisture. Due to expected early-season rainfall peaks, transplanting should ideally conclude by mid-July. Apply nitrogen fertilizer in three split doses (basal, tillering, and panicle initiation) for optimal yield. Seed subsidy requests can be filed at the Panchayat Center.",
+            "hi": "धान की फसलों को निरंतर नमी की आवश्यकता होती है। शुरुआती सीजन में बारिश के कारण, रोपाई आदर्श रूप से मध्य जुलाई तक समाप्त हो जानी चाहिए। बेहतर उपज के लिए नाइट्रोजन उर्वरक तीन खुराक में डालें। बीज सब्सिडी के आवेदन पंचायत केंद्र पर जमा किए जा सकते हैं।",
+            "te": "వరి పంటలకు నిరంతరం తడి అవసరం. ప్రారంభ వర్షాల దృష్ట్యా, నాట్లు నాటడం జూలై మధ్య నాటికి పూర్తి కావాలి. మంచి దిగుబడి కోసం నత్రజని ఎరువులను మూడు విడతలుగా వాడండి. విత్తన రాయితీ దరఖాస్తులను పంచాయతీ కేంద్రంలో సమర్పించవచ్చు."
+          }
+        },
+        "maize": {
+          "name": {
+            "en": "Maize Sowing Advisory",
+            "hi": "मक्का बुवाई सलाह",
+            "te": "మొక్కజొన్న సాగు సలహా"
+          },
+          "type": {
+            "en": "Semi-Dry Crop",
+            "hi": "अर्ध-शुष्क फसल",
+            "te": "పాక్షిక తడి పంట"
+          },
+          "period": {
+            "en": "June - Mid July (Kharif)",
+            "hi": "जून - मध्य जुलाई (खरीफ)",
+            "te": "జూన్ - జూలై మధ్య (ఖరీఫ్)"
+          },
+          "water": {
+            "en": "Moderate (Rain-fed)",
+            "hi": "मध्यम (वर्षा आधारित)",
+            "te": "మితంగా (వర్షాధారం)"
+          },
+          "subsidy": {
+            "en": "30% Hybrid Seed Grant",
+            "hi": "30% हाइब्रिड बीज अनुदान",
+            "te": "30% హైబ్రిడ్ విత్తన రాయితీ"
+          },
+          "msp": {
+            "en": "₹2,090 / Quintal",
+            "hi": "₹2,090 / क्विंटल",
+            "te": "₹2,090 / క్వింటాల్"
+          },
+          "notes": {
+            "en": "Maize requires good drainage. Avoid sowing in clayey waterlogged zones. Plant on ridges to prevent root-drown from sudden rain bursts. Zinc sulfate applications are highly recommended. Subsidy claims for hybrid seeds are open this week.",
+            "hi": "मक्के को अच्छे जल निकास की आवश्यकता होती है। जलभराव वाले क्षेत्रों में बुवाई से बचें। अचानक होने वाली बारिश से जड़ों को सड़ने से बचाने के लिए मेड़ों पर पौधे लगाएं। जिंक सल्फेट का उपयोग अत्यधिक अनुशंसित है। हाइब्रिड बीजों के लिए सब्सिडी के दावे इस सप्ताह खुले हैं।",
+            "te": "మొక్కజొన్నకు నీరు నిల్వ ఉండకుండా చూసుకోవాలి. నీరు నిలిచే పొలాలలో దీనిని వేయవద్దు. హఠాత్తుగా కురిసే వర్షాల వల్ల వేర్లు కుళ్ళిపోకుండా ఉండటానికి గుట్టలపై నాటండి. జింక్ సల్ఫేట్ వాడకం చాలా మంచిది. హైబ్రిడ్ విత్తనాల రాయితీ దరఖాస్తులు ఈ వారం అందుబాటులో ఉన్నాయి."
+          }
+        },
+        "chili": {
+          "name": {
+            "en": "Chili Sowing Advisory",
+            "hi": "मिर्च बुवाई सलाह",
+            "te": "మిరప సాగు సలహా"
+          },
+          "type": {
+            "en": "Cash Crop",
+            "hi": "नकदी फसल",
+            "te": "నగదు పంట"
+          },
+          "period": {
+            "en": "July - August (Nursery)",
+            "hi": "जुलाई - अगस्त (नर्सरी)",
+            "te": "జూలై - ఆగస్టు (నారుమడి)"
+          },
+          "water": {
+            "en": "Moderate (Micro-irrigation)",
+            "hi": "मध्यम (सूक्ष्म सिंचाई)",
+            "te": "మితంగా (సూక్ష్మ నీటి పారుదల)"
+          },
+          "subsidy": {
+            "en": "80% Drip Installation",
+            "hi": "80% ड्रिप इंस्टॉलेशन",
+            "te": "80% డ్రిప్ అమరిక"
+          },
+          "msp": {
+            "en": "₹7,000 - ₹18,000 / Quintal",
+            "hi": "₹7,000 - ₹18,000 / क्विंटल",
+            "te": "₹7,000 - ₹18,000 / క్వింటాల్"
+          },
+          "notes": {
+            "en": "Chili nursery plants should be raised under light shade nets. Safeguard against sucking pests using bio-pesticides. Excellent crop for drip systems; panchayats offer 80% subsidy for micro-irrigation layout installation.",
+            "hi": "मिर्च के नर्सरी पौधों को हल्के छायादार जाली के नीचे उगाया जाना चाहिए। जैविक कीटनाशकों का उपयोग करके चूसने वाले कीटों से बचाव करें। ड्रिप प्रणालियों के लिए उत्कृष्ट फसल; पंचायतें सूक्ष्म सिंचाई लेआउट स्थापना के लिए 80% सब्सिडी प्रदान करती हैं।",
+            "te": "మిరప నారుమడులను తేలికపాటి నీడ గల నెట్ల కింద పెంచాలి. బయో-రసాయనాలు ఉపయోగించి తెగుళ్ల నుండి రక్షించండి. డ్రిప్ సిస్టమ్స్‌కు చాలా అనుకూలమైన పంట; సూక్ష్మ నీటి పారుదల అమరిక కోసం పంచాయతీలు 80% రాయితీ ఇస్తున్నాయి."
+          }
+        },
+        "pulses": {
+          "name": {
+            "en": "Pulses Sowing Advisory",
+            "hi": "दाल बुवाई सलाह",
+            "te": "పప్పుధాన్యాల సాగు సలహా"
+          },
+          "type": {
+            "en": "Dry Crop",
+            "hi": "सूखी फसल",
+            "te": "పొడి పంట"
+          },
+          "period": {
+            "en": "September - October (Rabi)",
+            "hi": "सितंबर - अक्टूबर (रबी)",
+            "te": "సెప్టెంబర్ - అక్టోబర్ (రబీ)"
+          },
+          "water": {
+            "en": "Low (Residual moisture)",
+            "hi": "कम (अवशिष्ट नमी)",
+            "te": "తక్కువ (తేమ సరిపోతుంది)"
+          },
+          "subsidy": {
+            "en": "Free Seed Mini-Kits",
+            "hi": "मुफ्त बीज मिनी-किट",
+            "te": "ఉచిత విత్తన మినీ-కిట్లు"
+          },
+          "msp": {
+            "en": "₹6,950 / Quintal",
+            "hi": "₹6,950 / क्विंटल",
+            "te": "₹6,950 / క్వింటాల్"
+          },
+          "notes": {
+            "en": "Pulses fix nitrogen in the soil, making them perfect for crop rotation following Paddy harvest. Requires minimal water. Keep fields free of weeds for the first 30 days. Mini-kits with free seeds are available under central dryland initiatives.",
+            "hi": "दालें मिट्टी में नाइट्रोजन का स्थिरीकरण करती हैं, जिससे वे धान की कटाई के बाद फसल चक्र के लिए उपयुक्त बन जाती हैं। न्यूनतम पानी की आवश्यकता होती है। पहले 30 दिनों तक खेतों को खरपतवार मुक्त रखें। केंद्रीय शुष्क भूमि पहलों के तहत मुफ्त बीजों के साथ मिनी-किट उपलब्ध हैं।",
+            "te": "పప్పుధాన్యాలు నేలలో నత్రజనిని పెంచుతాయి, కాబట్టి వరి కోతల తర్వాత పంట మార్పిడికి ఇవి చాలా అనుకూలం. చాలా తక్కువ నీరు అవసరం. మొదటి 30 రోజులు పొలంలో కలుపు లేకుండా చూసుకోండి. పొడి భూముల పథకాల కింద ఉచిత విత్తన కిట్లు లభిస్తున్నాయి."
+          }
+        }
+      }
+    },
+    "healthDashboard": {
+      "facilities": {
+        "subcenter": {
+          "en": "Fully Operational",
+          "hi": "पूर्ण रूप से चालू",
+          "te": "పూర్తిగా అందుబాటులో ఉంది"
+        },
+        "phc": {
+          "en": "Macherla Mandal Hospital (15 km)",
+          "hi": "माचेरला मंडल अस्पताल (15 किमी)",
+          "te": "మాచర్ల మండల ఆసుపత్రి (15 కి.మీ)"
+        },
+        "asha": {
+          "en": "2 Workers (Devika & Laxmi)",
+          "hi": "2 कार्यकर्ता (देविका और लक्ष्मी)",
+          "te": "2 కార్యకర్తలు (దేవిక & లక్ష్మి)"
+        },
+        "ambulance": {
+          "en": "108 (National Helpline) / Local Service",
+          "hi": "108 (राष्ट्रीय हेल्पलाइन) / स्थानीय सेवा",
+          "te": "108 (జాతీయ హెల్ప్‌లైన్) / స్థానిక సేవ"
+        }
+      },
+      "hygiene": {
+        "toilets": {
+          "en": "184 Private Household Toilets, 2 Community Sanitary Complexes",
+          "hi": "184 निजी घरेलू शौचालय, 2 सामुदायिक स्वच्छता परिसर",
+          "te": "184 వ్యక్తిగత గృహ మరుగుదొడ్లు, 2 కమ్యూనిటీ మరుగుదొడ్లు"
+        },
+        "odf": {
+          "en": "100% ODF (Open Defecation Free)",
+          "hi": "100% ओडीएफ (खुले में शौच मुक्त)",
+          "te": "100% బహిరంగ విసర్జన రహిత గ్రామం (ODF)"
+        },
+        "waste": {
+          "en": "Daily source segregation (wet/dry), vermicomposting yard",
+          "hi": "दैनिक स्रोत पृथक्करण (गीला/सूखा), वर्मीकम्पोस्टिंग यार्ड",
+          "te": "రోజువారీ తడి-పొడి చెత్త వర్గీకరణ, వర్మీకంపోస్ట్ తయారీ"
+        },
+        "plastic": {
+          "en": "Ban on single-use plastic bags in all shops",
+          "hi": "सभी दुकानों में एकल-उपयोग वाले प्लास्टिक बैग पर प्रतिबंध",
+          "te": "అన్ని దుకాణాలలో ఒకేసారి వాడే ప్లాస్టిక్ నిషేధం"
+        }
+      },
+      "campaigns": {
+        "vax": {
+          "title": {
+            "en": "Monthly Vaccination Drives",
+            "hi": "मासिक टीकाकरण अभियान",
+            "te": "నెలవారీ టీకాల కార్యక్రమం"
+          },
+          "desc": {
+            "en": "Scheduled immunizations (Polio, BCG, MMR) are conducted on the first Tuesday of every month at the Anganwadi Center.",
+            "hi": "अनुसूचित टीकाकरण (पोलियो, बीसीजी, एमएमआर) हर महीने के पहले मंगलवार को आंगनवाड़ी केंद्र में आयोजित किए जाते हैं।",
+            "te": "ప్రతి నెల మొదటి మంగళవారం అంగన్‌వాడీ కేంద్రంలో క్రమం తప్పకుండా టీకాలు వేయబడును."
+          }
+        },
+        "camps": {
+          "title": {
+            "en": "Periodic Health Camps",
+            "hi": "आवधिक स्वास्थ्य शिविर",
+            "te": "నియమిత ఉచిత వైద్య శిబిరాలు"
+          },
+          "desc": {
+            "en": "Free diagnostic, eye check-up, and general medicine distribution camps are conducted by doctors from the Macherla PHC twice a quarter.",
+            "hi": "माचेरला पीएचसी के डॉक्टरों द्वारा प्रति तिमाही दो बार मुफ्त निदान, नेत्र जांच और सामान्य दवा वितरण शिविर आयोजित किए जाते हैं।",
+            "te": "మాచర్ల పీహెచ్‌సీ వైద్యుల చేత ప్రతి మూడు నెలలకు రెండు సార్లు ఉచిత వ్యాధి నిర్ధారణ, కంటి పరీక్షలు మరియు ఉచిత మందుల పంపిణీ శిబిరాలు జరుపబడును."
+          }
+        }
       }
     }
   }

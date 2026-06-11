@@ -1120,7 +1120,7 @@
           <!-- Dynamically Populated by app.js -->
           <div class="crop-advisory-header">
             <h4 id="advisory-crop-name">Paddy Sowing Advisory</h4>
-            <span class="scheme-tag">Wet Crop</span>
+            <span class="scheme-tag" id="advisory-crop-type">Wet Crop</span>
           </div>
           <div class="crop-advisory-grid">
             <div class="crop-metric-card">
@@ -1176,19 +1176,19 @@
             </div>
             <div class="water-metric-row">
               <span>Weekly Allotment Limit</span>
-              <span>240 Litres / Family</span>
+              <span id="water-metric-limit">240 Litres / Family</span>
             </div>
             <div class="water-metric-row">
               <span>Borewell Recharge Wells</span>
-              <span>8 / 8 Active</span>
+              <span id="water-metric-borewells">8 / 8 Active</span>
             </div>
             <div class="water-metric-row">
               <span>Fluoride Level</span>
-              <span style="color:var(--color-success); font-weight:bold;">Safe (0.8 ppm)</span>
+              <span style="color:var(--color-success); font-weight:bold;" id="water-metric-fluoride">Safe (0.8 ppm)</span>
             </div>
             <div class="water-metric-row">
               <span>Last Lab Sample Date</span>
-              <span>04 June 2026</span>
+              <span id="water-metric-labdate">04 June 2026</span>
             </div>
 
             <div class="water-alert-banner" id="water-alert-banner-text">
@@ -1507,7 +1507,7 @@
           </div>
           <div class="water-metric-row">
             <span id="health-facility-label-ambulance">Emergency Ambulance Contact</span>
-            <span>108 (National Helpline) / Local Service</span>
+            <span id="health-facility-desc-ambulance">108 (National Helpline) / Local Service</span>
           </div>
         </div>
 

@@ -561,6 +561,428 @@
                 <div class="lang-input-row">
                   <span class="lang-badge te">TE</span>
                   <input type="text" id="contact-time-te" class="form-control" />
+              </div>
+            </div>
+
+            <!-- Water Dashboard Editor -->
+            <div class="editor-subcard" style="margin-top:20px;">
+              <h4>💧 Water Availability Dashboard</h4>
+              <p style="font-size:0.82rem; color:var(--color-text-muted); margin-bottom:16px;">
+                Configure the village reservoir capacity, current volume, supply schedules, and water-related infrastructure details.
+              </p>
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-bottom:16px;">
+                <div class="form-group">
+                  <label for="water-capacity">Reservoir Capacity (Litres)</label>
+                  <input type="number" id="water-capacity" class="form-control" placeholder="e.g. 150000" />
+                </div>
+                <div class="form-group">
+                  <label for="water-current">Current Storage Volume (Litres)</label>
+                  <input type="number" id="water-current" class="form-control" placeholder="e.g. 117000" />
+                </div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Daily Supply Hour</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="water-hours-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="water-hours-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="water-hours-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Weekly Allotment Limit</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="water-limit-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="water-limit-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="water-limit-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Borewell Recharge Wells Status</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="water-wells-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="water-wells-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="water-wells-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Fluoride Level Status</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="water-fluoride-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="water-fluoride-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="water-fluoride-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Last Lab Sample Date</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="water-labdate-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="water-labdate-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="water-labdate-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Monsoon Prep / Notice Message</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><textarea id="water-notice-en" class="form-control" rows="2"></textarea></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><textarea id="water-notice-hi" class="form-control" rows="2"></textarea></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><textarea id="water-notice-te" class="form-control" rows="2"></textarea></div>
+              </div>
+
+              <!-- Water Resource Infrastructure Subcards -->
+              <h5 style="margin: 18px 0 10px 0; color: var(--color-primary); font-weight:700;">Infrastructure Details Cards</h5>
+              
+              <!-- Card 1: Drinking Water Sources -->
+              <div style="border-left: 3px solid var(--color-primary); padding-left:12px; margin-bottom:16px;">
+                <label style="font-weight:700; font-size:0.85rem;">Card 1: Drinking Water Sources</label>
+                <div class="lang-input-group" style="margin-top:6px;">
+                  <label>Card Title</label>
+                  <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="water-card-sources-title-en" class="form-control" /></div>
+                  <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="water-card-sources-title-hi" class="form-control" /></div>
+                  <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="water-card-sources-title-te" class="form-control" /></div>
+                </div>
+                <div class="lang-input-group">
+                  <label>Card Description</label>
+                  <div class="lang-input-row"><span class="lang-badge en">EN</span><textarea id="water-card-sources-desc-en" class="form-control" rows="2"></textarea></div>
+                  <div class="lang-input-row"><span class="lang-badge hi">HI</span><textarea id="water-card-sources-desc-hi" class="form-control" rows="2"></textarea></div>
+                  <div class="lang-input-row"><span class="lang-badge te">TE</span><textarea id="water-card-sources-desc-te" class="form-control" rows="2"></textarea></div>
+                </div>
+              </div>
+
+              <!-- Card 2: Tanks & Rainwater Harvesting -->
+              <div style="border-left: 3px solid var(--color-primary); padding-left:12px; margin-bottom:16px;">
+                <label style="font-weight:700; font-size:0.85rem;">Card 2: Tanks & Rainwater Harvesting</label>
+                <div class="lang-input-group" style="margin-top:6px;">
+                  <label>Card Title</label>
+                  <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="water-card-tanks-title-en" class="form-control" /></div>
+                  <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="water-card-tanks-title-hi" class="form-control" /></div>
+                  <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="water-card-tanks-title-te" class="form-control" /></div>
+                </div>
+                <div class="lang-input-group">
+                  <label>Card Description</label>
+                  <div class="lang-input-row"><span class="lang-badge en">EN</span><textarea id="water-card-tanks-desc-en" class="form-control" rows="2"></textarea></div>
+                  <div class="lang-input-row"><span class="lang-badge hi">HI</span><textarea id="water-card-tanks-desc-hi" class="form-control" rows="2"></textarea></div>
+                  <div class="lang-input-row"><span class="lang-badge te">TE</span><textarea id="water-card-tanks-desc-te" class="form-control" rows="2"></textarea></div>
+                </div>
+              </div>
+
+              <!-- Card 3: Shortages & Water Quality -->
+              <div style="border-left: 3px solid var(--color-primary); padding-left:12px;">
+                <label style="font-weight:700; font-size:0.85rem;">Card 3: Shortages & Water Quality</label>
+                <div class="lang-input-group" style="margin-top:6px;">
+                  <label>Card Title</label>
+                  <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="water-card-shortages-title-en" class="form-control" /></div>
+                  <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="water-card-shortages-title-hi" class="form-control" /></div>
+                  <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="water-card-shortages-title-te" class="form-control" /></div>
+                </div>
+                <div class="lang-input-group">
+                  <label>Card Description</label>
+                  <div class="lang-input-row"><span class="lang-badge en">EN</span><textarea id="water-card-shortages-desc-en" class="form-control" rows="2"></textarea></div>
+                  <div class="lang-input-row"><span class="lang-badge hi">HI</span><textarea id="water-card-shortages-desc-hi" class="form-control" rows="2"></textarea></div>
+                  <div class="lang-input-row"><span class="lang-badge te">TE</span><textarea id="water-card-shortages-desc-te" class="form-control" rows="2"></textarea></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Agriculture Modal Editor -->
+            <div class="editor-subcard" style="margin-top:20px;">
+              <h4>🌾 Agriculture Sowing & Input Support</h4>
+              <p style="font-size:0.82rem; color:var(--color-text-muted); margin-bottom:16px;">
+                Configure the top-level agricultural statistics and sowing advisories.
+              </p>
+              
+              <div class="lang-input-group">
+                <label>Major Crops Grown</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="agri-crops-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="agri-crops-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="agri-crops-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Irrigation Methods</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="agri-irrigation-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="agri-irrigation-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="agri-irrigation-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Fertilizer Usage</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="agri-fertilizer-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="agri-fertilizer-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="agri-fertilizer-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Government Schemes</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="agri-schemes-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="agri-schemes-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="agri-schemes-te" class="form-control" /></div>
+              </div>
+
+              <!-- Nested Crop Advisories Editor with dropdown selector -->
+              <h5 style="margin: 18px 0 10px 0; color: var(--color-primary); font-weight:700;">Crop Sowing Advisories</h5>
+              <div class="form-group" style="margin-bottom:12px;">
+                <label for="agri-crop-editor-select">Select Crop to Configure</label>
+                <select id="agri-crop-editor-select" class="form-control" onchange="switchCropEditor(this.value)">
+                  <option value="paddy">Paddy 🌾</option>
+                  <option value="maize">Maize 🌽</option>
+                  <option value="chili">Chili 🌶️</option>
+                  <option value="pulses">Pulses 🫘</option>
+                </select>
+              </div>
+
+              <!-- Paddy, Maize, Chili, Pulses Form Containers (shown/hidden via switchCropEditor) -->
+              <div id="crop-fields-wrapper">
+                <!-- Paddy -->
+                <div id="crop-fields-paddy" class="crop-fields-group">
+                  <div class="lang-input-group"><label>Advisory Title</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-paddy-name-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-paddy-name-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-paddy-name-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Crop Category Tag</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-paddy-type-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-paddy-type-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-paddy-type-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Sowing Period</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-paddy-period-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-paddy-period-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-paddy-period-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Irrigation Scheme</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-paddy-water-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-paddy-water-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-paddy-water-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Subsidy Availability</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-paddy-subsidy-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-paddy-subsidy-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-paddy-subsidy-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Market Price (MSP)</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-paddy-msp-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-paddy-msp-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-paddy-msp-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Advisory Description</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><textarea id="crop-paddy-notes-en" class="form-control" rows="3"></textarea></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><textarea id="crop-paddy-notes-hi" class="form-control" rows="3"></textarea></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><textarea id="crop-paddy-notes-te" class="form-control" rows="3"></textarea></div>
+                  </div>
+                </div>
+
+                <!-- Maize -->
+                <div id="crop-fields-maize" class="crop-fields-group" style="display:none;">
+                  <div class="lang-input-group"><label>Advisory Title</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-maize-name-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-maize-name-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-maize-name-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Crop Category Tag</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-maize-type-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-maize-type-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-maize-type-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Sowing Period</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-maize-period-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-maize-period-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-maize-period-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Irrigation Scheme</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-maize-water-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-maize-water-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-maize-water-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Subsidy Availability</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-maize-subsidy-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-maize-subsidy-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-maize-subsidy-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Market Price (MSP)</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-maize-msp-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-maize-msp-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-maize-msp-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Advisory Description</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><textarea id="crop-maize-notes-en" class="form-control" rows="3"></textarea></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><textarea id="crop-maize-notes-hi" class="form-control" rows="3"></textarea></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><textarea id="crop-maize-notes-te" class="form-control" rows="3"></textarea></div>
+                  </div>
+                </div>
+
+                <!-- Chili -->
+                <div id="crop-fields-chili" class="crop-fields-group" style="display:none;">
+                  <div class="lang-input-group"><label>Advisory Title</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-chili-name-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-chili-name-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-chili-name-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Crop Category Tag</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-chili-type-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-chili-type-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-chili-type-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Sowing Period</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-chili-period-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-chili-period-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-chili-period-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Irrigation Scheme</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-chili-water-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-chili-water-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-chili-water-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Subsidy Availability</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-chili-subsidy-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-chili-subsidy-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-chili-subsidy-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Market Price (MSP)</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-chili-msp-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-chili-msp-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-chili-msp-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Advisory Description</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><textarea id="crop-chili-notes-en" class="form-control" rows="3"></textarea></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><textarea id="crop-chili-notes-hi" class="form-control" rows="3"></textarea></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><textarea id="crop-chili-notes-te" class="form-control" rows="3"></textarea></div>
+                  </div>
+                </div>
+
+                <!-- Pulses -->
+                <div id="crop-fields-pulses" class="crop-fields-group" style="display:none;">
+                  <div class="lang-input-group"><label>Advisory Title</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-pulses-name-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-pulses-name-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-pulses-name-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Crop Category Tag</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-pulses-type-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-pulses-type-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-pulses-type-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Sowing Period</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-pulses-period-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-pulses-period-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-pulses-period-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Irrigation Scheme</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-pulses-water-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-pulses-water-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-pulses-water-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Subsidy Availability</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-pulses-subsidy-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-pulses-subsidy-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-pulses-subsidy-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Market Price (MSP)</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="crop-pulses-msp-en" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="crop-pulses-msp-hi" class="form-control" /></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="crop-pulses-msp-te" class="form-control" /></div>
+                  </div>
+                  <div class="lang-input-group"><label>Advisory Description</label>
+                    <div class="lang-input-row"><span class="lang-badge en">EN</span><textarea id="crop-pulses-notes-en" class="form-control" rows="3"></textarea></div>
+                    <div class="lang-input-row"><span class="lang-badge hi">HI</span><textarea id="crop-pulses-notes-hi" class="form-control" rows="3"></textarea></div>
+                    <div class="lang-input-row"><span class="lang-badge te">TE</span><textarea id="crop-pulses-notes-te" class="form-control" rows="3"></textarea></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Health and Hygiene Editor -->
+            <div class="editor-subcard" style="margin-top:20px;">
+              <h4>🏥 Health & Hygiene Services</h4>
+              <p style="font-size:0.82rem; color:var(--color-text-muted); margin-bottom:16px;">
+                Configure health facilities status, sanitation metrics, and health awareness campaigns.
+              </p>
+              
+              <h5 style="margin: 10px 0 10px 0; color: var(--color-primary); font-weight:700;">Health Facilities & Staff</h5>
+              <div class="lang-input-group">
+                <label>Village Health Sub-Center Status</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="health-subcenter-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="health-subcenter-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="health-subcenter-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Nearby PHC/Hospital Info</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="health-phc-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="health-phc-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="health-phc-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>ASHA Workers roster info</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="health-asha-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="health-asha-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="health-asha-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Emergency Ambulance Contact</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="health-ambulance-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="health-ambulance-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="health-ambulance-te" class="form-control" /></div>
+              </div>
+
+              <h5 style="margin: 18px 0 10px 0; color: var(--color-primary); font-weight:700;">Hygiene & Sanitation Status</h5>
+              <div class="lang-input-group">
+                <label>Number of Toilets details</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="health-toilets-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="health-toilets-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="health-toilets-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Open Defecation Status (ODF)</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="health-odf-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="health-odf-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="health-odf-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Waste Management Practices</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="health-waste-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="health-waste-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="health-waste-te" class="form-control" /></div>
+              </div>
+
+              <div class="lang-input-group">
+                <label>Plastic-Free Enforcement info</label>
+                <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="health-plastic-en" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="health-plastic-hi" class="form-control" /></div>
+                <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="health-plastic-te" class="form-control" /></div>
+              </div>
+
+              <h5 style="margin: 18px 0 10px 0; color: var(--color-primary); font-weight:700;">Awareness Campaigns & Vaccination</h5>
+              
+              <!-- Card 1: Vaccination Drives -->
+              <div style="border-left: 3px solid var(--color-primary); padding-left:12px; margin-bottom:16px;">
+                <label style="font-weight:700; font-size:0.85rem;">Campaign 1: Vaccinations</label>
+                <div class="lang-input-group" style="margin-top:6px;">
+                  <label>Campaign Title</label>
+                  <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="health-vax-title-en" class="form-control" /></div>
+                  <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="health-vax-title-hi" class="form-control" /></div>
+                  <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="health-vax-title-te" class="form-control" /></div>
+                </div>
+                <div class="lang-input-group">
+                  <label>Campaign Description</label>
+                  <div class="lang-input-row"><span class="lang-badge en">EN</span><textarea id="health-vax-desc-en" class="form-control" rows="2"></textarea></div>
+                  <div class="lang-input-row"><span class="lang-badge hi">HI</span><textarea id="health-vax-desc-hi" class="form-control" rows="2"></textarea></div>
+                  <div class="lang-input-row"><span class="lang-badge te">TE</span><textarea id="health-vax-desc-te" class="form-control" rows="2"></textarea></div>
+                </div>
+              </div>
+
+              <!-- Card 2: Health Camps -->
+              <div style="border-left: 3px solid var(--color-primary); padding-left:12px;">
+                <label style="font-weight:700; font-size:0.85rem;">Campaign 2: Health Camps</label>
+                <div class="lang-input-group" style="margin-top:6px;">
+                  <label>Campaign Title</label>
+                  <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="health-camps-title-en" class="form-control" /></div>
+                  <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="health-camps-title-hi" class="form-control" /></div>
+                  <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="health-camps-title-te" class="form-control" /></div>
+                </div>
+                <div class="lang-input-group">
+                  <label>Campaign Description</label>
+                  <div class="lang-input-row"><span class="lang-badge en">EN</span><textarea id="health-camps-desc-en" class="form-control" rows="2"></textarea></div>
+                  <div class="lang-input-row"><span class="lang-badge hi">HI</span><textarea id="health-camps-desc-hi" class="form-control" rows="2"></textarea></div>
+                  <div class="lang-input-row"><span class="lang-badge te">TE</span><textarea id="health-camps-desc-te" class="form-control" rows="2"></textarea></div>
                 </div>
               </div>
             </div>
@@ -1298,6 +1720,168 @@
           document.getElementById(`infra-${inf}-te`).value = config.infraAudit[inf].te || '';
         });
 
+        // Populate Water Dashboard
+        if (config.waterDashboard) {
+          document.getElementById('water-capacity').value = config.waterDashboard.capacity || '';
+          document.getElementById('water-current').value = config.waterDashboard.current || '';
+          
+          document.getElementById('water-hours-en').value = config.waterDashboard.supplyHours?.en || '';
+          document.getElementById('water-hours-hi').value = config.waterDashboard.supplyHours?.hi || '';
+          document.getElementById('water-hours-te').value = config.waterDashboard.supplyHours?.te || '';
+          
+          document.getElementById('water-limit-en').value = config.waterDashboard.weeklyLimit?.en || '';
+          document.getElementById('water-limit-hi').value = config.waterDashboard.weeklyLimit?.hi || '';
+          document.getElementById('water-limit-te').value = config.waterDashboard.weeklyLimit?.te || '';
+          
+          document.getElementById('water-wells-en').value = config.waterDashboard.borewellStatus?.en || '';
+          document.getElementById('water-wells-hi').value = config.waterDashboard.borewellStatus?.hi || '';
+          document.getElementById('water-wells-te').value = config.waterDashboard.borewellStatus?.te || '';
+          
+          document.getElementById('water-fluoride-en').value = config.waterDashboard.fluorideLevel?.en || '';
+          document.getElementById('water-fluoride-hi').value = config.waterDashboard.fluorideLevel?.hi || '';
+          document.getElementById('water-fluoride-te').value = config.waterDashboard.fluorideLevel?.te || '';
+          
+          document.getElementById('water-labdate-en').value = config.waterDashboard.lastLabDate?.en || '';
+          document.getElementById('water-labdate-hi').value = config.waterDashboard.lastLabDate?.hi || '';
+          document.getElementById('water-labdate-te').value = config.waterDashboard.lastLabDate?.te || '';
+          
+          document.getElementById('water-notice-en').value = config.waterDashboard.alertBanner?.en || '';
+          document.getElementById('water-notice-hi').value = config.waterDashboard.alertBanner?.hi || '';
+          document.getElementById('water-notice-te').value = config.waterDashboard.alertBanner?.te || '';
+
+          if (config.waterDashboard.infraDetails) {
+            document.getElementById('water-card-sources-title-en').value = config.waterDashboard.infraDetails.sources?.title?.en || '';
+            document.getElementById('water-card-sources-title-hi').value = config.waterDashboard.infraDetails.sources?.title?.hi || '';
+            document.getElementById('water-card-sources-title-te').value = config.waterDashboard.infraDetails.sources?.title?.te || '';
+            document.getElementById('water-card-sources-desc-en').value = config.waterDashboard.infraDetails.sources?.desc?.en || '';
+            document.getElementById('water-card-sources-desc-hi').value = config.waterDashboard.infraDetails.sources?.desc?.hi || '';
+            document.getElementById('water-card-sources-desc-te').value = config.waterDashboard.infraDetails.sources?.desc?.te || '';
+
+            document.getElementById('water-card-tanks-title-en').value = config.waterDashboard.infraDetails.tanks?.title?.en || '';
+            document.getElementById('water-card-tanks-title-hi').value = config.waterDashboard.infraDetails.tanks?.title?.hi || '';
+            document.getElementById('water-card-tanks-title-te').value = config.waterDashboard.infraDetails.tanks?.title?.te || '';
+            document.getElementById('water-card-tanks-desc-en').value = config.waterDashboard.infraDetails.tanks?.desc?.en || '';
+            document.getElementById('water-card-tanks-desc-hi').value = config.waterDashboard.infraDetails.tanks?.desc?.hi || '';
+            document.getElementById('water-card-tanks-desc-te').value = config.waterDashboard.infraDetails.tanks?.desc?.te || '';
+
+            document.getElementById('water-card-shortages-title-en').value = config.waterDashboard.infraDetails.shortages?.title?.en || '';
+            document.getElementById('water-card-shortages-title-hi').value = config.waterDashboard.infraDetails.shortages?.title?.hi || '';
+            document.getElementById('water-card-shortages-title-te').value = config.waterDashboard.infraDetails.shortages?.title?.te || '';
+            document.getElementById('water-card-shortages-desc-en').value = config.waterDashboard.infraDetails.shortages?.desc?.en || '';
+            document.getElementById('water-card-shortages-desc-hi').value = config.waterDashboard.infraDetails.shortages?.desc?.hi || '';
+            document.getElementById('water-card-shortages-desc-te').value = config.waterDashboard.infraDetails.shortages?.desc?.te || '';
+          }
+        }
+
+        // Populate Agri Dashboard
+        if (config.agriDashboard) {
+          document.getElementById('agri-crops-en').value = config.agriDashboard.cropsGrown?.en || '';
+          document.getElementById('agri-crops-hi').value = config.agriDashboard.cropsGrown?.hi || '';
+          document.getElementById('agri-crops-te').value = config.agriDashboard.cropsGrown?.te || '';
+
+          document.getElementById('agri-irrigation-en').value = config.agriDashboard.irrigationMethods?.en || '';
+          document.getElementById('agri-irrigation-hi').value = config.agriDashboard.irrigationMethods?.hi || '';
+          document.getElementById('agri-irrigation-te').value = config.agriDashboard.irrigationMethods?.te || '';
+
+          document.getElementById('agri-fertilizer-en').value = config.agriDashboard.fertilizerUsage?.en || '';
+          document.getElementById('agri-fertilizer-hi').value = config.agriDashboard.fertilizerUsage?.hi || '';
+          document.getElementById('agri-fertilizer-te').value = config.agriDashboard.fertilizerUsage?.te || '';
+
+          document.getElementById('agri-schemes-en').value = config.agriDashboard.govSchemes?.en || '';
+          document.getElementById('agri-schemes-hi').value = config.agriDashboard.govSchemes?.hi || '';
+          document.getElementById('agri-schemes-te').value = config.agriDashboard.govSchemes?.te || '';
+
+          if (config.agriDashboard.crops) {
+            ['paddy', 'maize', 'chili', 'pulses'].forEach(cropKey => {
+              const crop = config.agriDashboard.crops[cropKey];
+              if (crop) {
+                document.getElementById(`crop-${cropKey}-name-en`).value = crop.name?.en || '';
+                document.getElementById(`crop-${cropKey}-name-hi`).value = crop.name?.hi || '';
+                document.getElementById(`crop-${cropKey}-name-te`).value = crop.name?.te || '';
+
+                document.getElementById(`crop-${cropKey}-type-en`).value = crop.type?.en || '';
+                document.getElementById(`crop-${cropKey}-type-hi`).value = crop.type?.hi || '';
+                document.getElementById(`crop-${cropKey}-type-te`).value = crop.type?.te || '';
+
+                document.getElementById(`crop-${cropKey}-period-en`).value = crop.period?.en || '';
+                document.getElementById(`crop-${cropKey}-period-hi`).value = crop.period?.hi || '';
+                document.getElementById(`crop-${cropKey}-period-te`).value = crop.period?.te || '';
+
+                document.getElementById(`crop-${cropKey}-water-en`).value = crop.water?.en || '';
+                document.getElementById(`crop-${cropKey}-water-hi`).value = crop.water?.hi || '';
+                document.getElementById(`crop-${cropKey}-water-te`).value = crop.water?.te || '';
+
+                document.getElementById(`crop-${cropKey}-subsidy-en`).value = crop.subsidy?.en || '';
+                document.getElementById(`crop-${cropKey}-subsidy-hi`).value = crop.subsidy?.hi || '';
+                document.getElementById(`crop-${cropKey}-subsidy-te`).value = crop.subsidy?.te || '';
+
+                document.getElementById(`crop-${cropKey}-msp-en`).value = crop.msp?.en || '';
+                document.getElementById(`crop-${cropKey}-msp-hi`).value = crop.msp?.hi || '';
+                document.getElementById(`crop-${cropKey}-msp-te`).value = crop.msp?.te || '';
+
+                document.getElementById(`crop-${cropKey}-notes-en`).value = crop.notes?.en || '';
+                document.getElementById(`crop-${cropKey}-notes-hi`).value = crop.notes?.hi || '';
+                document.getElementById(`crop-${cropKey}-notes-te`).value = crop.notes?.te || '';
+              }
+            });
+          }
+        }
+
+        // Populate Health Dashboard
+        if (config.healthDashboard) {
+          if (config.healthDashboard.facilities) {
+            document.getElementById('health-subcenter-en').value = config.healthDashboard.facilities.subcenter?.en || '';
+            document.getElementById('health-subcenter-hi').value = config.healthDashboard.facilities.subcenter?.hi || '';
+            document.getElementById('health-subcenter-te').value = config.healthDashboard.facilities.subcenter?.te || '';
+
+            document.getElementById('health-phc-en').value = config.healthDashboard.facilities.phc?.en || '';
+            document.getElementById('health-phc-hi').value = config.healthDashboard.facilities.phc?.hi || '';
+            document.getElementById('health-phc-te').value = config.healthDashboard.facilities.phc?.te || '';
+
+            document.getElementById('health-asha-en').value = config.healthDashboard.facilities.asha?.en || '';
+            document.getElementById('health-asha-hi').value = config.healthDashboard.facilities.asha?.hi || '';
+            document.getElementById('health-asha-te').value = config.healthDashboard.facilities.asha?.te || '';
+
+            document.getElementById('health-ambulance-en').value = config.healthDashboard.facilities.ambulance?.en || '';
+            document.getElementById('health-ambulance-hi').value = config.healthDashboard.facilities.ambulance?.hi || '';
+            document.getElementById('health-ambulance-te').value = config.healthDashboard.facilities.ambulance?.te || '';
+          }
+
+          if (config.healthDashboard.hygiene) {
+            document.getElementById('health-toilets-en').value = config.healthDashboard.hygiene.toilets?.en || '';
+            document.getElementById('health-toilets-hi').value = config.healthDashboard.hygiene.toilets?.hi || '';
+            document.getElementById('health-toilets-te').value = config.healthDashboard.hygiene.toilets?.te || '';
+
+            document.getElementById('health-odf-en').value = config.healthDashboard.hygiene.odf?.en || '';
+            document.getElementById('health-odf-hi').value = config.healthDashboard.hygiene.odf?.hi || '';
+            document.getElementById('health-odf-te').value = config.healthDashboard.hygiene.odf?.te || '';
+
+            document.getElementById('health-waste-en').value = config.healthDashboard.hygiene.waste?.en || '';
+            document.getElementById('health-waste-hi').value = config.healthDashboard.hygiene.waste?.hi || '';
+            document.getElementById('health-waste-te').value = config.healthDashboard.hygiene.waste?.te || '';
+
+            document.getElementById('health-plastic-en').value = config.healthDashboard.hygiene.plastic?.en || '';
+            document.getElementById('health-plastic-hi').value = config.healthDashboard.hygiene.plastic?.hi || '';
+            document.getElementById('health-plastic-te').value = config.healthDashboard.hygiene.plastic?.te || '';
+          }
+
+          if (config.healthDashboard.campaigns) {
+            document.getElementById('health-vax-title-en').value = config.healthDashboard.campaigns.vax?.title?.en || '';
+            document.getElementById('health-vax-title-hi').value = config.healthDashboard.campaigns.vax?.title?.hi || '';
+            document.getElementById('health-vax-title-te').value = config.healthDashboard.campaigns.vax?.title?.te || '';
+            document.getElementById('health-vax-desc-en').value = config.healthDashboard.campaigns.vax?.desc?.en || '';
+            document.getElementById('health-vax-desc-hi').value = config.healthDashboard.campaigns.vax?.desc?.hi || '';
+            document.getElementById('health-vax-desc-te').value = config.healthDashboard.campaigns.vax?.desc?.te || '';
+
+            document.getElementById('health-camps-title-en').value = config.healthDashboard.campaigns.camps?.title?.en || '';
+            document.getElementById('health-camps-title-hi').value = config.healthDashboard.campaigns.camps?.title?.hi || '';
+            document.getElementById('health-camps-title-te').value = config.healthDashboard.campaigns.camps?.title?.te || '';
+            document.getElementById('health-camps-desc-en').value = config.healthDashboard.campaigns.camps?.desc?.en || '';
+            document.getElementById('health-camps-desc-hi').value = config.healthDashboard.campaigns.camps?.desc?.hi || '';
+            document.getElementById('health-camps-desc-te').value = config.healthDashboard.campaigns.camps?.desc?.te || '';
+          }
+        }
+
         // Populate Notices Editor List
         renderAdminNoticesList();
 
@@ -1747,6 +2331,219 @@
         }
       };
 
+      // Get Water Dashboard
+      cachedPageConfig.waterDashboard = {
+        capacity: parseInt(document.getElementById('water-capacity').value) || 0,
+        current: parseInt(document.getElementById('water-current').value) || 0,
+        supplyHours: {
+          en: document.getElementById('water-hours-en').value.trim(),
+          hi: document.getElementById('water-hours-hi').value.trim(),
+          te: document.getElementById('water-hours-te').value.trim()
+        },
+        weeklyLimit: {
+          en: document.getElementById('water-limit-en').value.trim(),
+          hi: document.getElementById('water-limit-hi').value.trim(),
+          te: document.getElementById('water-limit-te').value.trim()
+        },
+        borewellStatus: {
+          en: document.getElementById('water-wells-en').value.trim(),
+          hi: document.getElementById('water-wells-hi').value.trim(),
+          te: document.getElementById('water-wells-te').value.trim()
+        },
+        fluorideLevel: {
+          en: document.getElementById('water-fluoride-en').value.trim(),
+          hi: document.getElementById('water-fluoride-hi').value.trim(),
+          te: document.getElementById('water-fluoride-te').value.trim()
+        },
+        lastLabDate: {
+          en: document.getElementById('water-labdate-en').value.trim(),
+          hi: document.getElementById('water-labdate-hi').value.trim(),
+          te: document.getElementById('water-labdate-te').value.trim()
+        },
+        alertBanner: {
+          en: document.getElementById('water-notice-en').value.trim(),
+          hi: document.getElementById('water-notice-hi').value.trim(),
+          te: document.getElementById('water-notice-te').value.trim()
+        },
+        infraDetails: {
+          sources: {
+            title: {
+              en: document.getElementById('water-card-sources-title-en').value.trim(),
+              hi: document.getElementById('water-card-sources-title-hi').value.trim(),
+              te: document.getElementById('water-card-sources-title-te').value.trim()
+            },
+            desc: {
+              en: document.getElementById('water-card-sources-desc-en').value.trim(),
+              hi: document.getElementById('water-card-sources-desc-hi').value.trim(),
+              te: document.getElementById('water-card-sources-desc-te').value.trim()
+            }
+          },
+          tanks: {
+            title: {
+              en: document.getElementById('water-card-tanks-title-en').value.trim(),
+              hi: document.getElementById('water-card-tanks-title-hi').value.trim(),
+              te: document.getElementById('water-card-tanks-title-te').value.trim()
+            },
+            desc: {
+              en: document.getElementById('water-card-tanks-desc-en').value.trim(),
+              hi: document.getElementById('water-card-tanks-desc-hi').value.trim(),
+              te: document.getElementById('water-card-tanks-desc-te').value.trim()
+            }
+          },
+          shortages: {
+            title: {
+              en: document.getElementById('water-card-shortages-title-en').value.trim(),
+              hi: document.getElementById('water-card-shortages-title-hi').value.trim(),
+              te: document.getElementById('water-card-shortages-title-te').value.trim()
+            },
+            desc: {
+              en: document.getElementById('water-card-shortages-desc-en').value.trim(),
+              hi: document.getElementById('water-card-shortages-desc-hi').value.trim(),
+              te: document.getElementById('water-card-shortages-desc-te').value.trim()
+            }
+          }
+        }
+      };
+
+      // Get Agri Dashboard
+      cachedPageConfig.agriDashboard = {
+        cropsGrown: {
+          en: document.getElementById('agri-crops-en').value.trim(),
+          hi: document.getElementById('agri-crops-hi').value.trim(),
+          te: document.getElementById('agri-crops-te').value.trim()
+        },
+        irrigationMethods: {
+          en: document.getElementById('agri-irrigation-en').value.trim(),
+          hi: document.getElementById('agri-irrigation-hi').value.trim(),
+          te: document.getElementById('agri-irrigation-te').value.trim()
+        },
+        fertilizerUsage: {
+          en: document.getElementById('agri-fertilizer-en').value.trim(),
+          hi: document.getElementById('agri-fertilizer-hi').value.trim(),
+          te: document.getElementById('agri-fertilizer-te').value.trim()
+        },
+        govSchemes: {
+          en: document.getElementById('agri-schemes-en').value.trim(),
+          hi: document.getElementById('agri-schemes-hi').value.trim(),
+          te: document.getElementById('agri-schemes-te').value.trim()
+        },
+        crops: {}
+      };
+
+      ['paddy', 'maize', 'chili', 'pulses'].forEach(cropKey => {
+        cachedPageConfig.agriDashboard.crops[cropKey] = {
+          name: {
+            en: document.getElementById(`crop-${cropKey}-name-en`).value.trim(),
+            hi: document.getElementById(`crop-${cropKey}-name-hi`).value.trim(),
+            te: document.getElementById(`crop-${cropKey}-name-te`).value.trim()
+          },
+          type: {
+            en: document.getElementById(`crop-${cropKey}-type-en`).value.trim(),
+            hi: document.getElementById(`crop-${cropKey}-type-hi`).value.trim(),
+            te: document.getElementById(`crop-${cropKey}-type-te`).value.trim()
+          },
+          period: {
+            en: document.getElementById(`crop-${cropKey}-period-en`).value.trim(),
+            hi: document.getElementById(`crop-${cropKey}-period-hi`).value.trim(),
+            te: document.getElementById(`crop-${cropKey}-period-te`).value.trim()
+          },
+          water: {
+            en: document.getElementById(`crop-${cropKey}-water-en`).value.trim(),
+            hi: document.getElementById(`crop-${cropKey}-water-hi`).value.trim(),
+            te: document.getElementById(`crop-${cropKey}-water-te`).value.trim()
+          },
+          subsidy: {
+            en: document.getElementById(`crop-${cropKey}-subsidy-en`).value.trim(),
+            hi: document.getElementById(`crop-${cropKey}-subsidy-hi`).value.trim(),
+            te: document.getElementById(`crop-${cropKey}-subsidy-te`).value.trim()
+          },
+          msp: {
+            en: document.getElementById(`crop-${cropKey}-msp-en`).value.trim(),
+            hi: document.getElementById(`crop-${cropKey}-msp-hi`).value.trim(),
+            te: document.getElementById(`crop-${cropKey}-msp-te`).value.trim()
+          },
+          notes: {
+            en: document.getElementById(`crop-${cropKey}-notes-en`).value.trim(),
+            hi: document.getElementById(`crop-${cropKey}-notes-hi`).value.trim(),
+            te: document.getElementById(`crop-${cropKey}-notes-te`).value.trim()
+          }
+        };
+      });
+
+      // Get Health Dashboard
+      cachedPageConfig.healthDashboard = {
+        facilities: {
+          subcenter: {
+            en: document.getElementById('health-subcenter-en').value.trim(),
+            hi: document.getElementById('health-subcenter-hi').value.trim(),
+            te: document.getElementById('health-subcenter-te').value.trim()
+          },
+          phc: {
+            en: document.getElementById('health-phc-en').value.trim(),
+            hi: document.getElementById('health-phc-hi').value.trim(),
+            te: document.getElementById('health-phc-te').value.trim()
+          },
+          asha: {
+            en: document.getElementById('health-asha-en').value.trim(),
+            hi: document.getElementById('health-asha-hi').value.trim(),
+            te: document.getElementById('health-asha-te').value.trim()
+          },
+          ambulance: {
+            en: document.getElementById('health-ambulance-en').value.trim(),
+            hi: document.getElementById('health-ambulance-hi').value.trim(),
+            te: document.getElementById('health-ambulance-te').value.trim()
+          }
+        },
+        hygiene: {
+          toilets: {
+            en: document.getElementById('health-toilets-en').value.trim(),
+            hi: document.getElementById('health-toilets-hi').value.trim(),
+            te: document.getElementById('health-toilets-te').value.trim()
+          },
+          odf: {
+            en: document.getElementById('health-odf-en').value.trim(),
+            hi: document.getElementById('health-odf-hi').value.trim(),
+            te: document.getElementById('health-odf-te').value.trim()
+          },
+          waste: {
+            en: document.getElementById('health-waste-en').value.trim(),
+            hi: document.getElementById('health-waste-hi').value.trim(),
+            te: document.getElementById('health-waste-te').value.trim()
+          },
+          plastic: {
+            en: document.getElementById('health-plastic-en').value.trim(),
+            hi: document.getElementById('health-plastic-hi').value.trim(),
+            te: document.getElementById('health-plastic-te').value.trim()
+          }
+        },
+        campaigns: {
+          vax: {
+            title: {
+              en: document.getElementById('health-vax-title-en').value.trim(),
+              hi: document.getElementById('health-vax-title-hi').value.trim(),
+              te: document.getElementById('health-vax-title-te').value.trim()
+            },
+            desc: {
+              en: document.getElementById('health-vax-desc-en').value.trim(),
+              hi: document.getElementById('health-vax-desc-hi').value.trim(),
+              te: document.getElementById('health-vax-desc-te').value.trim()
+            }
+          },
+          camps: {
+            title: {
+              en: document.getElementById('health-camps-title-en').value.trim(),
+              hi: document.getElementById('health-camps-title-hi').value.trim(),
+              te: document.getElementById('health-camps-title-te').value.trim()
+            },
+            desc: {
+              en: document.getElementById('health-camps-desc-en').value.trim(),
+              hi: document.getElementById('health-camps-desc-hi').value.trim(),
+              te: document.getElementById('health-camps-desc-te').value.trim()
+            }
+          }
+        }
+      };
+
       fetch('/api/main-page-config', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -1763,6 +2560,16 @@
         console.error('Error saving config:', err);
         showToast('❌ Failed to update main page configurations on server.', 'error');
       });
+    }
+
+    function switchCropEditor(cropVal) {
+      document.querySelectorAll('.crop-fields-group').forEach(group => {
+        group.style.display = 'none';
+      });
+      const activeGroup = document.getElementById(`crop-fields-${cropVal}`);
+      if (activeGroup) {
+        activeGroup.style.display = 'block';
+      }
     }
 
     function handleLogout() {
