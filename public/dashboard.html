@@ -1,0 +1,2396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Governance Dashboard | Seetharampuram Thanda Gram Panchayat</title>
+  <meta name="description" content="Official Smart Village Panchayat Command Center. Interactive demographic analytics, Village Development Index gauge, infrastructure trackers, and SVG digital twin.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Chart.js CDN for interactive graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <style>
+    /* ==========================================
+       DASHBOARD PREMIUM INTERFACE STYLES
+       ========================================== */
+    .dashboard-body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-bg-base);
+    }
+
+    .dashboard-container {
+      padding-top: 40px;
+      padding-bottom: 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Dashboard Header styling */
+    .dash-header-card {
+      background: var(--color-bg-card);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dash-header-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+    }
+
+    .dash-header-info h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .dash-header-info p {
+      font-size: 1.05rem;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+
+    .dash-controls {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    /* Simulation Control Box */
+    .sim-panel {
+      background: rgba(245, 166, 35, 0.08);
+      border: 1.5px dashed var(--color-accent);
+      border-radius: var(--radius-md);
+      padding: 15px 20px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .sim-title {
+      font-weight: 700;
+      color: var(--color-text-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sim-controls {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .sim-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .sim-toggle input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--color-secondary);
+    }
+
+    /* Grids & Cards */
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .dash-card {
+      background: var(--color-bg-card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      padding: 25px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s;
+      position: relative;
+    }
+
+    .dash-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md), var(--shadow-glow);
+      border-color: var(--color-secondary-light);
+    }
+
+    .dash-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--color-primary-pale);
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Section 1: Overview Cards */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 1024px) {
+      .overview-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 550px) {
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stat-overview-card {
+      background: var(--color-bg-card);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .stat-overview-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-secondary);
+    }
+
+    .stat-icon-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--color-primary-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      flex-shrink: 0;
+    }
+
+    .stat-info-block {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-count-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--color-primary);
+      line-height: 1.2;
+    }
+
+    .stat-count-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+    }
+
+    /* Section 2: VDI Score Section */
+    .vdi-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 850px) {
+      .vdi-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .vdi-gauge-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .svg-ring-wrapper {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin-bottom: 15px;
+    }
+
+    .vdi-ring-bg {
+      fill: none;
+      stroke: var(--color-primary-pale);
+      stroke-width: 14;
+    }
+
+    .vdi-ring-active {
+      fill: none;
+      stroke: var(--color-secondary);
+      stroke-dasharray: 502;
+      stroke-dashoffset: 502;
+      stroke-width: 14;
+      stroke-linecap: round;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      transition: stroke-dashoffset 1.2s cubic-bezier(0.1, 0.8, 0.2, 1);
+    }
+
+    .vdi-percentage-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .vdi-score-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--color-primary);
+    }
+
+    .vdi-score-max {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+    }
+
+    .vdi-rating-badge {
+      display: inline-block;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 10px;
+    }
+
+    .rating-excellent {
+      background-color: hsla(140, 60%, 35%, 0.15);
+      color: var(--color-success);
+      border: 1px solid var(--color-success);
+    }
+
+    .rating-moderate {
+      background-color: hsla(36, 90%, 45%, 0.15);
+      color: var(--color-warning);
+      border: 1px solid var(--color-warning);
+    }
+
+    .rating-poor {
+      background-color: hsla(0, 75%, 45%, 0.15);
+      color: var(--color-danger);
+      border: 1px solid var(--color-danger);
+    }
+
+    .vdi-factors-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    @media (max-width: 500px) {
+      .vdi-factors-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .factor-item-card {
+      background: var(--color-primary-pale);
+      border-radius: var(--radius-sm);
+      padding: 15px;
+      border: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .factor-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--color-text-dark);
+    }
+
+    .factor-bar-bg {
+      height: 8px;
+      background: hsla(145, 50%, 15%, 0.1);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .factor-bar-fill {
+      height: 100%;
+      background: var(--color-secondary);
+      border-radius: var(--radius-full);
+      width: 0%;
+      transition: width 1s ease-out;
+    }
+
+    /* Section 3 & 4: Demographic & Education Charts Layout */
+    .row-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 900px) {
+      .row-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chart-container-box {
+      position: relative;
+      height: 250px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Section 4: Education Details */
+    .edu-stats-block {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .edu-mini-card {
+      background: var(--color-bg-base);
+      border-radius: var(--radius-sm);
+      padding: 12px 15px;
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .edu-mini-card .val {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--color-primary);
+    }
+
+    .edu-mini-card .lbl {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+    }
+
+    .smart-alert-banner {
+      background-color: hsla(0, 75%, 45%, 0.08);
+      border-left: 4px solid var(--color-danger);
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-danger);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Section 5: Infrastructure Analytics */
+    .infra-list-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .infra-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .infra-meta {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .infra-meta span:first-child {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Special Highlight Alert for Solar */
+    .solar-highlight-box {
+      margin-top: 15px;
+      background-color: hsla(36, 90%, 45%, 0.08);
+      border-left: 4px solid var(--color-warning);
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-warning);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Section 7: Digital Twin Map */
+    .twin-layout {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    @media (max-width: 850px) {
+      .twin-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .twin-map-card {
+      background: var(--color-primary-pale);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .twin-svg-canvas {
+      width: 100%;
+      height: auto;
+      max-height: 320px;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.06));
+    }
+
+    /* SVG Interactive nodes hover styles */
+    .twin-node {
+      cursor: pointer;
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .twin-node:hover {
+      transform: scale(1.18);
+    }
+    .twin-node circle {
+      transition: fill 0.3s, stroke 0.3s, stroke-width 0.3s;
+    }
+    .twin-node:hover circle {
+      fill: var(--color-secondary-light);
+      stroke: var(--color-accent);
+      stroke-width: 3px;
+    }
+    .twin-node.selected circle {
+      fill: var(--color-secondary);
+      stroke: var(--color-accent);
+      stroke-width: 3px;
+    }
+    .twin-node.selected text:first-of-type {
+      filter: drop-shadow(0 0 4px rgba(255,255,255,1));
+    }
+    .twin-node.selected text:last-of-type {
+      fill: var(--color-accent) !important;
+    }
+
+    .twin-details-pane {
+      background: var(--color-bg-card);
+      border: 1.5px solid var(--color-secondary-light);
+      border-radius: var(--radius-md);
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 280px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .twin-pane-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 2px solid var(--color-primary-pale);
+      padding-bottom: 12px;
+      margin-bottom: 15px;
+    }
+
+    .twin-pane-icon {
+      font-size: 2.2rem;
+    }
+
+    .twin-pane-title h4 {
+      font-size: 1.2rem;
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+
+    .twin-pane-title p {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+    }
+
+    .twin-pane-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-grow: 1;
+    }
+
+    .twin-pane-stat-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-bottom: 1px dotted var(--color-border);
+      padding-bottom: 6px;
+    }
+
+    .twin-pane-stat-row span:last-child {
+      color: var(--color-primary);
+      font-weight: 800;
+    }
+
+    .twin-pane-notice {
+      margin-top: 15px;
+      background-color: var(--color-secondary-pale);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-border);
+    }
+
+    /* Section 8: Smart Alerts & Insights */
+    .alerts-board {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .alert-card-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 15px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .alert-card-item.critical {
+      background-color: hsla(0, 75%, 45%, 0.06);
+      border-left: 5px solid var(--color-danger);
+      color: var(--color-danger);
+    }
+
+    .alert-card-item.warning {
+      background-color: hsla(36, 90%, 45%, 0.06);
+      border-left: 5px solid var(--color-warning);
+      color: var(--color-warning);
+    }
+
+    .alert-card-item.good {
+      background-color: hsla(140, 60%, 35%, 0.06);
+      border-left: 5px solid var(--color-success);
+      color: var(--color-success);
+    }
+
+    .alert-item-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .alert-item-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .alert-item-title {
+      font-weight: 800;
+    }
+
+    .alert-item-desc {
+      font-size: 0.82rem;
+      opacity: 0.85;
+    }
+
+    /* Section 9: Notices Grid */
+    .notices-deck {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .notice-deck-card {
+      background: var(--color-primary-pale);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .notice-deck-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-text-muted);
+    }
+
+    .notice-badge {
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      font-size: 0.65rem;
+      font-weight: 800;
+    }
+
+    .badge-critical {
+      background-color: hsla(0, 75%, 45%, 0.15);
+      color: var(--color-danger);
+    }
+    .badge-info {
+      background-color: hsla(200, 80%, 40%, 0.15);
+      color: var(--color-info);
+    }
+    .badge-healthcare {
+      background-color: hsla(140, 60%, 35%, 0.15);
+      color: var(--color-success);
+    }
+
+    .notice-deck-card h4 {
+      font-size: 1.05rem;
+      color: var(--color-primary);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .notice-deck-card p {
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    /* Section 10: Report Generator styling */
+    .report-card-center {
+      text-align: center;
+      padding: 40px;
+      background: linear-gradient(135deg, var(--color-primary-pale), var(--color-secondary-pale));
+      border: 1.5px dashed var(--color-secondary);
+      border-radius: var(--radius-lg);
+    }
+
+    .report-card-center p {
+      max-width: 550px;
+      margin: 0 auto 25px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    /* Toast notification inside dashboard */
+    .alert-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 16px 28px;
+      border-radius: var(--radius-md);
+      background-color: var(--color-bg-card);
+      color: var(--color-text-dark);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(150%);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+      z-index: 1005;
+      border-left: 5px solid var(--color-success);
+    }
+    .alert-popup.active {
+      transform: translateY(0);
+    }
+
+    /* ==========================================
+       PRINT AND PDF MEDIA STYLING
+       ========================================== */
+    @media print {
+      /* Hide standard interactive UI elements */
+      .header-bar,
+      .sim-panel,
+      .dash-controls,
+      .twin-map-card,
+      .report-card-center,
+      #alert-toast,
+      ::-webkit-scrollbar,
+      .btn {
+        display: none !important;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11pt !important;
+        line-height: 1.4 !important;
+      }
+
+      body::before {
+        display: none !important;
+      }
+
+      .dashboard-container {
+        padding: 0 !important;
+      }
+
+      /* Printable header */
+      .dash-header-card {
+        border: none !important;
+        box-shadow: none !important;
+        border-bottom: 2px solid #000000 !important;
+        border-radius: 0 !important;
+        margin-bottom: 20px !important;
+        padding: 0 0 10px 0 !important;
+      }
+
+      .dash-header-info h2 {
+        background: none !important;
+        -webkit-text-fill-color: initial !important;
+        color: #000000 !important;
+        font-size: 24pt !important;
+      }
+
+      /* Force layout blocks into single-column or clean stacked items */
+      .overview-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 10px !important;
+        margin-bottom: 20px !important;
+      }
+
+      .stat-overview-card {
+        border: 1px solid #cccccc !important;
+        padding: 10px !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+      }
+
+      .vdi-layout {
+        grid-template-columns: 1fr 2fr !important;
+        gap: 20px !important;
+        margin-bottom: 20px !important;
+        page-break-inside: avoid;
+      }
+
+      .vdi-ring-active {
+        stroke: #333333 !important;
+      }
+
+      .factor-item-card {
+        border: 1px solid #cccccc !important;
+        background: #ffffff !important;
+      }
+
+      .factor-bar-fill {
+        background: #333333 !important;
+      }
+
+      .row-grid-2 {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+
+      .dash-card {
+        border: 1px solid #999999 !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+        page-break-inside: avoid;
+      }
+
+      .twin-details-pane {
+        border: 1px solid #999999 !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+        page-break-inside: avoid;
+      }
+
+      .alert-card-item {
+        border: 1px solid #999999 !important;
+        box-shadow: none !important;
+        background: #ffffff !important;
+      }
+
+      .alert-card-item.critical {
+        border-left: 5px solid #000000 !important;
+        color: #000000 !important;
+      }
+
+      .alert-card-item.warning {
+        border-left: 5px solid #666666 !important;
+        color: #666666 !important;
+      }
+
+      .alert-card-item.good {
+        border-left: 5px solid #999999 !important;
+        color: #333333 !important;
+      }
+
+      .notices-deck {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 15px !important;
+      }
+
+      .notice-deck-card {
+        border: 1px solid #cccccc !important;
+        background: #ffffff !important;
+        page-break-inside: avoid;
+      }
+
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body class="dashboard-body ready">
+
+  <!-- ==========================================
+       HEADER / NAVIGATION
+       ========================================== -->
+  <header class="header-bar" id="main-header">
+    <div class="container header-container">
+      <a href="/" class="brand" id="brand-logo-link" aria-label="Seetharampuram Thanda Gram Panchayat Home">
+        <svg class="emblem-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="4"/>
+          <circle cx="50" cy="50" r="41" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
+          <path d="M20,65 Q50,55 80,65 L80,85 Q50,75 20,85 Z" fill="var(--color-secondary-light)" opacity="0.3"/>
+          <path d="M15,75 Q50,65 85,75 L85,88 L15,88 Z" fill="currentColor"/>
+          <circle cx="50" cy="50" r="14" fill="var(--color-accent)"/>
+          <line x1="50" y1="24" x2="50" y2="16" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="50" y1="76" x2="50" y2="84" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="24" y1="50" x2="16" y2="50" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="76" y1="50" x2="84" y2="50" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M50,70 C40,55 45,40 50,45 C55,40 60,55 50,70 Z" fill="currentColor"/>
+        </svg>
+        <div class="brand-text">
+          <h1 id="gp-brand-title">Seetharampuram Thanda</h1>
+          <p id="gp-brand-subtitle">Gram Panchayat Portal</p>
+        </div>
+      </a>
+      
+      <nav aria-label="Main navigation menu">
+        <button class="mobile-nav-btn" id="mobile-menu-toggle" aria-expanded="false" aria-controls="navigation-links" aria-label="Toggle Navigation Menu">☰</button>
+        <ul class="nav-links" id="navigation-links">
+          <li><a href="index.html#about" id="nav-link-about">About</a></li>
+          <li><a href="index.html#services" id="nav-link-services">Services</a></li>
+          <li><a href="dashboard.html" id="nav-link-dashboard" class="active" style="color: var(--color-secondary);">Dashboard</a></li>
+          <li><a href="index.html#development" id="nav-link-svr">SVR Map</a></li>
+          <li><a href="index.html#cultural" id="nav-link-culture">Heritage</a></li>
+          <li><a href="gallery.html" id="nav-link-gallery">Gallery</a></li>
+          <li><a href="index.html#about" class="btn btn-primary btn-sm" id="nav-btn-contact" style="color: #fff; text-decoration: none;">Contact</a></li>
+          <li>
+            <div class="lang-selector-wrapper">
+              <select id="lang-select" class="custom-lang-select" aria-label="Select Language">
+                <option value="en" selected>English</option>
+                <option value="hi">हिन्दी (Hindi)</option>
+                <option value="te">తెలుగు (Telugu)</option>
+              </select>
+            </div>
+          </li>
+          <li>
+            <button class="btn btn-outline btn-sm" id="btn-theme-toggle" aria-label="Toggle Cultural Theme" style="border-color: var(--color-accent); color: var(--color-accent); margin-left: 6px;">
+              <span id="theme-btn-icon">✨</span> <span id="theme-btn-text">Banjara Theme</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN DASHBOARD CONTAINER
+       ========================================== -->
+  <main class="flex-grow">
+    <div class="container dashboard-container">
+      
+      <!-- Dashboard Command Center Header -->
+      <section class="dash-header-card">
+        <div class="dash-header-info">
+          <h2 id="dash-main-title">Panchayat Command Center</h2>
+          <p id="dash-main-subtitle">Seetharamapuram Tanda Real-Time Analytics & Governance Dashboard</p>
+        </div>
+        <div class="dash-controls">
+          <button class="btn btn-outline btn-sm" id="btn-print-report">
+            <span>📄</span> <span id="btn-text-print">Panchayat Report</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- DEMO SIMULATION CONTROLS (COLLAPSIBLE / SLEEK) -->
+      <section class="sim-panel">
+        <div class="sim-title">
+          <span>⚙️</span> <span id="sim-panel-title">Dashboard Live Simulator</span>
+        </div>
+        <div class="sim-controls">
+          <label class="sim-toggle">
+            <input type="checkbox" id="sim-solar-toggle">
+            <span id="sim-lbl-solar">Simulate 0% Solar Adoption</span>
+          </label>
+          <label class="sim-toggle">
+            <input type="checkbox" id="sim-toilet-toggle">
+            <span id="sim-lbl-toilet">Simulate 100% Sanitation Coverage</span>
+          </label>
+          <label class="sim-toggle">
+            <input type="checkbox" id="sim-water-toggle">
+            <span id="sim-lbl-water">Simulate Low Tap Water Access</span>
+          </label>
+        </div>
+      </section>
+
+      <!-- SECTION 1: VILLAGE OVERVIEW CARDS -->
+      <section class="overview-grid" id="sec-overview">
+        <!-- Population -->
+        <article class="stat-overview-card">
+          <div class="stat-icon-circle">👨</div>
+          <div class="stat-info-block">
+            <span class="stat-count-num" id="stat-val-population" data-target="1256">0</span>
+            <span class="stat-count-label" id="stat-lbl-population">Total Population</span>
+          </div>
+        </article>
+
+        <!-- Families -->
+        <article class="stat-overview-card">
+          <div class="stat-icon-circle">🏠</div>
+          <div class="stat-info-block">
+            <span class="stat-count-num" id="stat-val-families" data-target="230">0</span>
+            <span class="stat-count-label" id="stat-lbl-families">Total Families</span>
+          </div>
+        </article>
+
+        <!-- Houses -->
+        <article class="stat-overview-card">
+          <div class="stat-icon-circle">🏡</div>
+          <div class="stat-info-block">
+            <span class="stat-count-num" id="stat-val-houses" data-target="218">0</span>
+            <span class="stat-count-label" id="stat-lbl-houses">Total Houses</span>
+          </div>
+        </article>
+
+        <!-- Farmers -->
+        <article class="stat-overview-card">
+          <div class="stat-icon-circle">🌾</div>
+          <div class="stat-info-block">
+            <span class="stat-count-num" id="stat-val-farmers" data-target="440">0</span>
+            <span class="stat-count-label" id="stat-lbl-farmers">Total Farmers</span>
+          </div>
+        </article>
+
+        <!-- Students -->
+        <article class="stat-overview-card">
+          <div class="stat-icon-circle">🎓</div>
+          <div class="stat-info-block">
+            <span class="stat-count-num" id="stat-val-students" data-target="314">0</span>
+            <span class="stat-count-label" id="stat-lbl-students">Total Students</span>
+          </div>
+        </article>
+
+        <!-- Employees -->
+        <article class="stat-overview-card">
+          <div class="stat-icon-circle">💼</div>
+          <div class="stat-info-block">
+            <span class="stat-count-num" id="stat-val-employees" data-target="188">0</span>
+            <span class="stat-count-label" id="stat-lbl-employees">Total Employees</span>
+          </div>
+        </article>
+
+        <!-- Wards -->
+        <article class="stat-overview-card">
+          <div class="stat-icon-circle">📍</div>
+          <div class="stat-info-block">
+            <span class="stat-count-num" id="stat-val-wards" data-target="4">0</span>
+            <span class="stat-count-label" id="stat-lbl-wards">Total Wards</span>
+          </div>
+        </article>
+
+        <!-- Grievances -->
+        <article class="stat-overview-card">
+          <div class="stat-icon-circle">📢</div>
+          <div class="stat-info-block">
+            <span class="stat-count-num" id="stat-val-grievances" data-target="0">0</span>
+            <span class="stat-count-label" id="stat-lbl-grievances">Total Grievances</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- SECTION 2: VILLAGE DEVELOPMENT INDEX (HERO SECTION) -->
+      <section class="vdi-layout" id="sec-vdi">
+        <!-- VDI Circular Gauge Card -->
+        <div class="dash-card vdi-gauge-container">
+          <h3 id="vdi-card-title">Village Development Index (VDI)</h3>
+          <div class="svg-ring-wrapper">
+            <svg width="180" height="180" viewBox="0 0 180 180">
+              <circle class="vdi-ring-bg" cx="90" cy="90" r="80" />
+              <circle class="vdi-ring-active" id="vdi-ring-progress" cx="90" cy="90" r="80" />
+            </svg>
+            <div class="vdi-percentage-text">
+              <span class="vdi-score-value" id="vdi-score-display">0</span>
+              <span class="vdi-score-max">/ 100</span>
+            </div>
+          </div>
+          <div>
+            <span class="vdi-rating-badge rating-moderate" id="vdi-rating-display">Moderate</span>
+          </div>
+        </div>
+
+        <!-- Individual Scores grid -->
+        <div class="dash-card">
+          <h3 id="vdi-subscores-title">Index Calculation Sub-Factors</h3>
+          <div class="vdi-factors-grid" id="vdi-subscores-grid">
+            <!-- Education Score -->
+            <div class="factor-item-card">
+              <div class="factor-header">
+                <span id="fact-lbl-edu">🎓 Education Index</span>
+                <span class="val" id="fact-val-edu">75%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="fact-fill-edu" style="width: 0%;"></div>
+              </div>
+            </div>
+            <!-- Water Score -->
+            <div class="factor-item-card">
+              <div class="factor-header">
+                <span id="fact-lbl-water">🚰 Water Access</span>
+                <span class="val" id="fact-val-water">81%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="fact-fill-water" style="width: 0%;"></div>
+              </div>
+            </div>
+            <!-- Housing Score -->
+            <div class="factor-item-card">
+              <div class="factor-header">
+                <span id="fact-lbl-house">🏡 Safe Housing</span>
+                <span class="val" id="fact-val-house">86%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="fact-fill-house" style="width: 0%;"></div>
+              </div>
+            </div>
+            <!-- Sanitation Score -->
+            <div class="factor-item-card">
+              <div class="factor-header">
+                <span id="fact-lbl-san">🚽 Clean Sanitation</span>
+                <span class="val" id="fact-val-san">83%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="fact-fill-san" style="width: 0%;"></div>
+              </div>
+            </div>
+            <!-- Energy Score -->
+            <div class="factor-item-card">
+              <div class="factor-header">
+                <span id="fact-lbl-energy">🔥 Clean Energy</span>
+                <span class="val" id="fact-val-energy">96%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="fact-fill-energy" style="width: 0%;"></div>
+              </div>
+            </div>
+            <!-- Health Score -->
+            <div class="factor-item-card">
+              <div class="factor-header">
+                <span id="fact-lbl-health">🏥 Healthcare Access</span>
+                <span class="val" id="fact-val-health">70%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="fact-fill-health" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: POPULATION & DEMOGRAPHIC ANALYTICS -->
+      <section class="row-grid-2" id="sec-demographics">
+        <!-- Gender & Age Distribution -->
+        <div class="dash-card">
+          <h3 id="chart-title-demographics">Demographic & Gender Distribution</h3>
+          <div class="chart-container-box">
+            <canvas id="genderChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Family Size and Age Distribution -->
+        <div class="dash-card">
+          <h3 id="chart-title-age">Age Cohort Distribution</h3>
+          <div class="chart-container-box">
+            <canvas id="ageChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: EDUCATION ANALYTICS -->
+      <section class="row-grid-2" id="sec-education">
+        <div class="dash-card">
+          <h3 id="edu-card-title">Educational Statistics</h3>
+          <div class="edu-stats-block">
+            <div class="edu-mini-card">
+              <div class="stat-info-block">
+                <span class="val" id="edu-val-grad">110</span>
+                <span class="lbl" id="edu-lbl-grad">Total Graduates</span>
+              </div>
+            </div>
+            <div class="edu-mini-card">
+              <div class="stat-info-block">
+                <span class="val" id="edu-val-illiterate">402</span>
+                <span class="lbl" id="edu-lbl-illiterate">Illiterate Population</span>
+              </div>
+            </div>
+            <div class="edu-mini-card">
+              <div class="stat-info-block">
+                <span class="val" id="edu-val-enroll">94%</span>
+                <span class="lbl" id="edu-lbl-enroll">School Enrollment</span>
+              </div>
+            </div>
+            <div class="edu-mini-card">
+              <div class="stat-info-block">
+                <span class="val" id="edu-val-scholar">145</span>
+                <span class="lbl" id="edu-lbl-scholar">Scholarship Support</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Smart Warning Alert Banner for Illiteracy -->
+          <div class="smart-alert-banner" id="edu-illiteracy-warning" style="display: none;">
+            <span>⚠️</span>
+            <span id="edu-illiteracy-warning-text">Critical: Literacy rate (68%) remains below the Panchayat target of 70%. Immediate adult literacy drive required.</span>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <h3 id="chart-title-education">Educational Attainment Distribution</h3>
+          <div class="chart-container-box">
+            <canvas id="educationChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: INFRASTRUCTURE ANALYTICS -->
+      <section class="row-grid-2" id="sec-infrastructure">
+        <div class="dash-card">
+          <h3 id="infra-card-title">Village Infrastructure Coverage</h3>
+          <div class="infra-list-wrapper">
+            <!-- Water -->
+            <div class="infra-row">
+              <div class="infra-meta">
+                <span>🚰 Water Coverage</span>
+                <span id="infra-val-water">81%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="infra-fill-water" style="width: 0%;"></div>
+              </div>
+            </div>
+            <!-- Toilet -->
+            <div class="infra-row">
+              <div class="infra-meta">
+                <span>🚽 Toilet Coverage</span>
+                <span id="infra-val-toilet">83%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="infra-fill-toilet" style="width: 0%;"></div>
+              </div>
+            </div>
+            <!-- LPG -->
+            <div class="infra-row">
+              <div class="infra-meta">
+                <span>🔥 LPG Coverage</span>
+                <span id="infra-val-lpg">96%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="infra-fill-lpg" style="width: 0%;"></div>
+              </div>
+            </div>
+            <!-- Electricity -->
+            <div class="infra-row">
+              <div class="infra-meta">
+                <span>⚡ Electricity Coverage</span>
+                <span id="infra-val-electricity">98%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="infra-fill-electricity" style="width: 0%;"></div>
+              </div>
+            </div>
+            <!-- Solar -->
+            <div class="infra-row">
+              <div class="infra-meta">
+                <span>🌞 Solar Coverage</span>
+                <span id="infra-val-solar">15%</span>
+              </div>
+              <div class="factor-bar-bg">
+                <div class="factor-bar-fill" id="infra-fill-solar" style="width: 0%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Special Warning for Solar -->
+          <div class="solar-highlight-box" id="solar-warning-box" style="display: none;">
+            <span>⚠️</span>
+            <span id="solar-warning-text">Solar Adoption Alert: Off-grid solar deployment is currently at 0%. Immediate rooftop PV incentives required.</span>
+          </div>
+        </div>
+
+        <!-- SECTION 6: GOVERNMENT SCHEME ANALYTICS -->
+        <div class="dash-card">
+          <h3 id="schemes-card-title">Welfare Scheme Analytics</h3>
+          <div class="edu-stats-block" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 15px;">
+            <div class="edu-mini-card">
+              <div class="stat-info-block">
+                <span class="val" id="scheme-val-bene">412</span>
+                <span class="lbl" id="scheme-lbl-bene">Total Beneficiaries</span>
+              </div>
+            </div>
+            <div class="edu-mini-card">
+              <div class="stat-info-block">
+                <span class="val" id="scheme-val-active">8</span>
+                <span class="lbl" id="scheme-lbl-active">Active Schemes</span>
+              </div>
+            </div>
+          </div>
+          <div class="chart-container-box" style="height: 180px;">
+            <canvas id="schemesChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: INTERACTIVE SVG VILLAGE DIGITAL TWIN -->
+      <section class="twin-layout" id="sec-digital-twin">
+        <!-- SVG Map Card -->
+        <div class="dash-card twin-map-card">
+          <h3 style="position: absolute; top: 15px; left: 20px; border:none; padding:0; margin:0;" id="twin-map-title">Interactive Digital Twin Map</h3>
+          
+          <svg viewBox="0 0 500 300" class="twin-svg-canvas" id="digital-twin-svg" aria-label="Interactive Village Digital Twin Map">
+            <!-- Grid Background -->
+            <defs>
+              <pattern id="twin-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="var(--color-border)" stroke-width="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#twin-grid)" rx="10" />
+
+            <!-- Reservoir Water Outlines -->
+            <path d="M 10 10 Q 70 5 80 50 T 20 150 Z" fill="var(--color-secondary-light)" fill-opacity="0.3" stroke="var(--color-secondary)" stroke-width="1.5" />
+            <text x="25" y="35" font-size="7" fill="var(--color-primary)" font-weight="bold">Reservoir</text>
+
+            <!-- Paved CC Roads -->
+            <path d="M 0 150 Q 150 120 250 150 T 500 140" fill="none" stroke="var(--color-text-muted)" stroke-opacity="0.2" stroke-width="8" stroke-linecap="round" />
+            <path d="M 250 150 Q 220 50 220 0" fill="none" stroke="var(--color-text-muted)" stroke-opacity="0.2" stroke-width="6" stroke-linecap="round" />
+            <path d="M 250 150 Q 280 250 320 300" fill="none" stroke="var(--color-text-muted)" stroke-opacity="0.2" stroke-width="6" stroke-linecap="round" />
+
+            <!-- Clickable Asset Groups -->
+            
+            <!-- School -->
+            <g class="twin-node" id="twin-node-school" data-asset="school" transform="translate(420, 200)">
+              <circle r="18" fill="var(--color-bg-card)" stroke="var(--color-secondary)" stroke-width="2" />
+              <text y="5" font-size="16" text-anchor="middle">🏫</text>
+              <text y="30" font-size="8.5" text-anchor="middle" font-weight="bold" fill="var(--color-text-dark)">School</text>
+            </g>
+
+            <!-- Water Tank -->
+            <g class="twin-node" id="twin-node-watertank" data-asset="watertank" transform="translate(90, 70)">
+              <circle r="18" fill="var(--color-bg-card)" stroke="var(--color-secondary)" stroke-width="2" />
+              <text y="5" font-size="16" text-anchor="middle">🚰</text>
+              <text y="30" font-size="8.5" text-anchor="middle" font-weight="bold" fill="var(--color-text-dark)">Water Tank</text>
+            </g>
+
+            <!-- Anganwadi -->
+            <g class="twin-node" id="twin-node-anganwadi" data-asset="anganwadi" transform="translate(100, 230)">
+              <circle r="18" fill="var(--color-bg-card)" stroke="var(--color-secondary)" stroke-width="2" />
+              <text y="5" font-size="16" text-anchor="middle">👶</text>
+              <text y="30" font-size="8.5" text-anchor="middle" font-weight="bold" fill="var(--color-text-dark)">Anganwadi</text>
+            </g>
+
+            <!-- Temple -->
+            <g class="twin-node" id="twin-node-temple" data-asset="temple" transform="translate(400, 70)">
+              <circle r="18" fill="var(--color-bg-card)" stroke="var(--color-secondary)" stroke-width="2" />
+              <text y="5" font-size="16" text-anchor="middle">🛕</text>
+              <text y="30" font-size="8.5" text-anchor="middle" font-weight="bold" fill="var(--color-text-dark)">Temple</text>
+            </g>
+
+            <!-- Community Hall -->
+            <g class="twin-node" id="twin-node-communityhall" data-asset="communityhall" transform="translate(220, 210)">
+              <circle r="18" fill="var(--color-bg-card)" stroke="var(--color-secondary)" stroke-width="2" />
+              <text y="5" font-size="16" text-anchor="middle">🏛</text>
+              <text y="30" font-size="8.5" text-anchor="middle" font-weight="bold" fill="var(--color-text-dark)">Comm. Hall</text>
+            </g>
+
+            <!-- Road Network click area -->
+            <g class="twin-node" id="twin-node-roads" data-asset="roads" transform="translate(290, 130)">
+              <circle r="18" fill="var(--color-bg-card)" stroke="var(--color-secondary)" stroke-width="2" />
+              <text y="5" font-size="16" text-anchor="middle">🛣</text>
+              <text y="30" font-size="8.5" text-anchor="middle" font-weight="bold" fill="var(--color-text-dark)">Road Net</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Details Pane -->
+        <div class="twin-details-pane" id="twin-details-card">
+          <div class="twin-pane-header">
+            <span class="twin-pane-icon" id="twin-pane-icon">🏫</span>
+            <div class="twin-pane-title">
+              <h4 id="twin-pane-name">Zilla Parishad High School</h4>
+              <p id="twin-pane-subtitle">Village Educational Asset</p>
+            </div>
+          </div>
+
+          <div class="twin-pane-stats" id="twin-pane-fields">
+            <!-- Dynamic stats loaded on click -->
+            <div class="twin-pane-stat-row">
+              <span>Students Enrolled</span>
+              <span>145</span>
+            </div>
+            <div class="twin-pane-stat-row">
+              <span>Teachers Staffed</span>
+              <span>7</span>
+            </div>
+            <div class="twin-pane-stat-row">
+              <span>Operational Status</span>
+              <span>Functional (Digital Lab Upgrade)</span>
+            </div>
+          </div>
+
+          <div class="twin-pane-notice" id="twin-pane-desc">
+            Click any labeled circle asset marker on the left village digital twin map to view real-time capacities, staffing, and status tracking info.
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: SMART ALERTS & INSIGHTS -->
+      <section class="dash-card" style="margin-bottom: 40px;" id="sec-alerts">
+        <h3 id="alerts-sec-title">Smart Alerts & Insights</h3>
+        <div class="alerts-board" id="alerts-container">
+          <!-- Dynamic Alerts generated by Javascript -->
+        </div>
+      </section>
+
+      <!-- SECTION 9: ANNOUNCEMENTS & GOVERNANCE -->
+      <section class="dash-card" style="margin-bottom: 40px;" id="sec-announcements">
+        <h3 id="ann-sec-title">Announcements & Governance Updates</h3>
+        <div class="notices-deck" id="announcements-deck">
+          <!-- Dynamic notices will load here -->
+        </div>
+      </section>
+
+      <!-- SECTION 10: REPORT GENERATOR -->
+      <section class="report-card-center" id="sec-report-gen">
+        <h3 style="border:none; padding:0; margin-bottom: 12px;" id="report-sec-title">Generate Official Panchayat Report</h3>
+        <p id="report-sec-desc">Create a compiled, publication-quality printable PDF document containing all current overview indicators, VDI development scores, demographics, and active warning summaries.</p>
+        <button class="btn btn-primary" id="btn-generate-report">
+          <span>📄</span> <span id="btn-text-pdf">Generate Panchayat Report</span>
+        </button>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer-bottom" style="padding: 24px 0; background: var(--color-primary); color: #fff; text-align: center; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.1);">
+    <div class="container">
+      <p id="footer-text-1">© 2026 Seetharampuram Thanda Panchayat | Department of Rural Development</p>
+      <p id="footer-text-2" style="opacity:0.75; font-size:0.75rem; margin-top:4px;">Official Digital Civic Node | Andhra Pradesh State Government</p>
+    </div>
+  </footer>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="alert-popup" id="alert-toast" role="alert" aria-live="polite">
+    <span id="toast-message">Language loaded!</span>
+  </div>
+
+  <!-- ==========================================
+       DASHBOARD CONTROLLER JAVASCRIPT
+       ========================================== -->
+  <script>
+    // Variables holding the raw stats and configured nodes
+    let currentLanguage = 'en';
+    let rawGrievances = [];
+    let householdStats = {
+      privateToilet: 83,
+      tapWater: 81,
+      cleanEnergy: 96,
+      ownHouse: 86,
+      vehicle: 59,
+      solar: 15,
+      electricity: 98
+    };
+    let educationData = {
+      graduates: 110,
+      illiterate: 402,
+      enrollment: 94,
+      scholarships: 145
+    };
+    let activeNotices = [];
+    let originalTexts = {};
+
+    // Chart.js global chart instances for destruction / re-creation on theme toggle
+    let chartGender = null;
+    let chartAge = null;
+    let chartEducation = null;
+    let chartSchemes = null;
+
+    // Digital twin asset details mapping
+    const digitalTwinAssets = {
+      school: {
+        en: {
+          name: "Zilla Parishad High School",
+          type: "Village Educational Asset",
+          fields: [
+            { label: "Students Enrolled", value: "145" },
+            { label: "Teachers Staffed", value: "7" },
+            { label: "Status", value: "Operational (Digital Lab 85% Completed)" }
+          ],
+          desc: "The primary high school serving Seetharampuram Thanda. Undergoing infrastructure upgrades including a brand new computer laboratory."
+        },
+        hi: {
+          name: "जिला परिषद हाई स्कूल",
+          type: "ग्राम शैक्षिक संपत्ति",
+          fields: [
+            { label: "नामांकित छात्र", value: "145" },
+            { label: "शिक्षक कर्मचारी", value: "7" },
+            { label: "स्थिति", value: "सक्रिय (डिजिटल लैब ८५% पूर्ण)" }
+          ],
+          desc: "सीतारामपुरम टांडा की मुख्य माध्यमिक शाला। एक नई कंप्यूटर प्रयोगशाला सहित बुनियादी ढांचे का आधुनिकीकरण प्रगति पर है।"
+        },
+        te: {
+          name: "జిల్లా పరిషత్ ఉన్నత పాఠశాల",
+          type: "గ్రామ విద్యా ఆస్తి",
+          fields: [
+            { label: "నమోదైన విద్యార్థులు", value: "145" },
+            { label: "ఉపాధ్యాయుల సిబ్బంది", value: "7" },
+            { label: "స్థితి", value: "అందుబాటులో ఉంది (డిజిటల్ ల్యాబ్ 85% పూర్తి)" }
+          ],
+          desc: "సీతారామపురం తండా పరిధిలోని ప్రధాన ఉన్నత పాఠశాల. కంప్యూటర్ ల్యాబ్‌తో సహా మౌలిక సదుపాయాల ఆధునీకరణ పనులు జరుగుతున్నాయి."
+        }
+      },
+      watertank: {
+        en: {
+          name: "Panchayat Water Reservoir Tank",
+          type: "Water Supply Infrastructure",
+          fields: [
+            { label: "Storage Capacity", value: "15,000 Litres" },
+            { label: "Distribution Cycle", value: "2 Hours Daily" },
+            { label: "Status", value: "Functional" }
+          ],
+          desc: "Overhead clean water storage tank that distributes filtered groundwater to wards through the newly laid tap pipeline network."
+        },
+        hi: {
+          name: "पंचायत जल जलाशय टैंक",
+          type: "जलापूर्ति बुनियादी ढांचा",
+          fields: [
+            { label: "भंडारण क्षमता", value: "15,000 लीटर" },
+            { label: "वितरण चक्र", value: "प्रतिदिन २ घंटे" },
+            { label: "स्थिति", value: "सक्रिय" }
+          ],
+          desc: "ओवरहेड स्वच्छ पेयजल टैंक जो नए नल कनेक्शनों के माध्यम से वार्डों में पानी वितरित करता है।"
+        },
+        te: {
+          name: "పంచాయతీ నీటి నిల్వ ట్యాంక్",
+          type: "నీటి సరఫరా మౌలిక సదుపాయాలు",
+          fields: [
+            { label: "నిల్వ సామర్థ్యం", value: "15,000 లీటర్లు" },
+            { label: "సరఫరా సమయం", value: "రోజుకు 2 గంటలు" },
+            { label: "స్థితి", value: "క్రియాశీలంగా ఉంది" }
+          ],
+          desc: "కొత్తగా ఏర్పాటు చేసిన పైప్‌లైన్ ద్వారా వార్డులకు శుద్ధి చేసిన భూగర్భ జలాలను పంపిణీ చేసే ఓవర్ హెడ్ ట్యాంక్."
+        }
+      },
+      anganwadi: {
+        en: {
+          name: "Village Anganwadi Care Center",
+          type: "Child & Maternal Welfare Center",
+          fields: [
+            { label: "Toddlers Enrolled", value: "42" },
+            { label: "Mid-day Meals Provided", value: "Daily (Saturated)" },
+            { label: "Status", value: "Operational" }
+          ],
+          desc: "A crucial center providing immunization support, early education nutrition, and maternal guidance to mothers and toddlers."
+        },
+        hi: {
+          name: "ग्राम आंगनवाड़ी कल्याण केंद्र",
+          type: "बाल एवं मातृ कल्याण केंद्र",
+          fields: [
+            { label: "नामांकित बच्चे", value: "42" },
+            { label: "मध्याह्न भोजन वितरण", value: "प्रतिदिन" },
+            { label: "स्थिति", value: "सक्रिय" }
+          ],
+          desc: "टीकाकरण सहायता, प्रारंभिक पोषण और माताओं को मातृ स्वास्थ्य मार्गदर्शन प्रदान करने वाला एक महत्वपूर्ण केंद्र।"
+        },
+        te: {
+          name: "గ్రామ అంగన్‌వాడీ కేంద్రం",
+          type: "శిశు & మాతృ సంక్షేమ కేంద్రం",
+          fields: [
+            { label: "నమోదైన పిల్లలు", value: "42" },
+            { label: "మధ్యాహ్న భోజనం", value: "ప్రతిరోజూ పంపిణీ" },
+            { label: "స్థితి", value: "అందుబాటులో ఉంది" }
+          ],
+          desc: "పిల్లలకు ప్రారంభ విద్య, పోషకాహారం మరియు తల్లులకు ఆరోగ్య సంరక్షణ మార్గదర్శకత్వం అందించే అత్యంత కీలకమైన కేంద్రం."
+        }
+      },
+      temple: {
+        en: {
+          name: "Sri Seetharama Swamy Temple",
+          type: "Heritage & Cultural Landmark",
+          fields: [
+            { label: "Historic Status", value: "Preserved Site" },
+            { label: "Restoration Year", value: "2025" },
+            { label: "Status", value: "Active / Restored" }
+          ],
+          desc: "Historical spiritual landmark situated at the outskirts. Recently restored using traditional materials with community volunteer support."
+        },
+        hi: {
+          name: "श्री सीताराम स्वामी मंदिर",
+          type: "धरोहर एवं सांस्कृतिक स्थल",
+          fields: [
+            { label: "ऐतिहासिक स्थिति", value: "संरक्षित स्थल" },
+            { label: "जीर्णोद्धार वर्ष", value: "2025" },
+            { label: "स्थिति", value: "सक्रिय / पुनर्निर्मित" }
+          ],
+          desc: "बाहरी इलाके में स्थित ऐतिहासिक आध्यात्मिक स्थल। हाल ही में सामुदायिक स्वयंसेवकों के सहयोग से पारंपरिक सामग्रियों द्वारा जीर्णोद्धार किया गया।"
+        },
+        te: {
+          name: "శ్రీ సీతారామ స్వామి ఆలయం",
+          type: "వారసత్వ & సాంస్కృతిక ప్రదేశం",
+          fields: [
+            { label: "చారిత్రక హోదా", value: "రక్షిత ప్రదేశం" },
+            { label: "పునరుద్ధరణ సంవత్సరం", value: "2025" },
+            { label: "స్థితి", value: "యాక్టివ్ / పునరుద్ధరించబడింది" }
+          ],
+          desc: "తండా శివార్లలో వెలసిన చారిత్రక ఆధ్యాత్మిక కేంద్రం. గ్రామస్తుల భాగస్వామ్యంతో సాంప్రదాయ పద్ధతుల్లో ఇటీవల పునరుద్ధరించబడింది."
+        }
+      },
+      communityhall: {
+        en: {
+          name: "Grama Sabha Community Hall",
+          type: "Civic Meeting Venue",
+          fields: [
+            { label: "Seating Capacity", value: "250 Seats" },
+            { label: "Off-Grid Solar Capacity", value: "5 kW Active" },
+            { label: "Status", value: "Operational" }
+          ],
+          desc: "Hub of all local democratic assembly. Fully self-powered using rooftop solar panel arrays to facilitate meetings during dry-spells."
+        },
+        hi: {
+          name: "ग्राम सभा सामुदायिक भवन",
+          type: "नागरिक सभा स्थल",
+          fields: [
+            { label: "बैठक क्षमता", value: "250 सीटें" },
+            { label: "सौर ऊर्जा क्षमता", value: "5 किलोवाट सक्रिय" },
+            { label: "स्थिति", value: "सक्रिय" }
+          ],
+          desc: "सभी स्थानीय लोकतांत्रिक सभाओं का केंद्र। बिजली कटौती के दौरान बैठकों को सुविधाजनक बनाने के लिए रूफटॉप सोलर से पूर्णतः संचालित।"
+        },
+        te: {
+          name: "గ్రామ సభ కమ్యూనిటీ హాల్",
+          type: "పౌర సమావేశాల వేదిక",
+          fields: [
+            { label: "సీట్ల సామర్థ్యం", value: "250 మంది" },
+            { label: "సోలార్ పవర్ గ్రిడ్", value: "5 kW యాక్టివ్" },
+            { label: "స్థితి", value: "అందుబాటులో ఉంది" }
+          ],
+          desc: "స్థానిక ప్రజాస్వామ్య నిర్ణయాలకు వేదిక. విద్యుత్ కోతల సమయంలోనూ సమావేశాలు జరిపేందుకు వీలుగా సోలార్ విద్యుత్తుతో నడుస్తోంది."
+        }
+      },
+      roads: {
+        en: {
+          name: "Cement Concrete (CC) Road Grid",
+          type: "Transportation Infrastructure",
+          fields: [
+            { label: "Total Length", value: "4.2 Kilometres" },
+            { label: "Drainage Coverage", value: "92% Covered" },
+            { label: "Status", value: "Excellent" }
+          ],
+          desc: "Core arterial road network constructed with high-grade concrete, with integrated drainage system to prevent water pooling."
+        },
+        hi: {
+          name: "सीमेंट कंक्रीट (सीसी) सड़क नेटवर्क",
+          type: "परिवहन बुनियादी ढांचा",
+          fields: [
+            { label: "कुल लंबाई", value: "४.२ किलोमीटर" },
+            { label: "नाली कवरेज", value: "९२% कवर्ड" },
+            { label: "स्थिति", value: "उत्कृष्ट" }
+          ],
+          desc: "उच्च श्रेणी के कंक्रीट से निर्मित मुख्य सड़क नेटवर्क, जिसमें पानी के जमाव को रोकने के लिए एकीकृत जल निकासी प्रणाली शामिल है।"
+        },
+        te: {
+          name: "సిమెంట్ కాంక్రీట్ (CC) రోడ్ల గ్రిడ్",
+          type: "రవాణా మౌలిక సదుపాయాలు",
+          fields: [
+            { label: "మొత్తం పొడవు", value: "4.2 కిలోమీటర్లు" },
+            { label: "కాలువల కవరేజీ", value: "92% మూసివేయబడింది" },
+            { label: "స్థితి", value: "అద్భుతంగా ఉంది" }
+          ],
+          desc: "గ్రామంలోని ప్రధాన రవాణా మార్గాలు. వర్షపు నీరు నిలవకుండా ఉండేందుకు కాలువలతో కూడిన కాంక్రీట్ రోడ్లు నిర్మించబడ్డాయి."
+        }
+      }
+    };
+
+    // Dictionary mappings for multilingual translation in Dashboard
+    const dashboardTranslations = {
+      hi: {
+        '#gp-brand-title': 'सीतारामपुरम टांडा',
+        '#gp-brand-subtitle': 'ग्राम पंचायत पोर्टल',
+        '#nav-link-about': 'हमारे बारे में',
+        '#nav-link-services': 'सेवाएं',
+        '#nav-link-dashboard': 'डैशबोर्ड',
+        '#nav-link-svr': 'एसवीआर मानचित्र',
+        '#nav-link-culture': 'धरोहर',
+        '#nav-link-gallery': 'गैलरी',
+        '#nav-btn-contact': 'संपर्क',
+        '#dash-main-title': 'पंचायत कमांड सेंटर',
+        '#dash-main-subtitle': 'सीतारामपुरम टांडा वास्तविक समय विश्लेषण और शासन डैशबोर्ड',
+        '#btn-text-print': 'पंचायत रिपोर्ट',
+        '#sim-panel-title': 'डैशबोर्ड लाइव सिम्युलेटर',
+        '#sim-lbl-solar': '०% सौर ऊर्जा अनुकरण करें',
+        '#sim-lbl-toilet': '१००% शौचालय कवरेज अनुकरण करें',
+        '#sim-lbl-water': 'कम जल उपलब्धता का अनुकरण करें',
+        '#stat-lbl-population': 'कुल जनसंख्या',
+        '#stat-lbl-families': 'कुल परिवार',
+        '#stat-lbl-houses': 'कुल मकान',
+        '#stat-lbl-farmers': 'कुल किसान',
+        '#stat-lbl-students': 'कुल छात्र',
+        '#stat-lbl-employees': 'कुल कर्मचारी',
+        '#stat-lbl-wards': 'कुल वार्ड',
+        '#stat-lbl-grievances': 'कुल शिकायतें',
+        '#vdi-card-title': 'ग्राम विकास सूचकांक (VDI)',
+        '#vdi-subscores-title': 'सूचकांक गणना कारक',
+        '#fact-lbl-edu': '🎓 शिक्षा सूचकांक',
+        '#fact-lbl-water': '🚰 जल उपलब्धता',
+        '#fact-lbl-house': '🏡 सुरक्षित आवास',
+        '#fact-lbl-san': '🚽 स्वच्छ स्वच्छता',
+        '#fact-lbl-energy': '🔥 स्वच्छ ऊर्जा',
+        '#fact-lbl-health': '🏥 स्वास्थ्य सेवा पहुंच',
+        '#chart-title-demographics': 'जनसांख्यिकीय और लिंग वितरण',
+        '#chart-title-age': 'आयु वर्ग वितरण',
+        '#edu-card-title': 'शैक्षिक सांख्यिकी',
+        '#edu-lbl-grad': 'कुल स्नातक',
+        '#edu-lbl-illiterate': 'निरक्षर जनसंख्या',
+        '#edu-lbl-enroll': 'स्कूल नामांकन दर',
+        '#edu-lbl-scholar': 'छात्रवृत्ति सहायता',
+        '#chart-title-education': 'शैक्षिक स्तर वितरण',
+        '#infra-card-title': 'ग्राम बुनियादी ढांचा कवरेज',
+        '#schemes-card-title': 'कल्याणकारी योजना विश्लेषण',
+        '#scheme-lbl-bene': 'कुल लाभार्थी',
+        '#scheme-lbl-active': 'सक्रिय योजनाएं',
+        '#twin-map-title': 'इंटरैक्टिव डिजिटल ट्विन मानचित्र',
+        '#alerts-sec-title': 'स्मार्ट अलर्ट और अंतर्दृष्टि',
+        '#ann-sec-title': 'घोषणाएँ और शासन अपडेट',
+        '#report-sec-title': 'आधिकारिक पंचायत रिपोर्ट बनाएं',
+        '#report-sec-desc': 'सभी वर्तमान संकेतकों, विकास स्कोर, जनसांख्यिकी और अलर्ट सारांश वाली एक आधिकारिक मुद्रण योग्य पीडीएफ रिपोर्ट तैयार करें।',
+        '#btn-text-pdf': 'पंचायत रिपोर्ट तैयार करें'
+      },
+      te: {
+        '#gp-brand-title': 'సీతారామపురం తండా',
+        '#gp-brand-subtitle': 'గ్రామ పంచాయతీ పోర్టల్',
+        '#nav-link-about': 'గురించి',
+        '#nav-link-services': 'సేవలు',
+        '#nav-link-dashboard': 'డ్యాష్‌బోర్డ్',
+        '#nav-link-svr': 'SVR మ్యాప్',
+        '#nav-link-culture': 'వారసత్వం',
+        '#nav-link-gallery': 'గ్యాలరీ',
+        '#nav-btn-contact': 'సంప్రదించండి',
+        '#dash-main-title': 'పంచాయతీ కమాండ్ సెంటర్',
+        '#dash-main-subtitle': 'సీతారామపురం తండా రియల్-టైమ్ అనలిటిక్స్ & గవర్నెన్స్ డ్యాష్‌బోర్డ్',
+        '#btn-text-print': 'పంచాయతీ రిపోర్ట్',
+        '#sim-panel-title': 'డ్యాష్‌బోర్డ్ లైవ్ సిమ్యులేటర్',
+        '#sim-lbl-solar': '0% సోలార్ కవరేజీని సిమ్యులేట్ చేయి',
+        '#sim-lbl-toilet': '100% శానిటేషన్ కవరేజీని సిమ్యులేట్ చేయి',
+        '#sim-lbl-water': 'తక్కువ నీటి లభ్యతను సిమ్యులేట్ చేయి',
+        '#stat-lbl-population': 'మొత్తం జనాభా',
+        '#stat-lbl-families': 'మొత్తం కుటుంబాలు',
+        '#stat-lbl-houses': 'మొత్తం ఇళ్లు',
+        '#stat-lbl-farmers': 'మొత్తం రైతులు',
+        '#stat-lbl-students': 'మొత్తం విద్యార్థులు',
+        '#stat-lbl-employees': 'మొత్తం ఉద్యోగులు',
+        '#stat-lbl-wards': 'మొత్తం వార్డులు',
+        '#stat-lbl-grievances': 'మొత్తం ఫిర్యాదులు',
+        '#vdi-card-title': 'గ్రామ అభివృద్ధి సూచిక (VDI)',
+        '#vdi-subscores-title': 'సూచిక లెక్కింపు కారకాలు',
+        '#fact-lbl-edu': '🎓 విద్యా సూచిక',
+        '#fact-lbl-water': '🚰 నీటి సౌకర్యం',
+        '#fact-lbl-house': '🏡 సురక్షిత గృహ వసతి',
+        '#fact-lbl-san': '🚽 పరిశుభ్రమైన శానిటేషన్',
+        '#fact-lbl-energy': '🔥 స్వచ్ఛమైన ఇంధనం',
+        '#fact-lbl-health': '🏥 ఆరోగ్య సేవలు',
+        '#chart-title-demographics': 'జనాభా & లింగ నిష్పత్తి',
+        '#chart-title-age': 'వయస్సు వారీగా వర్గీకరణ',
+        '#edu-card-title': 'విద్యా గణాంకాలు',
+        '#edu-lbl-grad': 'మొత్తం గ్రాడ్యుయేట్లు',
+        '#edu-lbl-illiterate': 'అక్షరాస్యత లేని జనాభా',
+        '#edu-lbl-enroll': 'బడిలో చేరే రేటు',
+        '#edu-lbl-scholar': 'స్కాలర్‌షిప్ సహాయం',
+        '#chart-title-education': 'విద్యా స్థాయిల వర్గీకరణ',
+        '#infra-card-title': 'గ్రామ మౌలిక సదుపాయాల కవరేజీ',
+        '#schemes-card-title': 'సంక్షేమ పథకాల విశ్లేషణ',
+        '#scheme-lbl-bene': 'మొత్తం లబ్ధిదారులు',
+        '#scheme-lbl-active': 'అమల్లో ఉన్న పథకాలు',
+        '#twin-map-title': 'ఇంటరాక్టివ్ డిజిటల్ ట్విన్ మ్యాప్',
+        '#alerts-sec-title': 'స్మార్ట్ హెచ్చరికలు & విశ్లేషణలు',
+        '#ann-sec-title': 'ప్రకటనలు & పరిపాలన నవీకరణలు',
+        '#report-sec-title': 'అధికారిక పంచాయతీ నివేదికను రూపొందించు',
+        '#report-sec-desc': 'ప్రస్తుత సూచికలు, అభివృద్ధి స్కోర్లు, జనాభా వివరాలు మరియు హెచ్చరికల సారాంశంతో ముద్రించదగిన PDF నివేదికను సృష్టించండి.',
+        '#btn-text-pdf': 'నివేదికను రూపొందించు'
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Sync theme preference from LocalStorage
+      const savedTheme = localStorage.getItem('panchayat-theme');
+      if (savedTheme === 'banjara') {
+        document.body.classList.add('banjara-active');
+        document.getElementById('theme-btn-icon').textContent = '🌿';
+        document.getElementById('theme-btn-text').textContent = 'Eco Theme';
+      }
+
+      // 2. Toggle Theme Listener
+      const themeToggle = document.getElementById('btn-theme-toggle');
+      themeToggle.addEventListener('click', () => {
+        const isBanjara = document.body.classList.toggle('banjara-active');
+        if (isBanjara) {
+          localStorage.setItem('panchayat-theme', 'banjara');
+          document.getElementById('theme-btn-icon').textContent = '🌿';
+          document.getElementById('theme-btn-text').textContent = 'Eco Theme';
+          showToast('✨ Banjara Cultural Theme activated: Crimson and shell-gold!', 'success');
+        } else {
+          localStorage.setItem('panchayat-theme', 'eco');
+          document.getElementById('theme-btn-icon').textContent = '✨';
+          document.getElementById('theme-btn-text').textContent = 'Banjara Theme';
+          showToast('🌱 Eco Theme activated: Forest Green and Amber Gold!', 'success');
+        }
+        // Re-draw Charts to update theme colors
+        renderAllCharts();
+      });
+
+      // 3. Initialize translation original texts
+      const selectors = Object.keys(dashboardTranslations.hi);
+      selectors.forEach(sel => {
+        const el = document.querySelector(sel);
+        if (el) {
+          originalTexts[sel] = el.innerHTML.trim();
+        }
+      });
+
+      // 4. Load saved language preference
+      const savedLang = localStorage.getItem('panchayat-lang') || 'en';
+      currentLanguage = savedLang;
+      const select = document.getElementById('lang-select');
+      if (select) {
+        select.value = savedLang;
+        select.addEventListener('change', (e) => {
+          const lang = e.target.value;
+          currentLanguage = lang;
+          localStorage.setItem('panchayat-lang', lang);
+          applyTranslation(lang);
+          renderAlertsAndInsights();
+          renderAnnouncements();
+          // Update details panel
+          const activeNode = document.querySelector('.twin-node.selected');
+          if (activeNode) {
+            updateDigitalTwinPane(activeNode.getAttribute('data-asset'));
+          }
+          const toastMsg = lang === 'hi' ? '🇮🇳 भाषा बदलकर हिंदी कर दी गई है।' : lang === 'te' ? '🇮🇳 భాష తెలుగులోకి మార్చబడింది.' : '🇬🇧 Language switched to English.';
+          showToast(toastMsg, 'success');
+        });
+      }
+
+      // 5. Mobile Navbar Toggle
+      const mobileToggle = document.getElementById('mobile-menu-toggle');
+      const navLinks = document.getElementById('navigation-links');
+      if (mobileToggle && navLinks) {
+        mobileToggle.addEventListener('click', () => {
+          const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+          mobileToggle.setAttribute('aria-expanded', !expanded);
+          navLinks.classList.toggle('active');
+        });
+      }
+
+      // 6. Interactive Digital Twin Map Click handlers
+      const mapNodes = document.querySelectorAll('.twin-node');
+      mapNodes.forEach(node => {
+        node.addEventListener('click', () => {
+          mapNodes.forEach(n => n.classList.remove('selected'));
+          node.classList.add('selected');
+          const assetName = node.getAttribute('data-asset');
+          updateDigitalTwinPane(assetName);
+        });
+      });
+
+      // Select high school by default
+      const defaultNode = document.getElementById('twin-node-school');
+      if (defaultNode) {
+        defaultNode.classList.add('selected');
+        updateDigitalTwinPane('school');
+      }
+
+      // 7. Simulating checkbox logic
+      document.getElementById('sim-solar-toggle').addEventListener('change', (e) => {
+        householdStats.solar = e.target.checked ? 0 : 15;
+        updateDataElements();
+      });
+      document.getElementById('sim-toilet-toggle').addEventListener('change', (e) => {
+        householdStats.privateToilet = e.target.checked ? 100 : 83;
+        updateDataElements();
+      });
+      document.getElementById('sim-water-toggle').addEventListener('change', (e) => {
+        householdStats.tapWater = e.target.checked ? 62 : 81;
+        updateDataElements();
+      });
+
+      // 8. Generate Report listeners
+      document.getElementById('btn-print-report').addEventListener('click', () => window.print());
+      document.getElementById('btn-generate-report').addEventListener('click', () => window.print());
+
+      // 9. Load API data on load
+      loadDataFromApis();
+    });
+
+    function applyTranslation(lang) {
+      currentLanguage = lang;
+      document.body.classList.remove('lang-en', 'lang-hi', 'lang-te');
+      document.body.classList.add('lang-' + lang);
+      document.documentElement.setAttribute('lang', lang);
+
+      const selectors = Object.keys(dashboardTranslations.hi);
+      selectors.forEach(sel => {
+        const el = document.querySelector(sel);
+        if (!el) return;
+
+        if (lang === 'en') {
+          if (originalTexts[sel]) {
+            el.innerHTML = originalTexts[sel];
+          }
+        } else {
+          if (dashboardTranslations[lang] && dashboardTranslations[lang][sel]) {
+            el.innerHTML = dashboardTranslations[lang][sel];
+          }
+        }
+      });
+    }
+
+    // Load data from live Panchayat APIs
+    function loadDataFromApis() {
+      // Fetch dynamic configurations, updates, and grievances
+      const fetchConfig = fetch('/api/main-page-config').then(r => r.json());
+      const fetchUpdates = fetch('/api/household-updates').then(r => r.json());
+      const fetchGrievances = fetch('/api/grievances').then(r => r.json());
+
+      Promise.all([fetchConfig, fetchUpdates, fetchGrievances])
+        .then(([config, updates, grievances]) => {
+          // Store notices
+          activeNotices = config.notices || [];
+
+          // Map main page config stats to Overview cards target values
+          if (config.stats) {
+            const cleanNum = (str) => parseInt(str?.replace(/,/g, '')) || 0;
+            if (config.stats.population) {
+              const popNum = cleanNum(config.stats.population.en || config.stats.population);
+              document.getElementById('stat-val-population').setAttribute('data-target', popNum);
+              educationData.illiterate = Math.round(popNum * (1 - 0.68)); // 32% illiteracy based on 68% rate
+              document.getElementById('edu-val-illiterate').textContent = educationData.illiterate;
+            }
+            if (config.stats.families) {
+              const famNum = cleanNum(config.stats.families.en || config.stats.families);
+              document.getElementById('stat-val-families').setAttribute('data-target', famNum);
+              document.getElementById('stat-val-houses').setAttribute('data-target', Math.round(famNum * 0.95));
+            }
+          }
+
+          // Map active grievances count
+          rawGrievances = grievances || [];
+          document.getElementById('stat-val-grievances').setAttribute('data-target', rawGrievances.length);
+
+          // Map household updates (survey rates)
+          if (updates && updates.percentages) {
+            householdStats.privateToilet = updates.percentages.privateToilet || 83;
+            householdStats.tapWater = updates.percentages.tapWater || 81;
+            householdStats.cleanEnergy = updates.percentages.cleanEnergy || 96;
+            householdStats.ownHouse = updates.percentages.ownHouse || 86;
+            householdStats.vehicle = updates.percentages.vehicle || 59;
+          }
+
+          // Trigger numerical animations, calculate score, load lists
+          updateDataElements();
+          applyTranslation(currentLanguage);
+          triggerOverviewCounters();
+        })
+        .catch(err => {
+          console.error("Error loading dashboard data:", err);
+          showToast("❌ Error connecting to Panchayat data node.", "error");
+          // Fallback to defaults
+          updateDataElements();
+          applyTranslation(currentLanguage);
+          triggerOverviewCounters();
+        });
+    }
+
+    // Refresh dynamic indicators, subscores, and rebuild charts
+    function updateDataElements() {
+      // Calculated factors of VDI: Avg of 6 parameters
+      const vdiScore = Math.round((
+        educationData.enrollment +
+        householdStats.tapWater +
+        householdStats.ownHouse +
+        householdStats.privateToilet +
+        householdStats.cleanEnergy +
+        70 // health
+      ) / 6);
+
+      // Render VDI Circular Progress
+      document.getElementById('vdi-score-display').textContent = vdiScore;
+      const progressRing = document.getElementById('vdi-ring-progress');
+      if (progressRing) {
+        // Circumference is 2 * PI * 80 = 502.4
+        const offset = 502.4 - (vdiScore / 100) * 502.4;
+        progressRing.style.strokeDashoffset = offset;
+      }
+
+      // VDI Rating color coding
+      const ratingDisplay = document.getElementById('vdi-rating-display');
+      ratingDisplay.className = 'vdi-rating-badge';
+      if (vdiScore >= 80) {
+        ratingDisplay.textContent = currentLanguage === 'hi' ? 'उत्कृष्ट' : currentLanguage === 'te' ? 'అద్భుతం' : 'Excellent';
+        ratingDisplay.classList.add('rating-excellent');
+      } else if (vdiScore >= 50) {
+        ratingDisplay.textContent = currentLanguage === 'hi' ? 'मध्यम' : currentLanguage === 'te' ? 'సాధారణం' : 'Moderate';
+        ratingDisplay.classList.add('rating-moderate');
+      } else {
+        ratingDisplay.textContent = currentLanguage === 'hi' ? 'सुधार आवश्यक' : currentLanguage === 'te' ? 'మెరుగుపడాలి' : 'Needs Improvement';
+        ratingDisplay.classList.add('rating-poor');
+      }
+
+      // Update Individual Subscores
+      document.getElementById('fact-val-edu').textContent = educationData.enrollment + '%';
+      document.getElementById('fact-fill-edu').style.width = educationData.enrollment + '%';
+
+      document.getElementById('fact-val-water').textContent = householdStats.tapWater + '%';
+      document.getElementById('fact-fill-water').style.width = householdStats.tapWater + '%';
+
+      document.getElementById('fact-val-house').textContent = householdStats.ownHouse + '%';
+      document.getElementById('fact-fill-house').style.width = householdStats.ownHouse + '%';
+
+      document.getElementById('fact-val-san').textContent = householdStats.privateToilet + '%';
+      document.getElementById('fact-fill-san').style.width = householdStats.privateToilet + '%';
+
+      document.getElementById('fact-val-energy').textContent = householdStats.cleanEnergy + '%';
+      document.getElementById('fact-fill-energy').style.width = householdStats.cleanEnergy + '%';
+
+      document.getElementById('fact-val-health').textContent = '70%';
+      document.getElementById('fact-fill-health').style.width = '70%';
+
+      // Update Infrastructure progress bars
+      document.getElementById('infra-val-water').textContent = householdStats.tapWater + '%';
+      document.getElementById('infra-fill-water').style.width = householdStats.tapWater + '%';
+
+      document.getElementById('infra-val-toilet').textContent = householdStats.privateToilet + '%';
+      document.getElementById('infra-fill-toilet').style.width = householdStats.privateToilet + '%';
+
+      document.getElementById('infra-val-lpg').textContent = householdStats.cleanEnergy + '%';
+      document.getElementById('infra-fill-lpg').style.width = householdStats.cleanEnergy + '%';
+
+      document.getElementById('infra-val-solar').textContent = householdStats.solar + '%';
+      document.getElementById('infra-fill-solar').style.width = householdStats.solar + '%';
+
+      // Solar 0% Warning check
+      const solarWarning = document.getElementById('solar-warning-box');
+      if (householdStats.solar === 0) {
+        solarWarning.style.display = 'flex';
+      } else {
+        solarWarning.style.display = 'none';
+      }
+
+      // Literacy warning check (if rate < 70)
+      const illiteracyWarning = document.getElementById('edu-illiteracy-warning');
+      if (100 - (educationData.illiterate / 1256 * 100) < 70) {
+        illiteracyWarning.style.display = 'flex';
+      } else {
+        illiteracyWarning.style.display = 'none';
+      }
+
+      // Refresh alerts list and charts
+      renderAlertsAndInsights();
+      renderAnnouncements();
+      renderAllCharts();
+    }
+
+    // Animate numbers counting up on load
+    function triggerOverviewCounters() {
+      const counters = document.querySelectorAll('.stat-count-num');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target')) || 0;
+        let count = 0;
+        const speed = Math.max(1, Math.floor(target / 40));
+        const timer = setInterval(() => {
+          count += speed;
+          if (count >= target) {
+            counter.textContent = target.toLocaleString(currentLanguage === 'en' ? 'en-US' : 'en-IN');
+            clearInterval(timer);
+          } else {
+            counter.textContent = count.toLocaleString(currentLanguage === 'en' ? 'en-US' : 'en-IN');
+          }
+        }, 20);
+      });
+    }
+
+    // Render Smart Alerts & Insights
+    function renderAlertsAndInsights() {
+      const container = document.getElementById('alerts-container');
+      if (!container) return;
+
+      container.innerHTML = '';
+
+      const alerts = [];
+
+      // Solar check
+      if (householdStats.solar === 0) {
+        alerts.push({
+          severity: 'critical',
+          icon: '🚨',
+          en: { title: "Solar Adoption Deficit", desc: "Solar coverage is currently 0%. Triggers structural carbon emissions and violates eco-resilience bylaws." },
+          hi: { title: "सौर ऊर्जा गोद लेने में कमी", desc: "वर्तमान में सौर कवरेज ०% है। यह कार्बन उत्सर्जन को बढ़ावा देता है और पर्यावरण अनुकूल नियमों का उल्लंघन करता है।" },
+          te: { title: "సౌర విద్యుత్ కొరత", desc: "సౌర విద్యుత్ వాడకం ప్రస్తుతం 0% గా ఉంది. ఇది పర్యావరణ పరిరక్షణ నిబంధనలకు విరుద్ధం." }
+        });
+      }
+
+      // Toilet check
+      if (householdStats.privateToilet < 100) {
+        alerts.push({
+          severity: 'warning',
+          icon: '⚠️',
+          en: { title: "Open Defecation Risk Remains", desc: `Sanitation coverage at ${householdStats.privateToilet}%. Target is 100% ODF+ rating. Immediate construction of public toilets requested.` },
+          hi: { title: "खुले में शौच का जोखिम", desc: `स्वच्छता कवरेज ${householdStats.privateToilet}% पर है। लक्ष्य १००% ओडीएफ+ रेटिंग का है। सामुदायिक शौचालयों के निर्माण की आवश्यकता है।` },
+          te: { title: "బహిరంగ మలవిసర్జన ముప్పు", desc: `శానిటేషన్ కవరేజీ ${householdStats.privateToilet}% వద్ద ఉంది. దీని లక్ష్యం 100% ODF+. మరిన్ని సామాజిక शौचालయాలు నిర్మించాల్సి ఉంది.` }
+        });
+      } else {
+        alerts.push({
+          severity: 'good',
+          icon: '✅',
+          en: { title: "ODF Status Maintained", desc: "100% private and public sanitation access audited across all wards. Excellent health and hygiene rating!" },
+          hi: { title: "ओडीएफ स्तर बरकरार", desc: "सभी वार्डों में १००% निजी और सार्वजनिक स्वच्छता पहुंच का सफल ऑडिट। उत्कृष्ट स्वास्थ्य और स्वच्छता रेटिंग!" },
+          te: { title: "ODF హోదా నిలకడ", desc: "అన్ని వార్డులలో 100% వ్యక్తిగత మరియు బహిరంగ శానిటేషన్ నిర్ధారించబడింది. అద్భుతమైన ఆరోగ్య రేటింగ్!" }
+        });
+      }
+
+      // Water dependency check
+      if (householdStats.tapWater < 80) {
+        alerts.push({
+          severity: 'warning',
+          icon: '⚠️',
+          en: { title: "High Dependency on Hand Pumps", desc: `Tap water grid connection is at ${householdStats.tapWater}%. Portions of Ward 3 and 4 depend on groundwater hand pumps during dry spells.` },
+          hi: { title: "हैंडपंप पर अधिक निर्भरता", desc: `नल जल ग्रिड कनेक्शन ${householdStats.tapWater}% पर है। वार्ड ३ और ४ के कुछ हिस्से सूखे के दौरान भूजल हैंडपंपों पर निर्भर हैं।` },
+          te: { title: "చేతి పంపులపై అధిక ఆధారం", desc: `తాగునీటి కనెక్షన్ కేవలం ${householdStats.tapWater}% వద్ద ఉంది. వేసవిలో వార్డు 3, 4 పరిధిలోని నివాసితులు చేతి పంపులపై ఆధారపడుతున్నారు.` }
+        });
+      }
+
+      // Housing check
+      if (householdStats.ownHouse > 80) {
+        alerts.push({
+          severity: 'good',
+          icon: '✅',
+          en: { title: "Pukka Housing Infrastructure Strong", desc: `Safe permanent housing coverage stands at ${householdStats.ownHouse}%. PM Awas Yojana registrations saturated.` },
+          hi: { title: "पक्का आवास ढांचा मजबूत", desc: `सुरक्षित स्थायी आवास कवरेज ${householdStats.ownHouse}% पर है। प्रधानमंत्री आवास योजना पंजीकरण संतृप्त हैं।` },
+          te: { title: "పక్కా గృహ వసతి పటిష్టం", desc: `శాశ్వత నివాస గృహాల కవరేజీ ${householdStats.ownHouse}% కు చేరింది. పీఎం ఆవాస్ యోజన లబ్ధిదారుల నమోదు సంతృప్తికరంగా ఉంది.` }
+        });
+      }
+
+      // LPG check
+      if (householdStats.cleanEnergy > 90) {
+        alerts.push({
+          severity: 'good',
+          icon: '✅',
+          en: { title: "LPG Clean Fuel Coverage Excellent", desc: `Ujjwala scheme reaches ${householdStats.cleanEnergy}% of families, minimizing traditional fuelwood smoke hazard.` },
+          hi: { title: "रसोई गैस स्वच्छ ईंधन कवरेज उत्कृष्ट", desc: `उज्ज्वला योजना ९६% परिवारों तक पहुंच चुकी है, जिससे पारंपरिक जलाऊ लकड़ी के धुएं का खतरा कम हो गया है।` },
+          te: { title: "LPG క్లీన్ ఇంధనం అద్భుతం", desc: `ఉజ్వల పథకం ${householdStats.cleanEnergy}% కుటుంబాలకు చేరింది. పొయ్యి పొగ రహిత గ్రామంగా మారుతోంది.` }
+        });
+      }
+
+      // Literacy rate check
+      const literacyRate = Math.round(100 - (educationData.illiterate / 1256 * 100));
+      if (literacyRate < 70) {
+        alerts.push({
+          severity: 'critical',
+          icon: '🚨',
+          en: { title: "Literacy Level Below Target", desc: `Overall literacy rate is currently ${literacyRate}%. Goal is 70% minimum. Recommended initiative: Night school workshops.` },
+          hi: { title: "साक्षरता स्तर लक्ष्य से कम", desc: `कुल साक्षरता दर वर्तमान में ${literacyRate}% है। न्यूनतम लक्ष्य ७०% का है। रात्रि स्कूल कार्यशालाओं की सिफारिश की जाती है।` },
+          te: { title: "అక్షరాస్యత రేటు తక్కువగా ఉంది", desc: `మొత్తం అక్షరాస్యత రేటు ప్రస్తుతం ${literacyRate}% గా ఉంది. కనీస లక్ష్యం 70%. రాత్రి బడులు ఏర్పాటు చేయాల్సిందిగా ప్రతిపాదన.` }
+        });
+      }
+
+      // Render items
+      alerts.forEach(item => {
+        const langData = item[currentLanguage] || item.en;
+        const card = document.createElement('div');
+        card.className = `alert-card-item ${item.severity}`;
+        card.innerHTML = `
+          <span class="alert-item-icon">${item.icon}</span>
+          <div class="alert-item-body">
+            <span class="alert-item-title">${langData.title}</span>
+            <span class="alert-item-desc">${langData.desc}</span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Render notice board cards
+    function renderAnnouncements() {
+      const deck = document.getElementById('announcements-deck');
+      if (!deck) return;
+
+      deck.innerHTML = '';
+
+      if (activeNotices.length === 0) {
+        deck.innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding: 20px 0;">No active announcements listed from Panchayat.</p>';
+        return;
+      }
+
+      activeNotices.slice(0, 4).forEach(item => {
+        const title = item.title[currentLanguage] || item.title.en || '';
+        const body = item.body[currentLanguage] || item.body.en || '';
+        const category = item.category[currentLanguage] || item.category.en || '';
+        const badge = item.badgeClass || 'info';
+
+        const card = document.createElement('article');
+        card.className = 'notice-deck-card';
+        card.innerHTML = `
+          <div class="notice-deck-meta">
+            <span>${item.date}</span>
+            <span class="notice-badge badge-${badge}">${category}</span>
+          </div>
+          <h4>${title}</h4>
+          <p>${body}</p>
+        `;
+        deck.appendChild(card);
+      });
+    }
+
+    // Select digital twin asset detail panel populator
+    function updateDigitalTwinPane(assetName) {
+      const asset = digitalTwinAssets[assetName];
+      if (!asset) return;
+
+      const langData = asset[currentLanguage] || asset.en;
+
+      document.getElementById('twin-pane-icon').textContent = getAssetIcon(assetName);
+      document.getElementById('twin-pane-name').textContent = langData.name;
+      document.getElementById('twin-pane-subtitle').textContent = langData.type;
+
+      // Render key value grid
+      const fieldsContainer = document.getElementById('twin-pane-fields');
+      fieldsContainer.innerHTML = '';
+      langData.fields.forEach(field => {
+        const row = document.createElement('div');
+        row.className = 'twin-pane-stat-row';
+        row.innerHTML = `<span>${field.label}</span><span>${field.value}</span>`;
+        fieldsContainer.appendChild(row);
+      });
+
+      document.getElementById('twin-pane-desc').textContent = langData.desc;
+    }
+
+    function getAssetIcon(assetName) {
+      if (assetName === 'school') return '🏫';
+      if (assetName === 'watertank') return '🚰';
+      if (assetName === 'anganwadi') return '👶';
+      if (assetName === 'temple') return '🛕';
+      if (assetName === 'communityhall') return '🏛';
+      return '🛣';
+    }
+
+    // Retrieve active colors based on theme preference
+    function getThemeColors() {
+      const isBanjara = document.body.classList.contains('banjara-active');
+      if (isBanjara) {
+        return {
+          primary: '#4a0e17',    // Banjara Crimson
+          secondary: '#d84315',  // Vibrant Banjara Orange
+          accent: '#ffb300',     // Shell Gold
+          hover: '#bf360c',
+          backgrounds: ['#4a0e17', '#d84315', '#ffb300', '#ff7043', '#ffcc80']
+        };
+      } else {
+        return {
+          primary: '#0c1c12',    // Deep Forest Green
+          secondary: '#2e7d32',  // Emerald Green
+          accent: '#f5a623',     // Amber Gold
+          hover: '#1b5e20',
+          backgrounds: ['#0c1c12', '#2e7d32', '#f5a623', '#4caf50', '#a1887f']
+        };
+      }
+    }
+
+    // Chart.js render engine
+    function renderAllCharts() {
+      const colors = getThemeColors();
+
+      // Chart 1: Male vs Female (Bar Chart)
+      if (chartGender) chartGender.destroy();
+      const ctxGender = document.getElementById('genderChart').getContext('2d');
+      chartGender = new Chart(ctxGender, {
+        type: 'bar',
+        data: {
+          labels: currentLanguage === 'hi' ? ['पुरुष', 'महिला'] : currentLanguage === 'te' ? ['పురుషులు', 'స్త్రీలు'] : ['Male', 'Female'],
+          datasets: [{
+            label: currentLanguage === 'hi' ? 'जनसंख्या' : currentLanguage === 'te' ? 'జనాభా' : 'Population',
+            data: [647, 609],
+            backgroundColor: [colors.secondary, colors.accent],
+            borderColor: [colors.secondary, colors.accent],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+
+      // Chart 2: Age Cohort Distribution (Doughnut Chart)
+      if (chartAge) chartAge.destroy();
+      const ctxAge = document.getElementById('ageChart').getContext('2d');
+      chartAge = new Chart(ctxAge, {
+        type: 'doughnut',
+        data: {
+          labels: currentLanguage === 'hi' ? ['बच्चे (०-१४)', 'युवा (१५-३०)', 'वयस्क (३१-६०)', 'वरिष्ठ (६०+)'] : currentLanguage === 'te' ? ['పిల్లలు (0-14)', 'యువత (15-30)', 'వయోజనులు (31-60)', 'వృద్ధులు (60+)'] : ['Children (0-14)', 'Youth (15-30)', 'Adults (31-60)', 'Seniors (60+)'],
+          datasets: [{
+            data: [276, 389, 440, 151],
+            backgroundColor: colors.backgrounds,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 10 } } }
+          }
+        }
+      });
+
+      // Chart 3: Educational Level (Bar Chart)
+      if (chartEducation) chartEducation.destroy();
+      const ctxEdu = document.getElementById('educationChart').getContext('2d');
+      chartEducation = new Chart(ctxEdu, {
+        type: 'bar',
+        data: {
+          labels: currentLanguage === 'hi' ? ['निरक्षर', 'प्राथमिक', 'माध्यमिक', '१०वीं पास', '१२वीं पास', 'स्नातक'] : currentLanguage === 'te' ? ['అక్షరాస్యత లేని', 'ప్రాథమిక', 'మాధ్యమిక', '10వ తరగతి', 'ఇంటర్మీడియట్', 'డిగ్రీ/పీజీ'] : ['Illiterate', 'Primary', 'Secondary', '10th Pass', '12th Pass', 'Graduate'],
+          datasets: [{
+            label: currentLanguage === 'hi' ? 'प्रतिशत' : currentLanguage === 'te' ? 'శాతం' : 'Percentage (%)',
+            data: [32, 25, 18, 12, 8, 5],
+            backgroundColor: colors.secondary,
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: { beginAtZero: true, max: 40 }
+          }
+        }
+      });
+
+      // Chart 4: Welfare Schemes Beneficiaries (Doughnut Chart)
+      if (chartSchemes) chartSchemes.destroy();
+      const ctxSchemes = document.getElementById('schemesChart').getContext('2d');
+      chartSchemes = new Chart(ctxSchemes, {
+        type: 'doughnut',
+        data: {
+          labels: ['PM Kisan', 'MGNREGS', 'Old Pension', 'Scholarships', 'PMAY Housing'],
+          datasets: [{
+            data: [120, 180, 45, 38, 29],
+            backgroundColor: colors.backgrounds,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'right', labels: { boxWidth: 10, font: { size: 9 } } }
+          }
+        }
+      });
+    }
+
+    // Display localized toasts helper
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('alert-toast');
+      const toastText = document.getElementById('toast-message');
+      
+      if (!toast || !toastText) return;
+      
+      toastText.textContent = message;
+      
+      if (type === 'error') {
+        toast.style.borderLeftColor = 'var(--color-danger)';
+      } else {
+        toast.style.borderLeftColor = 'var(--color-success)';
+      }
+      
+      toast.classList.add('active');
+      
+      setTimeout(() => {
+        toast.classList.remove('active');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
