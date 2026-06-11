@@ -1,5 +1,5 @@
 /**
- * Official Portal of Seetharamapuram Tanda Gram Panchayat
+ * Official Portal of Seetharampuram Thanda Gram Panchayat
  * Application Logic & Civic Services Portals
  * Year: 2026
  */
@@ -1069,7 +1069,7 @@ function initCertificatesPortal() {
     const docContent = `
 ========================================================================
   GOVERNMENT OF ANDHRA PRADESH STATE | DEPARTMENT OF PANCHAYAT RAJ
-             SEETHARAMAPURAM TANDA GRAM PANCHAYAT CIVIC PORTAL
+             SEETHARAMPURAM THANDA GRAM PANCHAYAT CIVIC PORTAL
 ========================================================================
 DOCUMENT TITLE: ${currentDocData.title.toUpperCase()}
 VERIFICATION SERIAL: ${currentDocData.serial}
@@ -1085,7 +1085,7 @@ digitized land surveys. Secure signature is simulated below.
 
 Panchayat Signatory:
 Shri Narasimha, Panchayat Secretary
-Seetharamapuram Tanda Gram Panchayat Office
+Seetharampuram Thanda Gram Panchayat Office
 ========================================================================
     * THIS IS A SYSTEM GENERATED SECURE MOCK CIVIC DOCUMENT DRAFT *
     `;
