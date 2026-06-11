@@ -31,6 +31,7 @@ function initAll() {
   initThemeSwitcher();
   initHouseholdUpdates();
   initVoiceAssistant();
+  initMainPageDynamicContent();
 
   // Handle opening modal on page load from query param
   const urlParams = new URLSearchParams(window.location.search);
@@ -1878,6 +1879,11 @@ function applyTranslation(lang) {
 
   // Render welfare schemes in the active language
   renderBrowseSchemes();
+
+  // Render dynamic main page contents in the active language
+  if (typeof renderDynamicMainPageContent === 'function') {
+    renderDynamicMainPageContent();
+  }
 }
 
 function getTranslatedText(key, defaultText) {
@@ -2873,3 +2879,125 @@ function initVoiceAssistant() {
 
   updateCardTexts();
 }
+
+/* ==========================================
+   DYNAMIC MAIN PAGE EDITOR RENDER LOGIC
+   ========================================== */
+let mainPageConfig = null;
+
+function initMainPageDynamicContent() {
+  const hasIndexElements = document.getElementById('hero-welcome-title') || document.getElementById('notices-list-container');
+  if (!hasIndexElements) return;
+
+  fetch('/api/main-page-config')
+    .then(res => res.json())
+    .then(config => {
+      mainPageConfig = config;
+      renderDynamicMainPageContent();
+    })
+    .catch(err => {
+      console.error('Error fetching main page config:', err);
+    });
+}
+
+function renderDynamicMainPageContent() {
+  if (!mainPageConfig) return;
+  const lang = currentLanguage || 'en';
+
+  // 1. Alert Banner
+  const alertContainer = document.getElementById('sitewide-alert-container');
+  if (alertContainer) {
+    const banner = mainPageConfig.bannerAlert;
+    if (banner && banner.active) {
+      const message = banner.message[lang] || banner.message['en'] || '';
+      const bannerClass = banner.type || 'info';
+      alertContainer.innerHTML = `
+        <div class="sitewide-alert-banner ${bannerClass}" role="alert">
+          <span>📢 <strong>Notice:</strong> ${message}</span>
+          <button class="close-banner-btn" onclick="this.parentElement.remove()" aria-label="Close alert banner">✕</button>
+        </div>
+      `;
+      alertContainer.style.display = 'block';
+    } else {
+      alertContainer.innerHTML = '';
+      alertContainer.style.display = 'none';
+    }
+  }
+
+  // 2. Hero Section
+  const heroTitle = document.getElementById('hero-welcome-title');
+  if (heroTitle && mainPageConfig.hero && mainPageConfig.hero.title) {
+    heroTitle.textContent = mainPageConfig.hero.title[lang] || mainPageConfig.hero.title['en'] || '';
+  }
+  const heroTagline = document.getElementById('hero-tagline-text');
+  if (heroTagline && mainPageConfig.hero && mainPageConfig.hero.tagline) {
+    heroTagline.textContent = mainPageConfig.hero.tagline[lang] || mainPageConfig.hero.tagline['en'] || '';
+  }
+  const heroDesc = document.getElementById('hero-description-text');
+  if (heroDesc && mainPageConfig.hero && mainPageConfig.hero.description) {
+    heroDesc.textContent = mainPageConfig.hero.description[lang] || mainPageConfig.hero.description['en'] || '';
+  }
+
+  // 3. Glance Stats
+  const countPop = document.getElementById('count-population');
+  if (countPop && mainPageConfig.stats && mainPageConfig.stats.population) {
+    countPop.textContent = mainPageConfig.stats.population[lang] || mainPageConfig.stats.population['en'] || '';
+  }
+  const countHouse = document.getElementById('count-households');
+  if (countHouse && mainPageConfig.stats && mainPageConfig.stats.families) {
+    countHouse.textContent = mainPageConfig.stats.families[lang] || mainPageConfig.stats.families['en'] || '';
+  }
+  const countLit = document.getElementById('count-literacy');
+  if (countLit && mainPageConfig.stats && mainPageConfig.stats.literacy) {
+    countLit.textContent = mainPageConfig.stats.literacy[lang] || mainPageConfig.stats.literacy['en'] || '';
+  }
+  const countLivelihood = document.getElementById('count-livelihood');
+  if (countLivelihood && mainPageConfig.stats && mainPageConfig.stats.occupation) {
+    countLivelihood.textContent = mainPageConfig.stats.occupation[lang] || mainPageConfig.stats.occupation['en'] || '';
+  }
+
+  // 4. Budget Allocation
+  const budget = mainPageConfig.budget;
+  if (budget) {
+    const updateBudgetBar = (key) => {
+      const valEl = document.getElementById(`budget-val-${key}`);
+      const barEl = document.getElementById(`budget-bar-${key}`);
+      if (valEl && barEl && budget[key]) {
+        valEl.textContent = `${budget[key].percent}% (${budget[key].amount})`;
+        barEl.style.width = `${budget[key].percent}%`;
+      }
+    };
+    ['water', 'roads', 'forest', 'transit'].forEach(updateBudgetBar);
+  }
+
+  // 5. Notices List
+  const noticesContainer = document.getElementById('notices-list-container');
+  if (noticesContainer && mainPageConfig.notices) {
+    noticesContainer.innerHTML = '';
+    mainPageConfig.notices.forEach(notice => {
+      const noticeTitle = notice.title[lang] || notice.title['en'] || '';
+      const noticeBody = notice.body[lang] || notice.body['en'] || '';
+      const noticeCategory = notice.category[lang] || notice.category['en'] || '';
+      const badgeClass = notice.badgeClass || 'info';
+
+      const noticeItem = document.createElement('div');
+      noticeItem.className = 'notice-item';
+      
+      let badgeStyle = '';
+      if (badgeClass === 'info') {
+        badgeStyle = 'background-color: var(--color-accent-light); color: var(--color-warning);';
+      }
+
+      noticeItem.innerHTML = `
+        <div class="notice-meta">
+          <span class="notice-date">${notice.date}</span>
+          <span class="notice-badge ${badgeClass}" style="${badgeStyle}">${noticeCategory}</span>
+        </div>
+        <h4>${noticeTitle}</h4>
+        <p>${noticeBody}</p>
+      `;
+      noticesContainer.appendChild(noticeItem);
+    });
+  }
+}
+

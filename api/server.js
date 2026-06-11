@@ -452,6 +452,24 @@ const server = http.createServer(async (req, res) => {
         return;
       }
 
+      // GET /api/main-page-config
+      if (pathname === '/api/main-page-config' && req.method === 'GET') {
+        const config = db.mainPageConfig || {};
+        res.writeHead(200);
+        res.end(JSON.stringify(config));
+        return;
+      }
+
+      // POST /api/main-page-config
+      if (pathname === '/api/main-page-config' && req.method === 'POST') {
+        const body = await getJsonBody(req);
+        db.mainPageConfig = body;
+        writeDb(db);
+        res.writeHead(200);
+        res.end(JSON.stringify({ success: true, config: db.mainPageConfig }));
+        return;
+      }
+
       // API 404
       res.writeHead(404);
       res.end(JSON.stringify({ error: 'API endpoint not found' }));

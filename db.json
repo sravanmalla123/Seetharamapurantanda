@@ -448,5 +448,111 @@
       "ownHouse": true
     }
   },
-  "certificates": {}
+  "certificates": {},
+  "mainPageConfig": {
+    "bannerAlert": {
+      "active": false,
+      "type": "info",
+      "message": {
+        "en": "Welcome to the new portal of Seetharamapuram Tanda!",
+        "hi": "सीतारामपुरम टांडा के नए पोर्टल में आपका स्वागत है!",
+        "te": "సీతారామపురం తండా కొత్త పోర్టల్‌కు స్వాగతం!"
+      }
+    },
+    "hero": {
+      "title": {
+        "en": "\"Honoring Heritage, Striving for Sustainability\"",
+        "hi": "\"धरोहर का संरक्षण, सतत प्रगति का प्रयास\"",
+        "te": "\"వారసత్వాన్ని గౌరవిస్తూ, సుస్థిరత కోసం శ్రమిద్దాం\""
+      },
+      "tagline": {
+        "en": "Official Civic & Livelihood Portal of Seetharamapuram Gram Panchayat",
+        "hi": "ग्राम पंचायत का आधिकारिक नागरिक और कल्याण पोर्टल",
+        "te": "గ్రామ పంచాయతీ అధికారిక పౌర మరియు సంక్షేమ పోర్టల్"
+      },
+      "description": {
+        "en": "Connecting rural citizens with transparent governance, instant livelihood resources, vital certificates, and daily community trackers for collective resilience.",
+        "hi": "सामूहिक लचीलेपन के लिए ग्रामीण नागरिकों को पारदर्शी प्रशासन, तत्काल आजीविका संसाधनों, महत्वपूर्ण प्रमाणपत्रों और दैनिक सामुदायिक ट्रैकर्स से जोड़ना।",
+        "te": "గ్రామీణ పౌరులను పారదర్శక పాలన, తక్షణ జీవనోపాధి వనరులు, కీలక ధృవీకరణ పత్రాలు మరియు రోజువారీ కమ్యూనిటీ ట్రాకర్లతో అనుసంధానించడం."
+      }
+    },
+    "stats": {
+      "population": { "en": "1,245", "hi": "1,245", "te": "1,245" },
+      "families": { "en": "230", "hi": "230", "te": "230" },
+      "literacy": { "en": "68%", "hi": "68%", "te": "68%" },
+      "occupation": { "en": "Agriculture", "hi": "कृषि", "te": "వ్యవసాయం" }
+    },
+    "budget": {
+      "water": { "percent": 35, "amount": "₹5.2L" },
+      "roads": { "percent": 25, "amount": "₹3.7L" },
+      "forest": { "percent": 20, "amount": "₹3.0L" },
+      "transit": { "percent": 20, "amount": "₹3.0L" }
+    },
+    "notices": [
+      {
+        "id": "notice-1",
+        "date": "08 June 2026",
+        "category": { "en": "Development", "hi": "विकास", "te": "అభివృద్ధి" },
+        "badgeClass": "info",
+        "title": {
+          "en": "Bus Stand & ZP High School Construction Status",
+          "hi": "बस स्टैंड और जिला परिषद हाई स्कूल निर्माण स्थिति",
+          "te": "బస్ స్టాండ్ & జెడ్పీ హై స్కూల్ నిర్మాణ స్థితి"
+        },
+        "body": {
+          "en": "Panchayat approved procurement of solar roofing for the new Bus Stand shelter. Construction of the digital lab at the ZP High School has reached 85% completion, with inaugurations expected next month.",
+          "hi": "पंचायत ने नए बस स्टैंड आश्रय के लिए सौर छत की खरीद को मंजूरी दी। जिला परिषद हाई स्कूल में डिजिटल लैब का निर्माण ८५% पूरा हो गया है, अगले महीने उद्घाटन की उम्मीद है।",
+          "te": "కొత్త బస్ స్టాండ్ షెల్టర్ కోసం సోలార్ రూఫింగ్ కొనుగోలుకు పంచాయతీ ఆమోదం తెలిపింది. జెడ్పీ ఉన్నత పాఠశాలలో డిజిటల్ ల్యాబ్ నిర్మాణం 85% పూర్తయింది, వచ్చే నెలలో ప్రారంభోత్సవాలు ఆశించవచ్చు।"
+        }
+      },
+      {
+        "id": "notice-2",
+        "date": "07 June 2026",
+        "category": { "en": "Critical", "hi": "महत्वपूर्ण", "te": "అత్యవసరం" },
+        "badgeClass": "critical",
+        "title": {
+          "en": "Gram Sabha Notice: Seasonal Water Resource Planning",
+          "hi": "ग्राम सभा सूचना: मौसमी जल संसाधन योजना",
+          "te": "గ్రామ సభ నోటీసు: కాలానుగుణ నీటి వనరుల ప్రణాళిక"
+        },
+        "body": {
+          "en": "An emergency Gram Sabha is convened this Tuesday at 10 AM at the Panchayat Office to finalize rainwater harvesting schedules and check dry-spell borewell rationing limits.",
+          "hi": "वर्षा जल संचयन कार्यक्रम को अंतिम रूप देने और बोरवेल राशनिंग सीमाओं की जांच करने के लिए इस मंगलवार को सुबह 10 बजे पंचायत कार्यालय में एक आपातकालीन ग्राम सभा बुलाई गई है।",
+          "te": "అత్యవసర గ్రామసభను ఈ మంగళవారం ఉదయం 10 గంటలకు పంచాయతీ కార్యాలయంలో ఏర్పాటు చేసి, వర్షపు నీటి నిల్వ షెడ్యూల్స్ మరియు బోరుబావుల పరిమితులను ఖరారు చేయనున్నారు."
+        }
+      },
+      {
+        "id": "notice-3",
+        "date": "05 June 2026",
+        "category": { "en": "Healthcare", "hi": "स्वास्थ्य सेवा", "te": "ఆరోగ్య సంరక్షణ" },
+        "badgeClass": "healthcare",
+        "title": {
+          "en": "Scheduled Free Health Camp This Weekend",
+          "hi": "इस सप्ताहांत अनुसूचित निःशुल्क स्वास्थ्य शिविर",
+          "te": "ఈ వారాంతంలో ఉచిత వైద్య శిబిరం"
+        },
+        "body": {
+          "en": "Medical officers from the Mandal Hospital will conduct a free health check-up, pediatric check, and vaccine drive at the local primary school this Saturday from 9 AM to 4 PM.",
+          "hi": "मंडल अस्पताल के चिकित्सा अधिकारी इस शनिवार को सुबह 9 बजे से शाम 4 बजे तक स्थानीय प्राथमिक विद्यालय में मुफ्त स्वास्थ्य जांच, बाल चिकित्सा जांच और टीकाकरण अभियान चलाएंगे।",
+          "te": "మండల ఆసుపత్రి వైద్య అధికారులు ఈ శనివారం ఉదయం 9 నుండి సాయంత్రం 4 గంటల వరకు స్థానిక ప్రాథమిక పాఠశాలలో ఉచిత ఆరోగ్య పరీక్షలు, పిల్లల పరీక్షలు మరియు టీకాల శిబిరాన్ని నిర్వహిస్తారు।"
+        }
+      },
+      {
+        "id": "notice-4",
+        "date": "02 June 2026",
+        "category": { "en": "Info", "hi": "जानकारी", "te": "సమాచారం" },
+        "badgeClass": "info",
+        "title": {
+          "en": "Primary School Transport Subsidies Released",
+          "hi": "प्राथमिक स्कूल परिवहन सब्सिडी जारी",
+          "te": "ప్రాథమిక పాఠశాల రవాణా రాయితీలు విడుదల"
+        },
+        "body": {
+          "en": "The student travel allowance for high school transit is approved. Eligible parents can download certificate applications and submit records to receive allowances.",
+          "hi": "हाई स्कूल पारगमन के लिए छात्र यात्रा भत्ता स्वीकृत किया गया है। पात्र माता-पिता प्रमाणपत्र आवेदन डाउनलोड कर सकते हैं और भत्ता प्राप्त करने के लिए रिकॉर्ड जमा कर सकते हैं।",
+          "te": "హైస్కూల్ ప్రయాణాలకు విద్యార్థుల రవాణా భత్యం ఆమోదించబడింది. అర్హులైన తల్లిదండ్రులు ధృవీకరణ పత్ర దరఖాస్తులను డౌన్‌లోడ్ చేసుకుని భత్యం పొందడానికి సమర్పించవచ్చు।"
+        }
+      }
+    ]
+  }
 }
