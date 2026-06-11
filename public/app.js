@@ -47,18 +47,6 @@ function initSplashScreen() {
   const splash = document.getElementById('splash-screen');
   if (!splash) return;
 
-  // Check if splash has already been seen in this session to prevent lag on reload/navigation
-  if (sessionStorage.getItem('splashSeen')) {
-    splash.remove();
-    document.body.classList.remove('splash-active');
-    document.body.classList.add('ready');
-    triggerHeroReveal();
-    return;
-  }
-
-  // Set flag for subsequent page visits
-  sessionStorage.setItem('splashSeen', 'true');
-
   // Split splash title into staggered characters
   const splashTitle = splash.querySelector('.splash-title');
   if (splashTitle) {
