@@ -231,8 +231,7 @@ function initModals() {
     { trigger: 'smart-btn-telehealth', modal: 'modal-telemedicine' },
     { trigger: 'smart-btn-education', modal: 'modal-elearning' },
     { trigger: 'smart-btn-governance', modal: 'modal-governance' },
-    { trigger: 'smart-btn-village-dashboard', modal: 'modal-village-dashboard' },
-    { trigger: 'nav-link-dashboard', modal: 'modal-village-dashboard' }
+    { trigger: 'smart-btn-village-dashboard', modal: 'modal-village-dashboard' }
   ];
 
   modalTriggers.forEach(config => {
