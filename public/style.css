@@ -246,6 +246,7 @@ img {
 .header-container > nav {
   display: flex;
   align-items: center;
+  gap: 10px;
   flex-shrink: 0;
   position: relative; /* Anchor for absolute dropdown */
 }
@@ -419,9 +420,6 @@ img {
 
 #btn-theme-toggle {
   display: inline-flex !important;
-  width: calc(100% - 12px) !important;
-  margin: 6px 6px 0 6px !important;
-  justify-content: center !important;
   border-radius: 10px !important;
   border-color: var(--color-accent) !important;
   color: var(--color-accent) !important;
@@ -429,6 +427,8 @@ img {
   font-family: inherit;
   font-weight: 600;
   transition: var(--transition-normal) !important;
+  cursor: pointer;
+  margin: 0 !important;
 }
 
 #btn-theme-toggle:hover {
