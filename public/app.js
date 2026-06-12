@@ -7,7 +7,7 @@
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initAll);
 } else {
-  initAll();
+  setTimeout(initAll, 0);
 }
 
 function initAll() {
@@ -16,6 +16,7 @@ function initAll() {
   initHeroTextReveal();
   initModals();
   initMobileNav();
+  initMenuDropdown();
   initWelfareEligibility();
   initGrievanceRedressal();
   initInteractiveMap();
@@ -27,11 +28,16 @@ function initAll() {
   initScrollHeader();
   initScrollProgress();
   initFaqAccordion();
-  initParticles();
   initThemeSwitcher();
   initHouseholdUpdates();
   initVoiceAssistant();
   initMainPageDynamicContent();
+  initEChoupal();
+  initDisasterWarning();
+  initTelemedicine();
+  initELearning();
+  initGovernance();
+  initVillageDashboard();
 
   // Handle opening modal on page load from query param
   const urlParams = new URLSearchParams(window.location.search);
@@ -46,7 +52,10 @@ function initAll() {
    ========================================== */
 function initSplashScreen() {
   const splash = document.getElementById('splash-screen');
-  if (!splash) return;
+  if (!splash) {
+    initParticles();
+    return;
+  }
 
   // Split splash title into staggered characters
   const splashTitle = splash.querySelector('.splash-title');
@@ -77,6 +86,9 @@ function initSplashScreen() {
     splash.classList.add('fade-out');
     document.body.classList.remove('splash-active');
     document.body.classList.add('ready');
+
+    // Initialize background particles when splash transition starts
+    initParticles();
 
     // Trigger staggered letters reveal on main page
     triggerHeroReveal();
@@ -149,6 +161,48 @@ function initMobileNav() {
 }
 
 /* ==========================================
+   DESKTOP MENU DROPDOWN
+   ========================================== */
+function initMenuDropdown() {
+  const dropdownWrapper = document.querySelector('.menu-dropdown-wrapper');
+  const dropdownBtn = document.getElementById('menu-dropdown-btn');
+  
+  if (!dropdownWrapper || !dropdownBtn) return;
+  
+  dropdownBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isExpanded = dropdownBtn.getAttribute('aria-expanded') === 'true';
+    dropdownBtn.setAttribute('aria-expanded', !isExpanded);
+    dropdownWrapper.classList.toggle('active');
+  });
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!dropdownWrapper.contains(e.target)) {
+      dropdownWrapper.classList.remove('active');
+      dropdownBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close dropdown on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdownWrapper.classList.remove('active');
+      dropdownBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close dropdown when a link is clicked
+  const dropdownLinks = dropdownWrapper.querySelectorAll('.menu-dropdown-links-list a');
+  dropdownLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      dropdownWrapper.classList.remove('active');
+      dropdownBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+/* ==========================================
    MODAL CONTROLLER (UNIVERSAL OPEN/CLOSE)
    ========================================== */
 const activeModals = new Set();
@@ -171,7 +225,14 @@ function initModals() {
     { trigger: 'footer-link-about', modal: 'modal-about' },
     { trigger: 'btn-trigger-facility-update', modal: 'modal-household-update' },
     { trigger: 'service-btn-health', modal: 'modal-health' },
-    { trigger: 'btn-login-trigger', modal: 'modal-login' }
+    { trigger: 'btn-login-trigger', modal: 'modal-login' },
+    { trigger: 'smart-btn-echoupal', modal: 'modal-echoupal' },
+    { trigger: 'smart-btn-disaster', modal: 'modal-disaster' },
+    { trigger: 'smart-btn-telehealth', modal: 'modal-telemedicine' },
+    { trigger: 'smart-btn-education', modal: 'modal-elearning' },
+    { trigger: 'smart-btn-governance', modal: 'modal-governance' },
+    { trigger: 'smart-btn-village-dashboard', modal: 'modal-village-dashboard' },
+    { trigger: 'nav-link-dashboard', modal: 'modal-village-dashboard' }
   ];
 
   modalTriggers.forEach(config => {
@@ -247,6 +308,10 @@ function openModal(modalId) {
     modal.classList.add('active');
     activeModals.add(modalId);
     document.body.style.overflow = 'hidden'; // Lock background scroll
+    
+    if (modalId === 'modal-village-dashboard') {
+      triggerGenderBarAnimation();
+    }
     
     // Focus first focusable element inside the modal
     const focusable = modal.querySelectorAll('input, select, textarea, button, a');
@@ -1488,9 +1553,23 @@ function initParticles() {
   const NET_SQ = 90 * 90;
   const MAX_CONN_PER_PARTICLE = 3;
 
-  let frame = 0;
+  // Scroll tracking to pause repaints and optimize scrolling
+  let isScrolling = false;
+  let scrollTimeout = null;
+  const handleScroll = () => {
+    isScrolling = true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      isScrolling = false;
+    }, 150);
+  };
+  window.addEventListener('scroll', handleScroll, { passive: true });
 
-  const animate = () => {
+  let frame = 0;
+  let lastFrameTime = 0;
+  const fpsInterval = 1000 / 30; // Throttle to 30fps
+
+  const animate = (timestamp) => {
     // Stop loop if tab/page is hidden to save GPU cycles
     if (document.visibilityState === 'hidden') {
       canvas._animId = null;
@@ -1498,6 +1577,20 @@ function initParticles() {
     }
 
     canvas._animId = requestAnimationFrame(animate);
+
+    // Skip repaint frame if user is active scrolling to prevent stutters
+    if (isScrolling) {
+      return;
+    }
+
+    // Throttle to 30fps
+    const now = timestamp || (window.performance && window.performance.now ? window.performance.now() : Date.now());
+    const elapsed = now - lastFrameTime;
+    if (elapsed < fpsInterval) {
+      return;
+    }
+    lastFrameTime = now - (elapsed % fpsInterval);
+
     frame++;
     
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1519,13 +1612,13 @@ function initParticles() {
     ctx.globalAlpha = 1.0;
 
     // 3. Update & Draw Shooting Stars
-    const now = Date.now();
-    if (now > nextShootTime) {
+    const nowTime = Date.now();
+    if (nowTime > nextShootTime) {
       const idleShooter = shooters.find(s => !s.active);
       if (idleShooter) {
         idleShooter.reset();
       }
-      nextShootTime = now + Math.random() * 6000 + 4000;
+      nextShootTime = nowTime + Math.random() * 6000 + 4000;
     }
     for (let shooter of shooters) {
       if (shooter.active) {
@@ -1614,6 +1707,7 @@ function initParticles() {
       }
     } else {
       if (!canvas._animId) {
+        lastFrameTime = window.performance && window.performance.now ? window.performance.now() : Date.now();
         canvas._animId = requestAnimationFrame(animate);
       }
     }
@@ -1626,7 +1720,9 @@ function initParticles() {
     window.removeEventListener('mousemove', handleMouseMove);
     window.removeEventListener('mouseleave', handleMouseLeave);
     window.removeEventListener('click', handleWindowClick);
+    window.removeEventListener('scroll', handleScroll);
     document.removeEventListener('visibilitychange', handleVisibilityChange);
+    if (scrollTimeout) clearTimeout(scrollTimeout);
     if (toggleBtn && themeListener) {
       toggleBtn.removeEventListener('click', themeListener);
     }
@@ -1950,6 +2046,7 @@ const translationDictionary = {
     toast_eco: "🌱 इको थीम सक्रिय: वन हरा और एम्बर गोल्ड!",
     '#gp-brand-title': 'सीतारामपुरम टांडा',
     '#gp-brand-subtitle': 'ग्राम पंचायत पोर्टल',
+    '#menu-dropdown-text': 'नेविगेशन मेनू',
     '#nav-link-about': 'हमारे बारे में',
     '#nav-link-services': 'सेवाएं',
     '#nav-link-dashboard': 'डैशबोर्ड',
@@ -2202,7 +2299,50 @@ const translationDictionary = {
     '#stat-households .stat-desc': 'घनिष्ठ बहु-पीढ़ीगत परिवार',
     '#count-livelihood': 'कृषि',
     '#stat-livelihood .stat-label': 'मुख्य व्यवसाय',
-    '#stat-livelihood .stat-desc': 'धान, मक्का, मिर्च और दालों पर निर्भरता'
+    '#stat-livelihood .stat-desc': 'धान, मक्का, मिर्च और दालों पर निर्भरता',
+    '#nav-link-dashboard': 'डैशबोर्ड',
+    '#nav-link-dashboard-pillars': 'डैशबोर्ड',
+    '#village-dashboard-modal-title': '📊 ग्राम डैशबोर्ड',
+    '#vd-lbl-tab-overview': 'अवलोकन',
+    '#vd-lbl-tab-statistics': 'सांख्यिकी',
+    '#vd-lbl-tab-education': 'शिक्षा',
+    '#vd-lbl-tab-schemes': 'सरकारी योजनाएं',
+    '#vd-lbl-tab-announcements': 'घोषणाएं',
+    '#vd-lbl-sec-overview': 'अवलोकन कार्ड',
+    '#vd-lbl-sec-stats': 'सांख्यिकी',
+    '#vd-lbl-sec-edu': 'शिक्षा',
+    '#vd-lbl-sec-schemes': 'सरकारी योजनाएं',
+    '#vd-lbl-sec-announce': 'घोषणाएं',
+    '#vd-lbl-total-pop': 'कुल जनसंख्या',
+    '#vd-lbl-total-fam': 'कुल परिवार',
+    '#vd-lbl-total-houses': 'कुल घर',
+    '#vd-lbl-total-farmers': 'कुल किसान',
+    '#vd-lbl-total-students': 'कुल छात्र',
+    '#vd-lbl-total-employees': 'कुल कर्मचारी',
+    '#vd-lbl-sarpanch': 'सरपंच का नाम',
+    '#vd-lbl-num-wards': 'वार्डों की संख्या',
+    '#vd-lbl-gender-split-title': '👥 पुरुष बनाम महिला जनसंख्या',
+    '#vd-lbl-male': '👨 पुरुष',
+    '#vd-lbl-female': '👩 महिला',
+    '#vd-lbl-pop-split': 'जनसंख्या विभाजन',
+    '#vd-lbl-lit-rate': 'साक्षरता दर',
+    '#vd-lbl-lit-sub': 'वयस्क जनसंख्या का',
+    '#vd-lbl-emp-rate': 'रोजगार दर',
+    '#vd-lbl-emp-sub': 'कार्यशील आयु के वयस्कों का',
+    '#vd-lbl-agri-stats-title': '🌾 कृषि सांख्यिकी',
+    '#vd-lbl-agri-area': 'कृषि क्षेत्र',
+    '#vd-lbl-irrigated-land': 'सिंचित भूमि',
+    '#vd-lbl-main-crops': 'मुख्य फसलें',
+    '#vd-lbl-farmers-subsidy': 'सब्सिडी वाले किसान',
+    '#vd-lbl-num-schools': 'स्कूलों की संख्या',
+    '#vd-lbl-edu-students': 'कुल छात्र',
+    '#vd-lbl-edu-scholarships': 'प्रदान की गई छात्रवृत्ति',
+    '#vd-lbl-scheme-beneficiaries': 'लाभार्थी',
+    '#vd-lbl-scheme-active': 'सक्रिय योजनाएं',
+    '#vd-lbl-scheme-pending': 'लंबित आवेदन',
+    '#vd-lbl-up-event': 'आगामी कार्यक्रम',
+    '#vd-lbl-gs-meeting': 'ग्राम सभा बैठक',
+    '#vd-lbl-gov-notif': 'सरकारी अधिसूचना'
   },
   te: {
     theme_banjara: "బంజారా థీమ్",
@@ -2211,6 +2351,7 @@ const translationDictionary = {
     toast_eco: "🌱 ఇకో థీమ్ సక్రియం చేయబడింది: అటవీ ఆకుపచ్చ మరియు అంబర్ గోల్డ్!",
     '#gp-brand-title': 'సీతారామపురం తండా',
     '#gp-brand-subtitle': 'గ్రామ పంచాయతీ పోర్టల్',
+    '#menu-dropdown-text': 'నేవిగేషన్ మెనూ',
     '#nav-link-about': 'గురించి',
     '#nav-link-services': 'సేవలు',
     '#nav-link-dashboard': 'డ్యాష్‌బోర్డ్',
@@ -2463,7 +2604,50 @@ const translationDictionary = {
     '#stat-households .stat-desc': 'దగ్గరి సంబంధాలు గల కుటుంబాలు',
     '#count-livelihood': 'వ్యవసాయం',
     '#stat-livelihood .stat-label': 'ప్రధాన వృత్తి',
-    '#stat-livelihood .stat-desc': 'వరి, మొక్కజొన్న, మిరప, పప్పులపై ఆధారపడటం'
+    '#stat-livelihood .stat-desc': 'వరి, మొక్కజొన్న, మిరప, పప్పులపై ఆధారపడటం',
+    '#nav-link-dashboard': 'డ్యాష్‌బోర్డ్',
+    '#nav-link-dashboard-pillars': 'డ్యాష్‌బోర్డ్',
+    '#village-dashboard-modal-title': '📊 గ్రామ డ్యాష్‌బోర్డ్',
+    '#vd-lbl-tab-overview': 'అవలోకనం',
+    '#vd-lbl-tab-statistics': 'గణాంకాలు',
+    '#vd-lbl-tab-education': 'విద్య',
+    '#vd-lbl-tab-schemes': 'ప్రభుత్వ పథకాలు',
+    '#vd-lbl-tab-announcements': 'ప్రకటనలు',
+    '#vd-lbl-sec-overview': 'అవలోకనం కార్డులు',
+    '#vd-lbl-sec-stats': 'గణాంకాలు',
+    '#vd-lbl-sec-edu': 'విద్య',
+    '#vd-lbl-sec-schemes': 'ప్రభుత్వ పథకాలు',
+    '#vd-lbl-sec-announce': 'ప్రకటనలు',
+    '#vd-lbl-total-pop': 'మొత్తం జనాభా',
+    '#vd-lbl-total-fam': 'మొత్తం కుటుంబాలు',
+    '#vd-lbl-total-houses': 'మొత్తం ఇళ్లు',
+    '#vd-lbl-total-farmers': 'మొత్తం రైతులు',
+    '#vd-lbl-total-students': 'మొత్తం విద్యార్థులు',
+    '#vd-lbl-total-employees': 'మొత్తం ఉద్యోగులు',
+    '#vd-lbl-sarpanch': 'సర్పంచ్ పేరు',
+    '#vd-lbl-num-wards': 'వార్డుల సంఖ్య',
+    '#vd-lbl-gender-split-title': '👥 పురుషులు వర్సెస్ మహిళలు జనాభా',
+    '#vd-lbl-male': '👨 పురుషులు',
+    '#vd-lbl-female': '👩 మహిళలు',
+    '#vd-lbl-pop-split': 'జనాభా విభజన',
+    '#vd-lbl-lit-rate': 'అక్షరాస్యత రేటు',
+    '#vd-lbl-lit-sub': 'వయోజన జనాభాలో',
+    '#vd-lbl-emp-rate': 'ఉపాధి రేటు',
+    '#vd-lbl-emp-sub': 'పనిచేసే వయస్సు గల వారిలో',
+    '#vd-lbl-agri-stats-title': '🌾 వ్యవసాయ గణాంకాలు',
+    '#vd-lbl-agri-area': 'వ్యవసాయ ప్రాంతం',
+    '#vd-lbl-irrigated-land': 'సాగునీటి భూమి',
+    '#vd-lbl-main-crops': 'ప్రధాన పంటలు',
+    '#vd-lbl-farmers-subsidy': 'సబ్సిడీ పొందుతున్న రైతులు',
+    '#vd-lbl-num-schools': 'పాఠశాలల సంఖ్య',
+    '#vd-lbl-edu-students': 'మొత్తం విద్యార్థులు',
+    '#vd-lbl-edu-scholarships': 'అందించిన స్కాలర్‌షిప్‌లు',
+    '#vd-lbl-scheme-beneficiaries': 'లబ్ధిదారులు',
+    '#vd-lbl-scheme-active': 'క్రియాశీల పథకాలు',
+    '#vd-lbl-scheme-pending': 'పెండింగ్ దరఖాస్తులు',
+    '#vd-lbl-up-event': 'రాబోయే కార్యక్రమం',
+    '#vd-lbl-gs-meeting': 'గ్రామ సభ సమావేశం',
+    '#vd-lbl-gov-notif': 'ప్రభుత్వ నోటిఫికేషన్'
   }
 };
 
@@ -3315,5 +3499,474 @@ function renderDynamicMainPageContent() {
       });
     }
   }
+
+  // 15. Village Overview Dashboard
+  const villageConfig = mainPageConfig.villageDashboard;
+  if (villageConfig) {
+    const ov = villageConfig.overview || {};
+    const st = villageConfig.statistics || {};
+
+    const setEl = (id, val) => { const el = document.getElementById(id); if (el && val !== undefined) el.textContent = val; };
+
+    const edu = villageConfig.education || {};
+    const sch = villageConfig.schemes || {};
+    const ann = villageConfig.announcements || {};
+
+    // Overview Cards
+    setEl('vd-total-population', ov.totalPopulation);
+    setEl('vd-total-families',   ov.totalFamilies);
+    setEl('vd-total-houses',     ov.totalHouses);
+    setEl('vd-total-farmers',    ov.totalFarmers);
+    setEl('vd-total-students',   ov.totalStudents);
+    setEl('vd-total-employees',  ov.totalEmployees);
+    setEl('vd-sarpanch-name',    ov.sarpanchName);
+    setEl('vd-number-of-wards',  ov.numberOfWards);
+
+    // Statistics
+    setEl('vd-male-pop',        st.malePopulation);
+    setEl('vd-female-pop',      st.femalePopulation);
+    setEl('vd-literacy-rate',   st.literacyRate);
+    setEl('vd-employment-rate', st.employmentRate);
+    setEl('vd-agri-area',       st.agricultureArea);
+    setEl('vd-irrigated-land',  st.irrigatedLand);
+    setEl('vd-main-crops',      st.mainCrops);
+    setEl('vd-farmers-subsidy', st.farmersWithSubsidy);
+
+    // Education
+    setEl('vd-num-schools',      edu.numberOfSchools);
+    setEl('vd-edu-students',     edu.totalStudents);
+    setEl('vd-edu-scholarships', edu.scholarshipsProvided);
+
+    // Schemes
+    setEl('vd-scheme-beneficiaries', sch.beneficiaries);
+    setEl('vd-scheme-active',        sch.activeSchemes);
+    setEl('vd-scheme-pending',       sch.pendingApplications);
+
+    // Announcements
+    setEl('vd-announce-event',   ann.upcomingEvents);
+    setEl('vd-announce-meeting', ann.gramSabhaMeetings);
+    setEl('vd-announce-notif',   ann.governmentNotifications);
+
+    // Gender bar calculation
+    const male = parseInt((st.malePopulation || '').replace(/,/g, '')) || 0;
+    const female = parseInt((st.femalePopulation || '').replace(/,/g, '')) || 0;
+    const total = male + female;
+    if (total > 0) {
+      const malePct = Math.round((male / total) * 100);
+      const femalePct = 100 - malePct;
+      const bar = document.getElementById('vd-gender-bar');
+      if (bar) bar.style.width = `${malePct}%`;
+      setEl('vd-male-pct',   `${malePct}% Male`);
+      setEl('vd-female-pct', `${femalePct}% Female`);
+    }
+  }
+
+  // 16. Staggered reveal animation re-triggering for dynamic hero elements
+  initHeroTextReveal();
+  triggerHeroReveal();
 }
 
+/* ==========================================
+   SMART PANCHAYAT HUB CONTROLLERS
+   ========================================== */
+
+function initEChoupal() {
+  const tabRates = document.getElementById('echoupal-tab-rates');
+  const tabCrafts = document.getElementById('echoupal-tab-crafts');
+  const tabSell = document.getElementById('echoupal-tab-sell');
+  
+  const contentRates = document.getElementById('echoupal-content-rates');
+  const contentCrafts = document.getElementById('echoupal-content-crafts');
+  const contentSell = document.getElementById('echoupal-content-sell');
+
+  if (!tabRates || !tabCrafts || !tabSell || !contentRates || !contentCrafts || !contentSell) return;
+
+  const resetTabs = () => {
+    [tabRates, tabCrafts, tabSell].forEach(t => t.classList.remove('active'));
+    [contentRates, contentCrafts, contentSell].forEach(c => c.style.display = 'none');
+  };
+
+  tabRates.addEventListener('click', () => {
+    resetTabs();
+    tabRates.classList.add('active');
+    contentRates.style.display = 'block';
+  });
+
+  tabCrafts.addEventListener('click', () => {
+    resetTabs();
+    tabCrafts.classList.add('active');
+    contentCrafts.style.display = 'block';
+  });
+
+  tabSell.addEventListener('click', () => {
+    resetTabs();
+    tabSell.classList.add('active');
+    contentSell.style.display = 'block';
+  });
+
+  // Handle Contact Seller Buttons
+  document.addEventListener('click', (e) => {
+    if (e.target && e.target.classList.contains('btn-craft-contact')) {
+      const artisan = e.target.getAttribute('data-artisan');
+      const item = e.target.getAttribute('data-item');
+      showToast(`📞 Contacting artisan ${artisan} for "${item}". Contact details sent to your device.`, 'info');
+    }
+  });
+
+  // Form Submit
+  const sellForm = document.getElementById('echoupal-sell-form');
+  if (sellForm) {
+    sellForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const type = document.getElementById('sell-item-type').value;
+      const name = document.getElementById('sell-item-name').value;
+      const price = document.getElementById('sell-item-price').value;
+      const contact = document.getElementById('sell-item-contact').value;
+      const desc = document.getElementById('sell-item-desc').value;
+
+      showToast(`🎉 Listing submitted successfully! Admin will verify and publish your ${type} within 24 hours.`, 'success');
+      sellForm.reset();
+      tabCrafts.click();
+    });
+  }
+}
+
+function initDisasterWarning() {
+  const form = document.getElementById('disaster-sms-form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const phone = document.getElementById('disaster-phone').value;
+      showToast(`📱 Subscribed successfully! Emergency SMS warnings will be pushed to +91 ${phone}.`, 'success');
+      form.reset();
+    });
+  }
+}
+
+function initTelemedicine() {
+  const tabBook = document.getElementById('telehealth-tab-book');
+  const tabStock = document.getElementById('telehealth-tab-stock');
+  const contentBook = document.getElementById('telehealth-content-book');
+  const contentStock = document.getElementById('telehealth-content-stock');
+
+  if (!tabBook || !tabStock || !contentBook || !contentStock) return;
+
+  tabBook.addEventListener('click', () => {
+    tabBook.classList.add('active');
+    tabStock.classList.remove('active');
+    contentBook.style.display = 'block';
+    contentStock.style.display = 'none';
+  });
+
+  tabStock.addEventListener('click', () => {
+    tabStock.classList.add('active');
+    tabBook.classList.remove('active');
+    contentStock.style.display = 'block';
+    contentBook.style.display = 'none';
+  });
+
+  // Consultation booking
+  const bookingForm = document.getElementById('telehealth-booking-form');
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const patientName = document.getElementById('book-patient-name').value;
+      const doctorType = document.getElementById('book-doctor-type').value;
+
+      showToast(`🗓️ Appointment booked! Block doctor session confirmed for patient ${patientName}. Details sent via SMS.`, 'success');
+      bookingForm.reset();
+    });
+  }
+
+  // Pharmacy stock checker
+  const searchInput = document.getElementById('medicine-search-input');
+  const searchBtn = document.getElementById('btn-medicine-search');
+  const medRows = document.querySelectorAll('.med-row');
+
+  const performSearch = () => {
+    const query = searchInput.value.toLowerCase().trim();
+    medRows.forEach(row => {
+      const medName = row.getAttribute('data-name');
+      if (query === '') {
+        row.classList.remove('highlight-match');
+        row.style.display = 'flex';
+      } else if (medName.includes(query)) {
+        row.classList.add('highlight-match');
+        row.style.display = 'flex';
+      } else {
+        row.classList.remove('highlight-match');
+        row.style.display = 'none';
+      }
+    });
+  };
+
+  if (searchBtn && searchInput) {
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('input', performSearch);
+  }
+}
+
+function initELearning() {
+  const tabSchool = document.getElementById('elearning-tab-school');
+  const tabExams = document.getElementById('elearning-tab-exams');
+  const tabBanking = document.getElementById('elearning-tab-banking');
+
+  const contentSchool = document.getElementById('elearning-content-school');
+  const contentExams = document.getElementById('elearning-content-exams');
+  const contentBanking = document.getElementById('elearning-content-banking');
+
+  if (!tabSchool || !tabExams || !tabBanking || !contentSchool || !contentExams || !contentBanking) return;
+
+  const resetTabs = () => {
+    [tabSchool, tabExams, tabBanking].forEach(t => t.classList.remove('active'));
+    [contentSchool, contentExams, contentBanking].forEach(c => c.style.display = 'none');
+  };
+
+  tabSchool.addEventListener('click', () => {
+    resetTabs();
+    tabSchool.classList.add('active');
+    contentSchool.style.display = 'block';
+  });
+
+  tabExams.addEventListener('click', () => {
+    resetTabs();
+    tabExams.classList.add('active');
+    contentExams.style.display = 'block';
+  });
+
+  tabBanking.addEventListener('click', () => {
+    resetTabs();
+    tabBanking.classList.add('active');
+    contentBanking.style.display = 'block';
+  });
+
+  // Play Lecture
+  document.querySelectorAll('.btn-play-lecture').forEach((btn, idx) => {
+    btn.addEventListener('click', () => {
+      showToast(`🎬 Lecture video playing. Connecting to localized learning server...`, 'success');
+    });
+  });
+
+  // Download PDF Notes
+  document.querySelectorAll('.btn-pdf-download').forEach((btn, idx) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      showToast(`📥 E-Learning PDF Study Guide downloaded successfully.`, 'success');
+    });
+  });
+}
+
+function initGovernance() {
+  const tabVote = document.getElementById('governance-tab-vote');
+  const tabSuggest = document.getElementById('governance-tab-suggest');
+  const contentVote = document.getElementById('governance-content-vote');
+  const contentSuggest = document.getElementById('governance-content-suggest');
+
+  if (!tabVote || !tabSuggest || !contentVote || !contentSuggest) return;
+
+  tabVote.addEventListener('click', () => {
+    tabVote.classList.add('active');
+    tabSuggest.classList.remove('active');
+    contentVote.style.display = 'block';
+    contentSuggest.style.display = 'none';
+    fetchAndRenderPolls();
+  });
+
+  tabSuggest.addEventListener('click', () => {
+    tabSuggest.classList.add('active');
+    tabVote.classList.remove('active');
+    contentSuggest.style.display = 'block';
+    contentVote.style.display = 'none';
+  });
+
+  // Initial fetch of polls
+  fetchAndRenderPolls();
+
+  // Handle vote submit
+  const voteForm = document.getElementById('governance-vote-form');
+  if (voteForm) {
+    voteForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const selectedOpt = document.querySelector('input[name="poll-option"]:checked');
+      if (!selectedOpt) return;
+
+      const optionId = selectedOpt.value;
+
+      fetch('/api/polls/vote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pollId: 'poll-1', optionId })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to vote');
+        return res.json();
+      })
+      .then(updatedPoll => {
+        showToast('🗳️ Your vote was recorded anonymously. Thank you for participating!', 'success');
+        renderPollResults(updatedPoll);
+        localStorage.setItem('has-voted-poll-1', 'true');
+      })
+      .catch(err => {
+        console.error('Error voting:', err);
+        showToast('❌ Failed to record vote. Please try again.', 'error');
+      });
+    });
+  }
+
+  // Handle suggestion submit
+  const suggestForm = document.getElementById('governance-suggest-form');
+  if (suggestForm) {
+    suggestForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const category = document.getElementById('sug-category').value;
+      const title = document.getElementById('sug-title').value;
+      const text = document.getElementById('sug-text').value;
+
+      fetch('/api/suggestions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ category, title, text })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to submit suggestion');
+        return res.json();
+      })
+      .then(newSug => {
+        showToast('📝 Anonymous suggestion submitted to Gram Sabha registry successfully!', 'success');
+        suggestForm.reset();
+      })
+      .catch(err => {
+        console.error('Error submitting suggestion:', err);
+        showToast('❌ Failed to submit suggestion. Please try again.', 'error');
+      });
+    });
+  }
+}
+
+function fetchAndRenderPolls() {
+  fetch('/api/polls')
+  .then(res => res.json())
+  .then(polls => {
+    const poll = polls['poll-1'];
+    if (!poll) return;
+
+    // Set question text based on active language
+    const lang = currentLanguage || 'en';
+    const qEl = document.getElementById('gov-poll-question');
+    if (qEl) {
+      qEl.textContent = `Poll: ${poll.question[lang] || poll.question['en']}`;
+    }
+
+    // Set option labels
+    poll.options.forEach((opt, idx) => {
+      const lbl = document.getElementById(`lbl-poll-opt-${idx + 1}`);
+      if (lbl) {
+        lbl.textContent = opt.text[lang] || opt.text['en'];
+      }
+    });
+
+    // If already voted, show results directly
+    if (localStorage.getItem('has-voted-poll-1') === 'true') {
+      renderPollResults(poll);
+    }
+  })
+  .catch(err => console.error('Error loading polls:', err));
+}
+
+function renderPollResults(poll) {
+  const voteForm = document.getElementById('governance-vote-form');
+  const resultsPanel = document.getElementById('poll-results-panel');
+  const resultsBars = document.getElementById('poll-results-bars');
+
+  if (!resultsBars) return;
+
+  if (voteForm) voteForm.style.display = 'none';
+  if (resultsPanel) resultsPanel.style.display = 'block';
+
+  resultsBars.innerHTML = '';
+
+  const lang = currentLanguage || 'en';
+  const totalVotes = poll.options.reduce((sum, opt) => sum + (opt.votes || 0), 0) || 1;
+
+  poll.options.forEach(opt => {
+    const pct = Math.round(((opt.votes || 0) / totalVotes) * 100);
+    const labelText = opt.text[lang] || opt.text['en'];
+
+    const barWrapper = document.createElement('div');
+    barWrapper.className = 'poll-result-bar-wrapper';
+    barWrapper.innerHTML = `
+      <div class="poll-result-meta">
+        <span>${labelText}</span>
+        <span class="poll-result-votes">${pct}% (${opt.votes || 0} ${lang === 'hi' ? 'मत' : lang === 'te' ? 'ఓట్లు' : 'votes'})</span>
+      </div>
+      <div class="poll-result-bar-bg">
+        <div class="poll-result-bar-fill" style="width: 0%;"></div>
+      </div>
+    `;
+    resultsBars.appendChild(barWrapper);
+
+    // Trigger width transition in next tick
+    setTimeout(() => {
+      const fillEl = barWrapper.querySelector('.poll-result-bar-fill');
+      if (fillEl) fillEl.style.width = `${pct}%`;
+    }, 50);
+  });
+}
+
+/* ==========================================
+   VILLAGE DASHBOARD CONTROLLER
+   ========================================== */
+function triggerGenderBarAnimation() {
+  setTimeout(() => {
+    const bar = document.getElementById('vd-gender-bar');
+    if (bar) {
+      const targetWidth = bar.style.width || '52%';
+      bar.style.transition = 'none';
+      bar.style.width = '0%';
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          bar.style.transition = 'width 1s ease';
+          bar.style.width = targetWidth;
+        });
+      });
+    }
+  }, 100);
+}
+
+function initVillageDashboard() {
+  // Setup sidebar tab switching
+  const tabs = ['overview', 'statistics', 'education', 'schemes', 'announcements'];
+  tabs.forEach(tabName => {
+    const btn = document.getElementById(`vd-tab-${tabName}`);
+    if (btn) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Reset all buttons and sections
+        tabs.forEach(t => {
+          const b = document.getElementById(`vd-tab-${t}`);
+          if (b) {
+            b.classList.remove('active');
+            b.style.color = 'var(--color-text-muted)';
+            b.style.borderLeftColor = 'transparent';
+          }
+          const s = document.getElementById(`vd-sec-${t}`);
+          if (s) s.style.display = 'none';
+        });
+
+        // Activate selected tab and section
+        btn.classList.add('active');
+        btn.style.color = 'var(--color-primary)';
+        btn.style.borderLeftColor = 'var(--color-primary)';
+        
+        const sec = document.getElementById(`vd-sec-${tabName}`);
+        if (sec) sec.style.display = 'block';
+
+        // Re-trigger gender bar animation if statistics tab is selected
+        if (tabName === 'statistics') {
+          triggerGenderBarAnimation();
+        }
+      });
+    }
+  });
+}
