@@ -2080,6 +2080,9 @@
       document.getElementById('infra-val-solar').textContent = householdStats.solar + '%';
       document.getElementById('infra-fill-solar').style.width = householdStats.solar + '%';
 
+      document.getElementById('infra-val-electricity').textContent = householdStats.electricity + '%';
+      document.getElementById('infra-fill-electricity').style.width = householdStats.electricity + '%';
+
       // Solar 0% Warning check
       const solarWarning = document.getElementById('solar-warning-box');
       if (householdStats.solar === 0) {
