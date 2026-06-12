@@ -377,9 +377,16 @@ window.handleLoginSubmit = function(event) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password })
   })
-  .then(res => {
+  .then(async res => {
     if (!res.ok) {
-      throw new Error('Authentication failed');
+      let errMsg = 'Invalid credentials. Please try again.';
+      try {
+        const data = await res.json();
+        if (data && data.error) {
+          errMsg = data.error;
+        }
+      } catch (e) {}
+      throw new Error(errMsg);
     }
     return res.json();
   })
@@ -394,8 +401,11 @@ window.handleLoginSubmit = function(event) {
   })
   .catch(err => {
     console.error('Login error:', err);
-    if (errorMsg) errorMsg.style.display = 'block';
-    showToast('❌ Invalid credentials. Please try again.', 'error');
+    if (errorMsg) {
+      errorMsg.textContent = err.message || 'Invalid credentials. Please try again.';
+      errorMsg.style.display = 'block';
+    }
+    showToast('❌ ' + (err.message || 'Invalid credentials. Please try again.'), 'error');
   });
 };
 

@@ -175,7 +175,13 @@ const server = http.createServer(async (req, res) => {
         }
 
         // Check Villager (Ration Card ID check)
-        if (db.rationCards[username] && password === 'user123') {
+        const userCard = db.rationCards[username];
+        if (userCard && password === 'user123') {
+          if (userCard.status === 'DEACTIVATED') {
+            res.writeHead(403);
+            res.end(JSON.stringify({ error: 'Your account has been deactivated due to multiple rejected complaints. Please contact the administrator.' }));
+            return;
+          }
           res.writeHead(200);
           res.end(JSON.stringify({ status: 'success', role: 'villager', userId: username, dest: 'profile.html' }));
           return;
@@ -233,6 +239,25 @@ const server = http.createServer(async (req, res) => {
             detail: detail,
             time: new Date().toLocaleDateString('en-GB')
           });
+
+          // Deactivation check: 3 rejections
+          if (status === 'Rejected' && ticket.submittedBy) {
+            const userUserId = ticket.submittedBy;
+            let rejectCount = 1;
+            Object.values(db.grievances).forEach(g => {
+              if (g.id !== id && g.submittedBy === userUserId && g.status === 'Rejected') {
+                rejectCount++;
+              }
+            });
+
+            if (rejectCount >= 3) {
+              const userCard = db.rationCards[userUserId];
+              if (userCard) {
+                userCard.status = 'DEACTIVATED';
+              }
+            }
+          }
+
           writeDb(db);
           res.writeHead(200);
           res.end(JSON.stringify({ success: true }));
@@ -246,7 +271,7 @@ const server = http.createServer(async (req, res) => {
       // POST /api/grievances
       if (pathname === '/api/grievances' && req.method === 'POST') {
         const body = await getJsonBody(req);
-        const { name, phone, category, desc } = body;
+        const { name, phone, category, desc, submittedBy } = body;
 
         if (!name || !phone || !category || !desc) {
           res.writeHead(400);
@@ -266,6 +291,7 @@ const server = http.createServer(async (req, res) => {
           date: new Date().toLocaleDateString('en-GB'),
           status: 'Submitted',
           assignedTo: 'Shri Narasimha (Panchayat Secretary)',
+          submittedBy: submittedBy || null,
           history: [
             { status: 'Grievance Submitted', detail: `Registered in GP database by ${name}. ID: ${ticketId}.`, time: 'Just Now' }
           ]
@@ -301,6 +327,40 @@ const server = http.createServer(async (req, res) => {
         } else {
           res.writeHead(404);
           res.end(JSON.stringify({ error: 'Ration card record not found' }));
+        }
+        return;
+      }
+
+      // GET /api/ration/list
+      if (pathname === '/api/ration/list' && req.method === 'GET') {
+        const list = Object.values(db.rationCards).map(card => {
+          return decryptObj(card, ['owner', 'type', 'shop', 'members', 'rice', 'wheat', 'kerosene']);
+        });
+        res.writeHead(200);
+        res.end(JSON.stringify(list));
+        return;
+      }
+
+      // POST /api/ration/update-status
+      if (pathname === '/api/ration/update-status' && req.method === 'POST') {
+        const body = await getJsonBody(req);
+        const { id, status } = body;
+
+        if (!id || !status) {
+          res.writeHead(400);
+          res.end(JSON.stringify({ error: 'Missing parameters' }));
+          return;
+        }
+
+        const card = db.rationCards[id];
+        if (card) {
+          card.status = status;
+          writeDb(db);
+          res.writeHead(200);
+          res.end(JSON.stringify({ success: true }));
+        } else {
+          res.writeHead(404);
+          res.end(JSON.stringify({ error: 'Ration card login not found' }));
         }
         return;
       }

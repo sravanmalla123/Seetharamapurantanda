@@ -121,6 +121,7 @@
     .badge-submitted { background-color: #e3f2fd; color: #1e88e5; }
     .badge-inprogress { background-color: #fff3e0; color: #fb8c00; }
     .badge-resolved { background-color: #e8f5e9; color: #43a047; }
+    .badge-rejected { background-color: #ffebee; color: #c62828; }
     
     .update-panel {
       display: none;
@@ -341,57 +342,107 @@
         </div>
       </section>
 
-      <!-- Grievances Table -->
+      <!-- Guest Grievances Section -->
       <section class="admin-card">
         <div class="admin-card-header">
-          <h3 id="lbl-grievances-title">📋 Citizen Grievance Registry</h3>
+          <h3 id="lbl-guest-grievances-title">📋 Guest Grievance Registry (From Main Page)</h3>
         </div>
         <div style="overflow-x: auto;">
           <table class="admin-table">
             <thead>
               <tr>
-                <th id="th-ticket">Ticket ID</th>
-                <th id="th-name">Citizen Name</th>
-                <th id="th-category">Category</th>
-                <th id="th-date">Registered Date</th>
-                <th id="th-status">Current Status</th>
-                <th id="th-actions">Actions</th>
+                <th>Ticket ID</th>
+                <th>Citizen Name</th>
+                <th>Category</th>
+                <th>Registered Date</th>
+                <th>Current Status</th>
+                <th>Actions</th>
               </tr>
             </thead>
-            <tbody id="grievances-table-body">
+            <tbody id="guest-grievances-table-body">
               <tr>
-                <td colspan="6" style="text-align: center; color: var(--color-text-muted);">Loading concerns registry...</td>
+                <td colspan="6" style="text-align: center; color: var(--color-text-muted);">Loading guest concerns...</td>
               </tr>
             </tbody>
           </table>
         </div>
+      </section>
 
-        <!-- Action Panel Overlay (for status changes) -->
-        <div class="update-panel" id="action-update-panel">
-          <h4 style="margin-bottom: 12px; color: var(--color-primary);" id="lbl-update-progress-title">🛠️ Update Grievance Resolution Progress</h4>
-          <form id="action-update-form" onsubmit="submitGrievanceAction(event)">
-            <input type="hidden" id="action-ticket-id" />
-            <div style="display: grid; grid-template-columns: 1.2fr 2fr; gap: 20px;">
-              <div class="form-group">
-                <label for="action-status" id="lbl-action-status">New Status</label>
-                <select id="action-status" class="form-control" required>
-                  <option value="Submitted">Submitted</option>
-                  <option value="In Progress">In Progress</option>
-                  <option value="Resolved">Resolved</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="action-details" id="lbl-action-details">Action Details / Resolution Remarks</label>
-                <input type="text" id="action-details" class="form-control" required placeholder="e.g. Dispatched pipes repair crew to street 4." />
-              </div>
-            </div>
-            <div style="margin-top: 14px; display: flex; gap: 10px;">
-              <button type="submit" class="btn btn-primary btn-sm" id="btn-action-save">Save Update</button>
-              <button type="button" class="btn btn-outline btn-sm" onclick="closeActionPanel()" style="background:#fff; border-color:var(--color-border); color:var(--color-primary);" id="btn-action-cancel">Cancel</button>
-            </div>
-          </form>
+      <!-- Member Grievances Section (Anonymous) -->
+      <section class="admin-card">
+        <div class="admin-card-header">
+          <h3 id="lbl-member-grievances-title">📋 Member Grievance Registry (Anonymous - From Logged-in Users)</h3>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Ticket ID</th>
+                <th>Category</th>
+                <th>Registered Date</th>
+                <th>Current Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="member-grievances-table-body">
+              <tr>
+                <td colspan="5" style="text-align: center; color: var(--color-text-muted);">Loading member concerns...</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
+
+      <!-- Account Management Section -->
+      <section class="admin-card">
+        <div class="admin-card-header">
+          <h3 id="lbl-logins-title">🔑 Citizen Login & Account Management</h3>
+        </div>
+        <div style="overflow-x: auto;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Ration Card ID (Login)</th>
+                <th>Citizen Name</th>
+                <th>Account Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="logins-table-body">
+              <tr>
+                <td colspan="4" style="text-align: center; color: var(--color-text-muted);">Loading user login accounts...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Action Panel Overlay (for status changes) -->
+      <div class="update-panel" id="action-update-panel" style="background: var(--color-primary-pale); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 20px; margin-bottom: 40px;">
+        <h4 style="margin-bottom: 12px; color: var(--color-primary);" id="lbl-update-progress-title">🛠️ Update Grievance Resolution Progress</h4>
+        <form id="action-update-form" onsubmit="submitGrievanceAction(event)">
+          <input type="hidden" id="action-ticket-id" />
+          <div style="display: grid; grid-template-columns: 1.2fr 2fr; gap: 20px;">
+            <div class="form-group">
+              <label for="action-status" id="lbl-action-status">New Status</label>
+              <select id="action-status" class="form-control" required>
+                <option value="Submitted">Submitted</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="action-details" id="lbl-action-details">Action Details / Resolution Remarks</label>
+              <input type="text" id="action-details" class="form-control" required placeholder="e.g. Dispatched pipes repair crew to street 4." />
+            </div>
+          </div>
+          <div style="margin-top: 14px; display: flex; gap: 10px;">
+            <button type="submit" class="btn btn-primary btn-sm" id="btn-action-save">Save Update</button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="closeActionPanel()" style="background:#fff; border-color:var(--color-border); color:var(--color-primary);" id="btn-action-cancel">Cancel</button>
+          </div>
+        </form>
+      </div>
 
       <!-- Household Stats Table -->
       <section class="admin-card">
@@ -1657,37 +1708,59 @@
       fetch('/api/grievances')
       .then(res => res.json())
       .then(list => {
-        const tableBody = document.getElementById('grievances-table-body');
-        tableBody.innerHTML = '';
+        const guestBody = document.getElementById('guest-grievances-table-body');
+        const memberBody = document.getElementById('member-grievances-table-body');
+        guestBody.innerHTML = '';
+        memberBody.innerHTML = '';
         
         let total = list.length;
         let pending = 0;
         let resolved = 0;
-        
-        if (total === 0) {
-          tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No citizen concerns filed yet.</td></tr>';
-          return;
-        }
+        let guestCount = 0;
+        let memberCount = 0;
 
         list.forEach(ticket => {
-          if (ticket.status === 'Resolved') resolved++;
+          if (ticket.status === 'Resolved' || ticket.status === 'Rejected') resolved++;
           else pending++;
 
-          const badgeClass = ticket.status === 'Resolved' ? 'badge-resolved' : ticket.status === 'In Progress' ? 'badge-inprogress' : 'badge-submitted';
-          
-          const row = document.createElement('tr');
-          row.innerHTML = `
-            <td><strong>${ticket.id}</strong></td>
-            <td>${ticket.name}</td>
-            <td>${ticket.category.toUpperCase()}</td>
-            <td>${ticket.date}</td>
-            <td><span class="badge-status ${badgeClass}">${ticket.status}</span></td>
-            <td>
-              <button class="action-btn" onclick="openActionPanel('${ticket.id}', '${ticket.status}')">Update Status</button>
-            </td>
-          `;
-          tableBody.appendChild(row);
+          const badgeClass = ticket.status === 'Resolved' ? 'badge-resolved' : ticket.status === 'In Progress' ? 'badge-inprogress' : ticket.status === 'Rejected' ? 'badge-rejected' : 'badge-submitted';
+
+          if (!ticket.submittedBy) {
+            guestCount++;
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td><strong>${ticket.id}</strong></td>
+              <td>${ticket.name}</td>
+              <td>${ticket.category.toUpperCase()}</td>
+              <td>${ticket.date}</td>
+              <td><span class="badge-status ${badgeClass}">${ticket.status}</span></td>
+              <td>
+                <button class="action-btn" onclick="openActionPanel('${ticket.id}', '${ticket.status}')">Update Status</button>
+              </td>
+            `;
+            guestBody.appendChild(row);
+          } else {
+            memberCount++;
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td><strong>${ticket.id}</strong></td>
+              <td>${ticket.category.toUpperCase()}</td>
+              <td>${ticket.date}</td>
+              <td><span class="badge-status ${badgeClass}">${ticket.status}</span></td>
+              <td>
+                <button class="action-btn" onclick="openActionPanel('${ticket.id}', '${ticket.status}')">Update Status</button>
+              </td>
+            `;
+            memberBody.appendChild(row);
+          }
         });
+
+        if (guestCount === 0) {
+          guestBody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No guest concerns filed yet.</td></tr>';
+        }
+        if (memberCount === 0) {
+          memberBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No member concerns filed yet.</td></tr>';
+        }
 
         // Set stats
         document.getElementById('stat-total-tickets').textContent = total;
@@ -1735,6 +1808,67 @@
       })
       .catch(err => {
         console.error('Error loading household statistics:', err);
+      });
+
+      loadLoginsData();
+    }
+
+    function loadLoginsData() {
+      const loginsBody = document.getElementById('logins-table-body');
+      if (!loginsBody) return;
+
+      fetch('/api/ration/list')
+      .then(res => res.json())
+      .then(list => {
+        loginsBody.innerHTML = '';
+        if (list.length === 0) {
+          loginsBody.innerHTML = '<tr><td colspan="4" style="text-align:center; color: var(--color-text-muted);">No login accounts found.</td></tr>';
+          return;
+        }
+
+        list.forEach(card => {
+          const status = card.status || 'ACTIVE';
+          const isDeactivated = status === 'DEACTIVATED';
+          const badgeClass = isDeactivated ? 'badge-rejected' : 'badge-resolved';
+          const buttonText = isDeactivated ? 'Activate' : 'Deactivate';
+          const newStatus = isDeactivated ? 'ACTIVE' : 'DEACTIVATED';
+          const btnBgColor = isDeactivated ? 'var(--color-primary)' : '#c62828';
+
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td><strong>${card.id}</strong></td>
+            <td>${card.owner || 'N/A'}</td>
+            <td><span class="badge-status ${badgeClass}">${status}</span></td>
+            <td>
+              <button class="action-btn" style="background-color: ${btnBgColor};" onclick="toggleLoginStatus('${card.id}', '${newStatus}')">${buttonText}</button>
+            </td>
+          `;
+          loginsBody.appendChild(row);
+        });
+      })
+      .catch(err => {
+        console.error('Error fetching logins:', err);
+        showToast('❌ Failed to load login accounts.', 'error');
+      });
+    }
+
+    function toggleLoginStatus(id, newStatus) {
+      fetch('/api/ration/update-status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status: newStatus })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('API failure');
+        return res.json();
+      })
+      .then(() => {
+        showToast(`✓ Account ${id} status updated to ${newStatus}!`, 'success');
+        loadLoginsData();
+      })
+      .catch(err => {
+        console.error('Error updating login status:', err);
+        showToast('❌ Failed to update account status.', 'error');
       });
     }
 

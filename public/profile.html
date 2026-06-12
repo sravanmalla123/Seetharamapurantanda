@@ -463,7 +463,7 @@
       fetch('/api/grievances', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone, category, desc })
+        body: JSON.stringify({ name, phone, category, desc, submittedBy: userId })
       })
       .then(res => {
         if (!res.ok) throw new Error('API failure');

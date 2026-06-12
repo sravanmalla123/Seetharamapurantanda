@@ -95,6 +95,14 @@ const dom = new JSDOM(html, {
           json: () => Promise.resolve(db.mainPageConfig)
         });
       }
+      if (url === '/api/ration/list') {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve([
+            { id: '369805471203', owner: 'Sravan Malla', status: 'ACTIVE' }
+          ])
+        });
+      }
       return Promise.reject(new Error('Unknown url: ' + url));
     };
 
