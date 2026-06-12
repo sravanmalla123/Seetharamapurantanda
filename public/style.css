@@ -247,6 +247,7 @@ img {
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  position: relative; /* Anchor for absolute dropdown */
 }
 
 .brand {
@@ -287,193 +288,179 @@ img {
   letter-spacing: 1px;
 }
 
+/* ==========================================
+   NAVIGATION — Always-Hamburger Dropdown
+   (works identically on mobile, tablet & desktop)
+   ========================================== */
+
+/* Dropdown menu — hidden by default at ALL screen sizes */
 .nav-links {
+  /* Use visibility+opacity for smooth CSS transition (display:none can't animate) */
   display: flex;
-  gap: 32px;
-  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 270px;
+  background-color: rgba(253, 251, 247, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  padding: 14px 10px;
+  gap: 2px;
+  box-shadow: 0 20px 60px rgba(20, 40, 28, 0.14), 0 4px 16px rgba(20, 40, 28, 0.07);
+  align-items: stretch;
+  z-index: 1000;
+  /* Hidden state */
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px) scale(0.97);
+  transform-origin: top right;
+  transition: opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 0.22s linear;
 }
 
+/* Open state — toggled by JS */
+.nav-links.active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.nav-links li {
+  width: 100%;
+  list-style: none;
+  display: block;
+}
+
+/* Nav link rows */
 .nav-links a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 10px;
   font-weight: 600;
   font-size: 0.95rem;
   color: var(--color-text-dark);
+  text-decoration: none;
   position: relative;
-  padding: 8px 0;
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
 
 .nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--color-secondary);
-  transition: var(--transition-fast);
-}
-
-.nav-links a:hover {
-  color: var(--color-secondary);
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* Mobile Nav Toggle — hidden on desktop by default */
-.mobile-nav-btn {
   display: none !important;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  background-color: var(--color-primary-pale);
   color: var(--color-primary);
+  transform: translateX(4px);
+  outline: none;
+}
+
+/* Active page link highlight */
+.nav-links a.active {
+  background-color: var(--color-secondary-pale);
+  color: var(--color-secondary);
+  font-weight: 700;
+}
+
+/* ==========================================
+   HAMBURGER BUTTON — always visible at ALL sizes
+   ========================================== */
+.mobile-nav-btn {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  border-radius: 10px;
+  color: var(--color-primary);
+  font-size: 1.35rem;
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 7px 13px;
   line-height: 1;
   z-index: 1001;
   position: relative;
+  min-width: 44px;
+  min-height: 44px;
+  flex-shrink: 0;
+  font-family: inherit;
+  transition: background-color 0.2s ease, color 0.2s ease,
+              box-shadow 0.2s ease, transform 0.15s ease;
 }
 
-@media (max-width: 950px) {
-  /* On mobile: hide inline nav links by default, show via .active */
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: calc(var(--header-height) - 5px);
-    left: 24px;
-    width: 260px;
-    background-color: rgba(255, 255, 255, 0.97);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 16px;
-    padding: 32px 24px;
-    gap: 24px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-    align-items: flex-start;
-    z-index: 1000;
-  }
-  .nav-links.active {
-    display: flex !important;
-  }
-  .nav-links li {
-    width: 100%;
-    list-style: none;
-    display: block;
-  }
-  .nav-links a {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--color-primary);
-    display: block;
-    width: 100%;
-    padding: 0;
-    text-decoration: none;
-    transition: color 0.2s ease, transform 0.2s ease;
-  }
-  .nav-links a::after {
-    display: none !important;
-  }
-  .nav-links a:hover {
-    color: var(--color-secondary) !important;
-    transform: translateX(6px);
-  }
-  /* Show hamburger on mobile */
-  .mobile-nav-btn {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    font-family: inherit;
-    font-weight: bold;
-    color: var(--color-primary);
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  /* Hide theme, language, and contact buttons on mobile */
-  #btn-theme-toggle {
-    display: none !important;
-  }
-  .lang-selector-wrapper {
-    display: none !important;
-  }
-  #nav-btn-contact {
-    display: none !important;
-  }
-  /* Style login button on mobile as a clean text link */
-  #btn-login-trigger {
-    background: none !important;
-    border: none !important;
-    color: var(--color-primary) !important;
-    font-weight: 700 !important;
-    font-size: 1.05rem !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 6px !important;
-    width: auto !important;
-    cursor: pointer;
-    transition: color 0.2s ease, transform 0.2s ease;
-  }
-  #btn-login-trigger:hover {
-    color: var(--color-secondary) !important;
-    transform: translateX(6px);
-  }
-  .header-container {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: flex-start !important;
-    gap: 24px !important;
-    width: 100% !important;
-  }
-  .logo-wrapper, .brand {
-    order: 2 !important;
-  }
-  nav {
-    order: 1 !important;
-    display: flex !important;
-    align-items: center !important;
-  }
+.mobile-nav-btn:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--shadow-md);
 }
 
-/* On desktop: nav-links must always be visible regardless of .active state */
-@media (min-width: 951px) {
-  .nav-links,
-  .nav-links.active {
-    display: flex !important;
-    position: static !important;
-    flex-direction: row !important;
-    background: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    width: auto !important;
-    gap: 32px;
-    align-items: center !important;
-  }
-  .mobile-nav-btn {
-    display: none !important;
-  }
+.mobile-nav-btn[aria-expanded="true"] {
+  background-color: var(--color-primary);
+  color: #fff;
 }
 
-/* Scaling down inline menu items on intermediate desktops (951px to 1250px) to prevent overflow */
-@media (min-width: 951px) and (max-width: 1250px) {
-  .nav-links {
-    gap: 12px !important;
-  }
-  .nav-links a {
-    font-size: 0.85rem !important;
-  }
-  .custom-lang-select {
-    padding: 6px 20px 6px 10px !important;
-    font-size: 0.75rem !important;
-  }
-  .btn-sm {
-    padding: 6px 10px !important;
-    font-size: 0.75rem !important;
-  }
+/* ==========================================
+   ITEMS HIDDEN FROM DROPDOWN
+   (Contact, Language selector, Theme toggle are
+    not part of the user-requested nav items)
+   ========================================== */
+#btn-theme-toggle,
+.lang-selector-wrapper,
+#nav-btn-contact {
+  display: none !important;
+}
+
+/* ==========================================
+   LOGIN BUTTON — full-width primary CTA
+   ========================================== */
+#btn-login-trigger {
+  background-color: var(--color-secondary) !important;
+  border: none !important;
+  color: #fff !important;
+  width: 100% !important;
+  justify-content: center !important;
+  border-radius: 10px !important;
+  padding: 11px 20px !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  cursor: pointer;
+  margin: 0 !important;
+  box-shadow: 0 4px 14px hsla(145, 55%, 42%, 0.28) !important;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+  font-family: inherit;
+}
+
+#btn-login-trigger:hover {
+  background-color: var(--color-secondary-dark) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 18px hsla(145, 55%, 42%, 0.38) !important;
+}
+
+/* Divider line above Login item */
+.nav-links li:has(#btn-login-trigger) {
+  border-top: 1px solid var(--color-border);
+  padding-top: 10px;
+  margin-top: 6px;
+}
+
+/* Header layout: brand left, hamburger right — same at all sizes */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
 }
 
 /* ==========================================

@@ -155,8 +155,6 @@ function initMobileNav() {
   toggleBtn.textContent = '☰';
 
   toggleBtn.addEventListener('click', () => {
-    // Guard: only act on mobile — button is CSS-hidden on desktop anyway
-    if (!isMobile()) return;
     const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
     toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
     navLinks.classList.toggle('active');
