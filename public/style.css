@@ -314,9 +314,16 @@ img {
   display: none;
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: var(--color-primary);
   cursor: pointer;
+  padding: 8px;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.mobile-nav-btn:hover {
+  color: var(--color-secondary);
+  transform: scale(1.1);
 }
 
 @media (max-width: 900px) {
@@ -338,42 +345,63 @@ img {
   }
   .mobile-nav-btn {
     display: block;
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
 /* ==========================================
    MENU DROPDOWN SYSTEM
    ========================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.header-with-menu .brand {
+  margin-left: 48px;
+}
+
 .menu-dropdown-wrapper {
-  position: relative;
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .menu-dropdown-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background-color: var(--color-primary-pale);
+  justify-content: center;
+  background: none;
+  border: none;
   color: var(--color-primary);
-  border: 1px solid var(--color-border);
-  padding: 8px 18px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  border-radius: var(--radius-md);
+  padding: 8px;
+  font-size: 1.6rem;
   cursor: pointer;
-  transition: var(--transition-normal);
+  transition: color var(--transition-fast), transform var(--transition-fast);
   outline: none;
 }
 
 .menu-dropdown-btn:hover {
-  background-color: var(--color-secondary-light);
+  background: none;
   color: var(--color-secondary);
-  border-color: var(--color-secondary);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  border: none;
+  transform: scale(1.1);
+  box-shadow: none;
 }
 
 .menu-dropdown-btn .menu-btn-icon {
-  font-size: 1rem;
+  font-size: 1.6rem;
   transition: transform var(--transition-normal);
 }
 
@@ -383,7 +411,7 @@ img {
 
 .menu-dropdown-content {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 16px);
   left: 0;
   width: 240px;
   background-color: rgba(255, 255, 255, 0.95);
@@ -461,6 +489,8 @@ img {
 
 @media (max-width: 900px) {
   .menu-dropdown-wrapper {
+    position: static;
+    transform: none;
     width: 100%;
   }
   .menu-dropdown-btn {
