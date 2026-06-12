@@ -28,7 +28,6 @@ function initAll() {
   initScrollHeader();
   initScrollProgress();
   initFaqAccordion();
-  initParticles();
   initThemeSwitcher();
   initHouseholdUpdates();
   initVoiceAssistant();
@@ -53,7 +52,10 @@ function initAll() {
    ========================================== */
 function initSplashScreen() {
   const splash = document.getElementById('splash-screen');
-  if (!splash) return;
+  if (!splash) {
+    initParticles();
+    return;
+  }
 
   // Split splash title into staggered characters
   const splashTitle = splash.querySelector('.splash-title');
@@ -84,6 +86,9 @@ function initSplashScreen() {
     splash.classList.add('fade-out');
     document.body.classList.remove('splash-active');
     document.body.classList.add('ready');
+
+    // Initialize background particles when splash transition starts
+    initParticles();
 
     // Trigger staggered letters reveal on main page
     triggerHeroReveal();
@@ -1544,9 +1549,23 @@ function initParticles() {
   const NET_SQ = 90 * 90;
   const MAX_CONN_PER_PARTICLE = 3;
 
-  let frame = 0;
+  // Scroll tracking to pause repaints and optimize scrolling
+  let isScrolling = false;
+  let scrollTimeout = null;
+  const handleScroll = () => {
+    isScrolling = true;
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      isScrolling = false;
+    }, 150);
+  };
+  window.addEventListener('scroll', handleScroll, { passive: true });
 
-  const animate = () => {
+  let frame = 0;
+  let lastFrameTime = 0;
+  const fpsInterval = 1000 / 30; // Throttle to 30fps
+
+  const animate = (timestamp) => {
     // Stop loop if tab/page is hidden to save GPU cycles
     if (document.visibilityState === 'hidden') {
       canvas._animId = null;
@@ -1554,6 +1573,20 @@ function initParticles() {
     }
 
     canvas._animId = requestAnimationFrame(animate);
+
+    // Skip repaint frame if user is active scrolling to prevent stutters
+    if (isScrolling) {
+      return;
+    }
+
+    // Throttle to 30fps
+    const now = timestamp || (window.performance && window.performance.now ? window.performance.now() : Date.now());
+    const elapsed = now - lastFrameTime;
+    if (elapsed < fpsInterval) {
+      return;
+    }
+    lastFrameTime = now - (elapsed % fpsInterval);
+
     frame++;
     
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1575,13 +1608,13 @@ function initParticles() {
     ctx.globalAlpha = 1.0;
 
     // 3. Update & Draw Shooting Stars
-    const now = Date.now();
-    if (now > nextShootTime) {
+    const nowTime = Date.now();
+    if (nowTime > nextShootTime) {
       const idleShooter = shooters.find(s => !s.active);
       if (idleShooter) {
         idleShooter.reset();
       }
-      nextShootTime = now + Math.random() * 6000 + 4000;
+      nextShootTime = nowTime + Math.random() * 6000 + 4000;
     }
     for (let shooter of shooters) {
       if (shooter.active) {
@@ -1670,6 +1703,7 @@ function initParticles() {
       }
     } else {
       if (!canvas._animId) {
+        lastFrameTime = window.performance && window.performance.now ? window.performance.now() : Date.now();
         canvas._animId = requestAnimationFrame(animate);
       }
     }
@@ -1682,7 +1716,9 @@ function initParticles() {
     window.removeEventListener('mousemove', handleMouseMove);
     window.removeEventListener('mouseleave', handleMouseLeave);
     window.removeEventListener('click', handleWindowClick);
+    window.removeEventListener('scroll', handleScroll);
     document.removeEventListener('visibilitychange', handleVisibilityChange);
+    if (scrollTimeout) clearTimeout(scrollTimeout);
     if (toggleBtn && themeListener) {
       toggleBtn.removeEventListener('click', themeListener);
     }
