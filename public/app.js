@@ -138,25 +138,51 @@ function showToast(message, type = 'success') {
 function initMobileNav() {
   const toggleBtn = document.getElementById('mobile-menu-toggle');
   const navLinks = document.getElementById('navigation-links');
-  
+  const MOBILE_BREAKPOINT = 950;
+
   if (!toggleBtn || !navLinks) return;
-  
+
+  function isMobile() {
+    return window.innerWidth <= MOBILE_BREAKPOINT;
+  }
+
+  function closeMobileNav() {
+    navLinks.classList.remove('active');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    toggleBtn.textContent = '☰';
+  }
+
   toggleBtn.textContent = '☰';
-  
+
   toggleBtn.addEventListener('click', () => {
+    // Guard: only act on mobile — button is CSS-hidden on desktop anyway
+    if (!isMobile()) return;
     const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-    toggleBtn.setAttribute('aria-expanded', !isExpanded);
+    toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
     navLinks.classList.toggle('active');
-    toggleBtn.textContent = !isExpanded ? '|||' : '☰';
+    toggleBtn.textContent = !isExpanded ? '✕' : '☰';
   });
 
-  // Close mobile nav when clicking a link
+  // Close mobile nav when clicking any link or button inside it
   navLinks.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('click', () => {
-      navLinks.classList.remove('active');
-      toggleBtn.setAttribute('aria-expanded', 'false');
-      toggleBtn.textContent = '☰';
+      closeMobileNav();
     });
+  });
+
+  // Close mobile nav when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!isMobile()) return;
+    if (!toggleBtn.contains(e.target) && !navLinks.contains(e.target)) {
+      closeMobileNav();
+    }
+  });
+
+  // Auto-close and reset on resize to desktop
+  window.addEventListener('resize', () => {
+    if (!isMobile()) {
+      closeMobileNav();
+    }
   });
 }
 

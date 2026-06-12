@@ -1844,25 +1844,56 @@
         });
       }
 
-      // 5. Mobile Navbar Toggle
+      // 5. Mobile Navbar Toggle — screen-size-aware
       const mobileToggle = document.getElementById('mobile-menu-toggle');
-      const navLinks = document.getElementById('navigation-links');
-      if (mobileToggle && navLinks) {
+      const navLinksEl = document.getElementById('navigation-links');
+      const MOBILE_BREAKPOINT = 950;
+
+      function isMobile() {
+        return window.innerWidth <= MOBILE_BREAKPOINT;
+      }
+
+      function closeMobileNav() {
+        if (navLinksEl) navLinksEl.classList.remove('active');
+        if (mobileToggle) {
+          mobileToggle.setAttribute('aria-expanded', 'false');
+          mobileToggle.textContent = '☰';
+        }
+      }
+
+      if (mobileToggle && navLinksEl) {
         mobileToggle.textContent = '☰';
+
         mobileToggle.addEventListener('click', () => {
+          // Only toggle on mobile — on desktop the button is CSS-hidden anyway,
+          // but guard here too so no side-effects if something overrides CSS.
+          if (!isMobile()) return;
           const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
-          mobileToggle.setAttribute('aria-expanded', !expanded);
-          navLinks.classList.toggle('active');
-          mobileToggle.textContent = !expanded ? '|||' : '☰';
+          mobileToggle.setAttribute('aria-expanded', String(!expanded));
+          navLinksEl.classList.toggle('active');
+          mobileToggle.textContent = !expanded ? '✕' : '☰';
         });
 
-        // Close mobile nav when clicking a link
-        navLinks.querySelectorAll('a, button').forEach(el => {
+        // Close mobile nav when clicking any link inside it
+        navLinksEl.querySelectorAll('a, button').forEach(el => {
           el.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            mobileToggle.setAttribute('aria-expanded', 'false');
-            mobileToggle.textContent = '☰';
+            closeMobileNav();
           });
+        });
+
+        // Close mobile nav when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!isMobile()) return;
+          if (!mobileToggle.contains(e.target) && !navLinksEl.contains(e.target)) {
+            closeMobileNav();
+          }
+        });
+
+        // Auto-close and reset when resizing to desktop
+        window.addEventListener('resize', () => {
+          if (!isMobile()) {
+            closeMobileNav();
+          }
         });
       }
 

@@ -320,17 +320,22 @@ img {
   width: 100%;
 }
 
-/* Mobile Nav Toggle */
+/* Mobile Nav Toggle — hidden on desktop by default */
 .mobile-nav-btn {
-  display: none;
+  display: none !important;
   background: none;
   border: none;
   font-size: 1.5rem;
   color: var(--color-primary);
   cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  z-index: 1001;
+  position: relative;
 }
 
 @media (max-width: 950px) {
+  /* On mobile: hide inline nav links by default, show via .active */
   .nav-links {
     display: none;
     flex-direction: column;
@@ -338,19 +343,19 @@ img {
     top: calc(var(--header-height) - 5px);
     left: 24px;
     width: 260px;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 16px;
     padding: 32px 24px;
     gap: 24px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     align-items: flex-start;
     z-index: 1000;
   }
   .nav-links.active {
-    display: flex;
+    display: flex !important;
   }
   .nav-links li {
     width: 100%;
@@ -374,15 +379,18 @@ img {
     color: var(--color-secondary) !important;
     transform: translateX(6px);
   }
+  /* Show hamburger on mobile */
   .mobile-nav-btn {
-    display: block;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
     font-family: inherit;
     font-weight: bold;
     color: var(--color-primary);
     font-size: 1.5rem;
     cursor: pointer;
   }
-  /* Hide theme, language, and contact buttons on mobile to match the screenshot */
+  /* Hide theme, language, and contact buttons on mobile */
   #btn-theme-toggle {
     display: none !important;
   }
@@ -427,6 +435,26 @@ img {
     order: 1 !important;
     display: flex !important;
     align-items: center !important;
+  }
+}
+
+/* On desktop: nav-links must always be visible regardless of .active state */
+@media (min-width: 951px) {
+  .nav-links,
+  .nav-links.active {
+    display: flex !important;
+    position: static !important;
+    flex-direction: row !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    width: auto !important;
+    gap: 32px;
+    align-items: center !important;
+  }
+  .mobile-nav-btn {
+    display: none !important;
   }
 }
 
