@@ -409,13 +409,32 @@ img {
 
 /* ==========================================
    ITEMS HIDDEN FROM DROPDOWN
-   (Contact, Language selector, Theme toggle are
-    not part of the user-requested nav items)
+   (Contact and Language selector are hidden as they
+    are not part of the standard navigation items)
    ========================================== */
-#btn-theme-toggle,
 .lang-selector-wrapper,
 #nav-btn-contact {
   display: none !important;
+}
+
+#btn-theme-toggle {
+  display: inline-flex !important;
+  width: calc(100% - 12px) !important;
+  margin: 6px 6px 0 6px !important;
+  justify-content: center !important;
+  border-radius: 10px !important;
+  border-color: var(--color-accent) !important;
+  color: var(--color-accent) !important;
+  background-color: transparent !important;
+  font-family: inherit;
+  font-weight: 600;
+  transition: var(--transition-normal) !important;
+}
+
+#btn-theme-toggle:hover {
+  background-color: var(--color-accent) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
 }
 
 /* ==========================================

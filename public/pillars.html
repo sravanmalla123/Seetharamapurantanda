@@ -295,7 +295,7 @@
     }
   </style>
 </head>
-<body class="pillar-detail-body ready">
+<body class="pillar-detail-body ready banjara-active">
 
   <!-- ==========================================
        HEADER / NAVIGATION
@@ -1576,8 +1576,10 @@
       // Apply theme
       const savedTheme = localStorage.getItem('panchayat-theme');
       document.body.classList.add('ready');
-      if (savedTheme === 'banjara') {
+      if (savedTheme === 'banjara' || (!savedTheme && document.body.classList.contains('banjara-active'))) {
         document.body.classList.add('banjara-active');
+      } else if (savedTheme === 'eco') {
+        document.body.classList.remove('banjara-active');
       }
 
       // Initialize language selector

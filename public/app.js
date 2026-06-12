@@ -1881,11 +1881,14 @@ function initThemeSwitcher() {
 
   // Load saved theme preference if any
   const savedTheme = localStorage.getItem('panchayat-theme');
-  if (savedTheme === 'banjara') {
+  if (savedTheme === 'banjara' || (!savedTheme && document.body.classList.contains('banjara-active'))) {
     document.body.classList.add('banjara-active');
     if (btnIcon) btnIcon.textContent = '🌿';
     if (btnText) btnText.textContent = getTranslatedText('theme_eco', 'Eco Theme');
   } else {
+    if (savedTheme === 'eco') {
+      document.body.classList.remove('banjara-active');
+    }
     if (btnText) btnText.textContent = getTranslatedText('theme_banjara', 'Banjara Theme');
   }
 

@@ -277,7 +277,7 @@
     }
   </style>
 </head>
-<body class="admin-body ready">
+<body class="admin-body ready banjara-active">
   <!-- Check Auth -->
   <script>
     if (sessionStorage.getItem('panchayat-role') !== 'admin') {
@@ -1625,8 +1625,10 @@
       document.body.classList.add('ready');
       // Sync theme preference
       const savedTheme = localStorage.getItem('panchayat-theme');
-      if (savedTheme === 'banjara') {
+      if (savedTheme === 'banjara' || (!savedTheme && document.body.classList.contains('banjara-active'))) {
         document.body.classList.add('banjara-active');
+      } else if (savedTheme === 'eco') {
+        document.body.classList.remove('banjara-active');
       }
       
       loadDashboardData();

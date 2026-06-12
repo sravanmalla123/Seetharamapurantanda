@@ -179,7 +179,7 @@
     }
   </style>
 </head>
-<body class="profile-body ready">
+<body class="profile-body ready banjara-active">
   <!-- Check Auth -->
   <script>
     if (sessionStorage.getItem('panchayat-role') !== 'villager') {
@@ -333,8 +333,10 @@
       document.body.classList.add('ready');
       // Sync theme preference
       const savedTheme = localStorage.getItem('panchayat-theme');
-      if (savedTheme === 'banjara') {
+      if (savedTheme === 'banjara' || (!savedTheme && document.body.classList.contains('banjara-active'))) {
         document.body.classList.add('banjara-active');
+      } else if (savedTheme === 'eco') {
+        document.body.classList.remove('banjara-active');
       }
 
       if (userId) {

@@ -895,7 +895,7 @@
     }
   </style>
 </head>
-<body class="dashboard-body ready">
+<body class="dashboard-body ready banjara-active">
 
   <!-- ==========================================
        HEADER / NAVIGATION
@@ -942,7 +942,7 @@
             </div>
           </li>
           <li>
-            <button class="btn btn-outline btn-sm" id="btn-theme-toggle" aria-label="Toggle Cultural Theme" style="border-color: var(--color-accent); color: var(--color-accent); margin-left: 6px;">
+            <button class="btn btn-outline btn-sm" id="btn-theme-toggle" aria-label="Toggle Cultural Theme">
               <span id="theme-btn-icon">✨</span> <span id="theme-btn-text">Banjara Theme</span>
             </button>
           </li>
@@ -1787,10 +1787,12 @@
     document.addEventListener('DOMContentLoaded', () => {
       // 1. Sync theme preference from LocalStorage
       const savedTheme = localStorage.getItem('panchayat-theme');
-      if (savedTheme === 'banjara') {
+      if (savedTheme === 'banjara' || (!savedTheme && document.body.classList.contains('banjara-active'))) {
         document.body.classList.add('banjara-active');
         document.getElementById('theme-btn-icon').textContent = '🌿';
         document.getElementById('theme-btn-text').textContent = 'Eco Theme';
+      } else if (savedTheme === 'eco') {
+        document.body.classList.remove('banjara-active');
       }
 
       // 2. Toggle Theme Listener
