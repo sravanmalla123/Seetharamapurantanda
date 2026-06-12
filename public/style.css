@@ -342,8 +342,180 @@ img {
 }
 
 /* ==========================================
-   HERO SECTION
+   MENU DROPDOWN SYSTEM
    ========================================== */
+.menu-dropdown-wrapper {
+  position: relative;
+}
+
+.menu-dropdown-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-primary-pale);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  padding: 8px 18px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-normal);
+  outline: none;
+}
+
+.menu-dropdown-btn:hover {
+  background-color: var(--color-secondary-light);
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.menu-dropdown-btn .menu-btn-icon {
+  font-size: 1rem;
+  transition: transform var(--transition-normal);
+}
+
+.menu-dropdown-wrapper.active .menu-dropdown-btn .menu-btn-icon {
+  transform: rotate(90deg);
+}
+
+.menu-dropdown-content {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 240px;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 12px;
+  z-index: 110;
+  opacity: 0;
+  transform: translateY(-10px) scale(0.98);
+  pointer-events: none;
+  transition: opacity var(--transition-normal), transform var(--transition-normal);
+  transform-origin: top left;
+}
+
+.menu-dropdown-wrapper.active .menu-dropdown-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Dropdown list styling */
+.menu-dropdown-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.menu-dropdown-links-list li {
+  width: 100%;
+}
+
+.menu-dropdown-links-list a {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-dark) !important;
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+  position: relative;
+}
+
+.menu-dropdown-links-list a:hover {
+  background-color: var(--color-primary-pale);
+  color: var(--color-secondary) !important;
+  padding-left: 20px; /* Micro-animation */
+}
+
+/* Hide horizontal underline indicator inside dropdown */
+.menu-dropdown-links-list a::after {
+  display: none !important;
+}
+
+/* Vertical left indicator line on hover */
+.menu-dropdown-links-list a::before {
+  content: '';
+  width: 3px;
+  height: 0;
+  background-color: var(--color-secondary);
+  position: absolute;
+  left: 8px;
+  transition: height var(--transition-fast);
+  border-radius: var(--radius-full);
+}
+
+.menu-dropdown-links-list a:hover::before {
+  height: 16px;
+}
+
+@media (max-width: 900px) {
+  .menu-dropdown-wrapper {
+    width: 100%;
+  }
+  .menu-dropdown-btn {
+    display: none !important;
+  }
+  .menu-dropdown-content {
+    position: static;
+    width: 100%;
+    background-color: transparent;
+    backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    display: block;
+  }
+  .menu-dropdown-links-list {
+    width: 100%;
+    gap: 16px;
+  }
+  .menu-dropdown-links-list li {
+    width: 100%;
+  }
+  .menu-dropdown-links-list a {
+    padding: 8px 0;
+    font-size: 0.95rem;
+    color: var(--color-text-dark) !important;
+    position: relative;
+  }
+  .menu-dropdown-links-list a:hover {
+    padding-left: 0;
+    background-color: transparent;
+    color: var(--color-secondary) !important;
+  }
+  .menu-dropdown-links-list a::before {
+    display: none !important;
+  }
+  .menu-dropdown-links-list a::after {
+    display: block !important;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-secondary);
+    transition: var(--transition-fast);
+  }
+  .menu-dropdown-links-list a:hover::after {
+    width: 100%;
+  }
+}
+
 .hero {
   position: relative;
   overflow: hidden;

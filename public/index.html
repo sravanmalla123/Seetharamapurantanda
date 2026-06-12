@@ -90,13 +90,22 @@
       <nav aria-label="Main navigation menu">
         <button class="mobile-nav-btn" id="mobile-menu-toggle" aria-expanded="false" aria-controls="navigation-links" aria-label="Toggle Navigation Menu">☰</button>
         <ul class="nav-links" id="navigation-links">
-          <li><a href="#about" id="nav-link-about">About</a></li>
-          <li><a href="#services" id="nav-link-services">Services</a></li>
-          <li><a href="#" id="nav-link-dashboard">Dashboard</a></li>
-          <li><a href="#development" id="nav-link-svr">SVR Map</a></li>
-          <li><a href="#smarthub" id="nav-link-smarthub">Smart Hub</a></li>
-          <li><a href="#cultural" id="nav-link-culture">Heritage</a></li>
-          <li><a href="gallery.html" id="nav-link-gallery">Gallery</a></li>
+          <li class="menu-dropdown-wrapper">
+            <button class="menu-dropdown-btn" id="menu-dropdown-btn" aria-haspopup="true" aria-expanded="false" aria-label="Toggle Menu Dropdown">
+              <span class="menu-btn-icon">☰</span> <span class="menu-btn-text" id="menu-dropdown-text">Menu</span>
+            </button>
+            <div class="menu-dropdown-content" id="menu-dropdown-content">
+              <ul class="menu-dropdown-links-list">
+                <li><a href="#about" id="nav-link-about">About</a></li>
+                <li><a href="#services" id="nav-link-services">Services</a></li>
+                <li><a href="#" id="nav-link-dashboard">Dashboard</a></li>
+                <li><a href="#development" id="nav-link-svr">SVR Map</a></li>
+                <li><a href="#smarthub" id="nav-link-smarthub">Smart Hub</a></li>
+                <li><a href="#cultural" id="nav-link-culture">Heritage</a></li>
+                <li><a href="gallery.html" id="nav-link-gallery">Gallery</a></li>
+              </ul>
+            </div>
+          </li>
           <li><button class="btn btn-primary btn-sm" id="nav-btn-contact">Contact</button></li>
           <li>
             <div class="lang-selector-wrapper">

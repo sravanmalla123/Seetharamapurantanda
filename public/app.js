@@ -7,7 +7,7 @@
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initAll);
 } else {
-  initAll();
+  setTimeout(initAll, 0);
 }
 
 function initAll() {
@@ -16,6 +16,7 @@ function initAll() {
   initHeroTextReveal();
   initModals();
   initMobileNav();
+  initMenuDropdown();
   initWelfareEligibility();
   initGrievanceRedressal();
   initInteractiveMap();
@@ -146,6 +147,48 @@ function initMobileNav() {
     el.addEventListener('click', () => {
       navLinks.classList.remove('active');
       toggleBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+/* ==========================================
+   DESKTOP MENU DROPDOWN
+   ========================================== */
+function initMenuDropdown() {
+  const dropdownWrapper = document.querySelector('.menu-dropdown-wrapper');
+  const dropdownBtn = document.getElementById('menu-dropdown-btn');
+  
+  if (!dropdownWrapper || !dropdownBtn) return;
+  
+  dropdownBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isExpanded = dropdownBtn.getAttribute('aria-expanded') === 'true';
+    dropdownBtn.setAttribute('aria-expanded', !isExpanded);
+    dropdownWrapper.classList.toggle('active');
+  });
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!dropdownWrapper.contains(e.target)) {
+      dropdownWrapper.classList.remove('active');
+      dropdownBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close dropdown on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdownWrapper.classList.remove('active');
+      dropdownBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close dropdown when a link is clicked
+  const dropdownLinks = dropdownWrapper.querySelectorAll('.menu-dropdown-links-list a');
+  dropdownLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      dropdownWrapper.classList.remove('active');
+      dropdownBtn.setAttribute('aria-expanded', 'false');
     });
   });
 }
@@ -1963,6 +2006,7 @@ const translationDictionary = {
     toast_eco: "🌱 इको थीम सक्रिय: वन हरा और एम्बर गोल्ड!",
     '#gp-brand-title': 'सीतारामपुरम टांडा',
     '#gp-brand-subtitle': 'ग्राम पंचायत पोर्टल',
+    '#menu-dropdown-text': 'नेविगेशन मेनू',
     '#nav-link-about': 'हमारे बारे में',
     '#nav-link-services': 'सेवाएं',
     '#nav-link-svr': 'एसवीआर मानचित्र',
@@ -2264,6 +2308,7 @@ const translationDictionary = {
     toast_eco: "🌱 ఇకో థీమ్ సక్రియం చేయబడింది: అటవీ ఆకుపచ్చ మరియు అంబర్ గోల్డ్!",
     '#gp-brand-title': 'సీతారామపురం తండా',
     '#gp-brand-subtitle': 'గ్రామ పంచాయతీ పోర్టల్',
+    '#menu-dropdown-text': 'నేవిగేషన్ మెనూ',
     '#nav-link-about': 'గురించి',
     '#nav-link-services': 'సేవలు',
     '#nav-link-svr': 'SVR మ్యాప్',
