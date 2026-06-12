@@ -225,7 +225,9 @@ img {
   top: 0;
   left: 0;
   z-index: 100;
-  height: var(--header-height);
+  min-height: var(--header-height);
+  height: auto;
+  overflow: visible;
   display: flex;
   align-items: center;
   transition: var(--transition-normal);
@@ -236,6 +238,15 @@ img {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  flex-wrap: nowrap;
+  gap: 16px;
+}
+
+/* Ensure nav element is a proper flex item on desktop */
+.header-container > nav {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .brand {
@@ -319,25 +330,121 @@ img {
   cursor: pointer;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   .nav-links {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: var(--header-height);
-    left: 0;
-    right: 0;
-    background-color: var(--color-bg-card);
-    border-bottom: 1px solid var(--color-border);
-    padding: 24px;
-    gap: 16px;
-    box-shadow: var(--shadow-md);
+    top: calc(var(--header-height) - 5px);
+    left: 24px;
+    width: 260px;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    padding: 32px 24px;
+    gap: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    align-items: flex-start;
+    z-index: 1000;
   }
   .nav-links.active {
     display: flex;
   }
+  .nav-links li {
+    width: 100%;
+    list-style: none;
+    display: block;
+  }
+  .nav-links a {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    display: block;
+    width: 100%;
+    padding: 0;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  .nav-links a::after {
+    display: none !important;
+  }
+  .nav-links a:hover {
+    color: var(--color-secondary) !important;
+    transform: translateX(6px);
+  }
   .mobile-nav-btn {
     display: block;
+    font-family: inherit;
+    font-weight: bold;
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  /* Hide theme, language, and contact buttons on mobile to match the screenshot */
+  #btn-theme-toggle {
+    display: none !important;
+  }
+  .lang-selector-wrapper {
+    display: none !important;
+  }
+  #nav-btn-contact {
+    display: none !important;
+  }
+  /* Style login button on mobile as a clean text link */
+  #btn-login-trigger {
+    background: none !important;
+    border: none !important;
+    color: var(--color-primary) !important;
+    font-weight: 700 !important;
+    font-size: 1.05rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    width: auto !important;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  #btn-login-trigger:hover {
+    color: var(--color-secondary) !important;
+    transform: translateX(6px);
+  }
+  .header-container {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 24px !important;
+    width: 100% !important;
+  }
+  .logo-wrapper, .brand {
+    order: 2 !important;
+  }
+  nav {
+    order: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+}
+
+/* Scaling down inline menu items on intermediate desktops (951px to 1250px) to prevent overflow */
+@media (min-width: 951px) and (max-width: 1250px) {
+  .nav-links {
+    gap: 12px !important;
+  }
+  .nav-links a {
+    font-size: 0.85rem !important;
+  }
+  .custom-lang-select {
+    padding: 6px 20px 6px 10px !important;
+    font-size: 0.75rem !important;
+  }
+  .btn-sm {
+    padding: 6px 10px !important;
+    font-size: 0.75rem !important;
   }
 }
 

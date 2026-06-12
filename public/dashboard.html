@@ -509,6 +509,8 @@
     /* SVG Interactive nodes hover styles */
     .twin-node {
       cursor: pointer;
+      transform-box: fill-box;
+      transform-origin: center;
       transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .twin-node:hover {
@@ -926,6 +928,7 @@
           <li><a href="index.html#services" id="nav-link-services">Services</a></li>
           <li><a href="dashboard.html" id="nav-link-dashboard" class="active" style="color: var(--color-secondary);">Dashboard</a></li>
           <li><a href="index.html#development" id="nav-link-svr">SVR Map</a></li>
+          <li><a href="index.html#sustainability" id="nav-link-sustainability">Smart Hub</a></li>
           <li><a href="index.html#cultural" id="nav-link-culture">Heritage</a></li>
           <li><a href="gallery.html" id="nav-link-gallery">Gallery</a></li>
           <li><a href="index.html#about" class="btn btn-primary btn-sm" id="nav-btn-contact" style="color: #fff; text-decoration: none;">Contact</a></li>
@@ -942,6 +945,11 @@
             <button class="btn btn-outline btn-sm" id="btn-theme-toggle" aria-label="Toggle Cultural Theme" style="border-color: var(--color-accent); color: var(--color-accent); margin-left: 6px;">
               <span id="theme-btn-icon">✨</span> <span id="theme-btn-text">Banjara Theme</span>
             </button>
+          </li>
+          <li>
+            <a href="index.html?openModal=modal-login" class="btn btn-primary btn-sm" id="btn-login-trigger" style="margin-left: 6px; background-color: var(--color-secondary); border-color: var(--color-secondary); color: #fff; text-decoration: none; display: inline-flex; align-items: center;">
+              <span>🔑</span> <span id="nav-login-text">Login</span>
+            </a>
           </li>
         </ul>
       </nav>
@@ -1675,9 +1683,11 @@
         '#nav-link-services': 'सेवाएं',
         '#nav-link-dashboard': 'डैशबोर्ड',
         '#nav-link-svr': 'एसवीआर मानचित्र',
+        '#nav-link-sustainability': 'स्मार्ट हब',
         '#nav-link-culture': 'धरोहर',
         '#nav-link-gallery': 'गैलरी',
         '#nav-btn-contact': 'संपर्क',
+        '#nav-login-text': 'लॉगिन',
         '#dash-main-title': 'पंचायत कमांड सेंटर',
         '#dash-main-subtitle': 'सीतारामपुरम टांडा वास्तविक समय विश्लेषण और शासन डैशबोर्ड',
         '#btn-text-print': 'पंचायत रिपोर्ट',
@@ -1726,9 +1736,11 @@
         '#nav-link-services': 'సేవలు',
         '#nav-link-dashboard': 'డ్యాష్‌బోర్డ్',
         '#nav-link-svr': 'SVR మ్యాప్',
+        '#nav-link-sustainability': 'స్మార్ట్ హబ్',
         '#nav-link-culture': 'వారసత్వం',
         '#nav-link-gallery': 'గ్యాలరీ',
         '#nav-btn-contact': 'సంప్రదించండి',
+        '#nav-login-text': 'లాగిన్',
         '#dash-main-title': 'పంచాయతీ కమాండ్ సెంటర్',
         '#dash-main-subtitle': 'సీతారామపురం తండా రియల్-టైమ్ అనలిటిక్స్ & గవర్నెన్స్ డ్యాష్‌బోర్డ్',
         '#btn-text-print': 'పంచాయతీ రిపోర్ట్',
@@ -1836,10 +1848,21 @@
       const mobileToggle = document.getElementById('mobile-menu-toggle');
       const navLinks = document.getElementById('navigation-links');
       if (mobileToggle && navLinks) {
+        mobileToggle.textContent = '☰';
         mobileToggle.addEventListener('click', () => {
           const expanded = mobileToggle.getAttribute('aria-expanded') === 'true';
           mobileToggle.setAttribute('aria-expanded', !expanded);
           navLinks.classList.toggle('active');
+          mobileToggle.textContent = !expanded ? '|||' : '☰';
+        });
+
+        // Close mobile nav when clicking a link
+        navLinks.querySelectorAll('a, button').forEach(el => {
+          el.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            mobileToggle.textContent = '☰';
+          });
         });
       }
 

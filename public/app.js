@@ -129,10 +129,13 @@ function initMobileNav() {
   
   if (!toggleBtn || !navLinks) return;
   
+  toggleBtn.textContent = '☰';
+  
   toggleBtn.addEventListener('click', () => {
     const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
     toggleBtn.setAttribute('aria-expanded', !isExpanded);
     navLinks.classList.toggle('active');
+    toggleBtn.textContent = !isExpanded ? '|||' : '☰';
   });
 
   // Close mobile nav when clicking a link
@@ -140,6 +143,7 @@ function initMobileNav() {
     el.addEventListener('click', () => {
       navLinks.classList.remove('active');
       toggleBtn.setAttribute('aria-expanded', 'false');
+      toggleBtn.textContent = '☰';
     });
   });
 }
@@ -1950,8 +1954,10 @@ const translationDictionary = {
     '#nav-link-services': 'सेवाएं',
     '#nav-link-dashboard': 'डैशबोर्ड',
     '#nav-link-svr': 'एसवीआर मानचित्र',
+    '#nav-link-sustainability': 'स्मार्ट हब',
     '#nav-link-culture': 'धरोहर',
     '#nav-btn-contact': 'संपर्क',
+    '#nav-login-text': 'लॉगिन',
     '#hero-subtitle-text': 'सीतारामपुरम टांडा में स्वागत है',
     '#hero-welcome-title': '"धरोहर का संरक्षण, सतत प्रगति का प्रयास"',
     '#hero-tagline-text': 'ग्राम पंचायत का आधिकारिक नागरिक और कल्याण पोर्टल',
@@ -2209,8 +2215,10 @@ const translationDictionary = {
     '#nav-link-services': 'సేవలు',
     '#nav-link-dashboard': 'డ్యాష్‌బోర్డ్',
     '#nav-link-svr': 'SVR మ్యాప్',
+    '#nav-link-sustainability': 'స్మార్ట్ హబ్',
     '#nav-link-culture': 'వారసత్వం',
     '#nav-btn-contact': 'సంప్రదించండి',
+    '#nav-login-text': 'లాగిన్',
     '#hero-subtitle-text': 'సీతారామపురం తండాకు సుస్వాగతం',
     '#hero-welcome-title': '"వారసత్వాన్ని కాపాడుతూ, స్థిరమైన ప్రగతి సాధించడం"',
     '#hero-tagline-text': 'గ్రామ పంచాయతీ అధికారిక సివిక్ & సంక్షేమ పోర్టల్',
