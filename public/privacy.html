@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | Seetharampuram Thanda Gram Panchayat</title>
+  <meta name="description" content="Official data privacy policy, residency survey protection rules, and grievance data security details for Seetharampuram Thanda Gram Panchayat.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .privacy-body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-bg-base);
+    }
+    
+    .privacy-hero {
+      padding: 140px 0 70px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(12, 28, 18, 0.95), rgba(46, 125, 50, 0.9)), url('assets/housing_layout.png') center/cover;
+    }
+
+    body.banjara-active .privacy-hero {
+      background: linear-gradient(135deg, rgba(45, 6, 18, 0.95), rgba(216, 67, 21, 0.9)), url('assets/housing_layout.png') center/cover;
+    }
+
+    .privacy-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .privacy-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 12px;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .privacy-desc {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.85);
+      max-width: 650px;
+      margin: 0 auto;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .privacy-container {
+      background: var(--color-bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      padding: 40px;
+      box-shadow: var(--shadow-md);
+      margin: 40px 0 80px;
+    }
+
+    .policy-section {
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 24px;
+    }
+
+    .policy-section:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .policy-section h2 {
+      font-size: 1.4rem;
+      color: var(--color-primary);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .policy-section p, .policy-section ul {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: var(--color-text-dark);
+    }
+
+    .policy-section ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+
+    .policy-section li {
+      margin-bottom: 8px;
+    }
+
+    /* Toast styling */
+    .alert-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      padding: 16px 28px;
+      border-radius: var(--radius-md);
+      background-color: var(--color-bg-card);
+      color: var(--color-text-dark);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(150%);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+      z-index: 1005;
+      border-left: 5px solid var(--color-success);
+    }
+    .alert-popup.active {
+      transform: translateY(0);
+    }
+
+    /* Return button styling */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: 2px solid rgba(255,255,255,0.4);
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      transition: all 0.3s;
+    }
+
+    .back-btn:hover {
+      background-color: #ffffff;
+      color: var(--color-primary);
+      border-color: #ffffff;
+      transform: translateX(-4px);
+    }
+  </style>
+</head>
+<body class="privacy-body ready">
+
+  <!-- ==========================================
+       HEADER / NAVIGATION
+       ========================================== -->
+  <header class="header-bar" id="main-header" style="position: absolute; left: 0; right: 0; width: 100%; background: transparent; box-shadow: none; border: none;">
+    <div class="container header-container">
+      <a href="index.html" class="brand" id="brand-logo-link" aria-label="Seetharampuram Thanda Gram Panchayat Home">
+        <svg class="emblem-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="4"/>
+          <circle cx="50" cy="50" r="41" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 2"/>
+          <path d="M20,65 Q50,55 80,65 L80,85 Q50,75 20,85 Z" fill="var(--color-secondary-light)" opacity="0.3"/>
+          <path d="M15,75 Q50,65 85,75 L85,88 L15,88 Z" fill="currentColor"/>
+          <circle cx="50" cy="50" r="14" fill="var(--color-accent)"/>
+          <line x1="50" y1="24" x2="50" y2="16" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="50" y1="76" x2="50" y2="84" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="24" y1="50" x2="16" y2="50" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <line x1="76" y1="50" x2="84" y2="50" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round"/>
+          <path d="M50,70 C40,55 45,40 50,45 C55,40 60,55 50,70 Z" fill="currentColor"/>
+        </svg>
+        <div class="brand-text">
+          <h1 id="gp-brand-title" style="color:#ffffff;">Seetharampuram Thanda</h1>
+          <p id="gp-brand-subtitle" style="color:rgba(255,255,255,0.75);">Gram Panchayat Portal</p>
+        </div>
+      </a>
+      
+      <nav aria-label="Main navigation menu">
+        <ul class="nav-links" id="navigation-links">
+          <li>
+            <div class="lang-selector-wrapper">
+              <select id="lang-select" class="custom-lang-select" aria-label="Select Language" style="background-color: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.4);">
+                <option value="en" style="color:#000;">English</option>
+                <option value="hi" style="color:#000;">हिन्दी (Hindi)</option>
+                <option value="te" style="color:#000;">తెలుగు (Telugu)</option>
+              </select>
+            </div>
+          </li>
+          <li>
+            <a href="index.html" class="back-btn" id="btn-back-home">
+              ← Return Home
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       HERO BANNER
+       ========================================== -->
+  <section class="privacy-hero">
+    <div class="container privacy-hero-content">
+      <h1 class="privacy-title" id="privacy-main-heading">Privacy Policy</h1>
+      <p class="privacy-desc" id="privacy-main-desc">Official guidelines concerning information protection, survey data security, and grievance encryption on the Seetharampuram Thanda Panchayat Portal.</p>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MAIN CONTENT CONTAINER
+       ========================================== -->
+  <main class="flex-grow">
+    <div class="container">
+      <div class="privacy-container">
+        
+        <!-- Section 1: Introduction -->
+        <article class="policy-section">
+          <h2 id="policy-title-intro">1. Introduction & Scope</h2>
+          <p id="policy-body-intro">
+            Welcome to the Seetharampuram Thanda Gram Panchayat Digital Portal. We are committed to protecting the privacy of our residents. This policy outlines the kinds of information collected through our official portal, how we process it, and the data protection measures in place under current municipal and electronic communication frameworks.
+          </p>
+        </article>
+
+        <!-- Section 2: Info We Collect -->
+        <article class="policy-section">
+          <h2 id="policy-title-collect">2. Information We Collect</h2>
+          <p id="policy-body-collect-desc">
+            To provide direct administrative certificates, support agrarian planning, and audit public basic facilities, the portal processes three categories of data:
+          </p>
+          <ul id="policy-body-collect-list">
+            <li><strong>Survey Demographics:</strong> Anonymous, aggregated survey metrics including population figures, literacy rates, age group distributions, and student transport rolls.</li>
+            <li><strong>Self-Reported Household Upgrades:</strong> Voluntary submissions from families updating their amenity status (such as clean energy adoption, toilet usage, and tap water connections) using household identifiers.</li>
+            <li><strong>Public Grievances:</strong> Voluntary complaints and tickets submitted by residents containing their name, telephone contact, and details of municipal issues.</li>
+          </ul>
+        </article>
+
+        <!-- Section 3: How We Use Data -->
+        <article class="policy-section">
+          <h2 id="policy-title-usage">3. How We Use Your Information</h2>
+          <p id="policy-body-usage-desc">
+            The collected details are strictly utilized to coordinate and improve local administrative operations, including:
+          </p>
+          <ul id="policy-body-usage-list">
+            <li>Tracking and adjusting the Smart Village Rating (SVR) evaluations.</li>
+            <li>Directing Panchayat budget allocations to under-served areas (e.g. scheduling desilting works for southern drainage sectors, solar battery checks).</li>
+            <li>Forwarding public grievances to the relevant local authorities (AE Panchayat Engineering, Health Subcenter ASYN units) for direct resolution.</li>
+          </ul>
+        </article>
+
+        <!-- Section 4: Security & Encryption -->
+        <article class="policy-section">
+          <h2 id="policy-title-security">4. Data Security & Encryption</h2>
+          <p id="policy-body-security">
+            The security of resident data is a top priority. All submitted personal credentials, contact phone numbers, and grievance descriptions are secured with local **AES-256 encryption** algorithms. This prevents unauthorized database modifications and ensures that sensitive communication is accessible only to authorized administrative staff.
+          </p>
+        </article>
+
+        <!-- Section 5: Sharing & Disclosure -->
+        <article class="policy-section">
+          <h2 id="policy-title-sharing">5. Information Sharing & Disclosure</h2>
+          <p id="policy-body-sharing">
+            We do not sell, rent, or distribute resident profiles or survey records to third-party organizations. Information is disclosed only to Mandal/District government engineering teams or utility technical units directly involved in resolving specific grievances or deploying infrastructure budgets.
+          </p>
+        </article>
+
+        <!-- Section 6: Rights of Residents -->
+        <article class="policy-section">
+          <h2 id="policy-title-rights">6. Resident Rights</h2>
+          <p id="policy-body-rights">
+            Residents maintain complete ownership of their voluntarily submitted data. You have the right to inspect your self-reported household profiles, request corrections of typographical errors, or request the deletion of active grievance logs by visiting the Panchayat Office.
+          </p>
+        </article>
+
+        <!-- Section 7: Contact Info -->
+        <article class="policy-section">
+          <h2 id="policy-title-contact">7. Contact Information</h2>
+          <p id="policy-body-contact">
+            For questions regarding data privacy rules or to request a record review, you may contact the Office of the Panchayat Secretary or Sarpanch Devika at the Gram Panchayat Headquarters, Seetharampuram Thanda, Palnadu District, Andhra Pradesh.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer-bottom" style="padding: 24px 0; background: var(--color-primary); color: #fff; text-align: center; font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.1);">
+    <div class="container">
+      <p id="footer-text-1">© 2026 Seetharampuram Thanda Panchayat | Department of Rural Development</p>
+      <p id="footer-text-2" style="opacity:0.75; font-size:0.75rem; margin-top:4px;">Official Digital Civic Node | Andhra Pradesh State Government</p>
+      <div class="footer-nav-links" style="margin-top: 8px; display: flex; justify-content: center; gap: 16px; font-size: 0.8rem;">
+        <a href="index.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">Home</a> |
+        <a href="dashboard.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">Dashboard</a> |
+        <a href="pillars.html" style="color: rgba(255,255,255,0.8); text-decoration: none;">Pillar Reports</a> |
+        <a href="privacy.html" style="color: #ffffff; text-decoration: underline; font-weight: bold;">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="alert-popup" id="alert-toast" role="alert" aria-live="polite">
+    <span id="toast-message">Language loaded!</span>
+  </div>
+
+  <!-- ==========================================
+       CLIENT SIDE I18N ENGINE
+       ========================================== -->
+  <script>
+    let currentLanguage = 'en';
+    let originalTexts = {};
+
+    const translationDictionary = {
+      hi: {
+        '#privacy-main-heading': 'गोपनीयता नीति',
+        '#privacy-main-desc': 'सीतारामपुरम टांडा पंचायत पोर्टल पर सूचना संरक्षण, सर्वेक्षण डेटा सुरक्षा और शिकायत एन्क्रिप्शन से संबंधित आधिकारिक दिशानिर्देश।',
+        '#btn-back-home': '← मुख्य पृष्ठ',
+        '#footer-text-1': '© 2026 सीतारामपुरम टांडा पंचायत | ग्रामीण विकास विभाग',
+        '#footer-text-2': 'आधिकारिक डिजिटल नागरिक नोड | आंध्र प्रदेश राज्य सरकार',
+        '#policy-title-intro': '1. परिचय और क्षेत्र',
+        '#policy-body-intro': 'सीतारामपुरम टांडा ग्राम पंचायत डिजिटल पोर्टल पर आपका स्वागत है। हम अपने निवासियों की गोपनीयता की रक्षा के लिए प्रतिबद्ध हैं। यह नीति हमारे आधिकारिक पोर्टल के माध्यम से एकत्र की जाने वाली जानकारी के प्रकार, हम इसे कैसे संसाधित करते हैं, और वर्तमान नगरपालिका और इलेक्ट्रॉनिक संचार नियमों के तहत लागू किए गए डेटा सुरक्षा उपायों को रेखांकित करती है।',
+        '#policy-title-collect': '2. एकत्रित की जाने वाली जानकारी',
+        '#policy-body-collect-desc': 'सीधे प्रशासनिक प्रमाणपत्र प्रदान करने, कृषि योजना का समर्थन करने और बुनियादी सुविधाओं का निरीक्षण करने के लिए पोर्टल तीन श्रेणियों के डेटा को संसाधित करता है:',
+        '#policy-body-collect-list': '<li><strong>सर्वेक्षण जनसांख्यिकी:</strong> जनसंख्या के आंकड़े, साक्षरता दर, आयु समूह वितरण और छात्र परिवहन सूची सहित अज्ञात और समेकित सर्वेक्षण मेट्रिक्स।</li><li><strong>स्व-रिपोर्ट की गई घरेलू सुविधाएं:</strong> घरेलू आईडी का उपयोग करके स्वच्छ ऊर्जा अपनाने, शौचालय के उपयोग और नल जल कनेक्शन जैसी अपनी सुख-सुविधाओं की स्थिति को अपडेट करने वाले परिवारों द्वारा स्वैच्छिक सबमिशन।</li><li><strong>सार्वजनिक शिकायतें:</strong> निवासियों द्वारा स्वेच्छा से दर्ज शिकायतें जिसमें उनका नाम, टेलीफोन नंबर और नगरपालिका समस्याओं का विवरण शामिल होता है।</li>',
+        '#policy-title-usage': '3. हम आपकी जानकारी का उपयोग कैसे करते हैं',
+        '#policy-body-usage-desc': 'एकत्रित विवरणों का उपयोग स्थानीय प्रशासनिक कार्यों के समन्वय और सुधार के लिए किया जाता है, जिसमें निम्न शामिल हैं:',
+        '#policy-body-usage-list': '<li>स्मार्ट ग्राम रेटिंग (SVR) मूल्यांकन का निरीक्षण और समायोजन करना।</li><li>पंचायत बजट आवंटन को उन क्षेत्रों में निर्देशित करना जहाँ सेवा की कमी है (उदा. दक्षिणी निकासी नालियों की गाद निकालना, सौर बैटरी की जांच करना)।</li><li>सार्वजनिक शिकायतों को सीधे समाधान के लिए संबंधित स्थानीय अधिकारियों (एई पंचायत इंजीनियरिंग, स्वास्थ्य उपकेंद्र) को अग्रेषित करना।</li>',
+        '#policy-title-security': '4. डेटा सुरक्षा और एन्क्रिप्शन',
+        '#policy-body-security': 'निवासियों के डेटा की सुरक्षा हमारी सर्वोच्च प्राथमिकता है। सबमिट किए गए सभी व्यक्तिगत विवरण, संपर्क फोन नंबर और शिकायतों के विवरण स्थानीय **AES-256 एन्क्रिप्शन** एल्गोरिदम के साथ सुरक्षित किए जाते हैं। यह डेटाबेस में अनधिकृत संशोधनों को रोकता है और यह सुनिश्चित करता है कि संवेदनशील जानकारी केवल अधिकृत कर्मचारियों के लिए ही सुलभ हो।',
+        '#policy-title-sharing': '5. जानकारी साझा करना और प्रकटीकरण',
+        '#policy-body-sharing': 'हम निवासियों के प्रोफाइल या सर्वेक्षण रिकॉर्ड को किसी तीसरे पक्ष के संगठनों को बेचते, किराए पर देते या वितरित नहीं करते हैं। जानकारी केवल मंडल/जिला सरकारी इंजीनियरिंग टीमों या तकनीकी इकाइयों को ही प्रकट की जाती है जो शिकायतों के समाधान या बुनियादी ढांचा बजट को लागू करने में सीधे शामिल हैं।',
+        '#policy-title-rights': '6. निवासियों के अधिकार',
+        '#policy-body-rights': 'निवासी स्वेच्छा से सबमिट किए गए अपने डेटा का पूर्ण स्वामित्व बनाए रखते हैं। आपको अपनी स्व-रिपोर्ट की गई घरेलू प्रोफाइल का निरीक्षण करने, गलतियों को सुधारने का अनुरोध करने, या पंचायत कार्यालय का दौरा करके शिकायतों को हटाने का अनुरोध करने का अधिकार है।',
+        '#policy-title-contact': '7. संपर्क जानकारी',
+        '#policy-body-contact': 'डेटा गोपनीयता नियमों के संबंध में किसी भी प्रश्न के लिए या रिकॉर्ड समीक्षा का अनुरोध करने के लिए, आप ग्राम पंचायत मुख्यालय, सीतारामपुरम टांडा, पलनाडु जिला, आंध्र प्रदेश में पंचायत सचिव या सरपंच देविका के कार्यालय से संपर्क कर सकते हैं।'
+      },
+      te: {
+        '#privacy-main-heading': 'వ్యక్తిగత సమాచార రక్షణ విధానం (Privacy Policy)',
+        '#privacy-main-desc': 'సీతారామపురం తండా పంచాయితీ పోర్టల్ ద్వారా పౌరుల సమాచార రక్షణ, సర్వేల భద్రత మరియు ఫిర్యాదుల గోప్యతకు సంబంధించిన అధికారిక మార్గదర్శకాలు.',
+        '#btn-back-home': '← హోమ్ పేజీ',
+        '#footer-text-1': '© 2026 సీతారామపురం తండా పంచాయితీ | గ్రామీణాభివృద్ధి శాఖ',
+        '#footer-text-2': 'అధికారిక డిజిటల్ సివిక్ నోడ్ | ఆంధ్రప్రదేశ్ ప్రభుత్వ రాష్ట్రం',
+        '#policy-title-intro': '1. పరిచయం & పరిధి',
+        '#policy-body-intro': 'సీతారామపురం తండా గ్రామ పంచాయతీ డిజిటల్ పోర్టల్‌కు స్వాగతం. గ్రామస్తుల వ్యక్తిగత వివరాల గోప्यతను రక్షించడానికి మేము కట్టుబడి ఉన్నాము. ఈ విధానం మా అధికారిక పోర్టల్ సేకరించే సమాచార రకాలు, మేము దానిని ఎలా ప్రాసెస్ చేస్తాము మరియు పౌర నిబంధనల ప్రకారం అమలులో ఉన్న భద్రతా చర్యలను వివరిస్తుంది.',
+        '#policy-title-collect': '2. మేము సేకరించే సమాచారం',
+        '#policy-body-collect-desc': 'పౌర సేవలు అందించడానికి, వ్యవసాయ ప్రణాళికలు రూపొందించడానికి మరియు మౌలిక సదుపాయాలను పర్యవేక్షించడానికి పోర్టల్ మూడు రకాల సమాచారాన్ని సేకరిస్తుంది:',
+        '#policy-body-collect-list': '<li><strong>సర్వేల వివరాలు:</strong> జనాభా లెక్కలు, అక్షరాస్యత శాతాలు, వయస్సు విభాగాల నిష్పత్తి మరియు విద్యార్థుల రవాణా పాస్‌ల వంటి అనామక మరియు సమగ్ర సర్వే నివేదికలు.</li><li><strong>గృహ సదుపాయాల సమాచారం:</strong> ఇళ్ల ఐడీలను ఉపయోగించి పర్యావరణ రహిత ఇంధన వాడకం, వ్యక్తిగత మరుగుదొడ్ల వినియోగం మరియు కుళాయి నీటి కనెక్షన్ వంటి వివరాలను నివాసితులు స్వచ్ఛందంగా సమర్పించినవి.</li><li><strong>సమస్యల ఫిర్యాదులు:</strong> పౌరులు తమ సమస్యలను పరిష్కరించుకోవడానికి స్వచ్ఛందంగా సమర్పించే ఫిర్యాదులు, వీటిలో పౌరుడి పేరు, ఫోన్ నంబర్ మరియు సమస్య వివరాలు ఉంటాయి.</li>',
+        '#policy-title-usage': '3. మేము సమాచారాన్ని ఎలా ఉపయోగిస్తాము',
+        '#policy-body-usage-desc': 'సేకరించిన సమాచారం పూర్తిగా స్థానిక పరిపాలనా పనులను సమన్వయం చేయడానికి మరియు మెరుగుపరచడానికి మాత్రమే ఉపయోగించబడుతుంది, వాటిలో ముఖ్యమైనవి:',
+        '#policy-body-usage-list': '<li>స్మార్ట్ విలేజ్ రేటింగ్ (SVR) అంచనాలను పర్యవేక్షించడం మరియు సవరించడం.</li><li>అభివృద్ధి నిధులను అవసరమైన ప్రాంతాలకు కేటాయించడం (ఉదా. దక్షిణ కాలువల పూడికతీత పనులు, సోలార్ బ్యాటరీల నిర్వహణ).</li><li>సమస్యల పరిష్కారం కొరకు ఫిర్యాదులను నేరుగా సంబంధిత అధికారులకు (AE పంచాయతీ ఇంజనీరింగ్, ప్రాథమిక ఆరోగ్య కేంద్రం) బదిలీ చేయడం.</li>',
+        '#policy-title-security': '4. సమాచార భద్రత & ఎన్‌క్రిప్షన్',
+        '#policy-body-security': 'పౌరుల సమాచార భద్రత మా మొదటి ప్రాధాన్యత. సమర్పించిన అన్ని వ్యక్తిగత వివరాలు, ఫోన్ నంబర్లు మరియు ఫిర్యాదుల సమాచారం స్థానిక **AES-256 ఎన్‌క్రిప్షన్** ద్వారా భద్రపరచబడుతుంది. దీనివల్ల అనుమతి లేని వ్యక్తులు డేటాను సవరించలేరు మరియు కేవలం అధికారిక సిబ్బందికి మాత్రమే సమాచారం అందుబాటులో ఉంటుంది.',
+        '#policy-title-sharing': '5. సమాచార బదిలీ & బహిర్గతం',
+        '#policy-body-sharing': 'మేము నివాసితుల వ్యక్తిగत ప్రొఫైల్‌లను లేదా సర్వే వివరాలను ఎలాంటి మూడవ పక్ష సంస్థలకు (Third-party) విక్రయించము లేదా బదిలీ చేయము. సమస్యల పరిష్కారం మరియు అభివృద్ధి పనుల నిధుల కేటాయింపులో పాల్గొనే ప్రభుత్వ శాఖల అధికారులకు మాత్రమే అవసరమైన మేరకు వివరాలు బహిర్గతం చేయబడతాయి.',
+        '#policy-title-rights': '6. గ్రామస్తుల హక్కులు',
+        '#policy-body-rights': 'గ్రామస్తులు తాము స్వచ్ఛందంగా సమర్పించిన వివరాలపై పూర్తి హక్కులు కలిగి ఉంటారు. మీ గృహ సదుపాయాల ప్రొఫైల్‌లను తనిఖీ చేయడానికి, పొరపాట్లను సవరించడానికి, లేదా ఫిర్యాదులను తొలగించవలసిందిగా కోరడానికి మీరు పంచాయతీ కార్యాలయాన్ని సంప్రదించవచ్చు.',
+        '#policy-title-contact': '7. సంప్రదింపు సమాచారం',
+        '#policy-body-contact': 'సమాచార గోప్యత నిబంధనలకు సంబంధించి ఏవైనా సందేహాలున్నా లేదా రికార్డులను పరిశీలించాలన్నా, మీరు ఆంధ్రప్రదేశ్ పల్నాడు జిల్లాలోని సీతారామపురం తండా గ్రామ పంచాయతీ కార్యాలయంలోని పంచాయతీ కార్యదర్శి లేదా సర్పంచ్ దేవికను సంప్రదించవచ్చు.'
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.add('ready');
+
+      // Sync theme preference
+      const savedTheme = localStorage.getItem('panchayat-theme');
+      if (savedTheme === 'banjara' || (!savedTheme && document.body.classList.contains('banjara-active'))) {
+        document.body.classList.add('banjara-active');
+      } else if (savedTheme === 'eco') {
+        document.body.classList.remove('banjara-active');
+      }
+
+      // Initialize translation original texts
+      const selectors = Object.keys(translationDictionary.hi);
+      selectors.forEach(sel => {
+        const el = document.querySelector(sel);
+        if (el) {
+          originalTexts[sel] = el.innerHTML.trim();
+        }
+      });
+
+      // Load saved language preference
+      const savedLang = localStorage.getItem('panchayat-lang') || 'en';
+      currentLanguage = savedLang;
+      
+      const select = document.getElementById('lang-select');
+      if (select) {
+        select.value = savedLang;
+        applyTranslation(savedLang);
+
+        select.addEventListener('change', (e) => {
+          const lang = e.target.value;
+          currentLanguage = lang;
+          localStorage.setItem('panchayat-lang', lang);
+          applyTranslation(lang);
+          const toastMsg = lang === 'hi' ? '🇮🇳 भाषा बदलकर हिंदी कर दी गई है।' : lang === 'te' ? '🇮🇳 భాష తెలుగులోకి మార్చబడింది.' : '🇬🇧 Language switched to English.';
+          showToast(toastMsg, 'success');
+        });
+      }
+    });
+
+    function applyTranslation(lang) {
+      currentLanguage = lang;
+      document.body.classList.remove('lang-en', 'lang-hi', 'lang-te');
+      document.body.classList.add('lang-' + lang);
+      document.documentElement.setAttribute('lang', lang);
+
+      const selectors = Object.keys(translationDictionary.hi);
+      selectors.forEach(sel => {
+        const el = document.querySelector(sel);
+        if (!el) return;
+
+        if (lang === 'en') {
+          if (originalTexts[sel]) {
+            el.innerHTML = originalTexts[sel];
+          }
+        } else {
+          if (translationDictionary[lang] && translationDictionary[lang][sel]) {
+            el.innerHTML = translationDictionary[lang][sel];
+          }
+        }
+      });
+    }
+
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('alert-toast');
+      const toastMsg = document.getElementById('toast-message');
+      if (toast && toastMsg) {
+        toastMsg.textContent = message;
+        toast.className = 'alert-popup active';
+        if (type === 'error') {
+          toast.style.borderLeftColor = 'var(--color-error)';
+        } else if (type === 'warning') {
+          toast.style.borderLeftColor = 'var(--color-warning)';
+        } else {
+          toast.style.borderLeftColor = 'var(--color-success)';
+        }
+        setTimeout(() => {
+          toast.classList.remove('active');
+        }, 3000);
+      }
+    }
+  </script>
+</body>
+</html>
