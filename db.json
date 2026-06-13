@@ -737,10 +737,10 @@
         "te": "దక్షిణ కాలువలకు పూడికతీత మరియు కాంక్రీటు బలోపేతం అవసరం."
       },
       "streetlights": {
-        "status": "good",
-        "en": "85 automated smart solar LED street lights installed.",
-        "hi": "85 स्वचालित स्मार्ट सौर एलईडी स्ट्रीट लाइटें स्थापित की गईं।",
-        "te": "85 ఆటోమేటెడ్ స్మార్ట్ సోలార్ LED వీధి దీపాలు ఏర్పాటు చేయబడ్డాయి."
+        "status": "needs_improvement",
+        "en": "85 automated smart solar LED street lights installed. However, battery maintenance is required in some sectors.",
+        "hi": "85 स्वचालित स्मार्ट सौर एलईडी स्ट्रीट लाइटें स्थापित की गईं। हालांकि, कुछ क्षेत्रों में बैटरी रखरखाव की आवश्यकता है।",
+        "te": "85 ఆటోమేటెడ్ స్మార్ట్ సోలార్ LED వీధి దీపాలు ఏర్పాటు చేయబడ్డాయి. అయితే, కొన్ని ప్రాంతాలలో బ్యాటరీల మరమ్మత్తు అవసరం."
       },
       "bus": {
         "status": "needs_improvement",
