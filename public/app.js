@@ -302,13 +302,6 @@ function initModals() {
     });
   }
 
-  const privacyBtn = document.getElementById('footer-link-privacy');
-  if (privacyBtn) {
-    privacyBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      showToast('🔒 Privacy: Citizen data is protected by the Gram Panchayat Privacy Act.', 'info');
-    });
-  }
 
   // Health button trigger is handled automatically via modalTriggers list config
 
