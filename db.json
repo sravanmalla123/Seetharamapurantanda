@@ -88,364 +88,416 @@
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": false
+      "ownHouse": false,
+      "aadhaar": true
     },
     "HH-102": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-103": {
       "privateToilet": false,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-104": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": false,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-105": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-106": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-107": {
       "privateToilet": false,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": false
+      "ownHouse": false,
+      "aadhaar": true
     },
     "HH-108": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-109": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-110": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-111": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-112": {
       "privateToilet": false,
       "vehicle": false,
       "tapWater": false,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-113": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": false
+      "ownHouse": false,
+      "aadhaar": true
     },
     "HH-114": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-115": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-116": {
       "privateToilet": false,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-117": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-118": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-119": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": false
+      "ownHouse": false,
+      "aadhaar": true
     },
     "HH-120": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-121": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-122": {
       "privateToilet": false,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-123": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-124": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-125": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": false
+      "ownHouse": false,
+      "aadhaar": true
     },
     "HH-126": {
       "privateToilet": false,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-127": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-128": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-129": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-130": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-131": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": false
+      "ownHouse": false,
+      "aadhaar": true
     },
     "HH-132": {
       "privateToilet": false,
       "vehicle": false,
       "tapWater": false,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-133": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-134": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-135": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-136": {
       "privateToilet": false,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-137": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": false
+      "ownHouse": false,
+      "aadhaar": true
     },
     "HH-138": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-139": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-140": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-141": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-142": {
       "privateToilet": false,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-143": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": false
+      "ownHouse": false,
+      "aadhaar": true
     },
     "HH-144": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-145": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-146": {
       "privateToilet": false,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-147": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-148": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-149": {
       "privateToilet": true,
       "vehicle": false,
       "tapWater": true,
       "cleanEnergy": false,
-      "ownHouse": false
+      "ownHouse": false,
+      "aadhaar": true
     },
     "HH-150": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-301": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": false,
       "cleanEnergy": false,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     },
     "HH-999": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": true
+      "ownHouse": true,
+      "aadhaar": true
     }
   },
   "certificates": {},
