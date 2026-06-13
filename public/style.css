@@ -2833,6 +2833,15 @@ body {
 .lang-selector-wrapper {
   display: inline-flex;
   align-items: center;
+  gap: 4px;
+}
+
+.lang-selector-wrapper::before {
+  content: "🌐";
+  font-size: 1rem;
+  margin-right: 4px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .custom-lang-select {
