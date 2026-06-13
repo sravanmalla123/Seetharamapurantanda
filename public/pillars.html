@@ -178,10 +178,15 @@
     /* Right Column Metrics Grid */
     .metric-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
       margin-top: 0;
       margin-bottom: 24px;
+    }
+    @media (max-width: 992px) {
+      .metric-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
     @media (max-width: 576px) {
       .metric-grid {
@@ -2997,6 +3002,52 @@
         }
       });
 
+      // Calculate Total Credits and Points
+      let creditCount = langData.milestones.length;
+      let totalPoints = 0;
+      let hasPoints = false;
+      langData.milestones.forEach(m => {
+        if (typeof m === 'object' && m.points !== undefined) {
+          totalPoints += m.points;
+          hasPoints = true;
+        }
+      });
+
+      if (hasPoints) {
+        const totalTr = document.createElement('tr');
+        totalTr.style.borderTop = `2px solid ${theme.bg}`;
+        totalTr.style.fontWeight = 'bold';
+        totalTr.style.backgroundColor = theme.cardBg;
+        
+        const totalTdLabel = document.createElement('td');
+        totalTdLabel.setAttribute('colspan', '2');
+        totalTdLabel.style.padding = '12px';
+        totalTdLabel.style.textAlign = 'right';
+        totalTdLabel.style.color = theme.text;
+        totalTdLabel.style.fontSize = '0.95rem';
+        totalTdLabel.textContent = lang === 'hi' ? 'कुल मूल्यांकन अंक:' : lang === 'te' ? 'మొత్తం మూల్యాంకన పాయింట్లు:' : 'Total Evaluation Points:';
+        totalTr.appendChild(totalTdLabel);
+        
+        const totalTdVal = document.createElement('td');
+        totalTdVal.style.padding = '12px';
+        totalTdVal.style.textAlign = 'center';
+        
+        const totalBadge = document.createElement('span');
+        totalBadge.className = 'detail-points-badge';
+        totalBadge.style.backgroundColor = theme.progressBg;
+        totalBadge.style.color = '#ffffff';
+        totalBadge.style.fontWeight = '800';
+        totalBadge.style.fontSize = '0.95rem';
+        totalBadge.style.padding = '6px 12px';
+        
+        const totalText = lang === 'hi' ? `${totalPoints} अंक` : lang === 'te' ? `${totalPoints} పాయింట్లు` : `${totalPoints} Points`;
+        totalBadge.textContent = totalText;
+        totalTdVal.appendChild(totalBadge);
+        totalTr.appendChild(totalTdVal);
+        
+        table.appendChild(totalTr);
+      }
+
       milestonesList.appendChild(table);
 
       // Render Metrics
@@ -3012,6 +3063,40 @@
         `;
         metricsGrid.appendChild(card);
       });
+
+      // Render 4th Metric Card for SVR Credits and Total Points
+      let svrVal = '';
+      let svrLabel = '';
+      let svrDesc = '';
+      
+      if (lang === 'hi') {
+        svrVal = hasPoints ? `${creditCount} / ${totalPoints}` : `${creditCount}`;
+        svrLabel = hasPoints ? "कुल क्रेडिट / अंक" : "कुल क्रेडिट";
+        svrDesc = hasPoints 
+          ? `मूल्यांकन के लिए कुल ${totalPoints} अंकों के साथ ${creditCount} रेटिंग क्रेडिट।`
+          : `इस श्रेणी के तहत परिभाषित कुल ${creditCount} रेटिंग क्रेडिट।`;
+      } else if (lang === 'te') {
+        svrVal = hasPoints ? `${creditCount} / ${totalPoints}` : `${creditCount}`;
+        svrLabel = hasPoints ? "మొత్తం క్రెడిట్లు / పాయింట్లు" : "మొత్తం క్రెడిట్లు";
+        svrDesc = hasPoints 
+          ? `మూల్యాంకనం కొరకు మొత్తం ${totalPoints} పాయింట్లతో ${creditCount} రేటింగ్ క్రెడిట్లు.`
+          : `ఈ వర్గం క్రింద నిర్వచించబడిన మొత్తం ${creditCount} రేటింగ్ క్రెడిట్లు.`;
+      } else {
+        svrVal = hasPoints ? `${creditCount} / ${totalPoints}` : `${creditCount}`;
+        svrLabel = hasPoints ? "Credits / Total Points" : "Total Credits";
+        svrDesc = hasPoints 
+          ? `${creditCount} rating credits with a total of ${totalPoints} evaluation points.`
+          : `Total of ${creditCount} rating credits defined under this category.`;
+      }
+      
+      const svrCard = document.createElement('div');
+      svrCard.className = 'metric-card';
+      svrCard.innerHTML = `
+        <div class="metric-value" style="color: ${theme.progressBg};">${svrVal}</div>
+        <div class="metric-label" style="color: ${theme.text};">${svrLabel}</div>
+        <div class="metric-desc">${svrDesc}</div>
+      `;
+      metricsGrid.appendChild(svrCard);
 
       // Render Audits Table
       const tableBody = document.getElementById('audit-table-body');
