@@ -293,6 +293,114 @@
     .alert-popup.active {
       transform: translateY(0);
     }
+    
+    /* Expandable Milestones (Credits) Styles */
+    .milestone-row-expandable {
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .milestone-row-expandable:hover {
+      background-color: var(--color-secondary-pale) !important;
+    }
+    .expand-icon {
+      display: inline-block;
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+      margin-left: 6px;
+    }
+    .milestone-row-expandable.expanded .expand-icon {
+      transform: rotate(90deg);
+    }
+    .milestone-details-row {
+      transition: all 0.3s ease;
+    }
+    .milestone-details-container {
+      padding: 16px 20px;
+      font-size: 0.88rem;
+      color: var(--color-text-dark);
+      background-color: #ffffff;
+      border-radius: var(--radius-sm);
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      animation: slideDown 0.3s ease-out;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .detail-points-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      border-radius: var(--radius-full);
+      width: fit-content;
+    }
+    .detail-intent-block {
+      border-left: 4px solid var(--theme-border-color, var(--color-primary));
+      padding-left: 14px;
+      margin: 4px 0;
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .detail-requirements-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .detail-requirements-list li {
+      position: relative;
+      padding-left: 24px;
+      line-height: 1.4;
+    }
+    .detail-requirements-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 4px;
+      top: 0px;
+      color: var(--theme-text-color, var(--color-primary));
+      font-weight: 900;
+      font-size: 0.95rem;
+    }
+    .detail-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .detail-gallery-item {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      background-color: var(--color-bg-card);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .detail-gallery-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .detail-gallery-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+    .detail-gallery-caption {
+      padding: 8px 12px;
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      text-align: center;
+      background-color: var(--color-bg-base);
+      border-top: 1px solid var(--color-border);
+      line-height: 1.3;
+    }
   </style>
 </head>
 <body class="pillar-detail-body ready banjara-active">
@@ -827,16 +935,58 @@
           detailMatter: "The Seetharampuram Thanda Health Sub-Center is fully staffed with registered nurses and auxiliary nurse midwives (ANMs). Macherla Mandal PHC (15 km away) acts as our primary referral hospital. The sub-center is run by two dedicated ASHA workers, Devika and Laxmi, who manage emergency contacts. With 184 private household toilets and 2 community sanitary complexes, the village is certified 100% Open Defecation Free (ODF). Weekly sanitization audits and bleaching powder spraying are conducted to prevent seasonal vector-borne diseases. Monthly immunization drives (Polio, BCG, MMR) are held at the Anganwadi Center, supplemented by quarterly health camps.",
           imageCaption: "A clean community courtyard environment supporting hygiene initiatives.",
           milestones: [
-            "HH Credit 1: Solid Waste collection and Disposal",
-            "HH Credit 2: Clean Village",
-            "HH Credit 3: Drinking Water Availability",
-            "HH Credit 4: Clean Toilet/Sanitation Facility",
-            "HH Credit 5: Primary Healthcare Facility Access",
-            "HH Credit 6: Indoor Air Quality in household",
-            "HH Credit 7: Organic Waste Management",
-            "HH Credit 8: Sewage Handling Practices",
-            "HH Credit 9: Use of Organic Fertilizers",
-            "HH Credit 10: Recreational Area"
+            {
+              code: "HH Credit 1",
+              name: "Solid Waste collection and Disposal",
+              points: 3,
+              intent: "Facilitate segregation of village waste at source, so as to avoid diversion of such waste to land-fills, thereby eliminating associated health hazards.",
+              requirements: [
+                "Segregation of waste at Household (1 point): Recyclable, Biodegradable, E-waste",
+                "Contract with recyclers for plastic & paper waste (2 points)"
+              ],
+              images: [
+                { src: "assets/waste_composting.png", caption: "Waste Management At Vellaturu Village - Composting Pits" },
+                { src: "assets/waste_sorting.png", caption: "Waste Management At Vellaturu Village - Waste Segregation and Sorting" }
+              ]
+            },
+            {
+              code: "HH Credit 2",
+              name: "Clean Village",
+              points: 3,
+              intent: "Maintain cleanliness in the village, to ensure the well being of people and livestock.",
+              requirements: [
+                "Septic tanks in majority of household/ at community level",
+                "2 pit latrines in atleast 50% of household",
+                "Public Toilets",
+                "Cleanliness across livestock (Cattle shed, Poultry, Fish farming)",
+                "Clean Streets: 1 Dustbin per 500m of village streets, Cleaning of streets at least once a day",
+                "Prevent Mosquito Breeding: Avoid stagnant pools of water"
+              ],
+              images: [
+                { src: "assets/clean_village_drains.png", caption: "Clean Village - Drainage Channels and Filtration" },
+                { src: "assets/clean_village_streets.png", caption: "Clean Village - Well-maintained Green Streets" }
+              ]
+            },
+            {
+              code: "HH Credit 3",
+              name: "Drinking Water Availability",
+              points: 2,
+              intent: "Provide safe & adequate drinking water for villagers to eliminate water borne diseases, thereby enhancing the quality of life.",
+              requirements: [
+                "Safe Drinking water Unit for 100% of households (Community level)",
+                "Adequate drinking water availability (@2-3 liters per capita/ day)"
+              ],
+              images: [
+                { src: "assets/safe_drinking_water.png", caption: "Safe Drinking Water - RO Purification Plant at Pulluru" }
+              ]
+            },
+            { code: "HH Credit 4", name: "Sanitation Facility", points: 4 },
+            { code: "HH Credit 5", name: "Healthcare Facilities", points: 6 },
+            { code: "HH Credit 6", name: "Indoor Air Quality in Household", points: 2 },
+            { code: "HH Credit 7", name: "Organic Waste Management", points: 2 },
+            { code: "HH Credit 8", name: "Sewage Handling Practices", points: 1 },
+            { code: "HH Credit 9", name: "Use of Organic Fertilizers", points: 2 },
+            { code: "HH Credit 10", name: "Recreational Area", points: 2 }
           ],
           metrics: [
             { val: "98%", label: "Sub-Center Readiness", desc: "Equipped with essential medicines and first-aid gear." },
@@ -855,16 +1005,58 @@
           detailMatter: "सीतारामपुरम टांडा स्वास्थ्य उप-केंद्र पंजीकृत नर्सों और एएनएम के साथ संचालित है। माचेरला मंडल अस्पताल (15 किमी) प्राथमिक रेफरल अस्पताल है। दो समर्पित आशा कार्यकर्ता, देविका और लक्ष्मी, स्वास्थ्य सेवाओं और आपातकालीन संपर्कों का प्रबंधन करती हैं। 184 निजी शौचालयों और 2 सामुदायिक परिसरों के साथ गाँव को 100% खुले में शौच मुक्त (ODF) प्रमाणित किया गया है। मौसमी बीमारियों को रोकने के लिए साप्ताहिक स्वच्छता ऑडिट और ब्लीचिंग छिड़काव किया जाता है। आंगनवाड़ी केंद्र में हर महीने टीकाकरण अभियान और तिमाही स्वास्थ्य शिविर आयोजित किए जाते हैं।",
           imageCaption: "स्वच्छता और आरोग्य पहल का समर्थन करने वाला एक स्वच्छ सामुदायिक आंगन।",
           milestones: [
-            "HH क्रेडिट 1: ठोस कचरा संग्रह और निपटान",
-            "HH क्रेडिट 2: स्वच्छ ग्राम",
-            "HH क्रेडिट 3: पेयजल की उपलब्धता",
-            "HH क्रेडिट 4: स्वच्छता सुविधा",
-            "HH क्रेडिट 5: स्वास्थ्य सेवा सुविधा",
-            "HH क्रेडिट 6: घरों के भीतर वायु गुणवत्ता",
-            "HH क्रेडिट 7: जैविक कचरा प्रबंधन",
-            "HH क्रेडिट 8: सीवेज हैंडलिंग प्रथाएं",
-            "HH क्रेडिट 9: जैविक उर्वरकों का उपयोग",
-            "HH क्रेडिट 10: मनोरंजक क्षेत्र"
+            {
+              code: "HH क्रेडिट 1",
+              name: "ठोस कचरा संग्रह और निपटान",
+              points: 3,
+              intent: "कचरे को लैंड-फिल्ल में जाने से बचाने के लिए स्रोत पर ही ग्रामीण कचरे के पृथक्करण की सुविधा प्रदान करना, जिससे स्वास्थ्य संबंधी खतरों को समाप्त किया जा सके।",
+              requirements: [
+                "घरेलू स्तर पर कचरे का पृथक्करण (1 अंक): पुनर्चक्रण योग्य (रीसायकल), बायोडिग्रेडेबल (जैविक), ई-कचरा",
+                "प्लास्टिक और कागज के कचरे के लिए रीसायकलर्स के साथ अनुबंध (2 अंक)"
+              ],
+              images: [
+                { src: "assets/waste_composting.png", caption: "कचरा प्रबंधन के लिए केंचुआ खाद के गड्ढे - वेल्लातुरू गांव" },
+                { src: "assets/waste_sorting.png", caption: "कचरा पृथक्करण और छंटाई केंद्र - वेल्लातुरू गांव" }
+              ]
+            },
+            {
+              code: "HH क्रेडिट 2",
+              name: "स्वच्छ ग्राम",
+              points: 3,
+              intent: "लोगों और पशुधनों की भलाई सुनिश्चित करने के लिए गांव में स्वच्छता बनाए रखना।",
+              requirements: [
+                "अधिकांश घरों या सामुदायिक स्तर पर सेप्टिक टैंक",
+                "कम से कम 50% घरों में 2 गड्ढे वाले शौचालय",
+                "सार्वजनिक शौचालय",
+                "पशुधन स्वच्छता (गौशाला, मुर्गी पालन, मत्स्य पालन)",
+                "स्वच्छ सड़कें: प्रति 500 मीटर पर 1 डस्टबिन, दिन में कम से कम एक बार सड़कों की सफाई",
+                "मच्छरों के प्रजनन को रोकना: जलभराव वाले तालाबों से बचना"
+              ],
+              images: [
+                { src: "assets/clean_village_drains.png", caption: "स्वच्छ ग्राम जल निकासी चैनल और निस्पंदन" },
+                { src: "assets/clean_village_streets.png", caption: "हरित और स्वच्छ गांव की सड़कें" }
+              ]
+            },
+            {
+              code: "HH क्रेडिट 3",
+              name: "पेयजल की उपलब्धता",
+              points: 2,
+              intent: "जलजनित रोगों को समाप्त करने के लिए ग्रामीणों को सुरक्षित और पर्याप्त पेयजल उपलब्ध कराना, जिससे जीवन स्तर में सुधार हो।",
+              requirements: [
+                "100% परिवारों के लिए सुरक्षित पेयजल इकाई (सामुदायिक स्तर पर)",
+                "पर्याप्त पेयजल की उपलब्धता (@2-3 लीटर प्रति व्यक्ति/दिन)"
+              ],
+              images: [
+                { src: "assets/safe_drinking_water.png", caption: "सुरक्षित पेयजल आरओ शोधन इकाई - पुल्लूरू" }
+              ]
+            },
+            { code: "HH क्रेडिट 4", name: "स्वच्छता सुविधा", points: 4 },
+            { code: "HH क्रेडिट 5", name: "स्वास्थ्य सेवा सुविधा", points: 6 },
+            { code: "HH क्रेडिट 6", name: "घरों के भीतर वायु गुणवत्ता", points: 2 },
+            { code: "HH क्रेडिट 7", name: "जैविक कचरा प्रबंधन", points: 2 },
+            { code: "HH क्रेडिट 8", name: "सीवेज हैंडलिंग प्रथाएं", points: 1 },
+            { code: "HH क्रेडिट 9", name: "जैविक उर्वरकों का उपयोग", points: 2 },
+            { code: "HH क्रेडिट 10", name: "मनोरंजक क्षेत्र", points: 2 }
           ],
           metrics: [
             { val: "98%", label: "उप-केंद्र तत्परता", desc: "आवश्यक दवाओं और प्राथमिक चिकित्सा उपकरणों से लैस।" },
@@ -879,20 +1071,62 @@
         },
         te: {
           title: "ఆరోగ్యం & పరిశుభ్రత కేంద్రం",
-          desc: "స్థానిక వైద్య ఉప-కేంద్రాల పనితీరు, టీకాల క్యాలెండర్లు, త్రాగునీటి ఆడిట్లు మరియు కమ్యూనిటీ పారిశుద్ధ్య సూచికల పర్యవేక్షణ.",
+          desc: "స్థానిక వైద్య ఉప-కేంద్రాల పనిదేరు, టీకాల క్యాలెండర్లు, త్రాగునీటి ఆడిట్లు మరియు కమ్యూనిటీ పారిశుద్ధ్య సూచికల పర్యవేక్షణ.",
           detailMatter: "ఆరోగ్య ఉప-కేంద్రం రిజిస్టర్డ్ నర్సులు మరియు ANM లతో సేవలు అందిస్తోంది. మాచర్ల మండల ఆసుపత్రి (15 కి.మీ) ప్రధాన రెఫరల్ ఆసుపత్రిగా ఉంది. ఇద్దరు అంకితభావం గల ఆశా కార్యకర్తలు, దేవిక మరియు లక్ష్మి, అత్యవసర సేవలను పర్యవేక్షిస్తారు. 184 వ్యక్తిగత మరుగుదొడ్లు మరియు 2 కమ్యూనిటీ కాంప్లెక్స్‌లతో గ్రామం 100% బహిరంగ మలవిసర్జన రహిత (ODF) గ్రామంగా ధృవీకరించబడింది. రోగాల నివారణకు ప్రతి వారం బ్లీచింగ్ చల్లడం జరుగుతుంది. ప్రతి నెలా అంగన్‌వాడీలో వ్యాక్సినేషన్ మరియు త్రైమాసిక వైద్య శిబిరాలు నిర్వహిస్తాము.",
           imageCaption: "ఆరోగ్యకరమైన పరిసరాలను చూపే గ్రామ నివాస ప్రాంగణం.",
           milestones: [
-            "HH క్రెడిట్ 1: ఘన వ్యర్థాల సేకరణ మరియు విసర్జన",
-            "HH క్రెడిట్ 2: పరిశుభ్రమైన గ్రామం",
-            "HH క్రెడిట్ 3: త్రాగునీటి లభ్యత",
-            "HH క్రెడిట్ 4: పారిశుద్ధ్య సౌకర్యం",
-            "HH క్రెడిట్ 5: ఆరోగ్య సంరక్షణ సౌకర్యం",
-            "HH క్రెడిట్ 6: గృహాలలో అంతర్గత గాలి నాణ్యత",
-            "HH క్రెడిట్ 7: సేంద్రీయ వ్యర్థాల నిర్వహణ",
-            "HH క్రెడిట్ 8: మురుగునీటి నిర్వహణ పద్ధతులు",
-            "HH క్రెడిట్ 9: సేంద్రీయ ఎరువుల వినియోగం",
-            "HH క్రెడిట్ 10: వినోద ప్రదేశం"
+            {
+              code: "HH క్రెడిట్ 1",
+              name: "ఘన వ్యర్థాల సేకరణ మరియు విసర్జన",
+              points: 3,
+              intent: "గ్రామ వ్యర్థాలను ల్యాండ్-ఫిల్స్ వైపు మళ్లించకుండా నిరోధించడానికి మూలం వద్దే వేరు చేయడాన్ని సులభతరం చేయడం, తద్వారా ఆరోగ్య ప్రమాదాలను తొలగించడం.",
+              requirements: [
+                "గృహాల వద్ద వ్యర్థాల వర్గీకరణ (1 పాయింట్): పునర్వినియోగపరచదగినవి, కుళ్ళిపోయేవి, ఈ-వ్యర్థాలు",
+                "ప్లాస్టిక్ & కాగితపు వ్యర్థాల కోసం రీసైక్లర్లతో ఒప్పందం (2 పాయింట్లు)"
+              ],
+              images: [
+                { src: "assets/waste_composting.png", caption: "వ్యర్థాల నిర్వహణ కోసం కంపోస్టింగ్ గుంతలు - వెల్లటూరు గ్రామం" },
+                { src: "assets/waste_sorting.png", caption: "వ్యర్థాల వర్గీకరణ మరియు విభజన కేంద్రం - వెల్లటూరు గ్రామం" }
+              ]
+            },
+            {
+              code: "HH క్రెడిట్ 2",
+              name: "పరిశుభ్రమైన గ్రామం",
+              points: 3,
+              intent: "ప్రజలు మరియు పశువుల క్షేమాన్ని నిర్ధారించడానికి గ్రామంలో పరిశుభ్రతను కాపాడటం.",
+              requirements: [
+                "మెజారిటీ ఇళ్లలో లేదా కమ్యూనిటీ స్థాయిలో సెప్టిక్ ట్యాంకులు",
+                "కనీసం 50% ఇళ్లలో జంట గుంతల మరుగుదొడ్లు (2 పిట్ లాట్రిన్స్)",
+                "పబ్లిక్ టాయిలెట్లు (సముదాయ మరుగుదొడ్లు)",
+                "పశువుల షెడ్ల వద్ద పరిశుభ్రత (పశువుల కొట్టం, కోళ్ల పెంపకం, చేపల పెంపకం)",
+                "శుభ్రమైన వీధులు: ప్రతి 500 మీటర్లకు 1 డస్ట్ బిన్, రోజుకు కనీసం ఒకసారి వీధుల శుభ్రత",
+                "దోమల నివారణ: నిల్వ నీటి గుంటలు లేకుండా చూడటం"
+              ],
+              images: [
+                { src: "assets/clean_village_drains.png", caption: "మురుగునీటి కాలువలు మరియు వడపోత" },
+                { src: "assets/clean_village_streets.png", caption: "హరిత మరియు పరిశుభ్రమైన గ్రామ వీధులు" }
+              ]
+            },
+            {
+              code: "HH క్రెడిట్ 3",
+              name: "త్రాగునీటి లభ్యత",
+              points: 2,
+              intent: "నీటి ద్వారా సంక్రమించే వ్యాధులను అరికట్టడానికి గ్రామస్తులకు సురక్షితమైన & తగినంత త్రాగునీటిని అందించడం, తద్వారా జీవన నాణ్యతను మెరుగుపరచడం.",
+              requirements: [
+                "100% గృహాలకు సురక్షిత త్రాగునీటి యూనిట్ (కమ్యూనిటీ స్థాయిలో)",
+                "తగినంత త్రాగునీటి లభ్యత (రోజుకు తలసరి @2-3 లీటర్లు)"
+              ],
+              images: [
+                { src: "assets/safe_drinking_water.png", caption: "సురక్షిత త్రాగునీటి ఆర్‌ఓ ప్లాంట్ - పుల్లూరు" }
+              ]
+            },
+            { code: "HH క్రెడిట్ 4", name: "పారిశుద్ధ్య సౌకర్యం", points: 4 },
+            { code: "HH క్రెడిట్ 5", name: "ఆరోగ్య సంరక్షణ సౌకర్యం", points: 6 },
+            { code: "HH క్రెడిట్ 6", name: "గృహాలలో అంతర్గత గాలి నాణ్యత", points: 2 },
+            { code: "HH క్రెడిట్ 7", name: "సేంద్రీయ వ్యర్థాల నిర్వహణ", points: 2 },
+            { code: "HH క్రెడిట్ 8", name: "మురుగునీటి నిర్వహణ పద్ధతులు", points: 1 },
+            { code: "HH క్రెడిట్ 9", name: "సేంద్రీయ ఎరువుల వినియోగం", points: 2 },
+            { code: "HH క్రెడిట్ 10", name: "వినోద ప్రదేశం", points: 2 }
           ],
           metrics: [
             { val: "98%", label: "వైద్య సన్నద్ధత", desc: "అవసరమైన మందులు మరియు ప్రథమ చికిత్స పరికరాలతో సిద్ధంగా ఉంది." },
@@ -901,7 +1135,7 @@
           ],
           audits: [
             { date: "05/06/2026", param: "త్రాగునీటి నాణ్యత పరీక్ష (ప్రధాన ట్యాంక్)", inspector: "డాక్టర్ కె. శ్రీనివాస్", status: "సురక్షితం" },
-            { date: "28/05/2026", param: "ఆశా కార్యకర్తల పారిశుద్ధ్య తనిఖీ", inspector: "పంచాయతీ కార్యదర్శి", status: "పూర్తి చేయబడింది" },
+            { date: "28/05/2026", param: "ఆశా కార్యకర్తల పారిశుద్ధ్య తనిఖీ", inspector: "గ్రామ కార్యదర్శి", status: "పూర్తి చేయబడింది" },
             { date: "15/05/2026", param: "పిల్లల పోలియో/బీసీజీ టీకాల శిబిరం", inspector: "ANM కార్యకర్త దేవిక", status: "100% పూర్తయింది" }
           ]
         }
@@ -915,15 +1149,15 @@
           detailMatter: "Our Panchayat has focused heavily on all-weather connectivity. Concrete cement (CC) road paving connects all outer Thanda hamlets directly to the highway and is in good condition. Public street lighting grids feature 85 automated solar LED lights. However, the southern drainage channels need desilting and concrete reinforcement, which is flagged for immediate works. The main road transit bus shelter is undergoing a solar roof upgrade (currently 60% complete). E-Governance utilities are housed in the solar-powered Gram Panchayat building.",
           imageCaption: "Paved stone road pathways illuminated by smart solar energy street lights.",
           milestones: [
-            "VI Credit 1: Basic Amenities",
-            "VI Credit 2: Education Infrastructure",
-            "VI Credit 3: Inter & Intra village Commuting",
-            "VI Credit 4: Livestock Management",
-            "VI Credit 5: Preservation and Maintenance of water bodies",
-            "VI Credit 6: Water Supply Network",
-            "VI Credit 7: Storm water network",
-            "VI Credit 8: Sewerage Network",
-            "VI Credit 9: Green Cover in Village"
+            { code: "VI Credit 1", name: "Basic Amenities", points: 4 },
+            { code: "VI Credit 2", name: "Education Infrastructure", points: 5 },
+            { code: "VI Credit 3", name: "Inter & Intra village Commuting", points: 3 },
+            { code: "VI Credit 4", name: "Livestock Management", points: 3 },
+            { code: "VI Credit 5", name: "Preservation and Maintenance of water bodies", points: 2 },
+            { code: "VI Credit 6", name: "Water Supply Network", points: 2 },
+            { code: "VI Credit 7", name: "Storm water network", points: 3 },
+            { code: "VI Credit 8", name: "Sewerage Network", points: 3 },
+            { code: "VI Credit 9", name: "Green Cover in Village", points: 3 }
           ],
           metrics: [
             { val: "85 Units", label: "Solar Street Lights", desc: "Operating on grid-free smart automation." },
@@ -942,15 +1176,15 @@
           detailMatter: "हमारी पंचायत पक्की सीमेंट सड़कों और सुगम मार्ग व्यवस्था पर ध्यान केंद्रित कर रही है। पक्की सड़कें अच्छी स्थिति में हैं। रात्रि सुरक्षा हेतु 85 सौर ऊर्जा संचालित स्ट्रीट लाइटें स्थापित हैं। हालांकि, दक्षिणी जल निकासी चैनलों को गाद निकालने और कंक्रीट सुदृढ़ीकरण की आवश्यकता है। मुख्य मार्ग बस शेल्टर में सौर छत उन्नयन कार्य चल रहा है (60% पूर्ण)। ग्राम पंचायत भवन सौर ऊर्जा और डिजिटल संचार से लैस है।",
           imageCaption: "स्मार्ट सौर ऊर्जा रोशनी से रोशन पक्की पत्थर की सड़कें।",
           milestones: [
-            "VI क्रेडिट 1: बुनियादी सुविधाएं",
-            "VI क्रेडिट 2: शिक्षा अवसंरचना",
-            "VI क्रेडिट 3: अंतर और अंतः ग्राम आवागमन",
-            "VI क्रेडिट 4: पशुधन प्रबंधन",
-            "VI क्रेडिट 5: जल निकायों का संरक्षण और रखरखाव",
-            "VI क्रेडिट 6: जलापूर्ति नेटवर्क",
-            "VI क्रेडिट 7: तूफान जल नेटवर्क",
-            "VI क्रेडिट 8: सीवरेज नेटवर्क",
-            "VI क्रेडिट 9: गांव में हरित आवरण"
+            { code: "VI क्रेडिट 1", name: "बुनियादी सुविधाएं", points: 4 },
+            { code: "VI क्रेडिट 2", name: "शिक्षा अवसंरचना", points: 5 },
+            { code: "VI क्रेडिट 3", name: "अंतर और अंतः ग्राम आवागमन", points: 3 },
+            { code: "VI क्रेडिट 4", name: "पशुधन प्रबंधन", points: 3 },
+            { code: "VI क्रेडिट 5", name: "जल निकायों का संरक्षण और रखरखाव", points: 2 },
+            { code: "VI क्रेडिट 6", name: "जलापूर्ति नेटवर्क", points: 2 },
+            { code: "VI क्रेडिट 7", name: "तूफान जल नेटवर्क", points: 3 },
+            { code: "VI क्रेडिट 8", name: "सीवरेज नेटवर्क", points: 3 },
+            { code: "VI क्रेडिट 9", name: "गांव में हरित आवरण", points: 3 }
           ],
           metrics: [
             { val: "85 इकाइयां", label: "सौर स्ट्रीट लाइट", desc: "ग्रिड-मुक्त स्मार्ट ऑटोमेशन पर संचालित।" },
@@ -969,15 +1203,15 @@
           detailMatter: "మా పంచాయితీ అన్ని కాలాల్లో రవాణాకు అనుకూలమైన సిమెంట్ రోడ్ల పనులకు ప్రాధాన్యత ఇస్తుంది। రోడ్లన్నీ మంచి స్థితిలో ఉన్నాయి। గ్రామ రహదారులపై 85 ఆటోమేటిక్ సోలార్ వీధి దీపాలు ఉన్నాయి। అయితే, దక్షిణ ప్రాంత మురుగు కాలువలకు పూడికతీత మరియు కాంక్రీటు పటిష్టత అవసరం। ప్రధాన బస్సు స్టాండ్ వద్ద సోలార్ రూఫ్ పనులు సాగుతున్నాయి (60% పూర్తి)। గ్రామ పంచాయతీ కార్యాలయం సోలార్ విద్యుత్‌తో సేవలు అందిస్తుంది.",
           imageCaption: "సోలార్ విద్యుత్ వెలుగులతో నిండిన గ్రామ రహదారులు.",
           milestones: [
-            "VI క్రెడిట్ 1: కనీస సౌకర్యాలు",
-            "VI క్రెడిట్ 2: విద్యా మౌలిక సదుపాయాలు",
-            "VI క్రెడిట్ 3: గ్రామ అంతర్గత & బాహ్య రవాణా",
-            "VI క్రెడిట్ 4: పశుసంపద నిర్వహణ",
-            "VI క్రెడిట్ 5: జలవనరుల పరిరక్షణ మరియు నిర్వహణ",
-            "VI క్రెడిట్ 6: నీటి సరఫరా వ్యవస్థ",
-            "VI క్రెడిట్ 7: వర్షపు నీటి కాలువల వ్యవస్థ",
-            "VI క్రెడిట్ 8: మురుగునీటి పారుదల వ్యవస్థ",
-            "VI క్రెడిట్ 9: గ్రామంలో హరిత విస్తీర్ణం"
+            { code: "VI క్రెడిట్ 1", name: "కనీస సౌకర్యాలు", points: 4 },
+            { code: "VI క్రెడిట్ 2", name: "విద్యా మౌలిక సదుపాయాలు", points: 5 },
+            { code: "VI క్రెడిట్ 3", name: "గ్రామ అంతర్గత & బాహ్య రవాణా", points: 3 },
+            { code: "VI క్రెడిట్ 4", name: "పశుసంపద నిర్వహణ", points: 3 },
+            { code: "VI క్రెడిట్ 5", name: "జలవనరుల పరిరక్షణ మరియు నిర్వహణ", points: 2 },
+            { code: "VI క్రెడిట్ 6", name: "నీటి సరఫరా వ్యవస్థ", points: 2 },
+            { code: "VI క్రెడిట్ 7", name: "వర్షపు నీటి కాలువల వ్యవస్థ", points: 3 },
+            { code: "VI క్రెడిట్ 8", name: "మురుగునీటి పారుదల వ్యవస్థ", points: 3 },
+            { code: "VI క్రెడిట్ 9", name: "గ్రామంలో హరిత విస్తీర్ణం", points: 3 }
           ],
           metrics: [
             { val: "85 యూనిట్లు", label: "సోలార్ వీధి దీపాలు", desc: "ఆటోమేటిక్ స్మార్ట్ లైటింగ్‌తో పనిచేస్తాయి." },
@@ -1118,7 +1352,8 @@
           ],
           metrics: [
             { val: "24 kW", label: "సోలార్ ఉత్పత్తి", desc: "పంచాయతీ భవనం వద్ద నిత్యం ఉత్పత్తయ్యే హరిత విద్యుత్।" },
-            { val: "100%", label: "విద్యుద్దీకరణ", desc: "గ్రామములోని అన్ని ఇళ్లకు గ్రిడ్ కరెంట్ కనెక్షన్।" },
+            { val: "100%", label: "విద్యుద్దీకరణ", desc: "గ్రామములోని అన్ని ఇళ్లకు గ్రిడ్ కరెంట్ కనెక్షన్।" }
+          ],
           audits: [
             { date: "03/06/2026", param: "సోలార్ ప్యానెల్ ఇన్వర్టర్ ఆడిట్", inspector: "సోలార్ ఇంజనీర్ (NREDCAP)", status: "96% సామర్థ్యం" },
             { date: "22/05/2026", param: "ఇళ్ల విద్యుద్దీకరణ తనిఖీ ఆడిట్", inspector: "విద్యుత్ ఇన్స్పెక్టర్", status: "100% కవరేజ్" },
@@ -2574,6 +2809,10 @@
 
       // Rows
       langData.milestones.forEach((m, idx) => {
+        const isDetailed = (typeof m === 'object');
+        const hasDetails = isDetailed && (m.intent || m.requirements);
+        const hasPoints = isDetailed && m.points !== undefined;
+        
         const tr = document.createElement('tr');
         tr.style.borderBottom = `1px solid ${theme.bg}`;
         if (idx % 2 === 1) {
@@ -2581,11 +2820,21 @@
         }
 
         let code = '';
-        let name = m;
-        if (m.includes(':')) {
-          const parts = m.split(':');
-          code = parts[0].trim();
-          name = parts.slice(1).join(':').trim();
+        let name = '';
+        
+        if (isDetailed) {
+          code = m.code;
+          name = m.name;
+          if (hasDetails) {
+            tr.classList.add('milestone-row-expandable');
+          }
+        } else {
+          name = m;
+          if (m.includes(':')) {
+            const parts = m.split(':');
+            code = parts[0].trim();
+            name = parts.slice(1).join(':').trim();
+          }
         }
 
         // Col 1: Code
@@ -2595,7 +2844,18 @@
         tdCode.style.color = theme.text;
         tdCode.style.width = '25%';
         tdCode.style.border = `1px solid ${theme.bg}`;
-        tdCode.textContent = code;
+        
+        if (hasDetails) {
+          const iconSpan = document.createElement('span');
+          iconSpan.className = 'expand-icon';
+          iconSpan.textContent = '▸';
+          tdCode.appendChild(iconSpan);
+          
+          const codeText = document.createTextNode(' ' + code);
+          tdCode.appendChild(codeText);
+        } else {
+          tdCode.textContent = code;
+        }
         tr.appendChild(tdCode);
 
         // Col 2: Description
@@ -2608,14 +2868,133 @@
         tdDesc.textContent = name;
         tr.appendChild(tdDesc);
 
-        // Col 3: Empty status column (selecting option removed)
-        const tdEmpty = document.createElement('td');
-        tdEmpty.style.padding = '10px 12px';
-        tdEmpty.style.width = '15%';
-        tdEmpty.style.border = `1px solid ${theme.bg}`;
-        tr.appendChild(tdEmpty);
+        // Col 3: Status / Points
+        const tdStatus = document.createElement('td');
+        tdStatus.style.padding = '10px 12px';
+        tdStatus.style.width = '15%';
+        tdStatus.style.border = `1px solid ${theme.bg}`;
+        tdStatus.style.textAlign = 'center';
+        
+        if (hasPoints) {
+          const ptsBadge = document.createElement('span');
+          ptsBadge.className = 'detail-points-badge';
+          ptsBadge.style.backgroundColor = theme.bg;
+          ptsBadge.style.color = theme.text;
+          
+          const ptsText = lang === 'hi' ? `${m.points} अंक` : lang === 'te' ? `${m.points} పాయింట్లు` : `${m.points} Points`;
+          ptsBadge.textContent = ptsText;
+          tdStatus.appendChild(ptsBadge);
+        }
+        tr.appendChild(tdStatus);
 
         table.appendChild(tr);
+
+        // If has details, add toggle listener
+        if (hasDetails) {
+          tr.addEventListener('click', (e) => {
+            const nextRow = tr.nextElementSibling;
+            const isExpanded = tr.classList.contains('expanded');
+            
+            if (isExpanded) {
+              tr.classList.remove('expanded');
+              const icon = tr.querySelector('.expand-icon');
+              if (icon) icon.textContent = '▸';
+              if (nextRow && nextRow.classList.contains('milestone-details-row')) {
+                nextRow.remove();
+              }
+            } else {
+              // Open this one
+              tr.classList.add('expanded');
+              const icon = tr.querySelector('.expand-icon');
+              if (icon) icon.textContent = '▾';
+              
+              const detailTr = document.createElement('tr');
+              detailTr.className = 'milestone-details-row';
+              
+              const detailTd = document.createElement('td');
+              detailTd.setAttribute('colspan', '3');
+              detailTd.style.padding = '12px';
+              detailTd.style.border = `1px solid ${theme.bg}`;
+              detailTd.style.backgroundColor = theme.cardBg;
+              
+              const container = document.createElement('div');
+              container.className = 'milestone-details-container';
+              
+              // 1. Intent block
+              const intentLabel = lang === 'hi' ? 'उद्देश्य' : lang === 'te' ? 'ఉద్దేశం' : 'Intent';
+              const intentDiv = document.createElement('div');
+              intentDiv.className = 'detail-intent-block';
+              intentDiv.style.setProperty('--theme-border-color', theme.progressBg);
+              intentDiv.innerHTML = `<strong>${intentLabel}:</strong> ${m.intent}`;
+              container.appendChild(intentDiv);
+              
+              // 2. Requirements block
+              const reqsLabel = lang === 'hi' ? 'आवश्यकताएँ' : lang === 'te' ? 'అవసరాలు' : 'Requirements';
+              const reqsDiv = document.createElement('div');
+              
+              const reqsTitle = document.createElement('div');
+              reqsTitle.style.fontWeight = '700';
+              reqsTitle.style.marginBottom = '6px';
+              reqsTitle.style.color = theme.text;
+              reqsTitle.textContent = reqsLabel + ':';
+              reqsDiv.appendChild(reqsTitle);
+              
+              const reqsList = document.createElement('ul');
+              reqsList.className = 'detail-requirements-list';
+              reqsList.style.setProperty('--theme-text-color', theme.progressBg);
+              m.requirements.forEach(req => {
+                const li = document.createElement('li');
+                li.textContent = req;
+                reqsList.appendChild(li);
+              });
+              reqsDiv.appendChild(reqsList);
+              container.appendChild(reqsDiv);
+              
+              // 3. Images Gallery block (if any)
+              if (m.images && m.images.length > 0) {
+                const galleryLabel = lang === 'hi' ? 'परियोजना तस्वीरें' : lang === 'te' ? 'ప్రాజెక్ట్ ఫోటోలు' : 'Project Photos';
+                const galleryDiv = document.createElement('div');
+                
+                const galleryTitle = document.createElement('div');
+                galleryTitle.style.fontWeight = '700';
+                galleryTitle.style.marginBottom = '8px';
+                galleryTitle.style.color = theme.text;
+                galleryTitle.textContent = galleryLabel + ':';
+                galleryDiv.appendChild(galleryTitle);
+                
+                const galleryGrid = document.createElement('div');
+                galleryGrid.className = 'detail-gallery';
+                
+                m.images.forEach(img => {
+                  const item = document.createElement('div');
+                  item.className = 'detail-gallery-item';
+                  
+                  const imageEl = document.createElement('img');
+                  imageEl.className = 'detail-gallery-img';
+                  imageEl.src = img.src;
+                  imageEl.alt = img.caption;
+                  item.appendChild(imageEl);
+                  
+                  const captionDiv = document.createElement('div');
+                  captionDiv.className = 'detail-gallery-caption';
+                  captionDiv.textContent = img.caption;
+                  item.appendChild(captionDiv);
+                  
+                  galleryGrid.appendChild(item);
+                });
+                
+                galleryDiv.appendChild(galleryGrid);
+                container.appendChild(galleryDiv);
+              }
+              
+              detailTd.appendChild(container);
+              detailTr.appendChild(detailTd);
+              
+              // Insert details row right after this tr
+              tr.parentNode.insertBefore(detailTr, tr.nextSibling);
+            }
+          });
+        }
       });
 
       milestonesList.appendChild(table);
