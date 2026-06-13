@@ -3097,22 +3097,22 @@
       let svrDesc = '';
       
       if (lang === 'hi') {
-        svrVal = hasPoints ? `${completedCredits} / ${creditCount}` : `${creditCount}`;
-        svrLabel = hasPoints ? "एसवीआर क्रेडिट प्राप्त" : "कुल क्रेडिट";
+        svrVal = hasPoints ? `${achievedPoints} / ${totalPoints}` : `${creditCount}`;
+        svrLabel = hasPoints ? "अर्जित एसवीआर अंक" : "कुल क्रेडिट";
         svrDesc = hasPoints 
-          ? `गाँव ने कुल ${totalPoints} अंकों में से ${achievedPoints} अंक अर्जित किए।`
+          ? `गाँव ने कुल ${totalPoints} अंकों में से ${achievedPoints} अंक अर्जित किए (${completedCredits} / ${creditCount} क्रेडिट)।`
           : `इस श्रेणी के तहत परिभाषित कुल ${creditCount} रेटिंग क्रेडिट।`;
       } else if (lang === 'te') {
-        svrVal = hasPoints ? `${completedCredits} / ${creditCount}` : `${creditCount}`;
-        svrLabel = hasPoints ? "ఎస్వీఆర్ క్రెడిట్లు సాధించారు" : "మొత్తం క్రెడిట్లు";
+        svrVal = hasPoints ? `${achievedPoints} / ${totalPoints}` : `${creditCount}`;
+        svrLabel = hasPoints ? "ఎస్వీఆర్ పాయింట్లు సాధించారు" : "మొత్తం క్రెడిట్లు";
         svrDesc = hasPoints 
-          ? `గ్రామం మొత్తం ${totalPoints} పాయింట్లలో ${achievedPoints} పాయింట్లు సాధించింది.`
+          ? `గ్రామం మొత్తం ${totalPoints} పాయింట్లలో ${achievedPoints} పాయింట్లు సాధించింది (${completedCredits} / ${creditCount} క్రెడిట్లు).`
           : `ఈ వర్గం క్రింద నిర్వచించబడిన మొత్తం ${creditCount} రేటింగ్ క్రెడిట్లు.`;
       } else {
-        svrVal = hasPoints ? `${completedCredits} / ${creditCount}` : `${creditCount}`;
-        svrLabel = hasPoints ? "SVR Credits Achieved" : "Total Credits";
+        svrVal = hasPoints ? `${achievedPoints} / ${totalPoints}` : `${creditCount}`;
+        svrLabel = hasPoints ? "SVR Points Achieved" : "Total Credits";
         svrDesc = hasPoints 
-          ? `Village achieved ${achievedPoints} out of a total of ${totalPoints} evaluation points.`
+          ? `Village achieved ${achievedPoints} out of a total of ${totalPoints} evaluation points (${completedCredits} / ${creditCount} credits).`
           : `Total of ${creditCount} rating credits defined under this category.`;
       }
       
