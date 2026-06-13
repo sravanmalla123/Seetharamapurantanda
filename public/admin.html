@@ -1393,6 +1393,20 @@
                 </select>
               </div>
             </div>
+            <!-- Solar Power System -->
+            <div class="lang-input-group">
+              <label>☀️ Solar Power System Action / Remarks</label>
+              <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="infra-solar-en" class="form-control" /></div>
+              <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="infra-solar-hi" class="form-control" /></div>
+              <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="infra-solar-te" class="form-control" /></div>
+              <div class="lang-input-row" style="margin-top: 4px;">
+                <span class="lang-badge" style="background-color: var(--color-primary-light); min-width: 55px; font-size: 0.62rem;">STATUS</span>
+                <select id="infra-solar-status" class="form-control">
+                  <option value="good">Good Condition ✓</option>
+                  <option value="needs_improvement">Needs Improvement ⚠️</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -2019,17 +2033,18 @@
         });
 
         // Populate Infrastructure Audit
-        const infras = ['roads', 'drainage', 'streetlights', 'bus', 'halls', 'office'];
+        const infras = ['roads', 'drainage', 'streetlights', 'bus', 'halls', 'office', 'solar'];
         infras.forEach(inf => {
-          document.getElementById(`infra-${inf}-en`).value = config.infraAudit[inf].en || '';
-          document.getElementById(`infra-${inf}-hi`).value = config.infraAudit[inf].hi || '';
-          document.getElementById(`infra-${inf}-te`).value = config.infraAudit[inf].te || '';
+          const infData = config.infraAudit[inf] || {};
+          document.getElementById(`infra-${inf}-en`).value = infData.en || '';
+          document.getElementById(`infra-${inf}-hi`).value = infData.hi || '';
+          document.getElementById(`infra-${inf}-te`).value = infData.te || '';
           
           let defaultStatus = 'good';
-          if (inf === 'drainage' || inf === 'bus') {
+          if (inf === 'drainage' || inf === 'bus' || inf === 'solar') {
             defaultStatus = 'needs_improvement';
           }
-          document.getElementById(`infra-${inf}-status`).value = config.infraAudit[inf].status || defaultStatus;
+          document.getElementById(`infra-${inf}-status`).value = infData.status || defaultStatus;
         });
 
         // Populate Water Dashboard
@@ -2706,6 +2721,12 @@
           en: document.getElementById('infra-office-en').value.trim(),
           hi: document.getElementById('infra-office-hi').value.trim(),
           te: document.getElementById('infra-office-te').value.trim()
+        },
+        solar: {
+          status: document.getElementById('infra-solar-status').value,
+          en: document.getElementById('infra-solar-en').value.trim(),
+          hi: document.getElementById('infra-solar-hi').value.trim(),
+          te: document.getElementById('infra-solar-te').value.trim()
         }
       };
 

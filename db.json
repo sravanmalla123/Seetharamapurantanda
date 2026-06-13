@@ -759,6 +759,12 @@
         "en": "Panchayat Office functions as a solar-powered digital citizen hub.",
         "hi": "पंचायत कार्यालय सौर ऊर्जा संचालित डिजिटल नागरिक केंद्र के रूप में कार्य करता है।",
         "te": "పంచాయతీ కార్యాలయం సోలార్ పవర్డ్ డిజిటల్ సిటిజన్ హబ్‌గా పనిచేస్తుంది."
+      },
+      "solar": {
+        "status": "needs_improvement",
+        "en": "24 kW rooftop solar array at Panchayat complex. Requires battery and inverter servicing.",
+        "hi": "पंचायत भवन में 24 किलोवाट सौर ग्रिड। बैटरी और इन्वर्टर सर्विसिंग की आवश्यकता है।",
+        "te": "పంచాయతీ భవనం వద్ద 24 kW సోలార్ గ్రిడ్. బ్యాటరీ మరియు ఇన్వర్టర్ సర్వీసింగ్ అవసరం."
       }
     },
     "faqs": [

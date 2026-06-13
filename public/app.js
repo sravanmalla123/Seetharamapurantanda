@@ -2261,6 +2261,8 @@ const translationDictionary = {
     '#infra-desc-halls': 'स्थानीय त्योहारों और बैठकों के लिए स्वच्छ सामुदायिक केंद्र सक्रिय।',
     '#infra-row-office': '🏢 पंचायत भवन',
     '#infra-desc-office': 'पंचायत कार्यालय सौर ऊर्जा संचालित डिजिटल नागरिक केंद्र के रूप में कार्य करता है।',
+    '#infra-row-solar': '☀️ सौर ऊर्जा ग्रिड (Solar Power Grid)',
+    '#infra-desc-solar': 'पंचायत भवन में 24 किलोवाट सौर ग्रिड। बैटरी और इन्वर्टर सर्विसिंग की आवश्यकता है।',
     '#edu-title-schools-status': 'स्कूल और शैक्षिक स्थिति',
     '#edu-stat-schools': '1 प्राथमिक, 1 हाई स्कूल',
     '#edu-label-schools': 'उपलब्ध स्कूल',
@@ -2566,6 +2568,8 @@ const translationDictionary = {
     '#infra-desc-halls': 'స్థానిక పండుగలు, సమావేశాలకు కమ్యూనిటీ హాళ్లు అందుబాటులో ఉన్నాయి.',
     '#infra-row-office': '🏢 పంచాయతీ భవనాలు',
     '#infra-desc-office': 'పంచాయతీ కార్యాలయం సోలార్ డిజిటల్ సిటిజన్ హబ్‌గా పనిచేస్తుంది.',
+    '#infra-row-solar': '☀️ సోలార్ పవర్ గ్రిడ్ (Solar Power Grid)',
+    '#infra-desc-solar': 'పంచాయతీ భవనం వద్ద 24 kW సోలార్ గ్రిడ్. బ్యాటరీ మరియు ఇన్వర్టర్ సర్వీసింగ్ అవసరం.',
     '#edu-title-schools-status': 'పాఠశాలలు & విద్యా స్థితి',
     '#edu-stat-schools': '1 ప్రాథమిక, 1 ఉన్నత పాఠశాల',
     '#edu-label-schools': 'అందుబాటులో ఉన్న పాఠశాలలు',
@@ -3323,7 +3327,7 @@ function renderDynamicMainPageContent() {
   // 9. Infrastructure Audit
   const infraAudit = mainPageConfig.infraAudit;
   if (infraAudit) {
-    const infraKeys = ['roads', 'drainage', 'streetlights', 'bus', 'halls', 'office'];
+    const infraKeys = ['roads', 'drainage', 'streetlights', 'bus', 'halls', 'office', 'solar'];
     infraKeys.forEach(key => {
       const descEl = document.getElementById(`infra-desc-${key}`);
       if (descEl && infraAudit[key]) {
@@ -3333,7 +3337,7 @@ function renderDynamicMainPageContent() {
       const needsEl = document.getElementById(`infra-needs-${key}`);
       if (goodEl && needsEl && infraAudit[key]) {
         let fallback = 'good';
-        if (key === 'drainage' || key === 'bus') {
+        if (key === 'drainage' || key === 'bus' || key === 'solar') {
           fallback = 'needs_improvement';
         }
         const isGood = (infraAudit[key].status || fallback) === 'good';
