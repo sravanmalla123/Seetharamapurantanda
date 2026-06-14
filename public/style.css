@@ -410,10 +410,8 @@ img {
 
 /* ==========================================
    ITEMS HIDDEN FROM DROPDOWN
-   (Contact and Language selector are hidden as they
-    are not part of the standard navigation items)
+   (Contact is hidden as it is not part of the standard navigation items)
    ========================================== */
-.lang-selector-wrapper,
 #nav-btn-contact {
   display: none !important;
 }
@@ -3406,6 +3404,32 @@ body.lang-hi textarea {
   line-height: 1.4;
   color: var(--color-text-dark);
   margin: 0;
+}
+
+/* Subpages nav-links displays horizontally and is always visible */
+body.pillar-detail-body .nav-links,
+body.gallery-body .nav-links,
+body.privacy-body .nav-links {
+  position: static !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  display: flex !important;
+  flex-direction: row !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  transform: none !important;
+  gap: 12px !important;
+  align-items: center !important;
+}
+
+/* Also ensure language selector dropdown is visible inside header on subpages */
+body.pillar-detail-body .lang-selector-wrapper,
+body.gallery-body .lang-selector-wrapper,
+body.privacy-body .lang-selector-wrapper {
+  display: inline-flex !important;
 }
 
 
