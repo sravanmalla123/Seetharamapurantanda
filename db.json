@@ -88,12 +88,12 @@
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": false,
+      "ownHouse": true,
       "aadhaar": true
     },
     "HH-102": {
       "privateToilet": true,
-      "vehicle": false,
+      "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
       "ownHouse": true,
@@ -103,21 +103,21 @@
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-104": {
       "privateToilet": true,
       "vehicle": true,
-      "tapWater": false,
-      "cleanEnergy": false,
+      "tapWater": true,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-105": {
       "privateToilet": true,
-      "vehicle": false,
+      "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
       "ownHouse": true,
@@ -127,16 +127,16 @@
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-107": {
-      "privateToilet": false,
-      "vehicle": false,
+      "privateToilet": true,
+      "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
-      "ownHouse": false,
+      "cleanEnergy": true,
+      "ownHouse": true,
       "aadhaar": true
     },
     "HH-108": {
@@ -149,9 +149,9 @@
     },
     "HH-109": {
       "privateToilet": true,
-      "vehicle": false,
+      "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
@@ -167,24 +167,24 @@
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-112": {
-      "privateToilet": false,
-      "vehicle": false,
-      "tapWater": false,
-      "cleanEnergy": false,
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-113": {
       "privateToilet": true,
-      "vehicle": false,
+      "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": false,
+      "ownHouse": true,
       "aadhaar": true
     },
     "HH-114": {
@@ -199,21 +199,21 @@
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-116": {
-      "privateToilet": false,
+      "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-117": {
       "privateToilet": true,
-      "vehicle": false,
+      "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
       "ownHouse": true,
@@ -229,10 +229,10 @@
     },
     "HH-119": {
       "privateToilet": true,
-      "vehicle": false,
+      "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
-      "ownHouse": false,
+      "cleanEnergy": true,
+      "ownHouse": true,
       "aadhaar": true
     },
     "HH-120": {
@@ -247,21 +247,21 @@
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-122": {
-      "privateToilet": false,
-      "vehicle": false,
+      "privateToilet": true,
+      "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-123": {
       "privateToilet": true,
-      "vehicle": false,
+      "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
       "ownHouse": true,
@@ -279,21 +279,21 @@
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
-      "ownHouse": false,
+      "cleanEnergy": true,
+      "ownHouse": true,
       "aadhaar": true
     },
     "HH-126": {
-      "privateToilet": false,
+      "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-127": {
       "privateToilet": true,
-      "vehicle": false,
+      "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
       "ownHouse": true,
@@ -309,9 +309,9 @@
     },
     "HH-129": {
       "privateToilet": true,
-      "vehicle": false,
+      "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
@@ -327,21 +327,21 @@
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
-      "ownHouse": false,
+      "cleanEnergy": true,
+      "ownHouse": true,
       "aadhaar": true
     },
     "HH-132": {
-      "privateToilet": false,
-      "vehicle": false,
-      "tapWater": false,
-      "cleanEnergy": false,
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": true,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-133": {
       "privateToilet": true,
-      "vehicle": false,
+      "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
       "ownHouse": true,
@@ -359,24 +359,24 @@
       "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-136": {
-      "privateToilet": false,
+      "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-137": {
       "privateToilet": true,
-      "vehicle": false,
+      "vehicle": true,
       "tapWater": true,
       "cleanEnergy": true,
-      "ownHouse": false,
+      "ownHouse": true,
       "aadhaar": true
     },
     "HH-138": {
@@ -389,9 +389,9 @@
     },
     "HH-139": {
       "privateToilet": true,
-      "vehicle": false,
+      "vehicle": true,
       "tapWater": true,
-      "cleanEnergy": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
@@ -406,31 +406,31 @@
     "HH-141": {
       "privateToilet": true,
       "vehicle": true,
-      "tapWater": true,
-      "cleanEnergy": false,
+      "tapWater": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-142": {
-      "privateToilet": false,
-      "vehicle": false,
-      "tapWater": true,
-      "cleanEnergy": false,
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-143": {
       "privateToilet": true,
-      "vehicle": false,
-      "tapWater": true,
+      "vehicle": true,
+      "tapWater": false,
       "cleanEnergy": true,
-      "ownHouse": false,
+      "ownHouse": true,
       "aadhaar": true
     },
     "HH-144": {
       "privateToilet": true,
       "vehicle": true,
-      "tapWater": true,
+      "tapWater": false,
       "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
@@ -438,23 +438,23 @@
     "HH-145": {
       "privateToilet": true,
       "vehicle": true,
-      "tapWater": true,
-      "cleanEnergy": false,
+      "tapWater": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-146": {
-      "privateToilet": false,
+      "privateToilet": true,
       "vehicle": true,
-      "tapWater": true,
-      "cleanEnergy": false,
+      "tapWater": false,
+      "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-147": {
       "privateToilet": true,
-      "vehicle": false,
-      "tapWater": true,
+      "vehicle": true,
+      "tapWater": false,
       "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
@@ -462,28 +462,76 @@
     "HH-148": {
       "privateToilet": true,
       "vehicle": true,
-      "tapWater": true,
+      "tapWater": false,
       "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
     "HH-149": {
       "privateToilet": true,
-      "vehicle": false,
-      "tapWater": true,
-      "cleanEnergy": false,
-      "ownHouse": false,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": true,
+      "ownHouse": true,
       "aadhaar": true
     },
     "HH-150": {
       "privateToilet": true,
       "vehicle": true,
-      "tapWater": true,
+      "tapWater": false,
       "cleanEnergy": true,
       "ownHouse": true,
       "aadhaar": true
     },
-    "HH-301": {
+    "HH-151": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": true,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-152": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": true,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-153": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": true,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-154": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": true,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-155": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": true,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-156": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": true,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-157": {
       "privateToilet": true,
       "vehicle": true,
       "tapWater": false,
@@ -491,12 +539,332 @@
       "ownHouse": true,
       "aadhaar": true
     },
-    "HH-999": {
+    "HH-158": {
       "privateToilet": true,
       "vehicle": true,
-      "tapWater": true,
-      "cleanEnergy": true,
+      "tapWater": false,
+      "cleanEnergy": false,
       "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-159": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-160": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-161": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-162": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-163": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-164": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-165": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-166": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-167": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-168": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-169": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-170": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-171": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-172": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-173": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-174": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-175": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-176": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-177": {
+      "privateToilet": true,
+      "vehicle": true,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-178": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-179": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-180": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-181": {
+      "privateToilet": true,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-182": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-183": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-184": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-185": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-186": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-187": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-188": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-189": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": true,
+      "aadhaar": true
+    },
+    "HH-190": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": false,
+      "aadhaar": true
+    },
+    "HH-191": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": false,
+      "aadhaar": true
+    },
+    "HH-192": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": false,
+      "aadhaar": true
+    },
+    "HH-193": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": false,
+      "aadhaar": true
+    },
+    "HH-194": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": false,
+      "aadhaar": true
+    },
+    "HH-195": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": false,
+      "aadhaar": true
+    },
+    "HH-196": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": false,
+      "aadhaar": true
+    },
+    "HH-197": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": false,
+      "aadhaar": true
+    },
+    "HH-198": {
+      "privateToilet": false,
+      "vehicle": false,
+      "tapWater": false,
+      "cleanEnergy": false,
+      "ownHouse": false,
       "aadhaar": true
     }
   },
@@ -1183,7 +1551,7 @@
       "education": {
         "numberOfSchools": "2 (Primary & Upper Primary)",
         "totalStudents": "51",
-        "scholarshipsProvided": "4 Students"
+        "scholarshipsProvided": "6 Students"
       },
       "schemes": {
         "beneficiaries": "79 Families",
@@ -1240,7 +1608,7 @@
       },
       "economics": {
         "average_income": 44081.63,
-        "median_income": 30000.0,
+        "median_income": 30000,
         "poverty_status": {
           "BPL (Income ₹1 Lakh or Less)": 58,
           "APL (Income More Than ₹1 Lakh)": 40
