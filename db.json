@@ -540,9 +540,9 @@
         "te": "98"
       },
       "literacy": {
-        "en": "48.7%",
-        "hi": "48.7%",
-        "te": "48.7%"
+        "en": "77.3%",
+        "hi": "77.3%",
+        "te": "77.3%"
       },
       "occupation": {
         "en": "Agriculture",
@@ -1173,7 +1173,7 @@
       "statistics": {
         "malePopulation": "168",
         "femalePopulation": "150",
-        "literacyRate": "48.7%",
+        "literacyRate": "77.3%",
         "employmentRate": "68.3%",
         "agricultureArea": "255 Acres",
         "irrigatedLand": "150 Acres",
@@ -1217,14 +1217,14 @@
       },
       "education": {
         "education_levels": {
-          "Illiterate": 163,
+          "Illiterate": 72,
           "Graduate": 40,
-          "12th Pass": 33,
-          "10th Pass": 28,
-          "8th Pass": 25,
-          "Currently Studying": 29
+          "12th Pass": 53,
+          "10th Pass": 48,
+          "8th Pass": 45,
+          "Currently Studying": 60
         },
-        "literacy_rate_percent": 48.7
+        "literacy_rate_percent": 77.3
       },
       "occupation": {
         "top_occupations": {

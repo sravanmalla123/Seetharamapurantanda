@@ -1987,7 +1987,7 @@
             if (config.stats.population) {
               const popNum = cleanNum(config.stats.population.en || config.stats.population);
               document.getElementById('stat-val-population').setAttribute('data-target', popNum);
-              educationData.illiterate = Math.round(popNum * (1 - 0.68)); // 32% illiteracy based on 68% rate
+              educationData.illiterate = Math.round(popNum * (1 - 0.773)); // 22.7% illiteracy based on 77.3% rate
               document.getElementById('edu-val-illiterate').textContent = educationData.illiterate;
             }
             if (config.stats.families) {
