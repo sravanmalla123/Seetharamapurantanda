@@ -62,7 +62,7 @@ const dom = new JSDOM(html, {
             pillars: { health: {}, infra: {}, water: {}, energy: {}, materials: {}, social: {}, green: {} },
             history: { title: {}, p1: {}, p2: {}, p3: {}, p4: {} },
             infraAudit: { roads: {}, drainage: {}, streetlights: {}, bus: {}, halls: {}, office: {} },
-            waterDashboard: { supplyHours: {}, weeklyLimit: {}, borewellStatus: {}, fluorideLevel: {}, lastLabDate: {}, alertBanner: {}, infraDetails: { sources: { title: {}, desc: {} }, tanks: { title: {}, desc: {} }, shortages: { title: {}, desc: {} } } },
+            waterDashboard: { supplyHours: {}, dailyLimit: {}, borewellStatus: {}, fluorideLevel: {}, lastLabDate: {}, alertBanner: {}, infraDetails: { sources: { title: {}, desc: {} }, tanks: { title: {}, desc: {} }, shortages: { title: {}, desc: {} } } },
             agriDashboard: { cropsGrown: {}, irrigationMethods: {}, fertilizerUsage: {}, govSchemes: {}, crops: { paddy: { name: {}, type: {}, period: {}, water: {}, subsidy: {}, msp: {}, notes: {} }, maize: { name: {}, type: {}, period: {}, water: {}, subsidy: {}, msp: {}, notes: {} }, chili: { name: {}, type: {}, period: {}, water: {}, subsidy: {}, msp: {}, notes: {} }, pulses: { name: {}, type: {}, period: {}, water: {}, subsidy: {}, msp: {}, notes: {} } } },
             healthDashboard: { facilities: { subcenter: {}, phc: {}, asha: {}, ambulance: {} }, hygiene: { toilets: {}, odf: {}, waste: {}, plastic: {} }, campaigns: { vax: { title: {}, desc: {} }, camps: { title: {}, desc: {} } } },
             gallery: [],

@@ -1831,7 +1831,7 @@ function fetchHouseholdUpdates() {
 }
 
 function renderHouseholdChart(data) {
-  const percentages = data.percentages || { privateToilet: 80, vehicle: 60, tapWater: 94, cleanEnergy: 50, ownHouse: 82, aadhaar: 100 };
+  const percentages = data.percentages || { privateToilet: 82.7, vehicle: 55.8, tapWater: 80.8, cleanEnergy: 57.7, ownHouse: 82.7, aadhaar: 100 };
   
   // Update text values
   const valToilet = document.getElementById('val-toilet');
@@ -2313,6 +2313,7 @@ const translationDictionary = {
     '#health-awareness-title-camps': 'नियमित स्वास्थ्य शिविर',
     '#health-awareness-desc-camps': 'मायलावरम पीएचसी के डॉक्टरों द्वारा हर तिमाही में दो बार मुफ्त चिकित्सा और सामान्य स्वास्थ्य जांच शिविर आयोजित किए जाते हैं।',
     '#water-alert-banner-text': '⚠️ मानसून की तैयारी: 12 जून को टैंक की सफाई निर्धारित है। इस दिन पानी की आपूर्ति का समय अस्थायी रूप से सुबह 5:00 बजे से 6:30 बजे तक रहेगा। कृपया वर्षा जल का संचयन करें।',
+    '#water-metric-limit-label': 'दैनिक आवंटन सीमा',
     '#water-title-resource-infra': 'जल संसाधन बुनियादी ढांचा विवरण',
     '#water-title-sources': 'पेयजल के स्रोत',
     '#water-desc-sources': 'मुख्य पानी केंद्रीय पंचायत जलाशय से पाइपलाइन के माध्यम से दिया जाता है। 8 चालू बोरवेलों का बैकअप उपलब्ध है।',
@@ -2622,6 +2623,7 @@ const translationDictionary = {
     '#health-awareness-title-camps': 'క్రమబద్ధమైన ఆరోగ్య శిబిరాలు',
     '#health-awareness-desc-camps': 'మైలవరం PHC వైద్యులచే ప్రతి మూడు నెలలకు రెండుసార్లు ఉచిత వైద్య శిబిరాలు నిర్వహించబడతాయి।',
     '#water-alert-banner-text': '⚠️ వర్షాకాల తయారీ: జూన్ 12న నీటి ట్యాంక్ శుభ్రపరచడం జరుగుతుంది. ఆ రోజు నీటి సరఫరా సమయం ఉదయం 5:00 నుండి 6:30 వరకు మాత్రమే ఉంటుంది. దయచేసి నీటిని ఆదా చేయండి.',
+    '#water-metric-limit-label': 'రోజువారీ కేటాయింపు పరిమితి',
     '#water-title-resource-infra': 'జలవనరుల మౌలిక సదుపాయాల వివరాలు',
     '#water-title-sources': 'త్రాగునీటి వనరులు',
     '#water-desc-sources': 'ప్రధాన తాగునీరు పైపులైన్ల ద్వారా గ్రామ రిజర్వాయర్ నుండి అందుతుంది. 8 బోరుబావులు కూడా అందుబాటులో ఉన్నాయి.',
@@ -3421,7 +3423,7 @@ function renderDynamicMainPageContent() {
     if (hoursEl) hoursEl.textContent = waterConfig.supplyHours[lang] || waterConfig.supplyHours['en'] || '';
 
     const limitEl = document.getElementById('water-metric-limit');
-    if (limitEl) limitEl.textContent = waterConfig.weeklyLimit[lang] || waterConfig.weeklyLimit['en'] || '';
+    if (limitEl) limitEl.textContent = waterConfig.dailyLimit[lang] || waterConfig.dailyLimit['en'] || '';
 
     const wellsEl = document.getElementById('water-metric-borewells');
     if (wellsEl) wellsEl.textContent = waterConfig.borewellStatus[lang] || waterConfig.borewellStatus['en'] || '';

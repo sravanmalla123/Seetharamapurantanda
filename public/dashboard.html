@@ -1457,18 +1457,18 @@
     let currentLanguage = 'en';
     let rawGrievances = [];
     let householdStats = {
-      privateToilet: 83,
-      tapWater: 81,
-      cleanEnergy: 96,
-      ownHouse: 86,
-      vehicle: 59,
-      solar: 15,
+      privateToilet: 82.7,
+      tapWater: 80.8,
+      cleanEnergy: 57.7,
+      ownHouse: 82.7,
+      vehicle: 55.8,
+      solar: 0,
       electricity: 98
     };
     let educationData = {
       graduates: 40,
       illiterate: 163,
-      enrollment: 94,
+      enrollment: 77.3,
       scholarships: 6
     };
     let chartData = {
@@ -2009,8 +2009,8 @@
             }
             if (ana.occupation?.top_occupations) {
               document.getElementById('stat-val-farmers').setAttribute('data-target', ana.occupation.top_occupations.Farmer || 84);
-              document.getElementById('stat-val-students').setAttribute('data-target', ana.occupation.top_occupations.Student || 57);
-              document.getElementById('stat-val-employees').setAttribute('data-target', 26);
+              document.getElementById('stat-val-students').setAttribute('data-target', ana.occupation.top_occupations.Student || 51);
+              document.getElementById('stat-val-employees').setAttribute('data-target', config.villageDashboard?.overview?.totalEmployees || 7);
             }
 
             // Map demographics charts data

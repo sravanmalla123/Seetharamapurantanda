@@ -656,7 +656,7 @@
               </div>
 
               <div class="lang-input-group">
-                <label>Weekly Allotment Limit</label>
+                <label>Daily Allotment Limit</label>
                 <div class="lang-input-row"><span class="lang-badge en">EN</span><input type="text" id="water-limit-en" class="form-control" /></div>
                 <div class="lang-input-row"><span class="lang-badge hi">HI</span><input type="text" id="water-limit-hi" class="form-control" /></div>
                 <div class="lang-input-row"><span class="lang-badge te">TE</span><input type="text" id="water-limit-te" class="form-control" /></div>
@@ -2056,9 +2056,9 @@
           document.getElementById('water-hours-hi').value = config.waterDashboard.supplyHours?.hi || '';
           document.getElementById('water-hours-te').value = config.waterDashboard.supplyHours?.te || '';
           
-          document.getElementById('water-limit-en').value = config.waterDashboard.weeklyLimit?.en || '';
-          document.getElementById('water-limit-hi').value = config.waterDashboard.weeklyLimit?.hi || '';
-          document.getElementById('water-limit-te').value = config.waterDashboard.weeklyLimit?.te || '';
+          document.getElementById('water-limit-en').value = config.waterDashboard.dailyLimit?.en || '';
+          document.getElementById('water-limit-hi').value = config.waterDashboard.dailyLimit?.hi || '';
+          document.getElementById('water-limit-te').value = config.waterDashboard.dailyLimit?.te || '';
           
           document.getElementById('water-wells-en').value = config.waterDashboard.borewellStatus?.en || '';
           document.getElementById('water-wells-hi').value = config.waterDashboard.borewellStatus?.hi || '';
@@ -2739,7 +2739,7 @@
           hi: document.getElementById('water-hours-hi').value.trim(),
           te: document.getElementById('water-hours-te').value.trim()
         },
-        weeklyLimit: {
+        dailyLimit: {
           en: document.getElementById('water-limit-en').value.trim(),
           hi: document.getElementById('water-limit-hi').value.trim(),
           te: document.getElementById('water-limit-te').value.trim()

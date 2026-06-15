@@ -441,12 +441,12 @@ const server = http.createServer(async (req, res) => {
             aadhaar: aadhaarCount
           },
           percentages: {
-            privateToilet: Math.round((toiletCount / total) * 100),
-            vehicle: Math.round((vehicleCount / total) * 100),
-            tapWater: Math.round((tapWaterCount / total) * 100),
-            cleanEnergy: Math.round((cleanEnergyCount / total) * 100),
-            ownHouse: Math.round((ownHouseCount / total) * 100),
-            aadhaar: Math.round((aadhaarCount / total) * 100)
+            privateToilet: Math.round((toiletCount / total) * 1000) / 10,
+            vehicle: Math.round((vehicleCount / total) * 1000) / 10,
+            tapWater: Math.round((tapWaterCount / total) * 1000) / 10,
+            cleanEnergy: Math.round((cleanEnergyCount / total) * 1000) / 10,
+            ownHouse: Math.round((ownHouseCount / total) * 1000) / 10,
+            aadhaar: Math.round((aadhaarCount / total) * 1000) / 10
           }
         }));
         return;

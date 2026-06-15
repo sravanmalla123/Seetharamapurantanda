@@ -100,7 +100,7 @@
       "aadhaar": true
     },
     "HH-103": {
-      "privateToilet": false,
+      "privateToilet": true,
       "vehicle": true,
       "tapWater": true,
       "cleanEnergy": false,
@@ -719,9 +719,9 @@
       "population": "318",
       "male": "168",
       "female": "150",
-      "children": "72",
+      "children": "21",
       "seniors": "22",
-      "disabled": "18"
+      "disabled": "2"
     },
     "infraAudit": {
       "roads": {
@@ -851,10 +851,10 @@
         "hi": "सुबह 06:00 बजे - 08:00 बजे",
         "te": "ఉదయం 06:00 - 08:00"
       },
-      "weeklyLimit": {
-        "en": "300 Litres / Family",
-        "hi": "240 लीटर / परिवार",
-        "te": "240 లీటర్లు / కుటుంబం"
+      "dailyLimit": {
+        "en": "1000 Litres / Family",
+        "hi": "1000 लीटर / परिवार",
+        "te": "1000 లీటర్లు / కుటుంబం"
       },
       "borewellStatus": {
         "en": "8 / 8 Active",
@@ -1165,8 +1165,8 @@
         "totalFamilies": "98",
         "totalHouses": "98",
         "totalFarmers": "84",
-        "totalStudents": "57",
-        "totalEmployees": "26",
+        "totalStudents": "51",
+        "totalEmployees": "7",
         "sarpanchName": "Smt. L. Devika",
         "numberOfWards": "5"
       },
@@ -1182,7 +1182,7 @@
       },
       "education": {
         "numberOfSchools": "2 (Primary & Upper Primary)",
-        "totalStudents": "57",
+        "totalStudents": "51",
         "scholarshipsProvided": "4 Students"
       },
       "schemes": {
@@ -1210,7 +1210,7 @@
         "gender_ratio": "893 females per 1000 males",
         "age_groups": {
           "Working Age (25-60)": 161,
-          "Children (0-14)": 72,
+          "Children (0-14)": 21,
           "Youth (15-24)": 63,
           "Senior Citizens (60+)": 22
         }
@@ -1229,7 +1229,7 @@
       "occupation": {
         "top_occupations": {
           "Farmer": 84,
-          "Student": 57,
+          "Student": 51,
           "Homemaker": 39,
           "Daily Wage Worker": 22,
           "Software Engineer / IT Employee": 3,

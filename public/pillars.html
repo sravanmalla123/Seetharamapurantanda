@@ -3224,7 +3224,7 @@
     }
 
     function renderHouseholdChart(data) {
-      const percentages = data.percentages || { privateToilet: 80, vehicle: 60, tapWater: 94, cleanEnergy: 50, ownHouse: 82, aadhaar: 100 };
+      const percentages = data.percentages || { privateToilet: 82.7, vehicle: 55.8, tapWater: 80.8, cleanEnergy: 57.7, ownHouse: 82.7, aadhaar: 100 };
       
       const valToilet = document.getElementById('val-toilet');
       if (valToilet) valToilet.textContent = `${percentages.privateToilet}%`;
