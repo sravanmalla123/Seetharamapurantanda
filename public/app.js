@@ -1775,6 +1775,7 @@ function initHouseholdUpdates() {
     const tapWater = document.getElementById('chk-water').checked;
     const cleanEnergy = document.getElementById('chk-energy').checked;
     const ownHouse = document.getElementById('chk-house').checked;
+    const aadhaar = document.getElementById('chk-aadhaar').checked;
 
     fetch('/api/household-updates', {
       method: 'POST',
@@ -1785,7 +1786,8 @@ function initHouseholdUpdates() {
         vehicle,
         tapWater,
         cleanEnergy,
-        ownHouse
+        ownHouse,
+        aadhaar
       })
     })
     .then(res => {
@@ -1829,7 +1831,7 @@ function fetchHouseholdUpdates() {
 }
 
 function renderHouseholdChart(data) {
-  const percentages = data.percentages || { privateToilet: 80, vehicle: 60, tapWater: 94, cleanEnergy: 50, ownHouse: 82 };
+  const percentages = data.percentages || { privateToilet: 80, vehicle: 60, tapWater: 94, cleanEnergy: 50, ownHouse: 82, aadhaar: 100 };
   
   // Update text values
   const valToilet = document.getElementById('val-toilet');
@@ -1847,6 +1849,9 @@ function renderHouseholdChart(data) {
   const valHouse = document.getElementById('val-house');
   if (valHouse) valHouse.textContent = `${percentages.ownHouse}%`;
 
+  const valAadhaar = document.getElementById('val-aadhaar');
+  if (valAadhaar) valAadhaar.textContent = `${percentages.aadhaar || 0}%`;
+
   // Update bar widths
   const barToilet = document.getElementById('bar-toilet');
   if (barToilet) barToilet.style.width = `${percentages.privateToilet}%`;
@@ -1862,6 +1867,9 @@ function renderHouseholdChart(data) {
 
   const barHouse = document.getElementById('bar-house');
   if (barHouse) barHouse.style.width = `${percentages.ownHouse}%`;
+
+  const barAadhaar = document.getElementById('bar-aadhaar');
+  if (barAadhaar) barAadhaar.style.width = `${percentages.aadhaar || 0}%`;
 
   // Update badge
   const badge = document.getElementById('household-chart-badge');
@@ -2210,6 +2218,7 @@ const translationDictionary = {
     '#label-water': '🚰 सुरक्षित नल जल कनेक्शन',
     '#label-energy': '⚡ रूफटॉप सोलर / बायोगैस',
     '#label-house': '🏠 पक्के/स्वयं के घर का स्वामित्व',
+    '#label-aadhaar': '🆔 आधार कार्ड धारक',
     '#btn-text-facility-update': 'घरेलू स्थिति अपडेट करें',
     '#household-modal-title': 'घरेलू सुख-सुविधाओं की स्थिति अपडेट करें',
     '#household-modal-desc': 'ग्राम पंचायत डेटासेट को अपडेट करने में मदद करने के लिए अपने घर की उन्नत सुविधाओं की स्व-रिपोर्ट करें।',
@@ -2220,6 +2229,7 @@ const translationDictionary = {
     '#chk-label-water': 'हमारे पास सुरक्षित नल जल कनेक्शन है',
     '#chk-label-energy': 'हम स्वच्छ ऊर्जा (सौर/बायोगैस) का उपयोग करते हैं',
     '#chk-label-house': 'हम अपने स्वयं के घर में रहते हैं',
+    '#chk-label-aadhaar': 'हमारे पास आधार कार्ड है',
     '#btn-submit-household-update': 'अपडेट सबमिट करें',
     '#about-section-subtitle': 'गाँव और आदिवासी प्रोफ़ाइल के बारे में',
     '#about-heading': 'सीतारामपुरम टांडा इतिहास और जनसांख्यिकी',
@@ -2517,6 +2527,7 @@ const translationDictionary = {
     '#label-water': '🚰 సురక్షిత కుళాయి నీటి కనెక్షన్',
     '#label-energy': '⚡ సోలార్ పవర్ / బయో-గ్యాస్',
     '#label-house': '🏠 సొంత ఇల్లు కలిగి ఉండటం',
+    '#label-aadhaar': '🆔 ఆధార్ కార్డు వివరాలు',
     '#btn-text-facility-update': 'గృహ సదుపాయాల స్థితిని అప్‌డేట్ చేయి',
     '#household-modal-title': 'గృహ సదుపాయాల సమాచార అప్‌డేట్',
     '#household-modal-desc': 'గ్రామ పంచాయతీ డేటాసెట్‌ను అప్‌డేట్ చేయడానికి మీ గృహ సదుపాయాల సమాచారాన్ని స్వీయ-నివేదించండి.',
@@ -2527,6 +2538,7 @@ const translationDictionary = {
     '#chk-label-water': 'మాకు సురక్షిత కుళాయి నీటి కనెక్షన్ ఉంది',
     '#chk-label-energy': 'మేము హరిత ఇంధనం (సోలార్/బయో-గ్యాస్) వాడుతున్నాము',
     '#chk-label-house': 'మేము మా సొంత ఇంట్లో నివసిస్తున్నాము',
+    '#chk-label-aadhaar': 'మేము ఆధార్ కార్డు కలిగి ఉన్నాము',
     '#btn-submit-household-update': 'సమాచారాన్ని సమర్పించు',
     '#about-section-subtitle': 'గ్రామం & గిరిజన ప్రొఫైల్ గురించి',
     '#about-heading': 'సీతారామపురం తండా చరిత్ర & జనాభా వివరాలు',
